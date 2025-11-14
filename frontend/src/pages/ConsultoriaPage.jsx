@@ -59,10 +59,10 @@ const ConsultoriaPage = () => {
           <div className="service-icon-large">
             <Users />
           </div>
-          <h1 className="service-title">Consultoria Exclusiva</h1>
+          <h1 className="service-title">Decisões Certas, Resultados Rápidos</h1>
           <p className="service-subtitle">
-            Acesso direto à expertise em marketing digital e gestão de tráfego. 
-            Orientação personalizada para maximizar resultados e acelerar o crescimento do seu negócio.
+            Pare de desperdiçar tempo e dinheiro com tentativa e erro. Tenha um especialista ao seu lado para identificar problemas e implementar soluções que funcionam. 
+            Cresça mais rápido evitando os erros caros.
           </p>
         </div>
       </section>
@@ -70,9 +70,9 @@ const ConsultoriaPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona a Consultoria</h2>
+          <h2 className="section-heading">O Que Isto Lhe Traz</h2>
           <p className="section-description">
-            Acompanhamento próximo e personalizado para garantir resultados excepcionais
+            Benefícios reais de ter orientação especializada
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
