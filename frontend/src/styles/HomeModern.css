@@ -401,14 +401,25 @@
 }
 
 .hero-description {
-  font-size: 1.35rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.9;
-  margin-bottom: 3.5rem;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 2;
+  margin-bottom: 4rem;
   font-weight: 400;
-  max-width: 95%;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.3px;
+  max-width: 90%;
+  letter-spacing: 0.2px;
+  animation: descFadeIn 1.5s ease-out 0.3s backwards;
+}
+
+@keyframes descFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cta-button {
