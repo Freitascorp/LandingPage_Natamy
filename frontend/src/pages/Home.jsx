@@ -154,7 +154,7 @@ const Home = () => {
           <div className="hero-text">
             <h2 className="hero-title">Transforme o Seu Negócio Digital</h2>
             <p className="hero-description">
-              Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais com estratégias premium.
+              Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
             <Button 
               onClick={scrollToContact}
