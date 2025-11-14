@@ -59,10 +59,10 @@ const TrafegoPage = () => {
           <div className="service-icon-large">
             <TrendingUp />
           </div>
-          <h1 className="service-title">Gestão de Tráfego Pago</h1>
+          <h1 className="service-title">Mais Clientes, Menos Desperdício</h1>
           <p className="service-subtitle">
-            Transforme investimento em publicidade online em resultados mensuráveis e escaláveis. 
-            Estratégias data-driven para maximizar o seu ROI em todas as plataformas digitais.
+            Pare de gastar dinheiro a adivinhar. Invista apenas em publicidade que traz clientes reais, mensuráveis e que pagam. 
+            Veja cada euro investido a retornar em vendas concretas.
           </p>
         </div>
       </section>
@@ -70,9 +70,9 @@ const TrafegoPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona</h2>
+          <h2 className="section-heading">O Que Vai Conseguir</h2>
           <p className="section-description">
-            Campanhas personalizadas nas principais plataformas de anúncios online
+            Resultados concretos que transformam o seu negócio
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
