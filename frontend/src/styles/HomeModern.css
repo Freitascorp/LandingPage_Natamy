@@ -787,6 +787,17 @@
   pointer-events: none;
 }
 
+.contact .section-title {
+  text-align: center;
+  padding-left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact .section-title::before {
+  display: none;
+}
+
 .contact-subtitle {
   text-align: center;
   font-size: 1.3rem;
