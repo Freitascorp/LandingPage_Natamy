@@ -1141,7 +1141,27 @@
   }
 
   .service-card {
-    padding: 2rem 1.5rem;
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .service-icon .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+  }
+
+  .service-description {
+    font-size: 0.95rem;
   }
 
   .cta-button,
