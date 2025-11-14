@@ -114,7 +114,7 @@ const ConsultoriaPage = () => {
           <div className="cta-content">
             <h2 className="cta-heading">Vamos Trabalhar Juntos?</h2>
             <p className="cta-text">
-              Agende uma sessão de consultoria e descubra como podemos levar seu negócio digital ao próximo nível.
+              Agende uma sessão de consultoria e descubra como podemos levar o seu negócio digital ao próximo nível.
             </p>
             <Button 
               onClick={() => navigate('/')}
