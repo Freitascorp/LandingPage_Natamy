@@ -117,7 +117,12 @@ const EstrategiaPage = () => {
               Entre em contacto e descubra o plano exacto para transformar o seu negócio num sistema de crescimento consistente.
             </p>
             <Button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
               className="cta-button-large"
               size="lg"
             >
