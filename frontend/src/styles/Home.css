@@ -30,17 +30,32 @@
   align-items: center;
 }
 
-.logo-full {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
-.logo-full:hover {
-  transform: scale(1.03);
-  filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.4));
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #d4af37;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  transition: text-shadow 0.3s ease;
+}
+
+.brand-name:hover {
+  text-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
+}
+
+.brand-tagline {
+  font-size: 0.85rem;
+  color: #b8a16f;
+  letter-spacing: 1.5px;
+  margin: 0;
+  font-weight: 400;
 }
 
 .nav {
