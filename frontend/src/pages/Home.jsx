@@ -310,7 +310,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container footer-content">
-          <p>&copy; 2024 Natamy Oliveira - Gestão de Tráfego Digital e Automação Premium</p>
+          <p>&copy; 2025 Natamy Oliveira - Gestão de Tráfego e Automação</p>
           <p className="footer-rights">Todos os direitos reservados</p>
         </div>
       </footer>
