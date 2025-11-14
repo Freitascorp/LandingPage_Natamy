@@ -11,12 +11,12 @@ const TrafegoPage = () => {
   const examples = [
     {
       title: 'Google Ads - Pesquisa',
-      description: 'Campanhas de busca otimizadas para aparecer quando seu cliente procura por seus serviços',
+      description: 'Campanhas de pesquisa optimizadas para aparecer quando o seu cliente procura pelos seus serviços',
       result: 'ROI médio de 300-500%'
     },
     {
       title: 'Facebook & Instagram Ads',
-      description: 'Anúncios segmentados por interesse, comportamento e demografia para atingir seu público ideal',
+      description: 'Anúncios segmentados por interesse, comportamento e demografia para atingir o seu público ideal',
       result: 'CPL reduzido em até 60%'
     },
     {
@@ -30,7 +30,7 @@ const TrafegoPage = () => {
     'Análise de mercado e concorrência',
     'Segmentação precisa do público-alvo',
     'Criação de anúncios de alta conversão',
-    'Otimização contínua de campanhas',
+    'Optimização contínua de campanhas',
     'Relatórios detalhados de performance',
     'Testes A/B constantes',
     'Gestão de orçamento inteligente',
