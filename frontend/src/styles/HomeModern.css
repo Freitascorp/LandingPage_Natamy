@@ -604,41 +604,73 @@
   transform: scale(1.12);
 }
 
-/* ===== SERVICES SECTION ===== */
+/* ===== SPECTACULAR SERVICES SECTION ===== */
 .services {
-  padding: 8rem 0;
-  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  padding: 10rem 0;
+  background: linear-gradient(180deg, #000000 0%, #050505 50%, #0a0a0a 100%);
   position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .section-title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
   text-align: center;
   font-family: 'Playfair Display', serif;
-  background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #d4af37 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -1px;
+  letter-spacing: -2px;
+  animation: titleGradientFlow 6s ease-in-out infinite;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 6rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* Modern Glass Card Design */
+/* Ultra-Premium Glass Card Design */
 .service-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 2.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  padding: 3rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -650,23 +682,53 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #d4af37, #ffd700);
+  height: 5px;
+  background: linear-gradient(90deg, #d4af37, #ffd700, #ec4899, #9333ea);
+  background-size: 300% auto;
   transform: scaleX(0);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  animation: gradientSlide 3s linear infinite;
+}
+
+@keyframes gradientSlide {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+  transition: all 0.6s ease;
+  opacity: 0;
 }
 
 .service-card:hover::before {
   transform: scaleX(1);
 }
 
+.service-card:hover::after {
+  width: 500px;
+  height: 500px;
+  opacity: 1;
+}
+
 .service-card:hover {
-  transform: translateY(-12px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-16px) scale(1.02);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.4);
   box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 80px rgba(212, 175, 55, 0.15);
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(212, 175, 55, 0.25),
+    inset 0 0 80px rgba(212, 175, 55, 0.05);
 }
 
 .service-icon {
