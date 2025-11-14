@@ -360,10 +360,9 @@
 }
 
 .contact-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  align-items: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-form-card {
