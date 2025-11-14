@@ -11,7 +11,7 @@ const ConsultoriaPage = () => {
   const examples = [
     {
       title: 'Auditoria Completa',
-      description: 'Análise detalhada de todas as suas operações digitais com identificação de gargalos e oportunidades',
+      description: 'Análise detalhada de todas as suas operações digitais com identificação de estrangulamentos e oportunidades',
       result: 'Relatório completo de otimização'
     },
     {
