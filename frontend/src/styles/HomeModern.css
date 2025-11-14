@@ -358,14 +358,15 @@
 }
 
 .hero-description {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.35rem;
+  color: rgba(255, 255, 255, 0.9);
   line-height: 2;
   margin-bottom: 4rem;
   font-weight: 400;
-  max-width: 90%;
-  letter-spacing: 0.2px;
+  max-width: 750px;
+  letter-spacing: 0.3px;
   animation: descFadeIn 1.5s ease-out 0.3s backwards;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
 @keyframes descFadeIn {
