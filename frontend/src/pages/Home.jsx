@@ -183,7 +183,11 @@ const Home = () => {
           <h2 className="section-title">Serviços Premium</h2>
           <div className="services-grid">
             {services.map((service, index) => (
-              <Card key={index} className="service-card">
+              <Card 
+                key={index} 
+                className="service-card service-card-clickable"
+                onClick={() => navigate(service.link)}
+              >
                 <CardHeader>
                   <div className="service-icon">
                     <service.icon className="icon" />
@@ -194,6 +198,10 @@ const Home = () => {
                   <CardDescription className="service-description">
                     {service.description}
                   </CardDescription>
+                  <div className="learn-more">
+                    <span>Saiba mais</span>
+                    <ArrowRight className="arrow-icon" />
+                  </div>
                 </CardContent>
               </Card>
             ))}
