@@ -252,7 +252,7 @@ seu-repositorio/
 - **Netlify**: https://www.netlify.com/
 - **Vercel**: https://vercel.com/
 - **EmailJS**: https://www.emailjs.com/
-- **Seu site preview**: https://adautomation.preview.emergentagent.com
+- **Seu site preview**: https://oliveira-portfolio.preview.emergentagent.com
 
 ---
 

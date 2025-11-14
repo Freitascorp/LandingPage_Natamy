@@ -17,7 +17,7 @@ Landing page profissional premium para serviços de Gestão de Tráfego Digital 
 
 ## 🚀 Preview Online
 
-**URL Preview**: https://adautomation.preview.emergentagent.com
+**URL Preview**: https://oliveira-portfolio.preview.emergentagent.com
 
 ---
 
@@ -90,7 +90,7 @@ TEMPLATE_ID: template_0zx56pk
 
 ## 🚀 Próximos Passos
 
-1. **Testar o site**: https://adautomation.preview.emergentagent.com
+1. **Testar o site**: https://oliveira-portfolio.preview.emergentagent.com
 2. **Fazer deploy**: Siga o DEPLOYMENT_GUIDE.md
 3. **Compartilhar**: Envie o link para clientes!
 
