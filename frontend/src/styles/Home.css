@@ -368,6 +368,8 @@
 .contact-form-card {
   background: linear-gradient(145deg, #0a1628 0%, #0d1d35 100%);
   border: 1px solid rgba(212, 175, 55, 0.3);
+  max-width: 700px;
+  width: 100%;
 }
 
 .contact-form {
