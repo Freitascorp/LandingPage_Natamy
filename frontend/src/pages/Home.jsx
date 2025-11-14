@@ -295,27 +295,18 @@ const Home = () => {
             <div className="contact-info">
               <div className="whatsapp-qr-section">
                 <h3 className="whatsapp-title">Fale Comigo no WhatsApp</h3>
-                <a 
-                  href="https://wa.me/351915018559" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="qr-code-link"
-                >
+                <div className="qr-code-link">
                   <img 
                     src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/nk1kw2t7_qrcode-351915018559.jpeg" 
                     alt="WhatsApp QR Code - Natamy Oliveira" 
                     className="whatsapp-qr-code"
                   />
-                </a>
-                <p className="whatsapp-instruction">Escaneie o código ou clique para conversar</p>
-                <a 
-                  href="https://wa.me/351915018559" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="whatsapp-button"
-                >
-                  Abrir WhatsApp
-                </a>
+                </div>
+                <p className="whatsapp-instruction">Escaneie o código com seu celular para conversar</p>
+                <div className="whatsapp-contact-info">
+                  <p className="phone-number">📱 +351 915 018 559</p>
+                  <p className="whatsapp-note">Adicione este número e envie uma mensagem no WhatsApp</p>
+                </div>
               </div>
             </div>
           </div>
