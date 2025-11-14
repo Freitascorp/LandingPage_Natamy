@@ -173,7 +173,7 @@
 
 .nav {
   display: flex;
-  gap: 3rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
 }
 
@@ -181,11 +181,11 @@
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+  letter-spacing: clamp(0.5px, 0.1vw, 1px);
+  font-size: clamp(0.75rem, 1.2vw, 1rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  padding: 0.5rem 0;
+  padding: clamp(0.3rem, 0.8vh, 0.6rem) 0;
 }
 
 .nav-link::before {
