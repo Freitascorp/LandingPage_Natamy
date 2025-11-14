@@ -59,10 +59,10 @@ const EstrategiaPage = () => {
           <div className="service-icon-large">
             <Target />
           </div>
-          <h1 className="service-title">Estratégia Digital</h1>
+          <h1 className="service-title">Crescimento Previsível</h1>
           <p className="service-subtitle">
-            Planeamento estratégico completo para dominar o seu mercado digital. 
-            Da análise à execução, construímos o caminho para o sucesso do seu negócio online.
+            Chega de adivinhar o próximo passo. Tenha um plano claro que transforma visitantes em clientes pagantes de forma consistente. 
+            Saiba exactamente o que fazer para crescer mês após mês.
           </p>
         </div>
       </section>
@@ -70,9 +70,9 @@ const EstrategiaPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Nossa Abordagem Estratégica</h2>
+          <h2 className="section-heading">O Que Vai Alcançar</h2>
           <p className="section-description">
-            Metodologia comprovada para criar e executar estratégias digitais vencedoras
+            Resultados concretos que transformam o seu negócio
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
