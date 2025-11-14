@@ -501,15 +501,15 @@
 }
 
 .section-title {
-  font-size: 4rem;
+  font-size: clamp(2rem, 4.5vw, 4rem);
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
   text-align: left;
   font-family: 'Sora', sans-serif;
   color: #ffffff;
-  letter-spacing: -1px;
+  letter-spacing: clamp(-0.5px, -0.1vw, -1px);
   position: relative;
-  padding-left: 40px;
+  padding-left: clamp(25px, 3vw, 40px);
 }
 
 .section-title::before {
@@ -518,7 +518,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  width: 6px;
+  width: clamp(4px, 0.5vw, 6px);
   background: linear-gradient(180deg, #d4af37, #ffd700);
   border-radius: 10px;
   box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
