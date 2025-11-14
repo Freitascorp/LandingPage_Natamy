@@ -11,7 +11,7 @@ const EstrategiaPage = () => {
   const examples = [
     {
       title: 'Análise de Mercado',
-      description: 'Estudo profundo do seu mercado, concorrência e oportunidades para posicionamento estratégico',
+      description: 'Estudo aprofundado do seu mercado, concorrência e oportunidades para posicionamento estratégico',
       result: 'Identificação de nichos inexplorados'
     },
     {
