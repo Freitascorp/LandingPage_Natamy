@@ -8,7 +8,7 @@ import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight }
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Home.css';
+import '../styles/HomeModern.css';
 
 const Home = () => {
   const navigate = useNavigate();
