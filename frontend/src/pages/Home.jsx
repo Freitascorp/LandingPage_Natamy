@@ -7,6 +7,7 @@ import { Label } from '../components/ui/label';
 import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 
 const Home = () => {
