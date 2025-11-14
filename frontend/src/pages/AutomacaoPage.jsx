@@ -62,7 +62,7 @@ const AutomacaoPage = () => {
           <h1 className="service-title">Automação de Negócios</h1>
           <p className="service-subtitle">
             Elimine tarefas repetitivas e foque no crescimento do seu negócio. 
-            Implementação de sistemas inteligentes que trabalham 24/7 para você.
+            Implementação de sistemas inteligentes que trabalham 24/7 para si.
           </p>
         </div>
       </section>
