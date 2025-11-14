@@ -1000,7 +1000,7 @@
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
   .hero {
-    background-position: 70% center;
+    background-position: 65% 35%;
     background-attachment: scroll;
   }
 
