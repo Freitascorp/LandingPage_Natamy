@@ -942,35 +942,69 @@
   color: rgba(255, 255, 255, 0.95);
 }
 
-/* ===== CONTACT SECTION ===== */
+/* ===== PREMIUM CONTACT SECTION ===== */
 .contact {
-  padding: 8rem 0;
-  background: #000000;
+  padding: 10rem 0;
+  background: linear-gradient(180deg, #050505 0%, #000000 100%);
   position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
 }
 
 .contact-subtitle {
   text-align: center;
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 4rem;
-  max-width: 700px;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 5rem;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-content {
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-form-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(212, 175, 55, 0.2),
+    inset 0 0 80px rgba(212, 175, 55, 0.05);
+  position: relative;
+}
+
+.contact-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+  animation: shimmerLine 3s linear infinite;
 }
 
 .form-card-title {
