@@ -129,7 +129,7 @@ const Home = () => {
         <div className="container header-content">
           <div className="logo-section">
             <img 
-              src="https://drive.google.com/uc?export=view&id=1IJ7fwP_uzlLf0ZXZcLzmNjp4W1WWgF_Y" 
+              src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/cx09wsxk_image.png" 
               alt="Natamy Oliveira Logo" 
               className="logo"
             />
