@@ -180,7 +180,7 @@ const Home = () => {
       {/* Services Section */}
       <section className="services" id="servicos">
         <div className="container">
-          <h2 className="section-title">Serviços Premium</h2>
+          <h2 className="section-title">Serviços</h2>
           <div className="services-grid">
             {services.map((service, index) => (
               <div 
