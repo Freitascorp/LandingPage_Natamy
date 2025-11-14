@@ -117,7 +117,12 @@ const ConsultoriaPage = () => {
               Entre em contacto e descubra exactamente o que está a impedir o seu crescimento e como corrigir rapidamente.
             </p>
             <Button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
               className="cta-button-large"
               size="lg"
             >
