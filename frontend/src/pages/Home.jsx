@@ -95,26 +95,26 @@ const Home = () => {
   const services = [
     {
       icon: TrendingUp,
-      title: 'Gestão de Tráfego Pago',
-      description: 'Criação e optimização de campanhas no Google Ads, Facebook Ads e Instagram Ads para gerar resultados reais e mensuráveis. ROI maximizado com estratégias data-driven.',
+      title: 'Mais Clientes, Menos Desperdício',
+      description: 'Atraia exactamente quem precisa do seu serviço e pague apenas por resultados reais. Cada euro investido retorna em clientes qualificados que estão prontos para comprar.',
       link: '/trafego-pago'
     },
     {
       icon: Zap,
-      title: 'Automação de Negócios',
-      description: 'Implementação de sistemas de automação de marketing, vendas e atendimento para aumentar a sua produtividade e reduzir custos operacionais em até 70%.',
+      title: 'Mais Tempo, Mais Vendas',
+      description: 'Liberte-se das tarefas repetitivas e foque-se no que realmente gera receita. Os seus leads são nutridos automaticamente enquanto a sua equipa se dedica a fechar vendas.',
       link: '/automacao'
     },
     {
       icon: Target,
-      title: 'Estratégia Digital',
-      description: 'Desenvolvimento de estratégias personalizadas para aumentar a sua presença online, gerar leads qualificados e maximizar o seu ROI com análise aprofundada.',
+      title: 'Crescimento Previsível',
+      description: 'Saiba exactamente o que fazer a seguir para crescer. Um plano claro que transforma visitantes em clientes pagantes de forma consistente e escalável.',
       link: '/estrategia'
     },
     {
       icon: Users,
-      title: 'Consultoria Exclusiva',
-      description: 'Análise completa do seu negócio digital com recomendações práticas para optimizar processos, aumentar conversões e escalar com inteligência.',
+      title: 'Decisões Certas, Resultados Rápidos',
+      description: 'Identifique o que está a travar o seu crescimento e corrija rapidamente. Orientação prática que elimina desperdícios e multiplica os seus resultados.',
       link: '/consultoria'
     }
   ];
