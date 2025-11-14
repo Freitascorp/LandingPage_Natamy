@@ -112,9 +112,9 @@ const AutomacaoPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Automatize Seu Negócio Agora</h2>
+            <h2 className="cta-heading">Automatize o Seu Negócio Agora</h2>
             <p className="cta-text">
-              Descubra como a automação pode economizar tempo, reduzir custos e aumentar suas vendas significativamente.
+              Descubra como a automação pode poupar tempo, reduzir custos e aumentar as suas vendas significativamente.
             </p>
             <Button 
               onClick={() => navigate('/')}
