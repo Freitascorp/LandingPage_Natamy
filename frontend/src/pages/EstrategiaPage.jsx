@@ -112,9 +112,9 @@ const EstrategiaPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Vamos Criar Sua Estratégia?</h2>
+            <h2 className="cta-heading">Quer Crescer de Forma Previsível?</h2>
             <p className="cta-text">
-              Entre em contacto para uma análise inicial gratuita e descubra como podemos impulsionar o seu negócio digital.
+              Entre em contacto e descubra o plano exacto para transformar o seu negócio num sistema de crescimento consistente.
             </p>
             <Button 
               onClick={() => navigate('/')}
