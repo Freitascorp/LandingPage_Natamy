@@ -1078,7 +1078,33 @@
     font-size: 2.5rem;
   }
 
-  .services-grid,
+  .services-grid {
+    gap: 0;
+  }
+
+  .service-card {
+    grid-template-columns: 60px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+  }
+
+  .service-card:hover {
+    padding-left: 1rem;
+  }
+
+  .learn-more {
+    display: none;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    padding-left: 30px;
+  }
+
+  .section-title::before {
+    width: 4px;
+  }
+
   .benefits-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
