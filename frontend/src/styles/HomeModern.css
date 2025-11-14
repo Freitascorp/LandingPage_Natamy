@@ -287,7 +287,8 @@
   min-height: 100vh;
   position: relative;
   z-index: 3;
-  padding: 10rem 0 6rem;
+  padding-top: calc(80px + 8rem);
+  padding-bottom: 6rem;
 }
 
 .hero-text {
