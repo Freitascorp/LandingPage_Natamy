@@ -117,7 +117,12 @@ const TrafegoPage = () => {
               Entre em contacto e descubra quanto pode crescer o seu negócio quando atrai exactamente quem precisa do seu serviço.
             </p>
             <Button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
               className="cta-button-large"
               size="lg"
             >
