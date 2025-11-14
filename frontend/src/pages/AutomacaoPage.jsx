@@ -59,10 +59,10 @@ const AutomacaoPage = () => {
           <div className="service-icon-large">
             <Zap />
           </div>
-          <h1 className="service-title">Automação de Negócios</h1>
+          <h1 className="service-title">Mais Tempo, Mais Vendas</h1>
           <p className="service-subtitle">
-            Elimine tarefas repetitivas e foque no crescimento do seu negócio. 
-            Implementação de sistemas inteligentes que trabalham 24/7 para si.
+            Pare de perder tempo com tarefas repetitivas. Dedique-se a fazer crescer o negócio enquanto os processos rodam sozinhos. 
+            Mais vendas, menos esforço, zero esquecimentos.
           </p>
         </div>
       </section>
@@ -70,9 +70,9 @@ const AutomacaoPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Soluções de Automação</h2>
+          <h2 className="section-heading">O Que Isto Significa Para Si</h2>
           <p className="section-description">
-            Processos automatizados que aumentam produtividade e reduzem custos operacionais
+            Benefícios reais que sente no dia-a-dia do seu negócio
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
