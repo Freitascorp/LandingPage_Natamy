@@ -130,11 +130,11 @@
 .logo-section::before {
   content: '';
   position: absolute;
-  left: -15px;
+  left: -12px;
   top: 50%;
   transform: translateY(-50%);
-  width: 4px;
-  height: 60%;
+  width: 3px;
+  height: 50%;
   background: linear-gradient(180deg, #d4af37, #ffd700);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
