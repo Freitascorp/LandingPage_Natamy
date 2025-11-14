@@ -280,11 +280,11 @@
 }
 
 .service-title {
-  color: #d4af37;
-  font-size: 1rem;
-  font-weight: 200;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
+  color: #d4af37 !important;
+  font-size: 1rem !important;
+  font-weight: 200 !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 0.5rem !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
