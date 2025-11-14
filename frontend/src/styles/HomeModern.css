@@ -1123,29 +1123,43 @@
   transform: none !important;
 }
 
-/* ===== FOOTER ===== */
+/* ===== ELEGANT FOOTER ===== */
 .footer {
-  padding: 3rem 0;
-  background: #000000;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
 }
 
 .footer-content {
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .footer-content p {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
   margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
 .footer-rights {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.5px;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
