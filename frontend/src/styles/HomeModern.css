@@ -452,128 +452,17 @@
   transform: translateY(-3px) scale(1.02);
 }
 
-/* Hero Image with Stunning Effects */
+/* Hero Image - Hidden since it's now the background */
 .hero-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: fadeInRight 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
-  position: relative;
-}
-
-.hero-image::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, transparent 70%);
-  filter: blur(60px);
-  animation: floatingOrb 8s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes floatingOrb {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
-  50% { transform: translate(30px, -30px) scale(1.3); opacity: 0.8; }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
+  display: none;
 }
 
 .image-frame {
-  position: relative;
-  border-radius: 40px;
-  overflow: hidden;
-  box-shadow: 
-    0 30px 90px rgba(0, 0, 0, 0.6),
-    0 0 100px rgba(212, 175, 55, 0.3),
-    inset 0 0 100px rgba(212, 175, 55, 0.1);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: imageFloat 6s ease-in-out infinite;
-}
-
-@keyframes imageFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-.image-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 40px;
-  padding: 4px;
-  background: linear-gradient(135deg, #d4af37, #ffd700, #ec4899, #9333ea, #d4af37);
-  background-size: 300% 300%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0.8;
-  animation: borderGradientFlow 4s ease-in-out infinite;
-  z-index: 1;
-}
-
-@keyframes borderGradientFlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.image-frame::after {
-  content: '';
-  position: absolute;
-  inset: -100%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg 90deg,
-    rgba(212, 175, 55, 0.3) 90deg 180deg,
-    transparent 180deg 270deg,
-    rgba(147, 51, 234, 0.3) 270deg 360deg
-  );
-  animation: rotate 4s linear infinite;
-  filter: blur(40px);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.image-frame:hover {
-  transform: scale(1.08) rotate(3deg);
-  box-shadow: 
-    0 40px 120px rgba(0, 0, 0, 0.7),
-    0 0 150px rgba(212, 175, 55, 0.5),
-    inset 0 0 100px rgba(212, 175, 55, 0.2);
-}
-
-.image-frame:hover::after {
-  opacity: 1;
+  display: none;
 }
 
 .profile-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.image-frame:hover .profile-image {
-  transform: scale(1.12);
+  display: none;
 }
 
 /* ===== SPECTACULAR SERVICES SECTION ===== */
