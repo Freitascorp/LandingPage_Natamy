@@ -309,11 +309,11 @@
 }
 
 .hero-title {
-  font-size: 6.5rem;
+  font-size: clamp(2rem, 6vw, 6.5rem);
   font-weight: 300;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.5rem, 3vh, 3rem);
   line-height: 1.1;
-  letter-spacing: -3px;
+  letter-spacing: clamp(-2px, -0.2vw, -3px);
   font-family: 'Sora', sans-serif;
   color: #ffffff;
   position: relative;
@@ -324,10 +324,10 @@
 .hero-title::before {
   content: '';
   position: absolute;
-  left: -35px;
+  left: clamp(-15px, -2vw, -35px);
   top: 0;
   bottom: 0;
-  width: 8px;
+  width: clamp(3px, 0.5vw, 8px);
   background: linear-gradient(180deg, #d4af37, #ffd700);
   border-radius: 10px;
   box-shadow: 
