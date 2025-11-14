@@ -1051,82 +1051,8 @@
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 1.25rem;
-  }
-
-  .header {
-    padding: 0.5rem 0;
-  }
-
-  .brand-name {
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-  }
-
-  .brand-tagline {
-    font-size: 0.45rem;
-  }
-
-  .nav-link {
-    font-size: 0.75rem;
-  }
-
   .hero {
     background-position: center 15%;
-  }
-
-  .hero-content {
-    padding-top: calc(120px + 3rem);
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    letter-spacing: -0.5px;
-  }
-
-  .hero-title::before {
-    left: -12px;
-    width: 3px;
-  }
-
-  .hero-description {
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .service-card {
-    grid-template-columns: 50px 1fr;
-    gap: 1.5rem;
-    padding: 2.5rem 0;
-  }
-
-  .service-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .service-icon .icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .service-title {
-    font-size: 1.5rem;
-  }
-
-  .service-description {
-    font-size: 0.95rem;
-  }
-
-  .cta-button,
-  .submit-button {
-    padding: 1rem 2rem;
-    font-size: 0.9rem;
   }
 }
 
