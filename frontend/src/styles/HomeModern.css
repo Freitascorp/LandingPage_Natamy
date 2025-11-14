@@ -386,11 +386,11 @@
   background-size: 200% auto;
   color: #000000;
   font-weight: 800;
-  letter-spacing: 1.5px;
-  padding: 1.75rem 4rem;
-  border-radius: 70px;
+  letter-spacing: clamp(1px, 0.15vw, 1.5px);
+  padding: clamp(1rem, 2.5vh, 1.75rem) clamp(2rem, 4vw, 4rem);
+  border-radius: clamp(40px, 8vw, 70px);
   border: none;
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 15px 50px rgba(212, 175, 55, 0.6),
@@ -399,7 +399,7 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
   position: relative;
   overflow: hidden;
   animation: buttonGlow 4s ease-in-out infinite;
