@@ -114,7 +114,7 @@ const TrafegoPage = () => {
           <div className="cta-content">
             <h2 className="cta-heading">Pronto para Escalar?</h2>
             <p className="cta-text">
-              Entre em contato e descubra como podemos transformar seu investimento em tráfego pago em crescimento real e sustentável.
+              Entre em contacto e descubra como podemos transformar o seu investimento em tráfego pago em crescimento real e sustentável.
             </p>
             <Button 
               onClick={() => navigate('/')}
