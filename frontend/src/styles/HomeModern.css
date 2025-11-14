@@ -147,9 +147,9 @@
 }
 
 .brand-name {
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.3rem);
   font-weight: 600;
-  letter-spacing: 5px;
+  letter-spacing: clamp(3px, 0.4vw, 6px);
   color: #ffffff;
   margin: 0;
   transition: all 0.4s ease;
@@ -158,14 +158,14 @@
 }
 
 .brand-name:hover {
-  letter-spacing: 6px;
+  letter-spacing: clamp(4px, 0.5vw, 8px);
   color: #d4af37;
 }
 
 .brand-tagline {
-  font-size: 0.55rem;
+  font-size: clamp(0.45rem, 0.7vw, 0.65rem);
   color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 2px;
+  letter-spacing: clamp(1.5px, 0.2vw, 2.5px);
   margin: 0;
   font-weight: 400;
   text-transform: uppercase;
