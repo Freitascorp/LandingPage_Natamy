@@ -147,29 +147,19 @@
 }
 
 .brand-name {
-  font-size: 1.75rem;
-  font-weight: 900;
-  letter-spacing: 4px;
-  background: linear-gradient(135deg, #d4af37 0%, #ffd700 40%, #fff 50%, #ffd700 60%, #d4af37 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 8px;
+  color: #ffffff;
   margin: 0;
-  transition: all 0.5s ease;
-  font-family: 'Playfair Display', serif;
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-  animation: gradientShift 4s ease-in-out infinite;
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
+  transition: all 0.4s ease;
+  font-family: 'Sora', sans-serif;
+  text-transform: uppercase;
 }
 
 .brand-name:hover {
-  letter-spacing: 5px;
-  transform: scale(1.02);
+  letter-spacing: 10px;
+  color: #d4af37;
 }
 
 .brand-tagline {
