@@ -117,7 +117,12 @@ const AutomacaoPage = () => {
               Entre em contacto e descubra quantas horas por mês pode recuperar enquanto vende ainda mais.
             </p>
             <Button 
-              onClick={() => navigate('/')}
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
               className="cta-button-large"
               size="lg"
             >
