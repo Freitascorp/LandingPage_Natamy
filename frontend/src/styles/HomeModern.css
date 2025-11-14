@@ -769,7 +769,7 @@
 
 /* ===== PREMIUM CONTACT SECTION ===== */
 .contact {
-  padding: 10rem 0;
+  padding: clamp(6rem, 12vh, 10rem) 0;
   background: linear-gradient(180deg, #050505 0%, #000000 100%);
   position: relative;
   overflow: hidden;
