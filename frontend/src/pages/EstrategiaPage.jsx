@@ -114,7 +114,7 @@ const EstrategiaPage = () => {
           <div className="cta-content">
             <h2 className="cta-heading">Vamos Criar Sua Estratégia?</h2>
             <p className="cta-text">
-              Entre em contato para uma análise inicial gratuita e descubra como podemos impulsionar seu negócio digital.
+              Entre em contacto para uma análise inicial gratuita e descubra como podemos impulsionar o seu negócio digital.
             </p>
             <Button 
               onClick={() => navigate('/')}
