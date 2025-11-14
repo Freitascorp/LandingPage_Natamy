@@ -755,7 +755,7 @@
 }
 
 .benefit-text {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.7;
   margin: 0;
