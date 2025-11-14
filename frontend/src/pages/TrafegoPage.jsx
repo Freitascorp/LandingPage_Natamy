@@ -62,7 +62,7 @@ const TrafegoPage = () => {
           <h1 className="service-title">Gestão de Tráfego Pago</h1>
           <p className="service-subtitle">
             Transforme investimento em publicidade online em resultados mensuráveis e escaláveis. 
-            Estratégias data-driven para maximizar seu ROI em todas as plataformas digitais.
+            Estratégias data-driven para maximizar o seu ROI em todas as plataformas digitais.
           </p>
         </div>
       </section>
