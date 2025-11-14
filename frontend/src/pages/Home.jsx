@@ -74,7 +74,7 @@ const Home = () => {
       );
 
       if (response.status === 200) {
-        toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        toast.success('Mensagem enviada com sucesso! Entrarei em contacto em breve.');
         // Reset form
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
@@ -82,7 +82,7 @@ const Home = () => {
       }
     } catch (error) {
       console.error('EmailJS Error:', error);
-      toast.error('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato diretamente.');
+      toast.error('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contacto directamente.');
     } finally {
       setIsSubmitting(false);
     }
