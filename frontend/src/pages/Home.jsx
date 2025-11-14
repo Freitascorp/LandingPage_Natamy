@@ -293,19 +293,29 @@ const Home = () => {
             </Card>
             
             <div className="contact-info">
-              <div className="info-card">
-                <Mail className="info-icon" />
-                <div>
-                  <h3>Email</h3>
-                  <a href="mailto:natamy.oliveira13@gmail.com">natamy.oliveira13@gmail.com</a>
-                </div>
-              </div>
-              <div className="info-card">
-                <Phone className="info-icon" />
-                <div>
-                  <h3>Telefone</h3>
-                  <a href="tel:+351915018559">+351 915 018 559</a>
-                </div>
+              <div className="whatsapp-qr-section">
+                <h3 className="whatsapp-title">Fale Comigo no WhatsApp</h3>
+                <a 
+                  href="https://wa.me/351915018559" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="qr-code-link"
+                >
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/nk1kw2t7_qrcode-351915018559.jpeg" 
+                    alt="WhatsApp QR Code - Natamy Oliveira" 
+                    className="whatsapp-qr-code"
+                  />
+                </a>
+                <p className="whatsapp-instruction">Escaneie o código ou clique para conversar</p>
+                <a 
+                  href="https://wa.me/351915018559" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="whatsapp-button"
+                >
+                  Abrir WhatsApp
+                </a>
               </div>
             </div>
           </div>
