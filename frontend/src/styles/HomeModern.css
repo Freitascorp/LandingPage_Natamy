@@ -84,7 +84,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 2rem 0;
+  padding: 1.25rem 0;
   backdrop-filter: blur(30px) saturate(180%);
   background: rgba(0, 0, 0, 0.85);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
