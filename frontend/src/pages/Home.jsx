@@ -302,11 +302,6 @@ const Home = () => {
                     className="whatsapp-qr-code"
                   />
                 </div>
-                <p className="whatsapp-instruction">Escaneie o código com seu celular para conversar</p>
-                <div className="whatsapp-contact-info">
-                  <p className="phone-number">📱 +351 915 018 559</p>
-                  <p className="whatsapp-note">Adicione este número e envie uma mensagem no WhatsApp</p>
-                </div>
               </div>
             </div>
           </div>
