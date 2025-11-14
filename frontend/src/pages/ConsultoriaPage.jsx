@@ -10,31 +10,31 @@ const ConsultoriaPage = () => {
 
   const examples = [
     {
-      title: 'Auditoria Completa',
-      description: 'Análise detalhada de todas as suas operações digitais com identificação de estrangulamentos e oportunidades',
-      result: 'Relatório completo de otimização'
+      title: 'Descubra O Que Está a Travar-lhe',
+      description: 'Identifique exactamente onde está a perder dinheiro e oportunidades. Veja claramente o que mudar para desbloquear o crescimento.',
+      result: 'Plano claro do que fazer a seguir'
     },
     {
-      title: 'Sessões Estratégicas',
-      description: 'Reuniões individuais para resolver desafios específicos e traçar planos de ação personalizados',
-      result: 'Clareza e direção estratégica'
+      title: 'Resolva Problemas Rapidamente',
+      description: 'Tenha alguém ao seu lado para tomar decisões difíceis com confiança. Evite erros caros e acelere os resultados.',
+      result: 'Decisões certas quando importa'
     },
     {
-      title: 'Acompanhamento Contínuo',
-      description: 'Suporte mensal para implementação, otimização e ajustes baseados em resultados reais',
-      result: 'Crescimento consistente'
+      title: 'Cresça Sem Tropeços',
+      description: 'Ajustes contínuos baseados no que realmente está a acontecer no seu negócio. Corrija o rumo antes de desperdiçar recursos.',
+      result: 'Crescimento sem erros caros'
     }
   ];
 
   const benefits = [
-    'Auditoria digital completa',
-    'Sessões de consultoria mensais',
-    'Análise de performance detalhada',
-    'Plano de ação personalizado',
-    'Suporte via WhatsApp prioritário',
-    'Otimização de processos',
-    'Treinamento de equipe',
-    'Acompanhamento de resultados'
+    'Veja exactamente onde está a desperdiçar dinheiro',
+    'Tenha um especialista disponível quando precisar',
+    'Entenda o que os números realmente significam',
+    'Saiba os próximos passos exactos a dar',
+    'Tire dúvidas rapidamente sem esperar',
+    'Elimine processos que não servem de nada',
+    'Capacite a sua equipa a executar melhor',
+    'Acompanhe o progresso real, não vanity metrics'
   ];
 
   return (
