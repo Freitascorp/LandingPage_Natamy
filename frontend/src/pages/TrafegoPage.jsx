@@ -10,31 +10,31 @@ const TrafegoPage = () => {
 
   const examples = [
     {
-      title: 'Google Ads - Pesquisa',
-      description: 'Campanhas de pesquisa optimizadas para aparecer quando o seu cliente procura pelos seus serviços',
-      result: 'ROI médio de 300-500%'
+      title: 'Clientes Quando Precisa Deles',
+      description: 'O seu negócio aparece exactamente quando alguém procura pelo que você oferece. Não há desperdício - só pessoas prontas para comprar.',
+      result: 'Cada euro retorna 3 a 5 euros em vendas'
     },
     {
-      title: 'Facebook & Instagram Ads',
-      description: 'Anúncios segmentados por interesse, comportamento e demografia para atingir o seu público ideal',
-      result: 'CPL reduzido em até 60%'
+      title: 'Alcance Quem Realmente Importa',
+      description: 'Chegue às pessoas certas no momento certo. Enquanto os seus concorrentes atiram para todos os lados, você atinge em cheio.',
+      result: 'Custo por cliente reduzido em 60%'
     },
     {
-      title: 'Remarketing Inteligente',
-      description: 'Reimpacte visitantes que já demonstraram interesse, aumentando as conversões',
-      result: 'Taxa de conversão 3x maior'
+      title: 'Recupere Quem Quase Comprou',
+      description: 'Reconquiste visitantes que já conhecem o seu negócio. Transforme interesse em vendas e pare de perder oportunidades.',
+      result: 'Converta 3x mais visitantes em clientes'
     }
   ];
 
   const benefits = [
-    'Análise de mercado e concorrência',
-    'Segmentação precisa do público-alvo',
-    'Criação de anúncios de alta conversão',
-    'Optimização contínua de campanhas',
-    'Relatórios detalhados de performance',
-    'Testes A/B constantes',
-    'Gestão de orçamento inteligente',
-    'Maximização do ROI'
+    'Pague apenas por quem realmente está interessado no seu serviço',
+    'Saiba exactamente quanto custa cada novo cliente',
+    'Veja o seu dinheiro a trabalhar em tempo real',
+    'Atraia clientes enquanto dorme - 24 horas por dia',
+    'Escale o investimento quando vir resultados - sem riscos',
+    'Compare o que funciona e multiplique os melhores resultados',
+    'Tenha controlo total - aumente ou pare quando quiser',
+    'Cresça mais rápido que a concorrência'
   ];
 
   return (
