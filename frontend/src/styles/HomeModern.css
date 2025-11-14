@@ -673,7 +673,7 @@
 
 /* ===== STUNNING BENEFITS SECTION ===== */
 .benefits {
-  padding: 10rem 0;
+  padding: clamp(6rem, 12vh, 10rem) 0;
   background: linear-gradient(180deg, #0a0a0a 0%, #000000 50%, #050505 100%);
   position: relative;
   overflow: hidden;
