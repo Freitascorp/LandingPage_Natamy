@@ -6,6 +6,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
 import '../styles/Home.css';
 
 const Home = () => {
@@ -16,6 +17,11 @@ const Home = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // EmailJS Configuration
+  const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+  const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,15 +42,45 @@ const Home = () => {
       return;
     }
 
+    // Check if EmailJS is configured
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      toast.error('Configuração de email pendente. Consulte EMAILJS_SETUP_GUIDE.md');
+      console.error('EmailJS not configured. Please set environment variables in .env file');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // EmailJS integration will be added here
-      // For now, simulate submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      // Initialize EmailJS with public key
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        to_email: 'natamy.oliveira13@gmail.com',
+        reply_to: formData.email
+      };
+
+      // Send email via EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      if (response.status === 200) {
+        toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        // Reset form
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error('Failed to send email');
+      }
     } catch (error) {
-      toast.error('Erro ao enviar mensagem. Tente novamente.');
+      console.error('EmailJS Error:', error);
+      toast.error('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato diretamente.');
     } finally {
       setIsSubmitting(false);
     }
