@@ -10,31 +10,31 @@ const EstrategiaPage = () => {
 
   const examples = [
     {
-      title: 'Análise de Mercado',
-      description: 'Estudo aprofundado do seu mercado, concorrência e oportunidades para posicionamento estratégico',
-      result: 'Identificação de nichos inexplorados'
+      title: 'Saiba Onde Está o Seu Dinheiro',
+      description: 'Descubra exactamente onde investir e onde cortar. Identifique oportunidades que os seus concorrentes não vêem e deixe de desperdiçar recursos.',
+      result: 'Encontre o seu próximo grande crescimento'
     },
     {
-      title: 'Funil de Conversão',
-      description: 'Mapeamento e otimização completa do seu funil de vendas para maximizar conversões em cada etapa',
-      result: 'Aumento de 40% nas conversões'
+      title: 'Transforme Curiosos em Compradores',
+      description: 'Cada visitante segue um caminho claro até se tornar cliente. Elimine os furos no seu funil e converta muito mais com o mesmo tráfego.',
+      result: 'Converta 40% mais sem gastar mais'
     },
     {
-      title: 'Posicionamento Digital',
-      description: 'Desenvolvimento de identidade e presença digital forte que diferencia sua marca no mercado',
-      result: 'Brand awareness 3x maior'
+      title: 'Destaque-se da Concorrência',
+      description: 'Seja a escolha óbvia no seu mercado. Construa uma presença que faz os clientes escolherem-no antes mesmo de ver o preço.',
+      result: 'Triplique o reconhecimento da sua marca'
     }
   ];
 
   const benefits = [
-    'Análise competitiva detalhada',
-    'Definição de personas e ICP',
-    'Planejamento de conteúdo',
-    'Estratégia de canais digitais',
-    'Métricas e KPIs personalizados',
-    'Roadmap de crescimento',
-    'Otimização de conversão',
-    'Consultoria estratégica mensal'
+    'Saiba exactamente onde investir e quanto esperar de retorno',
+    'Conheça profundamente quem são os seus melhores clientes',
+    'Atraia a atenção certa com conteúdo que vende',
+    'Esteja presente onde os seus clientes realmente estão',
+    'Meça o que importa e ignore o resto',
+    'Tenha um plano claro de crescimento para os próximos meses',
+    'Aumente conversões sem aumentar tráfego',
+    'Decisões baseadas em dados, não achismos'
   ];
 
   return (
