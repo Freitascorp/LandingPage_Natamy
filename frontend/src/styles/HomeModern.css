@@ -575,8 +575,8 @@
 
 /* Icon as Number */
 .service-icon {
-  width: 70px;
-  height: 70px;
+  width: clamp(50px, 7vw, 70px);
+  height: clamp(50px, 7vw, 70px);
   border-radius: 50%;
   background: rgba(212, 175, 55, 0.1);
   border: 2px solid rgba(212, 175, 55, 0.3);
@@ -595,8 +595,8 @@
 }
 
 .service-icon .icon {
-  width: 32px;
-  height: 32px;
+  width: clamp(24px, 3vw, 32px);
+  height: clamp(24px, 3vw, 32px);
   color: #d4af37;
   transition: all 0.3s ease;
 }
