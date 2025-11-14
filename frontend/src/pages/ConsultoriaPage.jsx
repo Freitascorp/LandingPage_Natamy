@@ -112,9 +112,9 @@ const ConsultoriaPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Vamos Trabalhar Juntos?</h2>
+            <h2 className="cta-heading">Quer Evitar Erros Caros?</h2>
             <p className="cta-text">
-              Agende uma sessão de consultoria e descubra como podemos levar o seu negócio digital ao próximo nível.
+              Entre em contacto e descubra exactamente o que está a impedir o seu crescimento e como corrigir rapidamente.
             </p>
             <Button 
               onClick={() => navigate('/')}
