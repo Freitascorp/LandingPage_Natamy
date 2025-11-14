@@ -227,7 +227,7 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">Vamos Conversar?</h2>
           <p className="contact-subtitle">
-            Entre em contacto e descubra como posso transformar o seu negócio digital com estratégias premium de tráfego e automação.
+            Entre em contacto e descubra como posso transformar o seu negócio digital com estratégias eficazes de tráfego e automação.
           </p>
           
           <div className="contact-content">
