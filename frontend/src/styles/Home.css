@@ -32,16 +32,16 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #d4af37;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
 }
 
 .logo:hover {
   transform: scale(1.05);
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
 }
 
 .brand-name {
