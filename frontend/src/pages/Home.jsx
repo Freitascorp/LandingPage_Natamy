@@ -96,36 +96,36 @@ const Home = () => {
     {
       icon: TrendingUp,
       title: 'Gestão de Tráfego Pago',
-      description: 'Criação e otimização de campanhas no Google Ads, Facebook Ads e Instagram Ads para gerar resultados reais e mensuráveis. ROI maximizado com estratégias data-driven.',
+      description: 'Criação e optimização de campanhas no Google Ads, Facebook Ads e Instagram Ads para gerar resultados reais e mensuráveis. ROI maximizado com estratégias data-driven.',
       link: '/trafego-pago'
     },
     {
       icon: Zap,
       title: 'Automação de Negócios',
-      description: 'Implementação de sistemas de automação de marketing, vendas e atendimento para aumentar sua produtividade e reduzir custos operacionais em até 70%.',
+      description: 'Implementação de sistemas de automação de marketing, vendas e atendimento para aumentar a sua produtividade e reduzir custos operacionais em até 70%.',
       link: '/automacao'
     },
     {
       icon: Target,
       title: 'Estratégia Digital',
-      description: 'Desenvolvimento de estratégias personalizadas para aumentar sua presença online, gerar leads qualificados e maximizar seu ROI com análise aprofundada.',
+      description: 'Desenvolvimento de estratégias personalizadas para aumentar a sua presença online, gerar leads qualificados e maximizar o seu ROI com análise aprofundada.',
       link: '/estrategia'
     },
     {
       icon: Users,
       title: 'Consultoria Exclusiva',
-      description: 'Análise completa do seu negócio digital com recomendações práticas para otimizar processos, aumentar conversões e escalar com inteligência.',
+      description: 'Análise completa do seu negócio digital com recomendações práticas para optimizar processos, aumentar conversões e escalar com inteligência.',
       link: '/consultoria'
     }
   ];
 
   const benefits = [
-    'Resultados Comprovados - Campanhas otimizadas para máximo retorno',
-    'Economia de Tempo - Automação inteligente dos processos',
-    'Atendimento Personalizado - Estratégias customizadas',
+    'Resultados Comprovados - Campanhas optimizadas para máximo retorno',
+    'Poupança de Tempo - Automação inteligente dos processos',
+    'Atendimento Personalizado - Estratégias personalizadas',
     'Escalabilidade - Crescimento sustentável com dados',
     'Análise Data-Driven - Decisões baseadas em métricas reais',
-    'Suporte Contínuo - Acompanhamento e otimização constante'
+    'Suporte Contínuo - Acompanhamento e optimização constante'
   ];
 
   return (
