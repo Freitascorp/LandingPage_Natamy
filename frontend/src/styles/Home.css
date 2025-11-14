@@ -283,12 +283,18 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .service-description {
   color: #b8a16f;
   line-height: 1.8;
   font-size: 0.95rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Benefits Section */
