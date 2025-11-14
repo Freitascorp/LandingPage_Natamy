@@ -120,12 +120,12 @@ const Home = () => {
   ];
 
   const benefits = [
-    'Resultados Comprovados - Campanhas optimizadas para máximo retorno',
-    'Poupança de Tempo - Automação inteligente dos processos',
-    'Atendimento Personalizado - Estratégias personalizadas',
-    'Escalabilidade - Crescimento sustentável com dados',
-    'Análise Data-Driven - Decisões baseadas em métricas reais',
-    'Suporte Contínuo - Acompanhamento e optimização constante'
+    'Aumente a sua receita sem aumentar custos - Cada investimento gera retorno mensurável',
+    'Recupere o seu tempo - Dedique-se ao que só você pode fazer no seu negócio',
+    'Cresça de forma previsível - Saiba exactamente quantos clientes esperar cada mês',
+    'Tome decisões com confiança - Dados claros que mostram o que funciona',
+    'Escale sem contratar mais - Processos que crescem junto com o seu negócio',
+    'Durma tranquilo - O seu negócio trabalha para si 24/7'
   ];
 
   return (
