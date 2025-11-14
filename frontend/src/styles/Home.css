@@ -372,6 +372,14 @@
   width: 100%;
 }
 
+.contact-form-card .card-title {
+  color: #ffffff !important;
+}
+
+.contact-form-card h3 {
+  color: #ffffff !important;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
