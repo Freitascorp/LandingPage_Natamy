@@ -215,13 +215,42 @@
   border: 1px solid rgba(212, 175, 55, 0.2);
   border-top: 3px solid #d4af37;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card-clickable {
   cursor: pointer;
 }
 
-.service-card:hover {
+.service-card-clickable:hover {
   transform: translateY(-10px);
   box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
   border-color: #d4af37;
+}
+
+.learn-more {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: gap 0.3s ease;
+}
+
+.service-card-clickable:hover .learn-more {
+  gap: 1rem;
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.service-card-clickable:hover .arrow-icon {
+  transform: translateX(5px);
 }
 
 .service-icon {
