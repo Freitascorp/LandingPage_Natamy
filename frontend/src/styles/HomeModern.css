@@ -1029,27 +1029,27 @@
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 1024px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    text-align: center;
+  .hero {
+    background-position: 70% center;
+    background-attachment: scroll;
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
   }
 
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 4rem;
   }
 
   .hero-description {
     max-width: 100%;
-  }
-
-  .hero-image {
-    order: -1;
-  }
-
-  .image-frame {
-    max-width: 400px;
-    margin: 0 auto;
+    font-size: 1.2rem;
   }
 }
 
