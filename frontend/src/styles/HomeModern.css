@@ -801,10 +801,10 @@
 
 .contact-subtitle {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 5rem;
-  max-width: 750px;
+  margin-bottom: clamp(3rem, 6vh, 5rem);
+  max-width: min(750px, 90vw);
   margin-left: auto;
   margin-right: auto;
   line-height: 1.8;
