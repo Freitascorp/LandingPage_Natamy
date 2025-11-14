@@ -287,14 +287,14 @@
   min-height: 100vh;
   position: relative;
   z-index: 3;
-  padding-top: calc(80px + 8rem);
-  padding-bottom: 6rem;
+  padding-top: clamp(120px, 15vh, 200px);
+  padding-bottom: clamp(4rem, 8vh, 8rem);
 }
 
 .hero-text {
   animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  max-width: 900px;
+  max-width: min(900px, 90vw);
 }
 
 @keyframes fadeInUp {
