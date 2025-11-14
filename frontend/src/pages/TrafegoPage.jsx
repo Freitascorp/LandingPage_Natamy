@@ -3,7 +3,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { ArrowLeft, TrendingUp, Target, DollarSign, BarChart3, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ServicePage.css';
+import '../styles/ServicePageModern.css';
 
 const TrafegoPage = () => {
   const navigate = useNavigate();
@@ -61,28 +61,20 @@ const TrafegoPage = () => {
           </div>
           <h1 className="service-title">Gestão de Tráfego Pago</h1>
           <p className="service-subtitle">
-            Transforme cliques em clientes com campanhas estratégicas e otimizadas para máximo ROI
+            Transforme investimento em publicidade online em resultados mensuráveis e escaláveis. 
+            Estratégias data-driven para maximizar seu ROI em todas as plataformas digitais.
           </p>
         </div>
       </section>
 
-      {/* O que é */}
+      {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O que é Gestão de Tráfego Pago?</h2>
-          <p className="section-text">
-            É o processo estratégico de criar, gerenciar e otimizar campanhas de anúncios pagos nas principais plataformas digitais. 
-            Através de análise de dados, segmentação precisa e testes constantes, direcionamos o público certo para o seu negócio, 
-            transformando investimento em anúncios em resultados reais e mensuráveis.
+          <h2 className="section-heading">Como Funciona</h2>
+          <p className="section-description">
+            Campanhas personalizadas nas principais plataformas de anúncios online
           </p>
-        </div>
-      </section>
-
-      {/* Exemplos */}
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Exemplos Práticos</h2>
-          <div className="examples-grid">
+          <div className="example-grid">
             {examples.map((example, index) => (
               <Card key={index} className="example-card">
                 <CardHeader>
@@ -91,8 +83,8 @@ const TrafegoPage = () => {
                 <CardContent>
                   <p className="example-description">{example.description}</p>
                   <div className="example-result">
-                    <BarChart3 className="result-icon" />
-                    <span>{example.result}</span>
+                    <Target className="w-4 h-4" />
+                    {example.result}
                   </div>
                 </CardContent>
               </Card>
@@ -101,43 +93,14 @@ const TrafegoPage = () => {
         </div>
       </section>
 
-      {/* Como funciona */}
+      {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona</h2>
-          <div className="process-grid">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <h3>Análise & Estratégia</h3>
-              <p>Estudo do seu negócio, público-alvo e concorrência para criar uma estratégia personalizada</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <h3>Configuração</h3>
-              <p>Criação de campanhas segmentadas com anúncios de alta conversão em múltiplas plataformas</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <h3>Monitoramento</h3>
-              <p>Acompanhamento diário das métricas e performance para garantir resultados</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <h3>Otimização</h3>
-              <p>Ajustes contínuos baseados em dados para maximizar ROI e reduzir custos</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefícios */}
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">O que está Incluído</h2>
+          <h2 className="section-heading">O Que Está Incluído</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item-detailed">
-                <CheckCircle2 className="benefit-check" />
+              <div key={index} className="benefit-item-service">
+                <CheckCircle2 />
                 <span>{benefit}</span>
               </div>
             ))}
@@ -145,20 +108,23 @@ const TrafegoPage = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="service-cta">
+      {/* CTA Section */}
+      <section className="cta-section">
         <div className="container">
-          <h2 className="cta-title">Pronto para Aumentar suas Vendas?</h2>
-          <p className="cta-text">
-            Entre em contato e descubra como posso impulsionar seu negócio com tráfego qualificado
-          </p>
-          <Button 
-            onClick={() => navigate('/#contato')}
-            className="cta-button-service"
-            size="lg"
-          >
-            Quero Conversar
-          </Button>
+          <div className="cta-content">
+            <h2 className="cta-heading">Pronto para Escalar?</h2>
+            <p className="cta-text">
+              Entre em contato e descubra como podemos transformar seu investimento em tráfego pago em crescimento real e sustentável.
+            </p>
+            <Button 
+              onClick={() => navigate('/')}
+              className="cta-button-large"
+              size="lg"
+            >
+              Falar com Especialista
+              <ArrowLeft className="rotate-180" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>

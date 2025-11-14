@@ -1,44 +1,45 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { ArrowLeft, Zap, Clock, TrendingDown, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Zap, Bot, Workflow, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ServicePage.css';
+import '../styles/ServicePageModern.css';
 
 const AutomacaoPage = () => {
   const navigate = useNavigate();
 
   const examples = [
     {
-      title: 'Email Marketing Automatizado',
-      description: 'Sequências de emails personalizados que nutrem leads e convertem automaticamente',
-      result: 'Economize 20h/semana'
+      title: 'Automação de Marketing',
+      description: 'Sequências de e-mail, SMS e notificações automatizadas baseadas no comportamento do usuário',
+      result: 'Economia de 30+ horas/mês'
     },
     {
-      title: 'Chatbots Inteligentes',
-      description: 'Atendimento 24/7 que qualifica leads e agenda reuniões sem intervenção manual',
-      result: 'Resposta em menos de 1 minuto'
+      title: 'CRM & Pipeline de Vendas',
+      description: 'Gestão automatizada de leads, follow-ups inteligentes e scoring automático de prospects',
+      result: 'Aumento de 50% nas vendas'
     },
     {
-      title: 'CRM & Pipeline Automatizado',
-      description: 'Sistema que move leads automaticamente pelo funil e notifica a equipe no momento certo',
-      result: 'Aumento de 40% em conversões'
+      title: 'Chatbots & Atendimento',
+      description: 'Atendimento 24/7 com chatbots inteligentes que qualificam e direcionam leads automaticamente',
+      result: 'Redução de 70% no tempo de resposta'
     }
   ];
 
   const benefits = [
-    'Automação de follow-ups de vendas',
-    'Integração entre ferramentas',
-    'Nutrição automática de leads',
-    'Agendamento inteligente',
-    'Segmentação automática de contatos',
-    'Relatórios automáticos',
+    'Automação de e-mail marketing',
+    'Integração com CRM e ferramentas',
+    'Chatbots inteligentes',
+    'Automação de redes sociais',
     'Workflows personalizados',
-    'Redução de tarefas manuais em 70%'
+    'Relatórios automatizados',
+    'Lead scoring automático',
+    'Segmentação inteligente'
   ];
 
   return (
     <div className="service-page">
+      {/* Header */}
       <header className="service-header">
         <div className="container">
           <Button 
@@ -52,6 +53,7 @@ const AutomacaoPage = () => {
         </div>
       </header>
 
+      {/* Hero */}
       <section className="service-hero">
         <div className="container">
           <div className="service-icon-large">
@@ -59,27 +61,20 @@ const AutomacaoPage = () => {
           </div>
           <h1 className="service-title">Automação de Negócios</h1>
           <p className="service-subtitle">
-            Liberte seu tempo e escale seu negócio com sistemas inteligentes que trabalham 24/7
+            Elimine tarefas repetitivas e foque no crescimento do seu negócio. 
+            Implementação de sistemas inteligentes que trabalham 24/7 para você.
           </p>
         </div>
       </section>
 
+      {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O que é Automação de Negócios?</h2>
-          <p className="section-text">
-            É a implementação de sistemas e ferramentas que executam tarefas repetitivas automaticamente, 
-            permitindo que você foque no que realmente importa: crescer seu negócio. Através de integrações 
-            inteligentes, seus processos de marketing, vendas e atendimento funcionam sozinhos, sem perder 
-            a personalização e eficiência.
+          <h2 className="section-heading">Soluções de Automação</h2>
+          <p className="section-description">
+            Processos automatizados que aumentam produtividade e reduzem custos operacionais
           </p>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Exemplos Práticos</h2>
-          <div className="examples-grid">
+          <div className="example-grid">
             {examples.map((example, index) => (
               <Card key={index} className="example-card">
                 <CardHeader>
@@ -88,8 +83,8 @@ const AutomacaoPage = () => {
                 <CardContent>
                   <p className="example-description">{example.description}</p>
                   <div className="example-result">
-                    <Clock className="result-icon" />
-                    <span>{example.result}</span>
+                    <Workflow className="w-4 h-4" />
+                    {example.result}
                   </div>
                 </CardContent>
               </Card>
@@ -98,41 +93,14 @@ const AutomacaoPage = () => {
         </div>
       </section>
 
+      {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona</h2>
-          <div className="process-grid">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <h3>Mapeamento</h3>
-              <p>Identificamos todos os processos manuais que podem ser automatizados no seu negócio</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <h3>Implementação</h3>
-              <p>Configuramos ferramentas e criamos workflows inteligentes personalizados</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <h3>Integração</h3>
-              <p>Conectamos todas as suas ferramentas para trabalharem em harmonia</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <h3>Otimização</h3>
-              <p>Monitoramos e melhoramos constantemente os processos automatizados</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">O que está Incluído</h2>
+          <h2 className="section-heading">O Que Está Incluído</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item-detailed">
-                <CheckCircle2 className="benefit-check" />
+              <div key={index} className="benefit-item-service">
+                <CheckCircle2 />
                 <span>{benefit}</span>
               </div>
             ))}
@@ -140,19 +108,23 @@ const AutomacaoPage = () => {
         </div>
       </section>
 
-      <section className="service-cta">
+      {/* CTA Section */}
+      <section className="cta-section">
         <div className="container">
-          <h2 className="cta-title">Pronto para Automatizar seu Negócio?</h2>
-          <p className="cta-text">
-            Economize tempo e aumente sua produtividade com automações inteligentes
-          </p>
-          <Button 
-            onClick={() => navigate('/#contato')}
-            className="cta-button-service"
-            size="lg"
-          >
-            Quero Automatizar
-          </Button>
+          <div className="cta-content">
+            <h2 className="cta-heading">Automatize Seu Negócio Agora</h2>
+            <p className="cta-text">
+              Descubra como a automação pode economizar tempo, reduzir custos e aumentar suas vendas significativamente.
+            </p>
+            <Button 
+              onClick={() => navigate('/')}
+              className="cta-button-large"
+              size="lg"
+            >
+              Começar Automação
+              <ArrowLeft className="rotate-180" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>
