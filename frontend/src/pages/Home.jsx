@@ -305,19 +305,6 @@ const Home = () => {
                 </form>
               </CardContent>
             </Card>
-            
-            <div className="contact-info">
-              <div className="whatsapp-qr-section">
-                <h3 className="whatsapp-title">Fale Comigo no WhatsApp</h3>
-                <div className="qr-code-link">
-                  <img 
-                    src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/nk1kw2t7_qrcode-351915018559.jpeg" 
-                    alt="WhatsApp QR Code - Natamy Oliveira" 
-                    className="whatsapp-qr-code"
-                  />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
