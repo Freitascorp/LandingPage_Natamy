@@ -877,10 +877,10 @@
 .form-group textarea {
   background: rgba(255, 255, 255, 0.06);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
+  border-radius: clamp(12px, 2vw, 16px);
+  padding: clamp(1rem, 2vh, 1.25rem) clamp(1.25rem, 2vw, 1.5rem);
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
   transition: all 0.4s ease;
   font-family: 'Sora', 'Inter', sans-serif;
   font-weight: 500;
