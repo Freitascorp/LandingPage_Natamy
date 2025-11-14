@@ -61,7 +61,7 @@ const EstrategiaPage = () => {
           </div>
           <h1 className="service-title">Estratégia Digital</h1>
           <p className="service-subtitle">
-            Planejamento estratégico completo para dominar seu mercado digital. 
+            Planeamento estratégico completo para dominar o seu mercado digital. 
             Da análise à execução, construímos o caminho para o sucesso do seu negócio online.
           </p>
         </div>
