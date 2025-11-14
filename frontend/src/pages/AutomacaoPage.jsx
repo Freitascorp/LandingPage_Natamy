@@ -10,31 +10,31 @@ const AutomacaoPage = () => {
 
   const examples = [
     {
-      title: 'Automação de Marketing',
-      description: 'Sequências de e-mail, SMS e notificações automatizadas baseadas no comportamento do utilizador',
-      result: 'Poupança de 30+ horas/mês'
+      title: 'Nunca Perca Um Lead',
+      description: 'Os seus contactos recebem a mensagem certa no momento certo, sem que você mova um dedo. Cada lead é nutrido até estar pronto para comprar.',
+      result: 'Recupere 30+ horas por mês'
     },
     {
-      title: 'CRM & Pipeline de Vendas',
-      description: 'Gestão automatizada de leads, follow-ups inteligentes e scoring automático de prospects',
-      result: 'Aumento de 50% nas vendas'
+      title: 'Vendas Sem Esforço Extra',
+      description: 'Os seus leads são organizados, contactados e aquecidos automaticamente. A sua equipa foca apenas em fechar as vendas mais quentes.',
+      result: 'Aumente as vendas em 50% sem contratar'
     },
     {
-      title: 'Chatbots & Atendimento',
-      description: 'Atendimento 24/7 com chatbots inteligentes que qualificam e direccionam leads automaticamente',
-      result: 'Redução de 70% no tempo de resposta'
+      title: 'Atendimento Que Nunca Dorme',
+      description: 'Responda a clientes 24/7, qualifique leads e agende reuniões enquanto dorme. O seu negócio trabalha mesmo quando você não está.',
+      result: 'Responda 70% mais rápido que a concorrência'
     }
   ];
 
   const benefits = [
-    'Automação de e-mail marketing',
-    'Integração com CRM e ferramentas',
-    'Chatbots inteligentes',
-    'Automação de redes sociais',
-    'Workflows personalizados',
-    'Relatórios automatizados',
-    'Lead scoring automático',
-    'Segmentação inteligente'
+    'Liberte-se das tarefas repetitivas que consomem o seu dia',
+    'Nutra cada lead sem esforço manual',
+    'Responda instantaneamente a qualquer hora',
+    'Mantenha os clientes envolvidos sem trabalho extra',
+    'Identifique automaticamente os melhores leads',
+    'Acompanhe tudo sem olhar para planilhas',
+    'Descubra quem está pronto para comprar',
+    'Personalize comunicação em massa'
   ];
 
   return (
