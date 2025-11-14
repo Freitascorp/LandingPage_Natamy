@@ -11,8 +11,8 @@ const AutomacaoPage = () => {
   const examples = [
     {
       title: 'Automação de Marketing',
-      description: 'Sequências de e-mail, SMS e notificações automatizadas baseadas no comportamento do usuário',
-      result: 'Economia de 30+ horas/mês'
+      description: 'Sequências de e-mail, SMS e notificações automatizadas baseadas no comportamento do utilizador',
+      result: 'Poupança de 30+ horas/mês'
     },
     {
       title: 'CRM & Pipeline de Vendas',
@@ -21,7 +21,7 @@ const AutomacaoPage = () => {
     },
     {
       title: 'Chatbots & Atendimento',
-      description: 'Atendimento 24/7 com chatbots inteligentes que qualificam e direcionam leads automaticamente',
+      description: 'Atendimento 24/7 com chatbots inteligentes que qualificam e direccionam leads automaticamente',
       result: 'Redução de 70% no tempo de resposta'
     }
   ];
