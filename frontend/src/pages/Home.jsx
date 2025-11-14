@@ -210,7 +210,7 @@ const Home = () => {
       {/* Benefits Section */}
       <section className="benefits" id="beneficios">
         <div className="container">
-          <h2 className="section-title">Diferenciais Premium</h2>
+          <h2 className="section-title">Diferenciais</h2>
           <div className="benefits-grid">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item">
