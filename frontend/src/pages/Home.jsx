@@ -227,15 +227,15 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">Vamos Conversar?</h2>
           <p className="contact-subtitle">
-            Entre em contato e descubra como posso transformar seu negócio digital com estratégias premium de tráfego e automação.
+            Entre em contacto e descubra como posso transformar o seu negócio digital com estratégias premium de tráfego e automação.
           </p>
           
           <div className="contact-content">
             <Card className="contact-form-card">
               <CardHeader>
-                <CardTitle className="form-card-title">Envie sua Mensagem</CardTitle>
+                <CardTitle className="form-card-title">Envie a Sua Mensagem</CardTitle>
                 <CardDescription>
-                  Preencha o formulário e retornarei em breve
+                  Preencha o formulário e responderei em breve
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -246,7 +246,7 @@ const Home = () => {
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Seu nome"
+                      placeholder="O seu nome"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
@@ -259,7 +259,7 @@ const Home = () => {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="seu@email.com"
+                      placeholder="seuemail@exemplo.com"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
@@ -284,7 +284,7 @@ const Home = () => {
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Conte-me sobre seu projeto..."
+                      placeholder="Conte-me sobre o seu projecto..."
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={5}
@@ -298,7 +298,7 @@ const Home = () => {
                     disabled={isSubmitting}
                     size="lg"
                   >
-                    {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+                    {isSubmitting ? 'A Enviar...' : 'Enviar Mensagem'}
                   </Button>
                 </form>
               </CardContent>
