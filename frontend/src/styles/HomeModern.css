@@ -538,13 +538,13 @@
   background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 4rem 0;
+  padding: clamp(2.5rem, 5vh, 4rem) 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 3rem;
+  grid-template-columns: clamp(50px, 8vw, 80px) 1fr auto;
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
 }
 
