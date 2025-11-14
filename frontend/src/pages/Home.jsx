@@ -235,7 +235,7 @@ const Home = () => {
           <div className="contact-content">
             <Card className="contact-form-card">
               <CardHeader>
-                <CardTitle>Envie sua Mensagem</CardTitle>
+                <CardTitle className="form-card-title">Envie sua Mensagem</CardTitle>
                 <CardDescription>
                   Preencha o formulário e retornarei em breve
                 </CardDescription>
