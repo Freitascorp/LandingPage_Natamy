@@ -143,7 +143,7 @@ const Home = () => {
             <a href="#home" className="nav-link">Início</a>
             <a href="#servicos" className="nav-link">Serviços</a>
             <a href="#beneficios" className="nav-link">Benefícios</a>
-            <a href="#contato" className="nav-link">Contato</a>
+            <a href="#contato" className="nav-link">Contacto</a>
           </nav>
         </div>
       </header>
@@ -152,16 +152,16 @@ const Home = () => {
       <section className="hero" id="home">
         <div className="container hero-content">
           <div className="hero-text">
-            <h2 className="hero-title">Transforme seu Negócio Digital</h2>
+            <h2 className="hero-title">Transforme o Seu Negócio Digital</h2>
             <p className="hero-description">
-              Especialista em gestão de tráfego pago e automação de processos para escalar seu negócio de forma inteligente e lucrativa. Resultados reais com estratégias premium.
+              Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais com estratégias premium.
             </p>
             <Button 
               onClick={scrollToContact}
               className="cta-button"
               size="lg"
             >
-              Quero Crescer Meu Negócio
+              Quero Fazer Crescer o Meu Negócio
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
