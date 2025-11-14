@@ -129,14 +129,10 @@ const Home = () => {
         <div className="container header-content">
           <div className="logo-section">
             <img 
-              src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/cx09wsxk_image.png" 
+              src="https://customer-assets.emergentagent.com/job_adautomation/artifacts/ayho225a_image.png" 
               alt="Natamy Oliveira Logo" 
-              className="logo"
+              className="logo-full"
             />
-            <div>
-              <h1 className="brand-name">NATAMY OLIVEIRA</h1>
-              <p className="brand-tagline">Gestão de Tráfego Digital e Automação</p>
-            </div>
           </div>
           <nav className="nav">
             <a href="#home" className="nav-link">Início</a>
