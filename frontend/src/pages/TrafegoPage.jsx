@@ -113,6 +113,14 @@ const TrafegoPage = () => {
             </p>
             <Button 
               onClick={() => {
+                // Track Contact event in Meta Pixel
+                if (window.fbq) {
+                  window.fbq('track', 'Contact', {
+                    content_name: 'CTA - Tráfego Pago Page',
+                    content_category: 'cta_click'
+                  });
+                }
+                
                 navigate('/');
                 setTimeout(() => {
                   document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
