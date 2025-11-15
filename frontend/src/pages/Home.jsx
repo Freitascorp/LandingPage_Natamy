@@ -89,7 +89,17 @@ const Home = () => {
   };
 
   const scrollToContact = () => {
-    document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+    const contactSection = document.getElementById('contato');
+    if (contactSection) {
+      const headerOffset = 100;
+      const elementPosition = contactSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   const services = [
