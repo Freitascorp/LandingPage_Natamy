@@ -7,6 +7,7 @@ import AutomacaoPage from './pages/AutomacaoPage';
 import EstrategiaPage from './pages/EstrategiaPage';
 import ConsultoriaPage from './pages/ConsultoriaPage';
 import SobreMimPage from './pages/SobreMimPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import ScrollToTop from './components/ScrollToTop';
 import { Toaster } from './components/ui/sonner';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/estrategia" element={<EstrategiaPage />} />
           <Route path="/consultoria" element={<ConsultoriaPage />} />
           <Route path="/sobre-mim" element={<SobreMimPage />} />
+          <Route path="/politica-privacidade" element={<PrivacyPolicyPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" richColors />

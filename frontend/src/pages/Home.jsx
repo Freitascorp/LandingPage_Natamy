@@ -249,6 +249,16 @@ const Home = () => {
           >
             Contacto
           </a>
+          <button
+            className="sidebar-link sidebar-link-button"
+            onClick={() => {
+              setIsSidebarOpen(false);
+              navigate('/politica-privacidade');
+            }}
+            translate="no"
+          >
+            Política de Privacidade
+          </button>
         </nav>
       </aside>
 
