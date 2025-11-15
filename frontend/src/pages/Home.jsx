@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
-import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight } from 'lucide-react';
+import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight, Menu, X } from 'lucide-react';
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +19,7 @@ const Home = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // EmailJS Configuration
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
@@ -169,23 +170,70 @@ const Home = () => {
 
   return (
     <div className="landing-page">
-      {/* Header */}
-      <header className="header">
-        <div className="container header-content">
-          <div className="logo-section">
-            <div className="brand-text">
-              <h1 className="brand-name">NATAMY OLIVEIRA</h1>
-              <p className="brand-tagline">Gestão de Tráfego Digital, Marketing e Automação de Negócios</p>
-            </div>
+      {/* Hamburger Menu Button */}
+      <button 
+        className="hamburger-button"
+        onClick={() => setIsSidebarOpen(true)}
+        aria-label="Abrir menu"
+      >
+        <Menu className="h-6 w-6" />
+      </button>
+
+      {/* Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="sidebar-overlay"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      {/* Collapsible Sidebar */}
+      <aside className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+        <div className="sidebar-header">
+          <div className="sidebar-brand">
+            <h1 className="sidebar-brand-name">NATAMY OLIVEIRA</h1>
+            <p className="sidebar-brand-tagline">Gestão de Tráfego Digital, Marketing e Automação de Negócios</p>
           </div>
-          <nav className="nav">
-            <a href="#home" className="nav-link">Início</a>
-            <a href="#beneficios" className="nav-link">Benefícios</a>
-            <a href="#testemunhos" className="nav-link">Testemunhos</a>
-            <a href="#contato" className="nav-link">Contacto</a>
-          </nav>
+          <button 
+            className="sidebar-close-button"
+            onClick={() => setIsSidebarOpen(false)}
+            aria-label="Fechar menu"
+          >
+            <X className="h-6 w-6" />
+          </button>
         </div>
-      </header>
+        
+        <nav className="sidebar-nav">
+          <a 
+            href="#home" 
+            className="sidebar-link"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            Início
+          </a>
+          <a 
+            href="#beneficios" 
+            className="sidebar-link"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            Benefícios
+          </a>
+          <a 
+            href="#testemunhos" 
+            className="sidebar-link"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            Testemunhos
+          </a>
+          <a 
+            href="#contato" 
+            className="sidebar-link"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            Contacto
+          </a>
+        </nav>
+      </aside>
 
       {/* Hero Section */}
       <section className="hero" id="home">
