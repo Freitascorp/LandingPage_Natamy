@@ -88,17 +88,23 @@ const Home = () => {
     }
   };
 
-  const scrollToContact = () => {
+  const scrollToContact = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
+    console.log('Scroll to contact clicked!');
     const contactSection = document.getElementById('contato');
+    console.log('Contact section:', contactSection);
+    
     if (contactSection) {
-      const headerOffset = 100;
-      const elementPosition = contactSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
       });
+    } else {
+      console.error('Contact section not found!');
     }
   };
 
