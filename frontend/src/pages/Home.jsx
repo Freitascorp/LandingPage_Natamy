@@ -109,25 +109,25 @@ const Home = () => {
     {
       icon: TrendingUp,
       title: 'Mais Clientes, Menos Desperdício',
-      description: 'Atraia exactamente quem precisa do seu serviço e pague apenas por resultados reais. Cada euro investido retorna em clientes qualificados que estão prontos para comprar.',
+      description: 'Chega de encher a agenda com curiosos que não vão comprar. Sistema de funis de venda com IA que separa curiosos de compradores reais antes de chegar ao vendedor. Só os qualificados chegam à sua equipa – menos tempo perdido, mais propostas e vendas.',
       link: '/trafego-pago'
     },
     {
       icon: Zap,
       title: 'Mais Tempo, Mais Vendas',
-      description: 'Liberte-se das tarefas repetitivas e foque-se no que realmente gera receita. Os seus leads são nutridos automaticamente enquanto a sua equipa se dedica a fechar vendas.',
+      description: 'O maior inimigo do seu stand não é a falta de contactos – é a falta de tempo da sua equipa. Sistema de atendimento inteligente com IA que assume perguntas repetitivas, recolhe dados e pré-qualifica contactos 24/7. A sua equipa foca apenas em fechar vendas.',
       link: '/automacao'
     },
     {
       icon: Target,
       title: 'Crescimento Previsível',
-      description: 'Saiba exactamente o que fazer a seguir para crescer. Um plano claro que transforma visitantes em clientes pagantes de forma consistente e escalável.',
+      description: 'Saia do ciclo "mês bom / mês fraco". Combinando funis de venda + IA + follow up automático, criamos um modelo com fluxo contínuo de leads, acompanhamento automático de cada contacto e previsibilidade de visitas, propostas e vendas.',
       link: '/estrategia'
     },
     {
       icon: Users,
       title: 'Decisões Certas, Resultados Rápidos',
-      description: 'Identifique o que está a travar o seu crescimento e corrija rapidamente. Orientação prática que elimina desperdícios e multiplica os seus resultados.',
+      description: 'Quais campanhas trazem leads que realmente compram? Onde os contactos "morrem"? Com IA integrada nos funis e atendimento, registamos todas as interações, identificamos padrões e medimos o que gera vendas reais. Decisões baseadas em dados, não achismos.',
       link: '/consultoria'
     }
   ];
