@@ -253,7 +253,7 @@ const Home = () => {
       <section className="hero" id="home">
         <div className="container hero-content">
           <div className="hero-text">
-            <h2 className="hero-title">Transforme o Seu Negócio</h2>
+            <h2 className="hero-title">Transforme o Seu Negócio numa Máquina de Vendas</h2>
             <p className="hero-description">
               Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
