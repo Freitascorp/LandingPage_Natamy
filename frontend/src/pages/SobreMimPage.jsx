@@ -1,39 +1,11 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { ArrowLeft, Target, Award, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Heart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ServicePageModern.css';
 
 const SobreMimPage = () => {
   const navigate = useNavigate();
-
-  const expertise = [
-    {
-      title: 'Especialista em Automação com IA',
-      description: 'Implemento sistemas de inteligência artificial que qualificam leads, automatizam atendimento e libertam a sua equipa para focar em vendas. Cada contacto é tratado profissionalmente, mesmo quando o stand está fechado.',
-      result: 'Sistemas que trabalham 24/7'
-    },
-    {
-      title: 'Gestão de Tráfego Pago para Stands',
-      description: 'Criação de funis de venda completos que atraem compradores reais, não apenas curiosos. Anúncios pensados para gerar leads qualificados e prontos para comprar.',
-      result: 'Menos desperdício, mais vendas'
-    },
-    {
-      title: 'Análise e Otimização Contínua',
-      description: 'Registo e análise de todas as interações para identificar padrões, objeções e oportunidades. Ajustes baseados em dados reais do seu stand, não em "achismos".',
-      result: 'Decisões baseadas em dados'
-    }
-  ];
-
-  const values = [
-    'Foco total em resultados reais, não em métricas vazias',
-    'Transparência absoluta sobre investimento e retorno',
-    'Automação que liberta tempo, não que complica processos',
-    'Crescimento previsível baseado em sistemas, não em sorte',
-    'Atendimento profissional que valoriza cada oportunidade',
-    'Melhoria contínua com base em dados do seu negócio'
-  ];
 
   return (
     <div className="service-page">
@@ -55,77 +27,98 @@ const SobreMimPage = () => {
       <section className="service-hero">
         <div className="container">
           <div className="service-icon-large">
-            <Award />
+            <Heart />
           </div>
-          <h1 className="service-title">Natamy Oliveira</h1>
-          <p className="service-subtitle">
-            Especialista em gestão de tráfego digital, marketing e automação de processos com foco em stands de automóveis. 
-            Ajudo negócios a crescerem de forma inteligente, combinando funis de venda, inteligência artificial e análise de dados 
-            para gerar resultados reais e mensuráveis.
-          </p>
+          <h1 className="service-title">Sobre mim</h1>
         </div>
       </section>
 
-      {/* Expertise Section */}
+      {/* Story Section */}
       <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Áreas de Especialização</h2>
-          <p className="section-description">
-            Soluções completas para stands que querem crescer de forma previsível
-          </p>
-          <div className="example-grid">
-            {expertise.map((item, index) => (
-              <Card key={index} className="example-card">
-                <CardHeader>
-                  <CardTitle className="example-title">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="example-description">{item.description}</p>
-                  <div className="example-result">
-                    <Target className="w-4 h-4" />
-                    {item.result}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+        <div className="container" style={{ maxWidth: '900px' }}>
+          <div style={{ 
+            fontSize: 'clamp(1.05rem, 1.8vw, 1.15rem)', 
+            lineHeight: '1.9', 
+            color: 'rgba(255, 255, 255, 0.85)',
+            fontFamily: 'Sora, sans-serif',
+            letterSpacing: '0.01em'
+          }}>
+            <p style={{ marginBottom: '1.8rem' }}>
+              Neta de vendedores, filha de vendedor e, por muitos anos, vendedora de carros.
+              A minha trajetória sempre teve o cliente na frente, uma meta na cabeça e a fé de que o próximo passo seria ainda melhor.
+            </p>
 
-      {/* Values Section */}
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Como Trabalho</h2>
-          <div className="benefits-list">
-            {values.map((value, index) => (
-              <div key={index} className="benefit-item-service">
-                <CheckCircle2 />
-                <span>{value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            <p style={{ marginBottom: '1.8rem' }}>
+              Dentro de um stand, aprendi na prática o que é negociar, ouvir objeções, driblar inseguranças e transformar dúvida em decisão. Vender um carro nunca foi só falar de motor, ano e modelo. Era falar de sonhos: a primeira conquista, a viagem em família, a liberdade de ir e vir.
+            </p>
 
-      {/* Mission Section */}
-      <section className="service-section">
-        <div className="container">
-          <Card className="example-card" style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <CardHeader>
-              <CardTitle className="example-title">A Minha Missão</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="example-description" style={{ fontSize: '1.1rem', lineHeight: '1.8' }}>
-                Acredito que cada stand de automóveis merece ter acesso às mesmas ferramentas de automação 
-                e inteligência artificial que as grandes marcas usam. O meu trabalho é transformar processos 
-                que consomem tempo em sistemas automáticos, permitindo que os vendedores se concentrem no que 
-                realmente importa: construir relações e fechar vendas.
-                <br /><br />
-                Não vendo "likes", "visualizações" ou "impressões". Vendo mais tempo livre para a sua equipa, 
-                leads melhor qualificados e um processo de vendas que funciona enquanto dorme.
-              </p>
-            </CardContent>
-          </Card>
+            <p style={{ marginBottom: '1.8rem' }}>
+              A venda sempre correu nas minhas veias, mas, em algum momento, senti que podia ir além do stand. Queria alcançar mais pessoas, testar novas estratégias, ter mais liberdade de tempo e de lugar. Foi aí que o marketing digital entrou na minha vida.
+            </p>
+
+            <p style={{ marginBottom: '1.8rem' }}>
+              No digital, encontrei aquilo que faltava: a conexão entre propósito e resultado, entre estratégia e emoção.
+              Descobri um novo jeito de vender, sem depender de um ponto físico ou de horário de loja, com a mesma intensidade, verdade e foco em pessoas que sempre fizeram parte da minha trajetória.
+            </p>
+
+            <p style={{ marginBottom: '1.8rem', fontWeight: '500', color: 'rgba(255, 255, 255, 0.95)' }}>
+              Hoje, uso tudo o que vivi no mundo das vendas presenciais para criar estratégias online que conversem com gente de verdade:
+            </p>
+
+            <ul style={{ 
+              marginBottom: '1.8rem', 
+              paddingLeft: '1.5rem',
+              listStyle: 'none'
+            }}>
+              <li style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                <span style={{ 
+                  content: '•', 
+                  position: 'absolute', 
+                  left: '0', 
+                  color: '#d4af37',
+                  fontSize: '1.5rem',
+                  lineHeight: '1.9rem'
+                }}>•</span>
+                com quem tem medo de aparecer, mas quer crescer
+              </li>
+              <li style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                <span style={{ 
+                  content: '•', 
+                  position: 'absolute', 
+                  left: '0', 
+                  color: '#d4af37',
+                  fontSize: '1.5rem',
+                  lineHeight: '1.9rem'
+                }}>•</span>
+                com quem tem um bom produto, mas não sabe como se posicionar
+              </li>
+              <li style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
+                <span style={{ 
+                  content: '•', 
+                  position: 'absolute', 
+                  left: '0', 
+                  color: '#d4af37',
+                  fontSize: '1.5rem',
+                  lineHeight: '1.9rem'
+                }}>•</span>
+                com quem quer vender mais, sem perder a própria essência
+              </li>
+            </ul>
+
+            <p style={{ marginBottom: '1.8rem' }}>
+              Sou brasileira, tenho 32 anos e sou apaixonada por viagens. Cada lugar que conheço reforça a minha maior certeza: não existe só um caminho para chegar lá. Assim como na estrada, no marketing digital a jornada importa tanto quanto o destino.
+            </p>
+
+            <p style={{ 
+              marginTop: '2.5rem',
+              fontWeight: '500', 
+              color: '#d4af37',
+              fontSize: 'clamp(1.1rem, 1.9vw, 1.2rem)',
+              lineHeight: '1.8'
+            }}>
+              Se procura alguém que entende de metas, pressão, cliente olhando nos olhos e, ao mesmo tempo, de estratégia digital, posicionamento e presença online com verdade — é daqui que a nossa rota pode começar. 🚀
+            </p>
+          </div>
         </div>
       </section>
 
@@ -135,7 +128,7 @@ const SobreMimPage = () => {
           <div className="cta-content">
             <h2 className="cta-heading">Vamos Conversar?</h2>
             <p className="cta-text">
-              Entre em contacto e descubra como posso ajudar o seu stand a crescer de forma inteligente e previsível.
+              Entre em contacto e descubra como posso ajudar o seu negócio a crescer de forma autêntica e estratégica.
             </p>
             <Button 
               onClick={() => {
