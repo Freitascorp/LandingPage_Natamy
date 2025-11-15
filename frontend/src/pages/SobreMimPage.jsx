@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
-import { ArrowLeft, Heart } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ServicePageModern.css';
 
@@ -26,9 +26,6 @@ const SobreMimPage = () => {
       {/* Hero */}
       <section className="service-hero">
         <div className="container">
-          <div className="service-icon-large">
-            <Heart />
-          </div>
           <h1 className="service-title">Sobre mim</h1>
           <div style={{ 
             display: 'flex', 
