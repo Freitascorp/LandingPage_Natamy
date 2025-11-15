@@ -722,6 +722,47 @@
   height: 16px;
 }
 
+/* Testimonials Placeholder */
+.testimonials-placeholder {
+  max-width: 900px;
+  margin: 4rem auto 0;
+  text-align: center;
+  padding: clamp(3rem, 6vw, 5rem);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: clamp(24px, 4vw, 32px);
+  position: relative;
+  z-index: 1;
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.5),
+    0 0 100px rgba(212, 175, 55, 0.15),
+    inset 0 0 80px rgba(212, 175, 55, 0.03);
+}
+
+.testimonials-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, #ffd700, #d4af37, transparent);
+}
+
+.placeholder-text {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.6) 0%, rgba(255, 215, 0, 0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* ===== PREMIUM CONTACT SECTION ===== */
 .contact {
   padding: clamp(6rem, 12vh, 10rem) 0;
