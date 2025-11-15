@@ -44,25 +44,15 @@ const SobreMimPage = () => {
             letterSpacing: '0.01em'
           }}>
             <p style={{ marginBottom: '1.8rem' }}>
-              Neta de vendedores, filha de vendedor e, por muitos anos, vendedora de carros.
-              A minha trajetória sempre teve o cliente na frente, uma meta na cabeça e a fé de que o próximo passo seria ainda melhor.
+              Sou brasileira, tenho 32 anos e cresci no meio das vendas: sou neta de vendedores, filha de vendedor e já passei anos vendendo carros em stand. Foi ali, cara a cara com o cliente, que aprendi a negociar, ouvir objeções, lidar com inseguranças e transformar dúvida em decisão.
             </p>
 
             <p style={{ marginBottom: '1.8rem' }}>
-              Dentro de um stand, aprendi na prática o que é negociar, ouvir objeções, driblar inseguranças e transformar dúvida em decisão. Vender um carro nunca foi só falar de motor, ano e modelo. Era falar de sonhos: a primeira conquista, a viagem em família, a liberdade de ir e vir.
-            </p>
-
-            <p style={{ marginBottom: '1.8rem' }}>
-              A venda sempre correu nas minhas veias, mas, em algum momento, senti que podia ir além do stand. Queria alcançar mais pessoas, testar novas estratégias, ter mais liberdade de tempo e de lugar. Foi aí que o marketing digital entrou na minha vida.
-            </p>
-
-            <p style={{ marginBottom: '1.8rem' }}>
-              No digital, encontrei aquilo que faltava: a conexão entre propósito e resultado, entre estratégia e emoção.
-              Descobri um novo jeito de vender, sem depender de um ponto físico ou de horário de loja, com a mesma intensidade, verdade e foco em pessoas que sempre fizeram parte da minha trajetória.
+              Com o tempo, percebi que podia ir além do espaço físico da loja. Queria alcançar mais pessoas, testar novas estratégias e ter mais liberdade de tempo e de lugar. Foi assim que o marketing digital entrou na minha vida.
             </p>
 
             <p style={{ marginBottom: '1.8rem', fontWeight: '500', color: 'rgba(255, 255, 255, 0.95)' }}>
-              Hoje, uso tudo o que vivi no mundo das vendas presenciais para criar estratégias online que conversem com gente de verdade:
+              Hoje, uso toda a minha experiência em vendas presenciais para criar estratégias online que ajudam pessoas e negócios a venderem com verdade, sem perder a essência. Trabalho especialmente com:
             </p>
 
             <ul style={{ 
@@ -79,7 +69,7 @@ const SobreMimPage = () => {
                   fontSize: '1.5rem',
                   lineHeight: '1.9rem'
                 }}>•</span>
-                com quem tem medo de aparecer, mas quer crescer
+                quem tem medo de aparecer, mas quer crescer
               </li>
               <li style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
                 <span style={{ 
@@ -90,7 +80,7 @@ const SobreMimPage = () => {
                   fontSize: '1.5rem',
                   lineHeight: '1.9rem'
                 }}>•</span>
-                com quem tem um bom produto, mas não sabe como se posicionar
+                quem tem um bom produto, mas não sabe como se posicionar
               </li>
               <li style={{ marginBottom: '0.8rem', paddingLeft: '1.5rem', position: 'relative' }}>
                 <span style={{ 
@@ -101,12 +91,12 @@ const SobreMimPage = () => {
                   fontSize: '1.5rem',
                   lineHeight: '1.9rem'
                 }}>•</span>
-                com quem quer vender mais, sem perder a própria essência
+                quem quer vender mais, sem soar forçado ou "igual a todo mundo"
               </li>
             </ul>
 
             <p style={{ marginBottom: '1.8rem' }}>
-              Sou brasileira, tenho 32 anos e sou apaixonada por viagens. Cada lugar que conheço reforça a minha maior certeza: não existe só um caminho para chegar lá. Assim como na estrada, no marketing digital a jornada importa tanto quanto o destino.
+              Sou apaixonada por viagens e por tudo o que elas me lembram: não existe só um caminho para chegar lá. No marketing digital é a mesma coisa — a jornada importa tanto quanto o destino.
             </p>
 
             <p style={{ 
@@ -116,7 +106,7 @@ const SobreMimPage = () => {
               fontSize: 'clamp(1.1rem, 1.9vw, 1.2rem)',
               lineHeight: '1.8'
             }}>
-              Se procura alguém que entende de metas, pressão, cliente olhando nos olhos e, ao mesmo tempo, de estratégia digital, posicionamento e presença online com verdade — é daqui que a nossa rota pode começar. 🚀
+              Se procura alguém que entende de metas, pressão e cliente olhando nos olhos, e ao mesmo tempo de estratégia digital, posicionamento e presença online autêntica, é daqui que a nossa rota pode começar.
             </p>
           </div>
         </div>
