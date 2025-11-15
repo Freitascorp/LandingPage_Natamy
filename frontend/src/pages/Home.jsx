@@ -188,7 +188,7 @@ const Home = () => {
               className="cta-button"
               size="lg"
             >
-              Quero Fazer Crescer o Meu Negócio
+              Quero Agendar uma Reunião
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
