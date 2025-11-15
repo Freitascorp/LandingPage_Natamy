@@ -170,14 +170,17 @@ const Home = () => {
 
   return (
     <div className="landing-page">
-      {/* Hamburger Menu Button */}
-      <button 
-        className="hamburger-button"
-        onClick={() => setIsSidebarOpen(true)}
-        aria-label="Abrir menu"
-      >
-        <Menu className="h-6 w-6" />
-      </button>
+      {/* Top Bar with Name and Hamburger Menu */}
+      <div className={`top-bar ${isSidebarOpen ? 'top-bar-hidden' : ''}`}>
+        <span className="top-bar-name" translate="no">Natamy Oliveira</span>
+        <button 
+          className="hamburger-button"
+          onClick={() => setIsSidebarOpen(true)}
+          aria-label="Abrir menu"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+      </div>
 
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
