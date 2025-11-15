@@ -212,6 +212,16 @@ const Home = () => {
           >
             Início
           </a>
+          <button
+            className="sidebar-link sidebar-link-button"
+            onClick={() => {
+              setIsSidebarOpen(false);
+              navigate('/sobre-mim');
+            }}
+            translate="no"
+          >
+            Sobre mim
+          </button>
           <a 
             href="#beneficios" 
             className="sidebar-link"

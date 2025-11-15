@@ -6,6 +6,7 @@ import TrafegoPage from './pages/TrafegoPage';
 import AutomacaoPage from './pages/AutomacaoPage';
 import EstrategiaPage from './pages/EstrategiaPage';
 import ConsultoriaPage from './pages/ConsultoriaPage';
+import SobreMimPage from './pages/SobreMimPage';
 import ScrollToTop from './components/ScrollToTop';
 import { Toaster } from './components/ui/sonner';
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/automacao" element={<AutomacaoPage />} />
           <Route path="/estrategia" element={<EstrategiaPage />} />
           <Route path="/consultoria" element={<ConsultoriaPage />} />
+          <Route path="/sobre-mim" element={<SobreMimPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" richColors />

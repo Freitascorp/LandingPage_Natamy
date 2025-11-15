@@ -1231,6 +1231,11 @@
   transform: translateX(4px) scale(0.98);
 }
 
+.sidebar-link-button {
+  width: 100%;
+  text-align: left;
+}
+
 @media (max-width: 768px) {
   .hamburger-button {
     top: 1rem;
