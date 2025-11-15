@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/input';
@@ -119,14 +119,41 @@ const Home = () => {
     }
   ];
 
-  const benefits = [
-    'Aumente a sua receita sem aumentar custos - Cada investimento gera retorno mensurável',
-    'Recupere o seu tempo - Dedique-se ao que só você pode fazer no seu negócio',
-    'Cresça de forma previsível - Saiba exactamente quantos clientes esperar cada mês',
-    'Tome decisões com confiança - Dados claros que mostram o que funciona',
-    'Escale sem contratar mais - Processos que crescem junto com o seu negócio',
-    'Durma tranquilo - O seu negócio trabalha para si 24/7'
+  const testimonials = [
+    {
+      name: "Carlos Silva",
+      role: "CEO, TechFlow Solutions",
+      text: "A Natamy transformou completamente a nossa estratégia de marketing digital. Em 3 meses, triplicámos o nosso ROI e reduzimos o custo por lead em 60%. Resultados incríveis!",
+      rating: 5
+    },
+    {
+      name: "Ana Martins",
+      role: "Fundadora, BeautyLux",
+      text: "Profissionalismo e resultados reais. A automação de processos que a Natamy implementou libertou-me 15 horas por semana. Agora consigo focar-me no crescimento do negócio.",
+      rating: 5
+    },
+    {
+      name: "João Pereira",
+      role: "Director Comercial, FitLife",
+      text: "Os resultados falam por si: aumento de 250% nas conversões e um fluxo constante de clientes qualificados. A Natamy percebe verdadeiramente de tráfego pago e automação.",
+      rating: 5
+    },
+    {
+      name: "Maria Costa",
+      role: "Proprietária, Casa & Estilo",
+      text: "Investimento que vale cada cêntimo. A estratégia de tráfego criada pela Natamy trouxe clientes de alta qualidade e duplicou o nosso faturamento em apenas 4 meses.",
+      rating: 5
+    }
   ];
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <div className="landing-page">
@@ -141,8 +168,8 @@ const Home = () => {
           </div>
           <nav className="nav">
             <a href="#home" className="nav-link">Início</a>
-            <a href="#servicos" className="nav-link">Serviços</a>
             <a href="#beneficios" className="nav-link">Benefícios</a>
+            <a href="#testemunhos" className="nav-link">Testemunhos</a>
             <a href="#contato" className="nav-link">Contacto</a>
           </nav>
         </div>
@@ -177,10 +204,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="services" id="servicos">
+      {/* Benefits Section */}
+      <section className="services" id="beneficios">
         <div className="container">
-          <h2 className="section-title">Serviços</h2>
+          <h2 className="section-title">Benefícios</h2>
           <div className="services-grid">
             {services.map((service, index) => (
               <div 
@@ -207,17 +234,35 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="benefits" id="beneficios">
+      {/* Testimonials Section */}
+      <section className="testimonials" id="testemunhos">
         <div className="container">
-          <h2 className="section-title">Diferenciais</h2>
-          <div className="benefits-grid">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item">
-                <CheckCircle2 className="benefit-icon" />
-                <p className="benefit-text">{benefit}</p>
+          <h2 className="section-title">O Que Dizem os Nossos Clientes</h2>
+          
+          <div className="testimonials-carousel">
+            <div className="testimonial-card">
+              <div className="stars">
+                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                  <span key={i} className="star">★</span>
+                ))}
               </div>
-            ))}
+              <p className="testimonial-text">"{testimonials[currentTestimonial].text}"</p>
+              <div className="testimonial-author">
+                <h4 className="author-name">{testimonials[currentTestimonial].name}</h4>
+                <p className="author-role">{testimonials[currentTestimonial].role}</p>
+              </div>
+            </div>
+            
+            <div className="carousel-dots">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${index === currentTestimonial ? 'active' : ''}`}
+                  onClick={() => setCurrentTestimonial(index)}
+                  aria-label={`Ver testemunho ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
