@@ -309,11 +309,11 @@
 }
 
 .hero-title {
-  font-size: clamp(2rem, 6vw, 6.5rem);
+  font-size: clamp(1.75rem, 5vw, 4.5rem);
   font-weight: 300;
-  margin-bottom: clamp(1.5rem, 3vh, 3rem);
-  line-height: 1.1;
-  letter-spacing: clamp(-2px, -0.2vw, -3px);
+  margin-bottom: clamp(1.25rem, 2.5vh, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: clamp(-1.5px, -0.15vw, -2.5px);
   font-family: 'Sora', sans-serif;
   color: #ffffff;
   position: relative;
@@ -359,13 +359,13 @@
 }
 
 .hero-description {
-  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.8;
-  margin-bottom: clamp(2.5rem, 5vh, 4rem);
+  line-height: 1.7;
+  margin-bottom: clamp(2rem, 4vh, 3rem);
   font-weight: 400;
-  max-width: min(750px, 85vw);
-  letter-spacing: clamp(0.2px, 0.05vw, 0.3px);
+  max-width: min(650px, 85vw);
+  letter-spacing: clamp(0.15px, 0.03vw, 0.25px);
   animation: descFadeIn 1.5s ease-out 0.3s backwards;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
@@ -385,12 +385,12 @@
   background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
   background-size: 200% auto;
   color: #000000;
-  font-weight: 800;
-  letter-spacing: clamp(1px, 0.15vw, 1.5px);
-  padding: clamp(1rem, 2.5vh, 1.75rem) clamp(2rem, 4vw, 4rem);
-  border-radius: clamp(40px, 8vw, 70px);
+  font-weight: 700;
+  letter-spacing: clamp(0.8px, 0.12vw, 1.2px);
+  padding: clamp(0.9rem, 2vh, 1.4rem) clamp(1.75rem, 3.5vw, 3rem);
+  border-radius: clamp(35px, 6vw, 60px);
   border: none;
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 15px 50px rgba(212, 175, 55, 0.6),
@@ -399,7 +399,7 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: clamp(0.5rem, 1vw, 1rem);
+  gap: clamp(0.5rem, 0.8vw, 0.85rem);
   position: relative;
   overflow: hidden;
   animation: buttonGlow 4s ease-in-out infinite;
@@ -501,15 +501,15 @@
 }
 
 .section-title {
-  font-size: clamp(2rem, 4.5vw, 4rem);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 300;
-  margin-bottom: clamp(0.75rem, 1.5vh, 1.5rem);
+  margin-bottom: clamp(0.6rem, 1.2vh, 1.2rem);
   text-align: left;
   font-family: 'Sora', sans-serif;
   color: #ffffff;
-  letter-spacing: clamp(-0.5px, -0.1vw, -1px);
+  letter-spacing: clamp(-0.4px, -0.08vw, -0.8px);
   position: relative;
-  padding-left: clamp(25px, 3vw, 40px);
+  padding-left: clamp(20px, 2.5vw, 32px);
 }
 
 .section-title::before {
@@ -614,11 +614,11 @@
 }
 
 .service-title {
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
   font-weight: 600;
   color: #ffffff;
   margin: 0;
-  letter-spacing: clamp(-0.3px, -0.05vw, -0.5px);
+  letter-spacing: clamp(-0.2px, -0.03vw, -0.4px);
   transition: all 0.3s ease;
   font-family: 'Sora', sans-serif;
 }
@@ -628,11 +628,11 @@
 }
 
 .service-description {
-  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
   color: rgba(255, 255, 255, 0.6);
-  line-height: 1.7;
+  line-height: 1.65;
   margin: 0;
-  max-width: min(700px, 80vw);
+  max-width: min(650px, 80vw);
   transition: all 0.3s ease;
 }
 
@@ -755,9 +755,9 @@
 }
 
 .benefit-text {
-  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-size: clamp(0.85rem, 1.4vw, 0.95rem);
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.7;
+  line-height: 1.65;
   margin: 0;
   transition: all 0.3s ease;
   font-weight: 500;
@@ -801,13 +801,13 @@
 
 .contact-subtitle {
   text-align: center;
-  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: clamp(3rem, 6vh, 5rem);
-  max-width: min(750px, 90vw);
+  margin-bottom: clamp(2.5rem, 5vh, 4rem);
+  max-width: min(650px, 90vw);
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.8;
+  line-height: 1.7;
   position: relative;
   z-index: 1;
 }
@@ -844,8 +844,8 @@
 }
 
 .form-card-title {
-  font-size: 2rem;
-  font-weight: 800;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: #ffffff;
   background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
   -webkit-background-clip: text;
@@ -865,22 +865,21 @@
 }
 
 .form-group label {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  font-size: 0.85rem;
 }
 
 .form-group input,
 .form-group textarea {
   background: rgba(255, 255, 255, 0.06);
   border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: clamp(12px, 2vw, 16px);
-  padding: clamp(1rem, 2vh, 1.25rem) clamp(1.25rem, 2vw, 1.5rem);
+  border-radius: clamp(10px, 1.5vw, 14px);
+  padding: clamp(0.85rem, 1.8vh, 1.1rem) clamp(1.1rem, 1.8vw, 1.3rem);
   color: #ffffff;
-  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
   transition: all 0.4s ease;
   font-family: 'Sora', 'Inter', sans-serif;
   font-weight: 500;
@@ -907,12 +906,12 @@
   background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%);
   background-size: 200% auto;
   color: #000000;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  padding: 1.5rem 4rem;
-  border-radius: 70px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  padding: 1.2rem 3rem;
+  border-radius: 60px;
   border: 3px solid rgba(255, 215, 0, 0.3);
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 12px 40px rgba(212, 175, 55, 0.5),
