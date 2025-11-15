@@ -8,7 +8,7 @@ import { TrendingUp, Zap, Target, Users, CheckCircle2, Mail, Phone, ArrowRight }
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Home.css';
+import '../styles/HomeModern.css';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const Home = () => {
       );
 
       if (response.status === 200) {
-        toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        toast.success('Mensagem enviada com sucesso! Entrarei em contacto em breve.');
         // Reset form
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
@@ -82,7 +82,7 @@ const Home = () => {
       }
     } catch (error) {
       console.error('EmailJS Error:', error);
-      toast.error('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato diretamente.');
+      toast.error('Erro ao enviar mensagem. Por favor, tente novamente ou entre em contacto directamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -95,37 +95,37 @@ const Home = () => {
   const services = [
     {
       icon: TrendingUp,
-      title: 'Gestão de Tráfego Pago',
-      description: 'Criação e otimização de campanhas no Google Ads, Facebook Ads e Instagram Ads para gerar resultados reais e mensuráveis. ROI maximizado com estratégias data-driven.',
+      title: 'Mais Clientes, Menos Desperdício',
+      description: 'Atraia exactamente quem precisa do seu serviço e pague apenas por resultados reais. Cada euro investido retorna em clientes qualificados que estão prontos para comprar.',
       link: '/trafego-pago'
     },
     {
       icon: Zap,
-      title: 'Automação de Negócios',
-      description: 'Implementação de sistemas de automação de marketing, vendas e atendimento para aumentar sua produtividade e reduzir custos operacionais em até 70%.',
+      title: 'Mais Tempo, Mais Vendas',
+      description: 'Liberte-se das tarefas repetitivas e foque-se no que realmente gera receita. Os seus leads são nutridos automaticamente enquanto a sua equipa se dedica a fechar vendas.',
       link: '/automacao'
     },
     {
       icon: Target,
-      title: 'Estratégia Digital',
-      description: 'Desenvolvimento de estratégias personalizadas para aumentar sua presença online, gerar leads qualificados e maximizar seu ROI com análise aprofundada.',
+      title: 'Crescimento Previsível',
+      description: 'Saiba exactamente o que fazer a seguir para crescer. Um plano claro que transforma visitantes em clientes pagantes de forma consistente e escalável.',
       link: '/estrategia'
     },
     {
       icon: Users,
-      title: 'Consultoria Exclusiva',
-      description: 'Análise completa do seu negócio digital com recomendações práticas para otimizar processos, aumentar conversões e escalar com inteligência.',
+      title: 'Decisões Certas, Resultados Rápidos',
+      description: 'Identifique o que está a travar o seu crescimento e corrija rapidamente. Orientação prática que elimina desperdícios e multiplica os seus resultados.',
       link: '/consultoria'
     }
   ];
 
   const benefits = [
-    'Resultados Comprovados - Campanhas otimizadas para máximo retorno',
-    'Economia de Tempo - Automação inteligente dos processos',
-    'Atendimento Personalizado - Estratégias customizadas',
-    'Escalabilidade - Crescimento sustentável com dados',
-    'Análise Data-Driven - Decisões baseadas em métricas reais',
-    'Suporte Contínuo - Acompanhamento e otimização constante'
+    'Aumente a sua receita sem aumentar custos - Cada investimento gera retorno mensurável',
+    'Recupere o seu tempo - Dedique-se ao que só você pode fazer no seu negócio',
+    'Cresça de forma previsível - Saiba exactamente quantos clientes esperar cada mês',
+    'Tome decisões com confiança - Dados claros que mostram o que funciona',
+    'Escale sem contratar mais - Processos que crescem junto com o seu negócio',
+    'Durma tranquilo - O seu negócio trabalha para si 24/7'
   ];
 
   return (
@@ -143,7 +143,7 @@ const Home = () => {
             <a href="#home" className="nav-link">Início</a>
             <a href="#servicos" className="nav-link">Serviços</a>
             <a href="#beneficios" className="nav-link">Benefícios</a>
-            <a href="#contato" className="nav-link">Contato</a>
+            <a href="#contato" className="nav-link">Contacto</a>
           </nav>
         </div>
       </header>
@@ -152,16 +152,16 @@ const Home = () => {
       <section className="hero" id="home">
         <div className="container hero-content">
           <div className="hero-text">
-            <h2 className="hero-title">Transforme seu Negócio Digital</h2>
+            <h2 className="hero-title">Transforme o Seu Negócio</h2>
             <p className="hero-description">
-              Especialista em gestão de tráfego pago e automação de processos para escalar seu negócio de forma inteligente e lucrativa. Resultados reais com estratégias premium.
+              Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
             <Button 
               onClick={scrollToContact}
               className="cta-button"
               size="lg"
             >
-              Quero Crescer Meu Negócio
+              Quero Fazer Crescer o Meu Negócio
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -180,30 +180,28 @@ const Home = () => {
       {/* Services Section */}
       <section className="services" id="servicos">
         <div className="container">
-          <h2 className="section-title">Serviços Premium</h2>
+          <h2 className="section-title">Serviços</h2>
           <div className="services-grid">
             {services.map((service, index) => (
-              <Card 
+              <div 
                 key={index} 
-                className="service-card service-card-clickable"
+                className="service-card"
                 onClick={() => navigate(service.link)}
               >
-                <CardHeader>
-                  <div className="service-icon">
-                    <service.icon className="icon" />
-                  </div>
-                  <CardTitle className="service-title">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="service-description">
+                <div className="service-icon">
+                  <service.icon className="icon" />
+                </div>
+                <div>
+                  <h3 className="service-title">{service.title}</h3>
+                  <p className="service-description">
                     {service.description}
-                  </CardDescription>
-                  <div className="learn-more">
-                    <span>Saiba mais</span>
-                    <ArrowRight className="arrow-icon" />
-                  </div>
-                </CardContent>
-              </Card>
+                  </p>
+                </div>
+                <div className="learn-more">
+                  <span>Ver Mais</span>
+                  <ArrowRight className="arrow-icon" />
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -212,7 +210,7 @@ const Home = () => {
       {/* Benefits Section */}
       <section className="benefits" id="beneficios">
         <div className="container">
-          <h2 className="section-title">Diferenciais Premium</h2>
+          <h2 className="section-title">Diferenciais</h2>
           <div className="benefits-grid">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item">
@@ -229,15 +227,15 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">Vamos Conversar?</h2>
           <p className="contact-subtitle">
-            Entre em contato e descubra como posso transformar seu negócio digital com estratégias premium de tráfego e automação.
+            Entre em contacto e descubra como posso transformar o seu negócio digital com estratégias eficazes de tráfego e automação.
           </p>
           
           <div className="contact-content">
             <Card className="contact-form-card">
               <CardHeader>
-                <CardTitle className="form-card-title">Envie sua Mensagem</CardTitle>
+                <CardTitle className="form-card-title">Envie a Sua Mensagem</CardTitle>
                 <CardDescription>
-                  Preencha o formulário e retornarei em breve
+                  Preencha o formulário e responderei em breve
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -248,7 +246,7 @@ const Home = () => {
                       id="name"
                       name="name"
                       type="text"
-                      placeholder="Seu nome"
+                      placeholder="O seu nome"
                       value={formData.name}
                       onChange={handleInputChange}
                       required
@@ -261,7 +259,7 @@ const Home = () => {
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="seu@email.com"
+                      placeholder="seuemail@exemplo.com"
                       value={formData.email}
                       onChange={handleInputChange}
                       required
@@ -286,7 +284,7 @@ const Home = () => {
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Conte-me sobre seu projeto..."
+                      placeholder="Conte-me sobre o seu projecto..."
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={5}
@@ -300,7 +298,7 @@ const Home = () => {
                     disabled={isSubmitting}
                     size="lg"
                   >
-                    {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
+                    {isSubmitting ? 'A Enviar...' : 'Enviar Mensagem'}
                   </Button>
                 </form>
               </CardContent>
@@ -312,7 +310,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container footer-content">
-          <p>&copy; 2024 Natamy Oliveira - Gestão de Tráfego Digital e Automação Premium</p>
+          <p>&copy; 2025 Natamy Oliveira - Gestão de Tráfego e Automação</p>
           <p className="footer-rights">Todos os direitos reservados</p>
         </div>
       </footer>

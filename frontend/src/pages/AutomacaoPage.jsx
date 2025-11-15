@@ -1,44 +1,45 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { ArrowLeft, Zap, Clock, TrendingDown, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Zap, Bot, Workflow, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ServicePage.css';
+import '../styles/ServicePageModern.css';
 
 const AutomacaoPage = () => {
   const navigate = useNavigate();
 
   const examples = [
     {
-      title: 'Email Marketing Automatizado',
-      description: 'Sequências de emails personalizados que nutrem leads e convertem automaticamente',
-      result: 'Economize 20h/semana'
+      title: 'Nunca Perca Um Lead',
+      description: 'Os seus contactos recebem a mensagem certa no momento certo, sem que você mova um dedo. Cada lead é nutrido até estar pronto para comprar.',
+      result: 'Recupere 30+ horas por mês'
     },
     {
-      title: 'Chatbots Inteligentes',
-      description: 'Atendimento 24/7 que qualifica leads e agenda reuniões sem intervenção manual',
-      result: 'Resposta em menos de 1 minuto'
+      title: 'Vendas Sem Esforço Extra',
+      description: 'Os seus leads são organizados, contactados e aquecidos automaticamente. A sua equipa foca apenas em fechar as vendas mais quentes.',
+      result: 'Aumente as vendas em 50% sem contratar'
     },
     {
-      title: 'CRM & Pipeline Automatizado',
-      description: 'Sistema que move leads automaticamente pelo funil e notifica a equipe no momento certo',
-      result: 'Aumento de 40% em conversões'
+      title: 'Atendimento Que Nunca Dorme',
+      description: 'Responda a clientes 24/7, qualifique leads e agende reuniões enquanto dorme. O seu negócio trabalha mesmo quando você não está.',
+      result: 'Responda 70% mais rápido que a concorrência'
     }
   ];
 
   const benefits = [
-    'Automação de follow-ups de vendas',
-    'Integração entre ferramentas',
-    'Nutrição automática de leads',
-    'Agendamento inteligente',
-    'Segmentação automática de contatos',
-    'Relatórios automáticos',
-    'Workflows personalizados',
-    'Redução de tarefas manuais em 70%'
+    'Liberte-se das tarefas repetitivas que consomem o seu dia',
+    'Nutra cada lead sem esforço manual',
+    'Responda instantaneamente a qualquer hora',
+    'Mantenha os clientes envolvidos sem trabalho extra',
+    'Identifique automaticamente os melhores leads',
+    'Acompanhe tudo sem olhar para planilhas',
+    'Descubra quem está pronto para comprar',
+    'Personalize comunicação em massa'
   ];
 
   return (
     <div className="service-page">
+      {/* Header */}
       <header className="service-header">
         <div className="container">
           <Button 
@@ -52,34 +53,28 @@ const AutomacaoPage = () => {
         </div>
       </header>
 
+      {/* Hero */}
       <section className="service-hero">
         <div className="container">
           <div className="service-icon-large">
             <Zap />
           </div>
-          <h1 className="service-title">Automação de Negócios</h1>
+          <h1 className="service-title">Mais Tempo, Mais Vendas</h1>
           <p className="service-subtitle">
-            Liberte seu tempo e escale seu negócio com sistemas inteligentes que trabalham 24/7
+            Pare de perder tempo com tarefas repetitivas. Dedique-se a fazer crescer o negócio enquanto os processos rodam sozinhos. 
+            Mais vendas, menos esforço, zero esquecimentos.
           </p>
         </div>
       </section>
 
+      {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O que é Automação de Negócios?</h2>
-          <p className="section-text">
-            É a implementação de sistemas e ferramentas que executam tarefas repetitivas automaticamente, 
-            permitindo que você foque no que realmente importa: crescer seu negócio. Através de integrações 
-            inteligentes, seus processos de marketing, vendas e atendimento funcionam sozinhos, sem perder 
-            a personalização e eficiência.
+          <h2 className="section-heading">O Que Isto Significa Para Si</h2>
+          <p className="section-description">
+            Benefícios reais que sente no dia-a-dia do seu negócio
           </p>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Exemplos Práticos</h2>
-          <div className="examples-grid">
+          <div className="example-grid">
             {examples.map((example, index) => (
               <Card key={index} className="example-card">
                 <CardHeader>
@@ -88,8 +83,8 @@ const AutomacaoPage = () => {
                 <CardContent>
                   <p className="example-description">{example.description}</p>
                   <div className="example-result">
-                    <Clock className="result-icon" />
-                    <span>{example.result}</span>
+                    <Workflow className="w-4 h-4" />
+                    {example.result}
                   </div>
                 </CardContent>
               </Card>
@@ -98,41 +93,14 @@ const AutomacaoPage = () => {
         </div>
       </section>
 
+      {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona</h2>
-          <div className="process-grid">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <h3>Mapeamento</h3>
-              <p>Identificamos todos os processos manuais que podem ser automatizados no seu negócio</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <h3>Implementação</h3>
-              <p>Configuramos ferramentas e criamos workflows inteligentes personalizados</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <h3>Integração</h3>
-              <p>Conectamos todas as suas ferramentas para trabalharem em harmonia</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <h3>Otimização</h3>
-              <p>Monitoramos e melhoramos constantemente os processos automatizados</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">O que está Incluído</h2>
+          <h2 className="section-heading">O Que Está Incluído</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item-detailed">
-                <CheckCircle2 className="benefit-check" />
+              <div key={index} className="benefit-item-service">
+                <CheckCircle2 />
                 <span>{benefit}</span>
               </div>
             ))}
@@ -140,19 +108,28 @@ const AutomacaoPage = () => {
         </div>
       </section>
 
-      <section className="service-cta">
+      {/* CTA Section */}
+      <section className="cta-section">
         <div className="container">
-          <h2 className="cta-title">Pronto para Automatizar seu Negócio?</h2>
-          <p className="cta-text">
-            Economize tempo e aumente sua produtividade com automações inteligentes
-          </p>
-          <Button 
-            onClick={() => navigate('/#contato')}
-            className="cta-button-service"
-            size="lg"
-          >
-            Quero Automatizar
-          </Button>
+          <div className="cta-content">
+            <h2 className="cta-heading">Quer Recuperar o Seu Tempo?</h2>
+            <p className="cta-text">
+              Entre em contacto e descubra quantas horas por mês pode recuperar enquanto vende ainda mais.
+            </p>
+            <Button 
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+              className="cta-button-large"
+              size="lg"
+            >
+              Começar Automação
+              <ArrowLeft className="rotate-180" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>

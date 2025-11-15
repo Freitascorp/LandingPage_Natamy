@@ -1,44 +1,45 @@
 import React from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { ArrowLeft, Target, Users, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Target, Lightbulb, TrendingUp, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ServicePage.css';
+import '../styles/ServicePageModern.css';
 
 const EstrategiaPage = () => {
   const navigate = useNavigate();
 
   const examples = [
     {
-      title: 'Funil de Vendas Otimizado',
-      description: 'Estratégia completa desde a atração até conversão, com cada etapa mapeada e otimizada',
-      result: 'Conversão 2.5x maior'
+      title: 'Saiba Onde Está o Seu Dinheiro',
+      description: 'Descubra exactamente onde investir e onde cortar. Identifique oportunidades que os seus concorrentes não vêem e deixe de desperdiçar recursos.',
+      result: 'Encontre o seu próximo grande crescimento'
     },
     {
-      title: 'Posicionamento de Marca',
-      description: 'Definição clara de proposta de valor e diferenciação no mercado digital',
-      result: 'Aumento de 80% na lembrança de marca'
+      title: 'Transforme Curiosos em Compradores',
+      description: 'Cada visitante segue um caminho claro até se tornar cliente. Elimine os furos no seu funil e converta muito mais com o mesmo tráfego.',
+      result: 'Converta 40% mais sem gastar mais'
     },
     {
-      title: 'Estratégia de Conteúdo',
-      description: 'Planejamento de conteúdo que educa, engaja e converte seu público-alvo',
-      result: 'Geração de 3x mais leads qualificados'
+      title: 'Destaque-se da Concorrência',
+      description: 'Seja a escolha óbvia no seu mercado. Construa uma presença que faz os clientes escolherem-no antes mesmo de ver o preço.',
+      result: 'Triplique o reconhecimento da sua marca'
     }
   ];
 
   const benefits = [
-    'Análise profunda de mercado',
-    'Definição de personas e ICP',
-    'Mapeamento de jornada do cliente',
-    'Estratégia de conteúdo completa',
-    'Plano de marketing digital 360°',
-    'Definição de KPIs e métricas',
-    'Roadmap de crescimento',
-    'Consultoria estratégica contínua'
+    'Saiba exactamente onde investir e quanto esperar de retorno',
+    'Conheça profundamente quem são os seus melhores clientes',
+    'Atraia a atenção certa com conteúdo que vende',
+    'Esteja presente onde os seus clientes realmente estão',
+    'Meça o que importa e ignore o resto',
+    'Tenha um plano claro de crescimento para os próximos meses',
+    'Aumente conversões sem aumentar tráfego',
+    'Decisões baseadas em dados, não achismos'
   ];
 
   return (
     <div className="service-page">
+      {/* Header */}
       <header className="service-header">
         <div className="container">
           <Button 
@@ -52,34 +53,28 @@ const EstrategiaPage = () => {
         </div>
       </header>
 
+      {/* Hero */}
       <section className="service-hero">
         <div className="container">
           <div className="service-icon-large">
             <Target />
           </div>
-          <h1 className="service-title">Estratégia Digital</h1>
+          <h1 className="service-title">Crescimento Previsível</h1>
           <p className="service-subtitle">
-            Planejamento estratégico baseado em dados para crescimento sustentável e previsível
+            Chega de adivinhar o próximo passo. Tenha um plano claro que transforma visitantes em clientes pagantes de forma consistente. 
+            Saiba exactamente o que fazer para crescer mês após mês.
           </p>
         </div>
       </section>
 
+      {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O que é Estratégia Digital?</h2>
-          <p className="section-text">
-            É o planejamento estruturado de todas as ações digitais do seu negócio, alinhando objetivos, 
-            público-alvo, canais e mensagens. Através de análise de dados e pesquisa de mercado, criamos 
-            um plano personalizado que guia todas as suas iniciativas digitais rumo ao crescimento consistente 
-            e mensurável.
+          <h2 className="section-heading">O Que Vai Alcançar</h2>
+          <p className="section-description">
+            Resultados concretos que transformam o seu negócio
           </p>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">Exemplos Práticos</h2>
-          <div className="examples-grid">
+          <div className="example-grid">
             {examples.map((example, index) => (
               <Card key={index} className="example-card">
                 <CardHeader>
@@ -88,8 +83,8 @@ const EstrategiaPage = () => {
                 <CardContent>
                   <p className="example-description">{example.description}</p>
                   <div className="example-result">
-                    <TrendingUp className="result-icon" />
-                    <span>{example.result}</span>
+                    <Lightbulb className="w-4 h-4" />
+                    {example.result}
                   </div>
                 </CardContent>
               </Card>
@@ -98,41 +93,14 @@ const EstrategiaPage = () => {
         </div>
       </section>
 
+      {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">Como Funciona</h2>
-          <div className="process-grid">
-            <div className="process-step">
-              <div className="step-number">1</div>
-              <h3>Diagnóstico</h3>
-              <p>Análise completa da situação atual, mercado e oportunidades</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">2</div>
-              <h3>Planejamento</h3>
-              <p>Criação de estratégia personalizada com objetivos claros e mensuráveis</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">3</div>
-              <h3>Execução</h3>
-              <p>Implementação do plano com acompanhamento próximo</p>
-            </div>
-            <div className="process-step">
-              <div className="step-number">4</div>
-              <h3>Análise & Ajustes</h3>
-              <p>Monitoramento de resultados e otimização contínua da estratégia</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="service-section">
-        <div className="container">
-          <h2 className="section-heading">O que está Incluído</h2>
+          <h2 className="section-heading">O Que Está Incluído</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
-              <div key={index} className="benefit-item-detailed">
-                <CheckCircle2 className="benefit-check" />
+              <div key={index} className="benefit-item-service">
+                <CheckCircle2 />
                 <span>{benefit}</span>
               </div>
             ))}
@@ -140,19 +108,28 @@ const EstrategiaPage = () => {
         </div>
       </section>
 
-      <section className="service-cta">
+      {/* CTA Section */}
+      <section className="cta-section">
         <div className="container">
-          <h2 className="cta-title">Pronto para Crescer Estrategicamente?</h2>
-          <p className="cta-text">
-            Vamos criar juntos um plano de crescimento personalizado para seu negócio
-          </p>
-          <Button 
-            onClick={() => navigate('/#contato')}
-            className="cta-button-service"
-            size="lg"
-          >
-            Quero uma Estratégia
-          </Button>
+          <div className="cta-content">
+            <h2 className="cta-heading">Quer Crescer de Forma Previsível?</h2>
+            <p className="cta-text">
+              Entre em contacto e descubra o plano exacto para transformar o seu negócio num sistema de crescimento consistente.
+            </p>
+            <Button 
+              onClick={() => {
+                navigate('/');
+                setTimeout(() => {
+                  document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              }}
+              className="cta-button-large"
+              size="lg"
+            >
+              Solicitar Análise Gratuita
+              <ArrowLeft className="rotate-180" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>
