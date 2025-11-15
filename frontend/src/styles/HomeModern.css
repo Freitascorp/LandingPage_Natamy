@@ -638,11 +638,19 @@
   line-height: 1.65;
   margin: 0;
   max-width: min(650px, 80vw);
-  transition: all 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.service-card:hover .service-description {
+.service-card:hover .service-description,
+.service-card:focus .service-description,
+.service-card:active .service-description {
   color: rgba(255, 255, 255, 0.8);
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.5rem;
 }
 
 /* Arrow Link */
