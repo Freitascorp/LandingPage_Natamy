@@ -188,11 +188,11 @@ const Home = () => {
       )}
 
       {/* Collapsible Sidebar */}
-      <aside className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <aside className={`sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`} translate="no">
         <div className="sidebar-header">
           <div className="sidebar-brand">
-            <h1 className="sidebar-brand-name">NATAMY OLIVEIRA</h1>
-            <p className="sidebar-brand-tagline">Gestão de Tráfego Digital, Marketing e Automação de Negócios</p>
+            <h1 className="sidebar-brand-name" translate="no">NATAMY OLIVEIRA</h1>
+            <p className="sidebar-brand-tagline" translate="no">Gestão de Tráfego Digital, Marketing e Automação de Negócios</p>
           </div>
           <button 
             className="sidebar-close-button"
@@ -203,11 +203,12 @@ const Home = () => {
           </button>
         </div>
         
-        <nav className="sidebar-nav">
+        <nav className="sidebar-nav" translate="no">
           <a 
             href="#home" 
             className="sidebar-link"
             onClick={() => setIsSidebarOpen(false)}
+            translate="no"
           >
             Início
           </a>
@@ -215,6 +216,7 @@ const Home = () => {
             href="#beneficios" 
             className="sidebar-link"
             onClick={() => setIsSidebarOpen(false)}
+            translate="no"
           >
             Benefícios
           </a>
@@ -222,6 +224,7 @@ const Home = () => {
             href="#testemunhos" 
             className="sidebar-link"
             onClick={() => setIsSidebarOpen(false)}
+            translate="no"
           >
             Testemunhos
           </a>
@@ -229,6 +232,7 @@ const Home = () => {
             href="#contato" 
             className="sidebar-link"
             onClick={() => setIsSidebarOpen(false)}
+            translate="no"
           >
             Contacto
           </a>
