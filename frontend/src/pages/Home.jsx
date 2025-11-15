@@ -76,17 +76,6 @@ const Home = () => {
 
       if (response.status === 200) {
         toast.success('Mensagem enviada com sucesso! Entrarei em contacto em breve.');
-        
-        // Track Lead event in Meta Pixel
-        if (window.fbq) {
-          window.fbq('track', 'Lead', {
-            content_name: 'Contact Form Submission',
-            content_category: 'contact',
-            value: 0,
-            currency: 'EUR'
-          });
-        }
-        
         // Reset form
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
@@ -282,16 +271,7 @@ const Home = () => {
               Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
             <button 
-              onClick={(e) => {
-                // Track Contact event in Meta Pixel
-                if (window.fbq) {
-                  window.fbq('track', 'Contact', {
-                    content_name: 'CTA - Hero Button',
-                    content_category: 'cta_click'
-                  });
-                }
-                scrollToContact(e);
-              }}
+              onClick={scrollToContact}
               className="cta-button-custom"
               type="button"
             >
