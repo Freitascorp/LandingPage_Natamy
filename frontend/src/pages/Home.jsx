@@ -132,8 +132,41 @@ const Home = () => {
     }
   ];
 
-  // Testimonials will be added soon
-  // const testimonials = [];
+  const testimonials = [
+    {
+      name: "Brevemente",
+      role: "Testemunho 1",
+      text: "Os nossos clientes partilharão em breve as suas experiências e resultados.",
+      rating: 5
+    },
+    {
+      name: "Brevemente",
+      role: "Testemunho 2",
+      text: "Os nossos clientes partilharão em breve as suas experiências e resultados.",
+      rating: 5
+    },
+    {
+      name: "Brevemente",
+      role: "Testemunho 3",
+      text: "Os nossos clientes partilharão em breve as suas experiências e resultados.",
+      rating: 5
+    },
+    {
+      name: "Brevemente",
+      role: "Testemunho 4",
+      text: "Os nossos clientes partilharão em breve as suas experiências e resultados.",
+      rating: 5
+    }
+  ];
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   return (
     <div className="landing-page">
@@ -283,8 +316,30 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">O Que Dizem os Nossos Clientes</h2>
           
-          <div className="testimonials-placeholder">
-            <p className="placeholder-text">Brevemente</p>
+          <div className="testimonials-carousel">
+            <div className="testimonial-card">
+              <div className="stars">
+                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                  <span key={i} className="star">★</span>
+                ))}
+              </div>
+              <p className="testimonial-text">"{testimonials[currentTestimonial].text}"</p>
+              <div className="testimonial-author">
+                <h4 className="author-name">{testimonials[currentTestimonial].name}</h4>
+                <p className="author-role">{testimonials[currentTestimonial].role}</p>
+              </div>
+            </div>
+            
+            <div className="carousel-dots">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${index === currentTestimonial ? 'active' : ''}`}
+                  onClick={() => setCurrentTestimonial(index)}
+                  aria-label={`Ver testemunho ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
