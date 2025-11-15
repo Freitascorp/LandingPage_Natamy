@@ -1,0 +1,152 @@
+1. Mais Clientes, Menos Desperdício
+
+Chega de encher a agenda com curiosos que não vão comprar.
+O seu stand precisa de contactos certos, não de “likes” e mensagens vazias.
+
+Trabalho apenas com stands de automóveis e implemento um sistema de funis de venda com IA que faz uma coisa muito simples:
+separa curiosos de compradores reais antes de chegar ao vendedor.
+
+Como funciona na prática
+
+Funil de venda pensado para o seu stand
+Criamos o caminho completo do potencial cliente: anúncio → página → conversa → agendamento.
+Cada passo é desenhado para atrair quem tem interesse real em comprar uma viatura.
+
+IA que responde e qualifica automaticamente
+A IA fala com o contacto, faz perguntas-chave (tipo de viatura, orçamento, prazo, forma de pagamento, retoma, etc.) e identifica se é um lead quente ou apenas alguém a “dar uma olhadinha”.
+
+Só os qualificados chegam à sua equipa
+Apenas os contactos com perfil de comprador são encaminhados para os vendedores, já com contexto da conversa e informação necessária para avançar.
+
+Benefícios para o seu stand
+
+Menos tempo perdido com curiosos.
+
+Vendedores focados apenas em quem tem forte intenção de compra.
+
+Mais propostas, test-drives e vendas com o mesmo orçamento.
+
+Custo por venda mais baixo e retorno real em cada euro investido.
+
+Ideal para stands que já recebem muitos contactos, mas sentem que “quase ninguém está realmente pronto para comprar”.
+
+2. Mais Tempo, Mais Vendas
+
+O maior inimigo do seu stand não é a falta de contactos.
+É a falta de tempo da sua equipa para atender bem quem realmente quer comprar.
+
+Hoje, muitos stands têm vendedores presos a tarefas repetitivas: responder mensagens, enviar localização, dizer horários, mandar fotos, repetir condições… enquanto as boas oportunidades vão ficando pelo caminho.
+
+O que eu implemento no seu stand
+
+Um sistema de atendimento inteligente com IA que assume:
+
+perguntas repetitivas (horário, morada, condições, financiamento, documentos necessários, etc.);
+
+envio de informações básicas da viatura;
+
+recolha de dados do contacto (nome, telefone, preferências);
+
+pré-qualificação antes de passar para o vendedor.
+
+Enquanto isso, a IA já:
+
+agenda chamadas,
+
+marca visitas ao stand,
+
+organiza tudo para a sua equipa chegar apenas para a parte que realmente importa: fechar vendas.
+
+O que muda no dia a dia da sua equipa
+
+Menos tempo no telemóvel a responder perguntas.
+
+Mais foco em negociações e follow-up quente.
+
+Atendimento mais rápido e profissional, mesmo em horários de pico.
+
+Sistema a trabalhar 24/7, mesmo quando o stand está fechado.
+
+Ideal para stands onde a equipa sente que está sempre a correr atrás das mensagens e não consegue dar conta de todas as oportunidades.
+
+3. Crescimento Previsível
+
+Se o seu stand vive no ciclo “mês bom / mês fraco”, não é por acaso.
+Sem sistema, as vendas dependem de sorte, indicação e esforço manual da equipa.
+
+Combinando funis de venda + IA + follow up automático, criamos um modelo em que o seu stand passa a ter:
+
+fluxo contínuo de leads;
+
+acompanhamento automático de cada contacto;
+
+previsibilidade de visitas, propostas e vendas.
+
+O sistema por trás do crescimento
+
+Funis de venda sempre a trabalhar
+Anúncios e campanhas levam potenciais compradores para páginas e conversas pensadas para transformar visitas em contactos.
+
+IA a nutrir e acompanhar cada lead
+Nem toda a pessoa compra no primeiro contacto. A IA mantém o relacionamento, envia mensagens estratégicas e continua a conversa até haver uma resposta clara.
+
+Follow up que não se esquece de ninguém
+Em vez de depender da memória do vendedor, o sistema faz lembretes, reenvia mensagens e faz perguntas-chave para reativar o interesse.
+
+O resultado para o seu stand
+
+Menos “buracos” no processo comercial.
+
+Mais contactos reaproveitados (e não esquecidos).
+
+Vendas mais constantes, sem depender de picos.
+
+Capacidade de prever melhor o stock e o investimento em campanhas.
+
+Ideal para stands que já vendem bem, mas querem sair do “vai-se vendo” e passar a crescer com números e previsões claras.
+
+4. Decisões Certas, Resultados Rápidos
+
+Muitos stands investem em anúncios, mas não sabem responder a perguntas simples como:
+
+Quais campanhas trazem leads que realmente compram?
+
+Em que etapa do processo os contactos “morrem”?
+
+Que mensagens fazem o cliente avançar… ou desistir?
+
+Sem estes dados, todas as decisões são um tiro no escuro.
+
+O que a IA faz pelos seus números
+
+Com a IA integrada nos funis e no atendimento, conseguimos:
+
+registar todas as interações com o cliente;
+
+identificar padrões de perguntas, objeções e respostas;
+
+perceber onde os leads travam (preço, prazo, financiamento, confiança, etc.);
+
+medir quais campanhas e abordagens geram mais vendas, não só mais cliques.
+
+Com isso, ajustamos rapidamente:
+
+mensagens,
+
+criativos,
+
+ofertas,
+
+sequência de follow up.
+
+Benefícios para o seu stand
+
+Menos desperdício em campanhas que só trazem curiosos.
+
+Mais investimento no que gera vendas reais.
+
+Melhoria contínua no atendimento e no funil.
+
+Decisões baseadas em dados do seu próprio stand, não em “achismos”.
+
+Ideal para stands que já investem em marketing, mas sentem que não sabem exactamente onde está o retorno – e onde está o desperdício.

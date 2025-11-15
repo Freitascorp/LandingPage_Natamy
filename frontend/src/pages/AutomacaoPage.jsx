@@ -10,31 +10,27 @@ const AutomacaoPage = () => {
 
   const examples = [
     {
-      title: 'Nunca Perca Um Lead',
-      description: 'Os seus contactos recebem a mensagem certa no momento certo, sem que você mova um dedo. Cada lead é nutrido até estar pronto para comprar.',
-      result: 'Recupere 30+ horas por mês'
+      title: 'Sistema de atendimento inteligente com IA',
+      description: 'A IA assume perguntas repetitivas (horário, morada, condições, financiamento, documentos necessários), envio de informações básicas da viatura, recolha de dados do contacto e pré-qualificação antes de passar para o vendedor.',
+      result: 'IA a trabalhar 24/7 pelo stand'
     },
     {
-      title: 'Vendas Sem Esforço Extra',
-      description: 'Os seus leads são organizados, contactados e aquecidos automaticamente. A sua equipa foca apenas em fechar as vendas mais quentes.',
-      result: 'Aumente as vendas em 50% sem contratar'
+      title: 'Organização automática completa',
+      description: 'A IA agenda chamadas, marca visitas ao stand e organiza tudo para a sua equipa chegar apenas para a parte que realmente importa: fechar vendas.',
+      result: 'Equipa foca apenas em vendas'
     },
     {
-      title: 'Atendimento Que Nunca Dorme',
-      description: 'Responda a clientes 24/7, qualifique leads e agende reuniões enquanto dorme. O seu negócio trabalha mesmo quando você não está.',
-      result: 'Responda 70% mais rápido que a concorrência'
+      title: 'Atendimento profissional mesmo em pico',
+      description: 'Atendimento mais rápido e profissional, mesmo em horários de pico. Sistema a trabalhar 24/7, mesmo quando o stand está fechado.',
+      result: 'Nunca perde uma oportunidade'
     }
   ];
 
   const benefits = [
-    'Liberte-se das tarefas repetitivas que consomem o seu dia',
-    'Nutra cada lead sem esforço manual',
-    'Responda instantaneamente a qualquer hora',
-    'Mantenha os clientes envolvidos sem trabalho extra',
-    'Identifique automaticamente os melhores leads',
-    'Acompanhe tudo sem olhar para planilhas',
-    'Descubra quem está pronto para comprar',
-    'Personalize comunicação em massa'
+    'Menos tempo no telemóvel a responder perguntas',
+    'Mais foco em negociações e follow-up quente',
+    'Atendimento mais rápido e profissional, mesmo em horários de pico',
+    'Sistema a trabalhar 24/7, mesmo quando o stand está fechado'
   ];
 
   return (
@@ -61,8 +57,7 @@ const AutomacaoPage = () => {
           </div>
           <h1 className="service-title">Mais Tempo, Mais Vendas</h1>
           <p className="service-subtitle">
-            Pare de perder tempo com tarefas repetitivas. Dedique-se a fazer crescer o negócio enquanto os processos rodam sozinhos. 
-            Mais vendas, menos esforço, zero esquecimentos.
+            O maior inimigo do seu stand não é a falta de contactos. É a falta de tempo da sua equipa para atender bem quem realmente quer comprar. Muitos vendedores estão presos a tarefas repetitivas enquanto as boas oportunidades vão ficando pelo caminho.
           </p>
         </div>
       </section>
@@ -70,9 +65,9 @@ const AutomacaoPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Isto Significa Para Si</h2>
+          <h2 className="section-heading">O Que Implemento no Seu Stand</h2>
           <p className="section-description">
-            Benefícios reais que sente no dia-a-dia do seu negócio
+            Sistema completo de atendimento inteligente com IA
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
@@ -96,7 +91,7 @@ const AutomacaoPage = () => {
       {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Está Incluído</h2>
+          <h2 className="section-heading">O Que Muda no Dia a Dia da Sua Equipa</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item-service">
@@ -112,9 +107,9 @@ const AutomacaoPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Quer Recuperar o Seu Tempo?</h2>
+            <h2 className="cta-heading">Ideal Para Stands Onde a Equipa Sente Que Está Sempre a Correr Atrás das Mensagens</h2>
             <p className="cta-text">
-              Entre em contacto e descubra quantas horas por mês pode recuperar enquanto vende ainda mais.
+              E não consegue dar conta de todas as oportunidades. Entre em contacto e descubra como libertar a sua equipa para focar em vendas.
             </p>
             <Button 
               onClick={() => {

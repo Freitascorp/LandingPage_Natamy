@@ -10,31 +10,27 @@ const EstrategiaPage = () => {
 
   const examples = [
     {
-      title: 'Saiba Onde Está o Seu Dinheiro',
-      description: 'Descubra exactamente onde investir e onde cortar. Identifique oportunidades que os seus concorrentes não vêem e deixe de desperdiçar recursos.',
-      result: 'Encontre o seu próximo grande crescimento'
+      title: 'Funis de venda sempre a trabalhar',
+      description: 'Anúncios e campanhas levam potenciais compradores para páginas e conversas pensadas para transformar visitas em contactos.',
+      result: 'Fluxo contínuo de leads'
     },
     {
-      title: 'Transforme Curiosos em Compradores',
-      description: 'Cada visitante segue um caminho claro até se tornar cliente. Elimine os furos no seu funil e converta muito mais com o mesmo tráfego.',
-      result: 'Converta 40% mais sem gastar mais'
+      title: 'IA a nutrir e acompanhar cada lead',
+      description: 'Nem toda a pessoa compra no primeiro contacto. A IA mantém o relacionamento, envia mensagens estratégicas e continua a conversa até haver uma resposta clara.',
+      result: 'Nenhum lead é esquecido'
     },
     {
-      title: 'Destaque-se da Concorrência',
-      description: 'Seja a escolha óbvia no seu mercado. Construa uma presença que faz os clientes escolherem-no antes mesmo de ver o preço.',
-      result: 'Triplique o reconhecimento da sua marca'
+      title: 'Follow up que não se esquece de ninguém',
+      description: 'Em vez de depender da memória do vendedor, o sistema faz lembretes, reenvia mensagens e faz perguntas-chave para reativar o interesse.',
+      result: 'Mais contactos reaproveitados'
     }
   ];
 
   const benefits = [
-    'Saiba exactamente onde investir e quanto esperar de retorno',
-    'Conheça profundamente quem são os seus melhores clientes',
-    'Atraia a atenção certa com conteúdo que vende',
-    'Esteja presente onde os seus clientes realmente estão',
-    'Meça o que importa e ignore o resto',
-    'Tenha um plano claro de crescimento para os próximos meses',
-    'Aumente conversões sem aumentar tráfego',
-    'Decisões baseadas em dados, não achismos'
+    'Menos "buracos" no processo comercial',
+    'Mais contactos reaproveitados (e não esquecidos)',
+    'Vendas mais constantes, sem depender de picos',
+    'Capacidade de prever melhor o stock e o investimento em campanhas'
   ];
 
   return (
@@ -61,8 +57,7 @@ const EstrategiaPage = () => {
           </div>
           <h1 className="service-title">Crescimento Previsível</h1>
           <p className="service-subtitle">
-            Chega de adivinhar o próximo passo. Tenha um plano claro que transforma visitantes em clientes pagantes de forma consistente. 
-            Saiba exactamente o que fazer para crescer mês após mês.
+            Se o seu stand vive no ciclo "mês bom / mês fraco", não é por acaso. Sem sistema, as vendas dependem de sorte, indicação e esforço manual da equipa. Combinando funis de venda + IA + follow up automático, criamos um modelo de crescimento previsível.
           </p>
         </div>
       </section>
@@ -70,9 +65,9 @@ const EstrategiaPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Vai Alcançar</h2>
+          <h2 className="section-heading">O Sistema Por Trás do Crescimento</h2>
           <p className="section-description">
-            Resultados concretos que transformam o seu negócio
+            Três pilares que garantem crescimento consistente
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
@@ -96,7 +91,7 @@ const EstrategiaPage = () => {
       {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Está Incluído</h2>
+          <h2 className="section-heading">O Resultado Para o Seu Stand</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item-service">
@@ -112,9 +107,9 @@ const EstrategiaPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Quer Crescer de Forma Previsível?</h2>
+            <h2 className="cta-heading">Ideal Para Stands Que Já Vendem Bem</h2>
             <p className="cta-text">
-              Entre em contacto e descubra o plano exacto para transformar o seu negócio num sistema de crescimento consistente.
+              Mas querem sair do "vai-se vendo" e passar a crescer com números e previsões claras. Entre em contacto e descubra como ter crescimento previsível.
             </p>
             <Button 
               onClick={() => {

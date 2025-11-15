@@ -10,31 +10,27 @@ const ConsultoriaPage = () => {
 
   const examples = [
     {
-      title: 'Descubra O Que Está a Travar-lhe',
-      description: 'Identifique exactamente onde está a perder dinheiro e oportunidades. Veja claramente o que mudar para desbloquear o crescimento.',
-      result: 'Plano claro do que fazer a seguir'
+      title: 'Registo de todas as interações',
+      description: 'Com a IA integrada nos funis e no atendimento, registamos todas as interações com o cliente e identificamos padrões de perguntas, objeções e respostas.',
+      result: 'Dados reais do seu stand'
     },
     {
-      title: 'Resolva Problemas Rapidamente',
-      description: 'Tenha alguém ao seu lado para tomar decisões difíceis com confiança. Evite erros caros e acelere os resultados.',
-      result: 'Decisões certas quando importa'
+      title: 'Análise de pontos de travagem',
+      description: 'Perceber onde os leads travam (preço, prazo, financiamento, confiança, etc.) e medir quais campanhas e abordagens geram mais vendas, não só mais cliques.',
+      result: 'Saber onde estão os problemas'
     },
     {
-      title: 'Cresça Sem Tropeços',
-      description: 'Ajustes contínuos baseados no que realmente está a acontecer no seu negócio. Corrija o rumo antes de desperdiçar recursos.',
-      result: 'Crescimento sem erros caros'
+      title: 'Ajustes rápidos e precisos',
+      description: 'Com os dados em mãos, ajustamos rapidamente mensagens, criativos, ofertas e sequência de follow up para maximizar resultados.',
+      result: 'Melhoria contínua garantida'
     }
   ];
 
   const benefits = [
-    'Veja exactamente onde está a desperdiçar dinheiro',
-    'Tenha um especialista disponível quando precisar',
-    'Entenda o que os números realmente significam',
-    'Saiba os próximos passos exactos a dar',
-    'Tire dúvidas rapidamente sem esperar',
-    'Elimine processos que não servem de nada',
-    'Capacite a sua equipa a executar melhor',
-    'Acompanhe o progresso real, não vanity metrics'
+    'Menos desperdício em campanhas que só trazem curiosos',
+    'Mais investimento no que gera vendas reais',
+    'Melhoria contínua no atendimento e no funil',
+    'Decisões baseadas em dados do seu próprio stand, não em "achismos"'
   ];
 
   return (
@@ -61,8 +57,7 @@ const ConsultoriaPage = () => {
           </div>
           <h1 className="service-title">Decisões Certas, Resultados Rápidos</h1>
           <p className="service-subtitle">
-            Pare de desperdiçar tempo e dinheiro com tentativa e erro. Tenha um especialista ao seu lado para identificar problemas e implementar soluções que funcionam. 
-            Cresça mais rápido evitando os erros caros.
+            Muitos stands investem em anúncios, mas não sabem responder: Quais campanhas trazem leads que realmente compram? Em que etapa os contactos "morrem"? Que mensagens fazem o cliente avançar ou desistir? Sem estes dados, todas as decisões são um tiro no escuro.
           </p>
         </div>
       </section>
@@ -70,9 +65,9 @@ const ConsultoriaPage = () => {
       {/* Examples Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Isto Lhe Traz</h2>
+          <h2 className="section-heading">O Que a IA Faz Pelos Seus Números</h2>
           <p className="section-description">
-            Benefícios reais de ter orientação especializada
+            Sistema completo de análise e otimização baseada em dados
           </p>
           <div className="example-grid">
             {examples.map((example, index) => (
@@ -96,7 +91,7 @@ const ConsultoriaPage = () => {
       {/* Benefits Section */}
       <section className="service-section">
         <div className="container">
-          <h2 className="section-heading">O Que Está Incluído</h2>
+          <h2 className="section-heading">Benefícios Para o Seu Stand</h2>
           <div className="benefits-list">
             {benefits.map((benefit, index) => (
               <div key={index} className="benefit-item-service">
@@ -112,9 +107,9 @@ const ConsultoriaPage = () => {
       <section className="cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2 className="cta-heading">Quer Evitar Erros Caros?</h2>
+            <h2 className="cta-heading">Ideal Para Stands Que Já Investem em Marketing</h2>
             <p className="cta-text">
-              Entre em contacto e descubra exactamente o que está a impedir o seu crescimento e como corrigir rapidamente.
+              Mas sentem que não sabem exactamente onde está o retorno – e onde está o desperdício. Entre em contacto e descubra como tomar decisões baseadas em dados reais.
             </p>
             <Button 
               onClick={() => {
