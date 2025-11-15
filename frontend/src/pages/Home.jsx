@@ -109,25 +109,25 @@ const Home = () => {
     {
       icon: TrendingUp,
       title: 'Mais Clientes, Menos Desperdício',
-      description: 'Chega de encher a agenda com curiosos que não vão comprar. Sistema de funis de venda com IA que separa curiosos de compradores reais antes de chegar ao vendedor. Só os qualificados chegam à sua equipa – menos tempo perdido, mais propostas e vendas.',
+      description: 'Chega de encher o WhatsApp com curiosos que só querem saber o preço. A IA filtra e qualifica cada contacto dentro de um funil de vendas, responde às perguntas básicas e só envia para a sua equipa quem tem real intenção de compra. Resultado: menos tempo perdido, mais propostas e mais carros vendidos.',
       link: '/trafego-pago'
     },
     {
       icon: Zap,
       title: 'Mais Tempo, Mais Vendas',
-      description: 'O maior inimigo do seu stand não é a falta de contactos – é a falta de tempo da sua equipa. Sistema de atendimento inteligente com IA que assume perguntas repetitivas, recolhe dados e pré-qualifica contactos 24/7. A sua equipa foca apenas em fechar vendas.',
+      description: 'A sua equipa não foi contratada para ser call center. A IA assume as conversas repetitivas – horários, localização, condições, stock, financiamento – e encaminha apenas os interessados prontos para falar com um vendedor. Enquanto o sistema trabalha 24/7, o seu stand foca-se em fechar negócios.',
       link: '/automacao'
     },
     {
       icon: Target,
       title: 'Crescimento Previsível',
-      description: 'Saia do ciclo "mês bom / mês fraco". Combinando funis de venda + IA + follow up automático, criamos um modelo com fluxo contínuo de leads, acompanhamento automático de cada contacto e previsibilidade de visitas, propostas e vendas.',
+      description: 'Acabe com o ciclo "mês bom / mês mau". Com funis de venda e IA a trabalhar em conjunto, cada lead é seguida com follow up automático até dar uma resposta. Assim, o seu stand passa a ter um fluxo consistente de visitas, propostas e vendas que pode prever e escalar.',
       link: '/estrategia'
     },
     {
       icon: Users,
       title: 'Decisões Certas, Resultados Rápidos',
-      description: 'Quais campanhas trazem leads que realmente compram? Onde os contactos "morrem"? Com IA integrada nos funis e atendimento, registamos todas as interações, identificamos padrões e medimos o que gera vendas reais. Decisões baseadas em dados, não achismos.',
+      description: 'Em vez de apostas, decisões baseadas em dados reais do seu stand. A IA mostra exactamente que campanhas, mensagens e abordagens geram mais contactos qualificados e vendas. Com essa visão, ajustamos rápido a estratégia, cortamos o desperdício e aumentamos o lucro por viatura.',
       link: '/consultoria'
     }
   ];
