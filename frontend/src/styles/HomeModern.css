@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 /* ===== GLOBAL RESET & BASE ===== */
 * {
@@ -614,13 +614,13 @@
 }
 
 .service-title {
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
-  font-weight: 600;
+  font-size: clamp(0.95rem, 1.6vw, 1.25rem);
+  font-weight: 500;
   color: #ffffff;
   margin: 0;
-  letter-spacing: clamp(-0.2px, -0.03vw, -0.4px);
+  letter-spacing: clamp(-0.15px, -0.02vw, -0.3px);
   transition: all 0.3s ease;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Sora', 'Inter', sans-serif;
 }
 
 .service-card:hover .service-title {
