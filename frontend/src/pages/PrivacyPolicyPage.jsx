@@ -288,13 +288,7 @@ const PrivacyPolicyPage = () => {
 
             <h2 style={headingStyle}>13. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
             <p style={sectionStyle}>
-              If you have questions or comments about this notice, you may email us at <strong>natamy.oliveira13@gmail.com</strong> or contact us by post at:
-            </p>
-            <p style={sectionStyle}>
-              <strong>NATAMY OLIVEIRA</strong><br />
-              Rua S.Joao Batista 21 RCE<br />
-              Ourém, Santarém 2495-433<br />
-              Portugal
+              If you have questions or comments about this notice, you may email us at <strong>natamy.oliveira13@gmail.com</strong>.
             </p>
 
             <h2 style={headingStyle}>14. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
