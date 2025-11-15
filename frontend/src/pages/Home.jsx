@@ -195,7 +195,7 @@ const Home = () => {
         <div className="sidebar-header">
           <div className="sidebar-brand">
             <h1 className="sidebar-brand-name" translate="no">NATAMY OLIVEIRA</h1>
-            <p className="sidebar-brand-tagline" translate="no">Gestão de Tráfego Digital, Marketing e Automação de Negócios</p>
+            <p className="sidebar-brand-tagline" translate="no">Marketing Digital para Stands e Automação de Negócio</p>
           </div>
           <button 
             className="sidebar-close-button"
