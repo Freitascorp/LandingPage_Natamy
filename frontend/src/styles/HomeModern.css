@@ -616,13 +616,13 @@
 }
 
 .service-title {
-  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
-  font-weight: 600;
-  color: #ffffff;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem) !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
   margin: 0;
   letter-spacing: clamp(-0.3px, -0.06vw, -0.6px);
   transition: all 0.3s ease;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Sora', sans-serif !important;
 }
 
 
