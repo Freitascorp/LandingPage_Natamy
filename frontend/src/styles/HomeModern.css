@@ -13,19 +13,20 @@
   gap: 0.5rem;
   padding: 1rem 2rem;
   background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
-  color: #000000;
+  color: #000000 !important;
   font-size: 1rem;
   font-weight: 600;
   font-family: 'Sora', sans-serif;
   text-decoration: none;
   border: none;
   border-radius: 50px;
-  cursor: pointer;
+  cursor: pointer !important;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
   position: relative;
-  z-index: 10;
-  pointer-events: auto;
+  z-index: 100;
+  pointer-events: auto !important;
+  outline: none;
 }
 
 .cta-button-custom:hover {
@@ -36,6 +37,11 @@
 
 .cta-button-custom:active {
   transform: translateY(0);
+}
+
+.cta-button-custom:focus {
+  outline: 2px solid rgba(212, 175, 55, 0.5);
+  outline-offset: 2px;
 }
 
 .landing-page {

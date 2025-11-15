@@ -89,22 +89,18 @@ const Home = () => {
   };
 
   const scrollToContact = (e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    e.preventDefault();
     
-    console.log('Scroll to contact clicked!');
     const contactSection = document.getElementById('contato');
-    console.log('Contact section:', contactSection);
-    
     if (contactSection) {
-      contactSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      const headerHeight = 80;
+      const elementPosition = contactSection.offsetTop;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
-    } else {
-      console.error('Contact section not found!');
     }
   };
 
@@ -199,13 +195,14 @@ const Home = () => {
             <p className="hero-description">
               Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
-            <a 
-              href="#contato"
+            <button 
+              onClick={scrollToContact}
               className="cta-button-custom"
+              type="button"
             >
               Quero Agendar uma Reunião
               <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+            </button>
           </div>
           <div className="hero-image">
             <div className="image-frame">
