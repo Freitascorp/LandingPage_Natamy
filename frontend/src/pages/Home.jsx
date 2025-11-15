@@ -199,14 +199,13 @@ const Home = () => {
             <p className="hero-description">
               Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa. Resultados reais e mensuráveis.
             </p>
-            <button 
-              onClick={scrollToContact}
+            <a 
+              href="#contato"
               className="cta-button-custom"
-              type="button"
             >
               Quero Agendar uma Reunião
               <ArrowRight className="ml-2 h-5 w-5" />
-            </button>
+            </a>
           </div>
           <div className="hero-image">
             <div className="image-frame">
