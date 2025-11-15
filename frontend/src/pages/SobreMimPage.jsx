@@ -30,6 +30,25 @@ const SobreMimPage = () => {
             <Heart />
           </div>
           <h1 className="service-title">Sobre mim</h1>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            marginTop: '2rem' 
+          }}>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_0e69878d-98c5-49cc-80d1-50120067f328/artifacts/acu2f83f_foto%20perfil.jpg"
+              alt="Natamy Oliveira"
+              style={{
+                width: 'clamp(200px, 30vw, 350px)',
+                height: 'clamp(200px, 30vw, 350px)',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                objectPosition: 'center 35%',
+                border: '4px solid rgba(212, 175, 55, 0.3)',
+                boxShadow: '0 10px 40px rgba(212, 175, 55, 0.3), 0 0 80px rgba(212, 175, 55, 0.1)'
+              }}
+            />
+          </div>
         </div>
       </section>
 
@@ -44,7 +63,7 @@ const SobreMimPage = () => {
             letterSpacing: '0.01em'
           }}>
             <p style={{ marginBottom: '1.8rem' }}>
-              Sou brasileira, tenho 32 anos e cresci no meio das vendas: sou neta de vendedores, filha de vendedor e já passei anos vendendo carros em stand. Foi ali, cara a cara com o cliente, que aprendi a negociar, ouvir objeções, lidar com inseguranças e transformar dúvida em decisão.
+              Sou brasileira e cresci no meio das vendas: sou neta de vendedores, filha de vendedor e já passei anos vendendo carros em stand. Foi ali, cara a cara com o cliente, que aprendi a negociar, ouvir objeções, lidar com inseguranças e transformar dúvida em decisão.
             </p>
 
             <p style={{ marginBottom: '1.8rem' }}>
