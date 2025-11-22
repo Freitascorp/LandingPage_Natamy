@@ -439,6 +439,11 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ElevenLabs Voice Agent Widget */}
+      <elevenlabs-convai
+        agent-id="agent_3901kanwqks2ep6rf1zx5b883cqt"
+      ></elevenlabs-convai>
+
       {/* Footer */}
       <footer className="footer">
         <div className="container footer-content">
