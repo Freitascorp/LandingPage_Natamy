@@ -21,6 +21,30 @@ const Home = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Add Eleven Labs widget only on homepage
+  useEffect(() => {
+    const widgetId = 'homepage-elevenlabs-widget';
+    
+    // Check if widget already exists
+    if (document.getElementById(widgetId)) {
+      return;
+    }
+
+    // Create and add widget element
+    const widget = document.createElement('elevenlabs-convai');
+    widget.id = widgetId;
+    widget.setAttribute('agent-id', 'agent_3901kanwqks2ep6rf1zx5b883cqt');
+    document.body.appendChild(widget);
+
+    // Cleanup: remove widget when leaving homepage
+    return () => {
+      const existingWidget = document.getElementById(widgetId);
+      if (existingWidget) {
+        existingWidget.remove();
+      }
+    };
+  }, []);
+
   // EmailJS Configuration
   const EMAILJS_PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
   const EMAILJS_SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
@@ -224,6 +248,16 @@ const Home = () => {
             translate="no"
           >
             Sobre mim
+          </button>
+          <button
+            className="sidebar-link sidebar-link-button"
+            onClick={() => {
+              setIsSidebarOpen(false);
+              navigate('/area-cliente');
+            }}
+            translate="no"
+          >
+            Área Cliente
           </button>
           <a 
             href="#beneficios" 
