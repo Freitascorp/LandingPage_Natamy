@@ -10,11 +10,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://natamyoliveira.com/">
   <meta property="og:site_name" content="Natamy Oliveira">
-  <meta property="og:image" content="https://natamyoliveira.com/frames/frame_0001.jpg">
+  <meta property="og:image" content="https://natamyoliveira.com/og-image.jpg">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="Showroom automóvel 3D — visita virtual a um stand de carros premium">
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:image" content="https://natamyoliveira.com/frames/frame_0001.jpg">
+  <meta property="twitter:image" content="https://natamyoliveira.com/og-image.jpg">
   <meta property="twitter:url" content="https://natamyoliveira.com/">
   <meta property="twitter:title" content="Natamy Oliveira - Marketing Digital para Stands">
   <meta property="twitter:description" content="Marketing Digital para Stands e Automação de Negócio. Especialista em gestão de tráfego pago e automação de processos para stands automóveis em Portugal.">
@@ -22,6 +23,9 @@
   <meta name="google" content="notranslate">
   <meta name="facebook-domain-verification" content="xymxjt7r2koieh6tms9i1063ee1z8d">
   <link rel="canonical" href="https://natamyoliveira.com/">
+  <link rel="preload" as="image" href="frames/frame_0001.webp" type="image/webp">
+  <link rel="preload" as="image" href="frames/frame_0002.webp" type="image/webp">
+  <link rel="preload" as="image" href="frames/frame_0003.webp" type="image/webp">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
 
   <!-- Meta Pixel Code -->
@@ -683,6 +687,7 @@
       </button>
     </form>
     <div id="formToast" class="form-toast"></div>
+    <a href="/privacidade.html" style="pointer-events:auto; display:inline-block; margin-top:1.5rem; font-size:0.75rem; color:var(--z500); text-decoration:none; letter-spacing:0.04em;">Politica de Privacidade</a>
   </div>
 
   <!-- ═══════════ CANVAS ═══════════ -->
@@ -719,7 +724,7 @@
       let cw = 0, ch = 0;  // cached dimensions
 
       function framePath(i) {
-        return 'frames/frame_' + String(i + 1).padStart(4, '0') + '.jpg';
+        return 'frames/frame_' + String(i + 1).padStart(4, '0') + '.webp';
       }
 
       // ── Canvas (cache dimensions, avoid layout reads in loop) ──
@@ -1068,7 +1073,7 @@
   <!-- Noscript SEO fallback -->
   <noscript>
     <div style="padding:2rem; max-width:600px; margin:0 auto; font-family:system-ui; color:#333;">
-      <h1>Natamy Oliveira — Marketing Digital para Stands</h1>
+      <h2>Natamy Oliveira — Marketing Digital para Stands</h2>
       <p>Especialista em gestão de tráfego pago e automação de processos para escalar o seu negócio de forma inteligente e lucrativa.</p>
       <h2>O Seu Stand Merece Lotar</h2>
       <p>Tráfego pago, automação com IA e funis de venda feitos à medida para stands automóveis em Portugal. Sem curiosos. Só compradores.</p>
