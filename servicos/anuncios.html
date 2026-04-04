@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anuncios Online para Stands Automoveis — Natamy Oliveira</title>
-  <meta name="description" content="Anuncios no Google e redes sociais para stands automoveis em Portugal. Campanhas que atraem compradores reais, nao curiosos.">
+  <title>Anuncios Online para Stands Automóveis — Natamy Oliveira</title>
+  <meta name="description" content="Anúncios no Google e redes sociais para stands automóveis em Portugal. Campanhas que atraem compradores reais, não curiosos.">
   <meta name="google-site-verification" content="lKg96X92-Oxkwzsc_AujwG86T429C98hOoA3fQXW8-E">
-  <meta property="og:title" content="Anuncios Online para Stands Automoveis — Natamy Oliveira">
-  <meta property="og:description" content="Anuncios no Google e redes sociais para stands automoveis em Portugal. Campanhas que atraem compradores reais, nao curiosos.">
+  <meta property="og:title" content="Anúncios Online para Stands Automóveis — Natamy Oliveira">
+  <meta property="og:description" content="Anúncios no Google e redes sociais para stands automóveis em Portugal. Campanhas que atraem compradores reais, não curiosos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://natamyoliveira.com/servicos/anuncios.html">
   <meta property="og:site_name" content="Natamy Oliveira">
@@ -15,8 +15,8 @@
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="720">
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Anuncios Online para Stands Automoveis — Natamy Oliveira">
-  <meta property="twitter:description" content="Anuncios no Google e redes sociais para stands automoveis em Portugal. Campanhas que atraem compradores reais, nao curiosos.">
+  <meta property="twitter:title" content="Anúncios Online para Stands Automóveis — Natamy Oliveira">
+  <meta property="twitter:description" content="Anúncios no Google e redes sociais para stands automóveis em Portugal. Campanhas que atraem compradores reais, não curiosos.">
   <meta property="twitter:image" content="https://natamyoliveira.com/og-images/og-anuncios.jpg">
   <meta name="theme-color" content="#0c0c0e">
   <link rel="canonical" href="https://natamyoliveira.com/servicos/anuncios.html">
@@ -45,270 +45,1061 @@
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    :root {
+      --z950: #0c0c0e;
+      --z900: #18181b;
+      --z800: #27272a;
+      --z700: #3f3f46;
+      --z500: #71717a;
+      --z400: #a1a1aa;
+      --z300: #d4d4d8;
+      --z100: #f4f4f5;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.07);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      background: #0c0c0e;
-      color: #d4d4d8;
+      background: var(--z950);
+      color: var(--z300);
       line-height: 1.7;
       font-weight: 400;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* ── GRAIN TEXTURE ── */
+    .grain {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ── CURSOR GLOW ── */
+    .cursor-glow {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.15;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
+
+    /* ── FADE-IN ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
       background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(244,244,245,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
-      color: #f4f4f5; text-transform: uppercase;
+      color: var(--z100); text-transform: uppercase;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #a1a1aa; transition: color 0.2s;
+      text-transform: uppercase; color: var(--z400); transition: color 0.2s;
     }
-    .nav-links a:hover { color: #10b981; }
-
-    /* MAIN */
-    .content {
-      max-width: 42rem; margin: 0 auto;
-      padding: 8rem 1.5rem 4rem;
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
-      color: #f4f4f5; line-height: 1.15; margin-bottom: 1.5rem;
-    }
-    h2 {
-      font-size: 1.5rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 3rem; margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.15rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 2rem; margin-bottom: 0.75rem;
-    }
-    p { margin-bottom: 1.25rem; }
-    .lead {
-      font-size: 1.15rem; color: #a1a1aa; font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-    .accent { color: #10b981; }
-    strong { color: #f4f4f5; font-weight: 600; }
-    ul, ol {
-      margin-bottom: 1.25rem; padding-left: 1.5rem;
-    }
-    li { margin-bottom: 0.5rem; }
-
-    /* PROCESS STEPS */
-    .process { counter-reset: step; margin: 2rem 0; }
-    .process-step {
-      position: relative; padding-left: 3rem; margin-bottom: 1.75rem;
-      counter-increment: step;
-    }
-    .process-step::before {
-      content: counter(step);
-      position: absolute; left: 0; top: 0;
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: #10b981; color: #0c0c0e;
-      font-weight: 700; font-size: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .process-step h3 { margin-top: 0; }
-
-    /* HIGHLIGHT BOX */
-    .highlight {
-      background: rgba(16,185,129,0.08);
-      border-left: 3px solid #10b981;
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 2rem 0;
-    }
-
-    /* CTA */
-    .cta-section {
-      text-align: center; margin-top: 4rem; padding: 3rem 0;
-      border-top: 1px solid rgba(244,244,245,0.06);
-    }
-    .cta-section h2 { margin-top: 0; }
-    .cta-btn {
-      display: inline-block; margin-top: 1.25rem;
-      padding: 0.9rem 2.5rem;
-      background: #10b981; color: #0c0c0e;
-      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
-      border-radius: 9999px; transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; }
-
-    /* FOOTER */
-    footer {
-      max-width: 42rem; margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      border-top: 1px solid rgba(244,244,245,0.06);
-      text-align: center; font-size: 0.8rem; color: #71717a;
-    }
-    footer a { color: #a1a1aa; text-decoration: underline; }
-    footer a:hover { color: #10b981; }
+    .nav-links a:hover { color: var(--accent); }
 
     .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
     .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .container-narrow {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      padding: 5rem 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      max-width: 48rem;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 38rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 48rem;
+    }
+    .stat-item {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .stat-number .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--z500);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 36rem;
+    }
+
+    /* ── GLASSMORPHISM CARD ── */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .glass-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-section {
+      position: relative;
+    }
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .problem-content {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .problem-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .problem-text p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+    .problem-text p:last-child { margin-bottom: 0; }
+    .problem-text strong { color: var(--z100); font-weight: 600; }
+
+    /* ── PLATFORM CARDS ── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .platform-card {
+      padding: 2.5rem 2rem;
+    }
+    .platform-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+    }
+    .platform-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .platform-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .process-card {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .process-number {
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .process-number::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .process-card-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .process-card-body p {
+      color: var(--z400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      padding: 2rem;
+    }
+    .feature-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+
+    /* ── INVESTMENT STATS ── */
+    .invest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .invest-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .invest-value {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .invest-value .accent { color: var(--accent); }
+    .invest-label {
+      font-size: 0.85rem;
+      color: var(--z500);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .invest-note {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+      max-width: 40rem;
+    }
+
+    /* ── AUDIENCE SECTION ── */
+    .audience-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .audience-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      color: var(--z300);
+      line-height: 1.6;
+    }
+    .audience-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 0.5rem;
+    }
+    .audience-note {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+    .audience-note strong { color: var(--z100); }
+
+    /* ── ORGANIC VS PAID SECTION ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .compare-card {
+      padding: 2.5rem 2rem;
+    }
+    .compare-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .compare-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── FAQ ACCORDION ── */
+    .faq-list {
+      margin-top: 3rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .faq-item {
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--z100);
+      text-align: left;
+      gap: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .faq-icon {
+      width: 1.5rem; height: 1.5rem;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--z400);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .faq-icon::before {
+      width: 14px; height: 2px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-icon::after {
+      width: 2px; height: 14px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-item.open .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── FULL-WIDTH CTA ── */
+    .cta-section {
+      position: relative;
+      padding: 6rem 0;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .cta-block {
+      position: relative;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-block h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-block p {
+      font-size: 1.1rem;
+      color: var(--z400);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 0.95rem 2.75rem;
+      background: var(--accent);
+      color: var(--z950);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      transition: opacity 0.2s, transform 0.2s;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── OUTROS SERVICOS ── */
+    .outros-servicos {
+      padding: 3rem 0 2rem;
+    }
+    .outros-servicos h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .outros-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .outros-links a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--z300);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .outros-links a:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--z100);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--z500);
+    }
+    footer a { color: var(--z400); text-decoration: underline; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .content { padding: 6rem 1.25rem 3rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      .hero { padding: 7rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.25rem; }
+
+      .platform-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .invest-grid { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: 1fr; }
+
+      .problem-content { grid-template-columns: 1fr; gap: 1rem; }
+
+      .process-card { grid-template-columns: 3rem 1fr; gap: 1rem; }
+      .process-number { width: 3rem; height: 3rem; font-size: 1rem; }
+
+      .cta-block { padding: 3rem 1.5rem; }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .invest-grid { grid-template-columns: repeat(3, 1fr); }
+      .platform-grid { grid-template-columns: repeat(2, 1fr); }
+      .compare-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (min-width: 1025px) {
+      .hamburger { display: none; }
+      .nav-links { display: flex; }
     }
   </style>
 
 </head>
 <body>
+  <!-- Grain texture overlay -->
+  <div class="grain"></div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <nav>
     <a href="/" class="nav-logo">Natamy Oliveira</a>
     <div class="nav-links">
-      <a href="/servicos/trafego-pago.html">Servicos</a>
+      <a href="/servicos/trafego-pago.html">Serviços</a>
       <a href="/#sobre">Sobre</a>
       <a href="/contacto.html">Contacto</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/#servicos">Servicos</a>
+    <a href="/#servicos">Serviços</a>
     <a href="/sobre.html">Sobre</a>
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <main class="content">
-    <h1>Anuncios Online para Stands</h1>
-    <p class="lead">Anuncios direcionados que trazem compradores reais ao seu stand automovel. Sem desperdicar orcamento com curiosos — so pessoas prontas para comprar.</p>
+  <main>
 
-    <h2>Porque os Seus Anuncios Nao Funcionam</h2>
-    <p>A maioria dos stands automoveis em Portugal ja tentou fazer anuncios online. Investiram no Google, experimentaram o Facebook, talvez ate pagaram a uma agencia para criar campanhas. E o resultado foi quase sempre o mesmo: cliques que nao se transformam em visitas ao stand, mensagens de pessoas que so querem saber o preco mas nunca aparecem, e um orcamento que desaparece sem explicacao clara.</p>
-    <p>O problema nao e a publicidade online em si. O problema e a forma como os anuncios sao criados. Quando uma agencia generalista monta uma campanha para um stand, trata o negocio da mesma forma que trataria uma loja de roupa ou um restaurante. Usa palavras-chave genericas como "carros usados" ou "automoveis baratos", cria anuncios vagos que nao filtram ninguem, e direciona o trafego para a pagina inicial do site — onde o visitante se perde e desiste.</p>
-    <p>Ha erros que se repetem constantemente. <strong>Segmentacao demasiado ampla</strong>: os anuncios aparecem para pessoas que estao a centenas de quilometros do stand ou que nao tem qualquer intencao de comprar. <strong>Mensagens genericas</strong>: o anuncio diz "Carros usados com garantia" mas nao especifica marcas, modelos ou condicoes que atraiam o comprador certo. <strong>Ausencia de filtragem</strong>: qualquer pessoa pode clicar e consumir orcamento, incluindo quem so quer comparar precos ou quem nao tem financiamento aprovado.</p>
-    <p>Outro erro comum e nao medir os resultados corretamente. Muitos stands olham para o numero de cliques ou impressoes e acham que a campanha esta a funcionar. Mas cliques nao pagam salarios. O que interessa e quantas pessoas entraram em contacto, quantas visitaram o stand, e quantas compraram. Sem esta medicao, esta a gastar dinheiro as cegas.</p>
-
-    <h2>Tipos de Anuncios</h2>
-
-    <h3>Google Search — Captar Quem Ja Esta a Procurar</h3>
-    <p>Quando alguem escreve "BMW Serie 3 usado Lisboa" ou "stand automovel perto de mim" no Google, essa pessoa tem intencao de compra. Ja decidiu que quer um carro e esta ativamente a procurar onde comprar. Os anuncios de pesquisa do Google colocam o seu stand no topo dos resultados exactamente nesse momento. Cada palavra-chave e escolhida com base no comportamento real de compradores de carros em Portugal — marcas especificas, modelos, localizacoes e condicoes de compra como financiamento ou retoma.</p>
-    <p>A vantagem do Google Search e a intencao. Nao esta a interromper ninguem. Esta a aparecer quando a pessoa ja esta a procurar o que o seu stand vende. Isto significa que cada clique tem uma probabilidade muito maior de se transformar num contacto real.</p>
-
-    <h3>Google Display — Visibilidade em Sites Relevantes</h3>
-    <p>Os anuncios de display aparecem em forma de banners em sites que os seus potenciais compradores visitam — portais de noticias, sites de automoveis, foruns de discussao. Este formato e ideal para criar reconhecimento da marca do seu stand e para manter o seu nome presente na mente de quem esta em fase de consideracao. Nao e o formato que gera mais contactos directos, mas e fundamental para construir confianca e preparar o terreno para a conversao.</p>
-
-    <h3>Facebook e Instagram — Alcance Segmentado</h3>
-    <p>O Facebook e o Instagram permitem algo que nenhuma outra plataforma oferece com a mesma precisao: mostrar anuncios a pessoas com base no seu perfil, interesses e comportamentos. Podemos criar campanhas que alcancam homens entre 30 e 55 anos, numa zona geografica especifica, que demonstraram interesse em automoveis, que visitam regularmente sites de venda de carros, ou que estao em processo de mudanca de viatura.</p>
-    <p>O formato visual destas plataformas e perfeito para mostrar stock. Um carrossel com fotos de qualidade de cinco viaturas diferentes, um video curto a mostrar o interior de um carro, ou um anuncio com o preco e as condicoes de financiamento — tudo isto capta atencao e gera interesse genuino. A chave esta em mostrar o anuncio certo a pessoa certa no momento certo.</p>
-
-    <h3>Retargeting — Recuperar Quem Ja Mostrou Interesse</h3>
-    <p>A maioria das pessoas que visita o site do seu stand nao entra em contacto na primeira visita. Podem estar a comparar opcoes, a esperar pelo fim do mes, ou simplesmente foram interrompidas. O retargeting resolve este problema ao voltar a mostrar anuncios a essas pessoas nos dias e semanas seguintes. Alguem que viu um Audi A4 no seu site vai comecar a ver anuncios desse mesmo carro no Facebook, no Instagram e em sites que visita. Este lembrete constante e o que transforma interesse em accao.</p>
-    <p>O retargeting e, consistentemente, o tipo de anuncio com o melhor retorno sobre o investimento. O custo por contacto e mais baixo porque esta a falar com pessoas que ja conhecem o seu stand e ja demonstraram interesse concreto.</p>
-
-    <h2>Como Criamos Anuncios que Vendem</h2>
-
-    <div class="process">
-      <div class="process-step">
-        <h3>Pesquisa e Analise</h3>
-        <p>Antes de criar qualquer anuncio, estudamos o seu stand, o seu stock, a sua zona geografica e a sua concorrencia. Identificamos quais as marcas e modelos com maior procura na sua area, quais as palavras-chave que os compradores reais utilizam, e onde a concorrencia esta a investir. Esta analise permite-nos encontrar oportunidades que outros estao a ignorar e evitar gastar dinheiro em territorios ja saturados.</p>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="container">
+        <div class="fade-in">
+          <div class="hero-badge">Anúncios para Stands</div>
+        </div>
+        <h1 class="fade-in fade-in-delay-1">Anúncios Online para Stands Automóveis</h1>
+        <p class="hero-lead fade-in fade-in-delay-2">Anúncios direcionados que trazem compradores reais ao seu stand automóvel. Sem desperdiçar orçamento com curiosos — só pessoas prontas para comprar.</p>
+        <div class="stats-bar fade-in fade-in-delay-3">
+          <div class="stat-item">
+            <div class="stat-number">Google <span class="accent">+</span> Meta</div>
+            <div class="stat-label">Plataformas integradas</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4-8 <span class="accent">sem.</span></div>
+            <div class="stat-label">Resultados consistentes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100<span class="accent">%</span></div>
+            <div class="stat-label">Retorno mensurável</div>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Criacao de Anuncios</h3>
-        <p>Cada anuncio e escrito para atrair compradores e afastar curiosos. Incluimos informacao especifica — marcas, modelos, precos de referencia, condicoes de financiamento — para que quem clica ja saiba o que vai encontrar. As imagens e videos sao escolhidos para mostrar qualidade e profissionalismo. Nada de fotos genericas de bancos de imagens. Mostramos o stock real do seu stand, nas melhores condicoes possiveis.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O PROBLEMA ═══ -->
+    <section class="problem-section">
+      <div class="container-narrow">
+        <div class="section-label fade-in">O desafio</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Porque é que os Seus Anúncios Não Funcionam</h2>
+        <div class="problem-content fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="problem-text">
+            <p>A maioria dos stands automóveis em Portugal já tentou fazer anúncios online. Investiram no Google, experimentaram o Facebook, talvez até pagaram a uma agência para criar campanhas. E o resultado foi quase sempre o mesmo: cliques que não se transformam em visitas ao stand, mensagens de pessoas que só querem saber o preço mas nunca aparecem, e um orçamento que desaparece sem explicação clara.</p>
+            <p>O problema não é a publicidade online em si. O problema é a forma como os anúncios são criados. Quando uma agência generalista monta uma campanha para um stand, trata o negócio da mesma forma que trataria uma loja de roupa ou um restaurante. Usa palavras-chave genéricas como "carros usados" ou "automóveis baratos", cria anúncios vagos que não filtram ninguém, e direciona o tráfego para a página inicial do site — onde o visitante se perde e desiste.</p>
+            <p>Há erros que se repetem constantemente. <strong>Segmentação demasiado ampla</strong>: os anúncios aparecem para pessoas que estão a centenas de quilómetros do stand ou que não têm qualquer intenção de comprar. <strong>Mensagens genéricas</strong>: o anúncio diz "Carros usados com garantia" mas não especifica marcas, modelos ou condições que atraiam o comprador certo. <strong>Ausência de filtragem</strong>: qualquer pessoa pode clicar e consumir orçamento, incluindo quem só quer comparar preços ou quem não tem financiamento aprovado.</p>
+            <p>Outro erro comum é não medir os resultados corretamente. Muitos stands olham para o número de cliques ou impressões e acham que a campanha está a funcionar. Mas cliques não pagam salários. O que interessa é quantas pessoas entraram em contacto, quantas visitaram o stand, e quantas compraram. Sem esta medição, está a gastar dinheiro às cegas.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Segmentacao e Targeting</h3>
-        <p>Definimos exactamente quem vai ver cada anuncio. No Google, isto significa escolher palavras-chave com intencao de compra e excluir termos que atraem curiosos. No Facebook e Instagram, significa criar publicos baseados em dados demograficos, interesses e comportamentos. Utilizamos tambem listas de exclusao para evitar mostrar anuncios a quem ja comprou, a concorrentes, ou a publicos que historicamente nao convertem.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ TIPOS DE ANÚNCIOS ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Plataformas</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Tipos de Anúncios</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Cada plataforma tem um papel específico no funil de vendas do seu stand. Combinamos as quatro para cobrir todo o percurso de compra.</p>
+
+        <div class="platform-grid">
+          <div class="glass-card platform-card fade-in fade-in-delay-2">
+            <div class="platform-tag">Google Search</div>
+            <h3>Captar Quem Já Está a Procurar</h3>
+            <p>Quando alguém escreve "BMW Série 3 usado Lisboa" ou "stand automóvel perto de mim" no Google, essa pessoa tem intenção de compra. Já decidiu que quer um carro e está ativamente a procurar onde comprar. Os anúncios de pesquisa do Google colocam o seu stand no topo dos resultados exatamente nesse momento.</p>
+            <p style="margin-top:0.75rem">Cada palavra-chave é escolhida com base no comportamento real de compradores de carros em Portugal — marcas específicas, modelos, localizações e condições de compra como financiamento ou retoma.</p>
+          </div>
+          <div class="glass-card platform-card fade-in fade-in-delay-3">
+            <div class="platform-tag">Google Display</div>
+            <h3>Visibilidade em Sites Relevantes</h3>
+            <p>Os anúncios de display aparecem em forma de banners em sites que os seus potenciais compradores visitam — portais de notícias, sites de automóveis, fóruns de discussão. Este formato é ideal para criar reconhecimento da marca do seu stand e para manter o seu nome presente na mente de quem está em fase de consideração.</p>
+            <p style="margin-top:0.75rem">Não é o formato que gera mais contactos diretos, mas é fundamental para construir confiança e preparar o terreno para a conversão.</p>
+          </div>
+          <div class="glass-card platform-card fade-in fade-in-delay-2">
+            <div class="platform-tag">Facebook e Instagram</div>
+            <h3>Alcance Segmentado</h3>
+            <p>O Facebook e o Instagram permitem algo que nenhuma outra plataforma oferece com a mesma precisão: mostrar anúncios a pessoas com base no seu perfil, interesses e comportamentos. Criamos campanhas que alcançam o público certo, numa zona geográfica específica, com interesse real em automóveis.</p>
+            <p style="margin-top:0.75rem">O formato visual destas plataformas é perfeito para mostrar stock. Um carrossel com fotos de qualidade, um vídeo curto a mostrar o interior de um carro, ou um anúncio com o preço e as condições de financiamento — tudo isto capta atenção e gera interesse genuíno.</p>
+          </div>
+          <div class="glass-card platform-card fade-in fade-in-delay-3">
+            <div class="platform-tag">Retargeting</div>
+            <h3>Recuperar Quem Já Mostrou Interesse</h3>
+            <p>A maioria das pessoas que visita o site do seu stand não entra em contacto na primeira visita. Podem estar a comparar opções, a esperar pelo fim do mês, ou simplesmente foram interrompidas. O retargeting resolve este problema ao voltar a mostrar anúncios a essas pessoas nos dias e semanas seguintes.</p>
+            <p style="margin-top:0.75rem">O retargeting é, consistentemente, o tipo de anúncio com o <strong>melhor retorno sobre o investimento</strong>. O custo por contacto é mais baixo porque está a falar com pessoas que já conhecem o seu stand e já demonstraram interesse concreto.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Landing Pages Dedicadas</h3>
-        <p>Nao basta criar um bom anuncio se o destino e uma pagina que nao converte. Para cada campanha, criamos ou otimizamos paginas de destino focadas num unico objectivo: gerar o contacto. Estas paginas incluem informacao relevante sobre as viaturas, fotografias de qualidade, condicoes claras, e um formulario simples que qualifica o lead antes de chegar a sua equipa comercial. O resultado e menos contactos inuteis e mais pessoas genuinamente interessadas em comprar.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ COMO CRIAMOS ANÚNCIOS ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Processo</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Como Criamos Anúncios que Vendem</h2>
+
+        <div class="process-grid">
+          <div class="glass-card process-card fade-in fade-in-delay-1">
+            <div class="process-number">1</div>
+            <div class="process-card-body">
+              <h3>Pesquisa e Análise</h3>
+              <p>Antes de criar qualquer anúncio, estudamos o seu stand, o seu stock, a sua zona geográfica e a sua concorrência. Identificamos quais as marcas e modelos com maior procura na sua área, quais as palavras-chave que os compradores reais utilizam, e onde a concorrência está a investir. Esta análise permite-nos encontrar oportunidades que outros estão a ignorar.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-2">
+            <div class="process-number">2</div>
+            <div class="process-card-body">
+              <h3>Criação de Anúncios</h3>
+              <p>Cada anúncio é escrito para atrair compradores e afastar curiosos. Incluímos informação específica — marcas, modelos, preços de referência, condições de financiamento — para que quem clica já saiba o que vai encontrar. As imagens e vídeos são escolhidos para mostrar qualidade e profissionalismo. Nada de fotos genéricas de bancos de imagens. Mostramos o stock real do seu stand.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-3">
+            <div class="process-number">3</div>
+            <div class="process-card-body">
+              <h3>Segmentação e Targeting</h3>
+              <p>Definimos exatamente quem vai ver cada anúncio. No Google, isto significa escolher palavras-chave com intenção de compra e excluir termos que atraem curiosos. No Facebook e Instagram, significa criar públicos baseados em dados demográficos, interesses e comportamentos. Utilizamos também listas de exclusão para evitar mostrar anúncios a quem já comprou ou a públicos que historicamente não convertem.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-4">
+            <div class="process-number">4</div>
+            <div class="process-card-body">
+              <h3>Landing Pages Dedicadas</h3>
+              <p>Não basta criar um bom anúncio se o destino é uma página que não converte. Para cada campanha, criamos ou otimizamos páginas de destino focadas num único objetivo: gerar o contacto. Estas páginas incluem informação relevante sobre as viaturas, fotografias de qualidade, condições claras, e um formulário simples que qualifica o lead antes de chegar à sua equipa comercial.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ ORÇAMENTO E RETORNO ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Investimento</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Orçamento e Retorno</h2>
+
+        <div class="invest-grid">
+          <div class="glass-card invest-card fade-in fade-in-delay-1">
+            <div class="invest-value">Adaptado <span class="accent">a si</span></div>
+            <div class="invest-label">Investimento definido na primeira conversa</div>
+          </div>
+          <div class="glass-card invest-card fade-in fade-in-delay-2">
+            <div class="invest-value">4-8 <span class="accent">sem.</span></div>
+            <div class="invest-label">Otimização até resultados consistentes</div>
+          </div>
+          <div class="glass-card invest-card fade-in fade-in-delay-3">
+            <div class="invest-value">6+ <span class="accent">meses</span></div>
+            <div class="invest-label">Melhorias contínuas no custo por aquisição</div>
+          </div>
+        </div>
+
+        <p class="invest-note fade-in fade-in-delay-4">Uma das perguntas mais frequentes que recebemos é: "Quanto preciso de investir em anúncios?" A resposta depende da sua zona geográfica, do nível de concorrência e dos seus objetivos de venda. Na primeira conversa, analisamos a sua situação e recomendamos um orçamento que faz sentido.</p>
+        <p class="invest-note fade-in fade-in-delay-4">O retorno real depende da sua equipa comercial. Se cada lead qualificado custa 15 EUR e o seu stand converte 1 em cada 10 contactos numa venda, cada carro vendido através de anúncios custou-lhe 150 EUR em publicidade. Comparado com a margem de venda de um veículo, este é um investimento com retorno claro e mensurável.</p>
+        <p class="invest-note fade-in fade-in-delay-5">É importante ser realista: os primeiros 30 dias são de aprendizagem. Os algoritmos precisam de dados para otimizar, nós precisamos de dados para ajustar. A partir do segundo mês, os custos por lead começam a baixar e a qualidade dos contactos sobe. Stands que mantêm campanhas ativas durante 6 meses ou mais veem melhorias contínuas no custo por aquisição.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ ORGÂNICO VS PAGO ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Comparação</div>
+        <h2 class="section-title fade-in fade-in-delay-1">A Diferença Entre Anúncios e Publicações Orgânicas</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Muitos donos de stands perguntam: "Se eu publicar regularmente no Facebook e no Instagram, preciso mesmo de pagar por anúncios?" A resposta curta é sim.</p>
+
+        <div class="compare-grid">
+          <div class="glass-card compare-card fade-in fade-in-delay-2">
+            <h3>Publicações Orgânicas</h3>
+            <p>O alcance orgânico das redes sociais caiu drasticamente nos últimos anos. Quando publica uma foto de um carro novo no stock, essa publicação é vista por uma pequena fração dos seus seguidores — tipicamente entre 2% e 6%. Se tem 2000 seguidores, entre 40 e 120 pessoas vão ver a publicação. E dessas, quantas estão ativamente a procurar comprar?</p>
+            <p style="margin-top:0.75rem">As publicações orgânicas são importantes para manter uma presença ativa e profissional. Mas <strong>não são uma ferramenta de geração de contactos</strong>. São uma ferramenta de manutenção de imagem.</p>
+          </div>
+          <div class="glass-card compare-card fade-in fade-in-delay-3">
+            <h3>Anúncios Pagos</h3>
+            <p>Os anúncios pagos permitem-lhe chegar a milhares de pessoas que nunca ouviram falar do seu stand mas que encaixam perfeitamente no perfil de comprador. Permitem-lhe controlar exatamente quem vê a sua mensagem, quando a vê, e com que frequência. E permitem-lhe medir cada cêntimo investido e saber exatamente quantos contactos gerou.</p>
+            <p style="margin-top:0.75rem">A estratégia ideal <strong>combina ambos</strong>: publicações orgânicas regulares para credibilidade e presença, e anúncios pagos para geração ativa de leads. Juntos, criam um sistema previsível de atração de compradores.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ PARA QUEM ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Para quem</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Para Quem é Este Serviço</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Os anúncios online que criamos são especificamente para stands automóveis que querem crescer de forma previsível e mensurável.</p>
+
+        <ul class="audience-list fade-in fade-in-delay-3">
+          <li><strong style="color:var(--z100)">Já tentou fazer anúncios sozinho ou com uma agência generalista</strong> e os resultados ficaram aquém das expectativas. Gastou dinheiro, teve cliques, mas poucos contactos reais.</li>
+          <li><strong style="color:var(--z100)">Depende do passa-palavra e de clientes repetidos</strong> mas sabe que precisa de um canal de aquisição mais consistente para escalar o negócio.</li>
+          <li><strong style="color:var(--z100)">Tem stock disponível e capacidade para atender mais clientes.</strong> Não faz sentido investir em anúncios se o stand não consegue responder rapidamente aos contactos que entram.</li>
+          <li><strong style="color:var(--z100)">Quer saber exatamente de onde vem cada contacto</strong> e quanto custa cada lead. Sem adivinhações, sem métricas de vaidade — só números que importam.</li>
+          <li><strong style="color:var(--z100)">Está disposto a investir em anúncios</strong> e a dar pelo menos 3 meses para os resultados se consolidarem.</li>
+        </ul>
+
+        <p class="audience-note fade-in fade-in-delay-4">Este serviço não é para stands que procuram "mais visibilidade" ou "mais seguidores". É para profissionais do sector automóvel que entendem que a publicidade online é um investimento com retorno mensurável — e que querem esse retorno a ser gerido por alguém que conhece o sector por dentro. Se o seu stand está pronto para receber mais compradores qualificados, <strong>estamos prontos para começar</strong>.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">FAQ</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Perguntas Frequentes</h2>
+
+        <div class="faq-list">
+          <div class="faq-item fade-in fade-in-delay-1">
+            <button class="faq-question" aria-expanded="false">
+              <span>Quanto preciso de investir em anúncios?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">O investimento depende da sua zona geográfica, do nível de concorrência e dos seus objetivos de venda. Na primeira conversa, analisamos a sua situação e recomendamos um orçamento que faz sentido para o seu stand. Os números escalam à medida que o retargeting entra em ação e as campanhas passam pela fase de otimização inicial.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-2">
+            <button class="faq-question" aria-expanded="false">
+              <span>Qual a diferença entre Google Search e anúncios de redes sociais?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">O Google Search capta pessoas que estão ativamente a procurar um carro — a intenção de compra é alta. O Facebook e Instagram permitem alcançar públicos novos e fazer retargeting a quem já visitou o site. A combinação de ambos é o que gera melhores resultados, porque cobre tanto a procura ativa como a fase de consideração.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-3">
+            <button class="faq-question" aria-expanded="false">
+              <span>Em quanto tempo vejo resultados com anúncios online?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Os primeiros contactos surgem nas primeiras semanas. Resultados consistentes exigem 4 a 8 semanas de otimização. Os primeiros 30 dias são de aprendizagem — os algoritmos precisam de dados para otimizar. A partir do segundo mês, os custos por lead começam a baixar e a qualidade dos contactos sobe significativamente.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-4">
+            <button class="faq-question" aria-expanded="false">
+              <span>As publicações orgânicas não são suficientes?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">As publicações orgânicas são importantes para credibilidade e presença, mas o alcance caiu para 2-6% dos seguidores. Para geração ativa de leads e contactos de compradores reais, os anúncios pagos são essenciais. A estratégia ideal combina ambos: orgânico para imagem, pago para vendas.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-5">
+            <button class="faq-question" aria-expanded="false">
+              <span>Como sei que os anúncios estão a funcionar?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Medimos o que realmente importa: quantas pessoas entraram em contacto, quantas visitaram o stand, e quanto custou cada lead. Não olhamos para métricas de vaidade como impressões ou cliques. Cada cêntimo investido é rastreado e reportado de forma transparente.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-section">
+      <div class="container-narrow">
+        <div class="cta-block fade-in">
+          <h2>Quer anúncios que trazem compradores reais?</h2>
+          <p>Fale connosco e descubra como os anúncios online podem transformar o fluxo de contactos do seu stand automóvel.</p>
+          <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OUTROS SERVICOS ═══ -->
+    <div class="container-narrow outros-servicos">
+      <h3>Outros Serviços</h3>
+      <div class="outros-links">
+        <a href="/servicos/trafego-pago.html">Tráfego Pago</a>
+        <a href="/servicos/automacao-ia.html">Automação com IA</a>
+        <a href="/servicos/funis-venda.html">Funis de Venda</a>
+        <a href="/servicos/marketing-digital.html">Marketing Digital</a>
+        <a href="/servicos/redes-sociais.html">Redes Sociais</a>
+        <a href="/servicos/consultoria.html">Consultoria</a>
+        <a href="/servicos/estrategia-digital.html">Estratégia Digital</a>
       </div>
     </div>
 
-    <h2>Orcamento e Retorno</h2>
-    <p>Uma das perguntas mais frequentes que recebemos e: "Quanto preciso de investir em anuncios?" A resposta depende da sua zona geografica, do nivel de concorrencia e dos seus objectivos de venda. Mas podemos dar referencias concretas baseadas no trabalho que fazemos com stands automoveis em Portugal.</p>
-    <div class="highlight">
-      <p><strong>Investimento em anúncios:</strong> adaptado à realidade do seu stand</p>
-      <p><strong>Custo por lead:</strong> varia consoante zona e concorrência</p>
-      <p style="margin-bottom:0"><strong>Tempo ate resultados consistentes:</strong> 4 a 8 semanas de otimizacao</p>
-    </div>
-    <p>O número de contactos que pode esperar depende da zona, do tipo de stock e das plataformas utilizadas. Na primeira conversa, analisamos a sua situação e recomendamos um orçamento que faz sentido. Os números escalam à medida que o retargeting entra em ação e as campanhas passam pela fase de otimização inicial.</p>
-    <p>O retorno real depende da sua equipa comercial. Se cada lead qualificado custa 15 EUR e o seu stand converte 1 em cada 10 contactos numa venda, cada carro vendido atraves de anuncios custou-lhe 150 EUR em publicidade. Comparado com a margem de venda de um veiculo, este e um investimento com retorno claro e mensuravel.</p>
-    <p>E importante ser realista: os primeiros 30 dias sao de aprendizagem. Os algoritmos precisam de dados para otimizar, nos precisamos de dados para ajustar. A partir do segundo mes, os custos por lead comecam a baixar e a qualidade dos contactos sobe. Stands que mantêm campanhas ativas durante 6 meses ou mais veem melhorias continuas no custo por aquisicao.</p>
-
-    <h2>A Diferenca Entre Anuncios e Publicacoes Organicas</h2>
-    <p>Muitos donos de stands perguntam: "Se eu publicar regularmente no Facebook e no Instagram, preciso mesmo de pagar por anuncios?" A resposta curta e sim. E a razao e simples: o alcance organico das redes sociais caiu drasticamente nos ultimos anos.</p>
-    <p>Quando publica uma foto de um carro novo no stock na pagina do seu stand, essa publicacao e vista por uma pequena fraccao dos seus seguidores — tipicamente entre 2% e 6%. Isto significa que se tem 2000 seguidores, entre 40 e 120 pessoas vao ver a publicacao. E dessas, quantas estao activamente a procurar comprar um carro neste momento? Provavelmente muito poucas.</p>
-    <p>As publicacoes organicas sao importantes para manter uma presenca activa e profissional. Mostram que o stand esta em funcionamento, que tem stock fresco, e que ha uma equipa real por detras. Mas <strong>nao sao uma ferramenta de geracao de contactos</strong>. Sao uma ferramenta de manutencao de imagem.</p>
-    <p>Os anuncios pagos, por outro lado, permitem-lhe chegar a milhares de pessoas que nunca ouviram falar do seu stand mas que encaixam perfeitamente no perfil de comprador. Permitem-lhe controlar exactamente quem ve a sua mensagem, quando a ve, e com que frequencia. E permitem-lhe medir cada centimo investido e saber exactamente quantos contactos gerou.</p>
-    <p>A estrategia ideal combina ambos: publicacoes organicas regulares para credibilidade e presenca, e anuncios pagos para geracao activa de leads. Um sem o outro funciona a meio gas. Juntos, criam um sistema previsivel de atraccao de compradores.</p>
-
-    <h2>Para Quem e Este Servico</h2>
-    <p>Os anuncios online que criamos sao especificamente para stands automoveis que querem crescer de forma previsivel e mensuravel. Este servico e ideal para si se:</p>
-    <ul>
-      <li><strong>Ja tentou fazer anuncios sozinho ou com uma agencia generalista</strong> e os resultados ficaram aquem das expectativas. Gastou dinheiro, teve cliques, mas poucos contactos reais.</li>
-      <li><strong>Depende do passa-palavra e de clientes repetidos</strong> mas sabe que precisa de um canal de aquisicao mais consistente para escalar o negocio.</li>
-      <li><strong>Tem stock disponivel e capacidade para atender mais clientes.</strong> Nao faz sentido investir em anuncios se o stand nao consegue responder rapidamente aos contactos que entram.</li>
-      <li><strong>Quer saber exactamente de onde vem cada contacto</strong> e quanto custa cada lead. Sem adivinhacoes, sem metricas de vaidade — so numeros que importam.</li>
-      <li><strong>Está disposto a investir em anúncios</strong> e a dar pelo menos 3 meses para os resultados se consolidarem.</li>
-    </ul>
-    <p>Este servico nao e para stands que procuram "mais visibilidade" ou "mais seguidores". Nao e para quem quer resultados da noite para o dia sem investimento. E para profissionais do sector automovel que entendem que a publicidade online e um investimento com retorno mensuravel — e que querem esse retorno a ser gerido por alguem que conhece o sector por dentro.</p>
-    <p>Se o seu stand esta pronto para receber mais compradores qualificados e transformar o orcamento de publicidade num investimento com retorno claro, estamos prontos para comecar.</p>
-
-    <div class="cta-section">
-      <h2>Quer anuncios que trazem compradores reais?</h2>
-      <p>Fale connosco e descubra como os anuncios online podem transformar o fluxo de contactos do seu stand automovel.</p>
-      <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
-    </div>
   </main>
 
-  <div style="max-width:42rem;margin:0 auto;padding:0 1.5rem 2rem">
-    <h3 style="font-size:1rem;font-weight:600;color:#f4f4f5;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em">Outros Servicos</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-      <a href="/servicos/trafego-pago.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Trafego Pago</a>
-      <a href="/servicos/automacao-ia.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Automacao com IA</a>
-      <a href="/servicos/funis-venda.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Funis de Venda</a>
-      <a href="/servicos/marketing-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Marketing Digital</a>
-      <a href="/servicos/redes-sociais.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Redes Sociais</a>
-      <a href="/servicos/consultoria.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Consultoria</a>
-      <a href="/servicos/estrategia-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Estrategia Digital</a>
-    </div>
-  </div>
-
   <footer>
-    <p>2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio.</p>
-    <p><a href="/privacidade.html">Politica de Privacidade</a></p>
+    <p>2025 Natamy Oliveira — Marketing Digital e Automação de Negócio.</p>
+    <p><a href="/privacidade.html">Política de Privacidade</a></p>
   </footer>
 
+  <!-- Hamburger Menu -->
   <script>
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+</script>
+
+  <!-- FAQ Accordion -->
+  <script>
+(function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-item');var answer=item.querySelector('.faq-answer');var inner=item.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(openItem){if(openItem!==item){openItem.classList.remove('open');openItem.querySelector('.faq-question').setAttribute('aria-expanded','false');openItem.querySelector('.faq-answer').style.maxHeight='0';}});if(isOpen){item.classList.remove('open');btn.setAttribute('aria-expanded','false');answer.style.maxHeight='0';}else{item.classList.add('open');btn.setAttribute('aria-expanded','true');answer.style.maxHeight=inner.scrollHeight+'px';}});});})();
+</script>
+
+  <!-- IntersectionObserver fade-in -->
+  <script>
+(function(){var els=document.querySelectorAll('.fade-in');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){observer.observe(el);});})();
+</script>
+
+  <!-- Cursor Glow -->
+  <script>
+(function(){var glow=document.getElementById('cursorGlow');if(!glow)return;var isTouch='ontouchstart' in window;if(isTouch){glow.style.display='none';return;}document.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';});document.addEventListener('mouseleave',function(){glow.style.opacity='0';});document.addEventListener('mouseenter',function(){glow.style.opacity='0.15';});})();
 </script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Anuncios Online para Stands Automoveis",
-    "description": "Anuncios no Google e redes sociais para stands automoveis em Portugal. Campanhas que atraem compradores reais, nao curiosos.",
+    "name": "Anúncios Online para Stands Automóveis",
+    "description": "Anúncios no Google e redes sociais para stands automóveis em Portugal. Campanhas que atraem compradores reais, não curiosos.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Natamy Oliveira",
@@ -318,7 +1109,7 @@
       "@type": "Country",
       "name": "Portugal"
     },
-    "serviceType": "Anuncios Online para Stands Automoveis"
+    "serviceType": "Anúncios Online para Stands Automóveis"
   }
   </script>
   <script type="application/ld+json">
@@ -326,9 +1117,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://natamyoliveira.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Servicos", "item": "https://natamyoliveira.com/#servicos"},
-      {"@type": "ListItem", "position": 3, "name": "Anuncios", "item": "https://natamyoliveira.com/servicos/anuncios.html"}
+      {"@type": "ListItem", "position": 1, "name": "Início", "item": "https://natamyoliveira.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://natamyoliveira.com/#servicos"},
+      {"@type": "ListItem", "position": 3, "name": "Anúncios", "item": "https://natamyoliveira.com/servicos/anuncios.html"}
     ]
   }
   </script>

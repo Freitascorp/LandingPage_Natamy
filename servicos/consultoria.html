@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consultoria para Stands Automoveis — Natamy Oliveira</title>
-  <meta name="description" content="Consultoria especializada em marketing digital para stands automoveis em Portugal. Analise do negocio, estrategia personalizada e acompanhamento de resultados.">
+  <title>Consultoria para Stands Automóveis — Natamy Oliveira</title>
+  <meta name="description" content="Consultoria especializada em marketing digital para stands automóveis em Portugal. Análise do negócio, estratégia personalizada e acompanhamento de resultados.">
   <meta name="google-site-verification" content="lKg96X92-Oxkwzsc_AujwG86T429C98hOoA3fQXW8-E">
-  <meta property="og:title" content="Consultoria para Stands Automoveis — Natamy Oliveira">
-  <meta property="og:description" content="Consultoria especializada em marketing digital para stands automoveis em Portugal. Analise do negocio, estrategia personalizada e acompanhamento de resultados.">
+  <meta property="og:title" content="Consultoria para Stands Automóveis — Natamy Oliveira">
+  <meta property="og:description" content="Consultoria especializada em marketing digital para stands automóveis em Portugal. Análise do negócio, estratégia personalizada e acompanhamento de resultados.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://natamyoliveira.com/servicos/consultoria.html">
   <meta property="og:site_name" content="Natamy Oliveira">
@@ -15,8 +15,8 @@
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="720">
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Consultoria para Stands Automoveis — Natamy Oliveira">
-  <meta property="twitter:description" content="Consultoria especializada em marketing digital para stands automoveis em Portugal. Analise do negocio, estrategia personalizada e acompanhamento de resultados.">
+  <meta property="twitter:title" content="Consultoria para Stands Automóveis — Natamy Oliveira">
+  <meta property="twitter:description" content="Consultoria especializada em marketing digital para stands automóveis em Portugal. Análise do negócio, estratégia personalizada e acompanhamento de resultados.">
   <meta property="twitter:image" content="https://natamyoliveira.com/og-images/og-consultoria.jpg">
   <meta name="theme-color" content="#0c0c0e">
   <link rel="canonical" href="https://natamyoliveira.com/servicos/consultoria.html">
@@ -45,134 +45,587 @@
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    :root {
+      --z950: #0c0c0e;
+      --z900: #18181b;
+      --z800: #27272a;
+      --z700: #3f3f46;
+      --z500: #71717a;
+      --z400: #a1a1aa;
+      --z300: #d4d4d8;
+      --z100: #f4f4f5;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.07);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      background: #0c0c0e;
-      color: #d4d4d8;
+      background: var(--z950);
+      color: var(--z300);
       line-height: 1.7;
       font-weight: 400;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* -- GRAIN TEXTURE -- */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* -- CURSOR GLOW -- */
+    .cursor-glow {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* -- FADE-IN ANIMATIONS -- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    /* -- NAV -- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
       background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(244,244,245,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
-      color: #f4f4f5; text-transform: uppercase;
+      color: var(--z100); text-transform: uppercase;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #a1a1aa; transition: color 0.2s;
+      text-transform: uppercase; color: var(--z400); transition: color 0.2s;
     }
-    .nav-links a:hover { color: #10b981; }
-
-    /* MAIN */
-    .content {
-      max-width: 42rem; margin: 0 auto;
-      padding: 8rem 1.5rem 4rem;
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
-      color: #f4f4f5; line-height: 1.15; margin-bottom: 1.5rem;
-    }
-    h2 {
-      font-size: 1.5rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 3rem; margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.15rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 2rem; margin-bottom: 0.75rem;
-    }
-    p { margin-bottom: 1.25rem; }
-    .lead {
-      font-size: 1.15rem; color: #a1a1aa; font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-    .accent { color: #10b981; }
-    strong { color: #f4f4f5; font-weight: 600; }
-    ul, ol {
-      margin-bottom: 1.25rem; padding-left: 1.5rem;
-    }
-    li { margin-bottom: 0.5rem; }
-
-    /* PROCESS STEPS */
-    .process { counter-reset: step; margin: 2rem 0; }
-    .process-step {
-      position: relative; padding-left: 3rem; margin-bottom: 1.75rem;
-      counter-increment: step;
-    }
-    .process-step::before {
-      content: counter(step);
-      position: absolute; left: 0; top: 0;
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: #10b981; color: #0c0c0e;
-      font-weight: 700; font-size: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .process-step h3 { margin-top: 0; }
-
-    /* HIGHLIGHT BOX */
-    .highlight {
-      background: rgba(16,185,129,0.08);
-      border-left: 3px solid #10b981;
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 2rem 0;
-    }
-
-    /* CTA */
-    .cta-section {
-      text-align: center; margin-top: 4rem; padding: 3rem 0;
-      border-top: 1px solid rgba(244,244,245,0.06);
-    }
-    .cta-section h2 { margin-top: 0; }
-    .cta-btn {
-      display: inline-block; margin-top: 1.25rem;
-      padding: 0.9rem 2.5rem;
-      background: #10b981; color: #0c0c0e;
-      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
-      border-radius: 9999px; transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; }
-
-    /* FOOTER */
-    footer {
-      max-width: 42rem; margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      border-top: 1px solid rgba(244,244,245,0.06);
-      text-align: center; font-size: 0.8rem; color: #71717a;
-    }
-    footer a { color: #a1a1aa; text-decoration: underline; }
-    footer a:hover { color: #10b981; }
+    .nav-links a:hover { color: var(--accent); }
 
     .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
     .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
+    /* -- LAYOUT -- */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .container-narrow {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      padding: 5rem 0;
+    }
+
+    /* -- HERO -- */
+    .hero {
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      max-width: 48rem;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 38rem;
+      margin-bottom: 3rem;
+    }
+
+    /* -- STATS BAR -- */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 48rem;
+    }
+    .stat-item {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .stat-number .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--z500);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* -- SECTION HEADERS -- */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 36rem;
+    }
+
+    /* -- GLASSMORPHISM CARD -- */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .glass-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* -- PROBLEM SECTION -- */
+    .problem-section {
+      position: relative;
+    }
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .problem-content {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .problem-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .problem-text p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+    .problem-text p:last-child { margin-bottom: 0; }
+    .problem-text strong { color: var(--z100); font-weight: 600; }
+
+    /* -- PROCESS STEPS -- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .process-card {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .process-number {
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .process-number::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .process-card-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .process-card-body p {
+      color: var(--z400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* -- FEATURES GRID -- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      padding: 2rem;
+    }
+    .feature-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+
+    /* -- TIMELINE RESULTS -- */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .timeline-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .timeline-period {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+    .timeline-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .timeline-card p {
+      font-size: 0.9rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+
+    /* -- AUDIENCE SECTION -- */
+    .audience-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .audience-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      color: var(--z300);
+      line-height: 1.6;
+    }
+    .audience-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 0.5rem;
+    }
+    .audience-note {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+    .audience-note strong { color: var(--z100); }
+
+    /* -- FULL-WIDTH CTA -- */
+    .cta-section {
+      position: relative;
+      padding: 6rem 0;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .cta-block {
+      position: relative;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-block h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-block p {
+      font-size: 1.1rem;
+      color: var(--z400);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 0.95rem 2.75rem;
+      background: var(--accent);
+      color: var(--z950);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      transition: opacity 0.2s, transform 0.2s;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* -- OUTROS SERVICOS -- */
+    .outros-servicos {
+      padding: 3rem 0 2rem;
+    }
+    .outros-servicos h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .outros-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .outros-links a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--z300);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .outros-links a:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--z100);
+    }
+
+    /* -- FOOTER -- */
+    footer {
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--z500);
+    }
+    footer a { color: var(--z400); text-decoration: underline; }
+    footer a:hover { color: var(--accent); }
+
+    /* -- DIVIDER -- */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    /* -- RESPONSIVE -- */
+    @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .content { padding: 6rem 1.25rem 3rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      .hero { padding: 7rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.25rem; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .timeline-grid { grid-template-columns: 1fr; }
+
+      .problem-content { grid-template-columns: 1fr; gap: 1rem; }
+
+      .process-card { grid-template-columns: 3rem 1fr; gap: 1rem; }
+      .process-number { width: 3rem; height: 3rem; font-size: 1rem; }
+
+      .cta-block { padding: 3rem 1.5rem; }
+
+      .cursor-glow { display: none; }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .timeline-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (min-width: 1025px) {
+      .hamburger { display: none; }
+      .nav-links { display: flex; }
     }
   </style>
 
@@ -181,137 +634,314 @@
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <nav>
     <a href="/" class="nav-logo">Natamy Oliveira</a>
     <div class="nav-links">
-      <a href="/servicos/trafego-pago.html">Servicos</a>
+      <a href="/servicos/trafego-pago.html">Serviços</a>
       <a href="/#sobre">Sobre</a>
       <a href="/contacto.html">Contacto</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/#servicos">Servicos</a>
+    <a href="/#servicos">Serviços</a>
     <a href="/sobre.html">Sobre</a>
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <main class="content">
-    <h1>Consultoria de Marketing Digital</h1>
-    <p class="lead">Consultoria especializada para stands automoveis que querem deixar de desperdicar orcamento e comecar a investir com estrategia. Analisamos o seu negocio, identificamos oportunidades e criamos um plano de acao concreto para atrair mais compradores qualificados.</p>
+  <main>
 
-    <h2>Porque Precisa de Consultoria</h2>
-    <p>A maioria dos stands automoveis em Portugal investe em marketing digital sem qualquer estrategia definida. Criam uma pagina no Facebook, publicam fotos de carros de vez em quando, talvez ate experimentam uns anuncios no Google ou no Instagram. Os resultados? Fracos, inconsistentes e sem qualquer previsibilidade.</p>
-    <p>O problema nao e a falta de investimento. E a falta de <strong>direcao</strong>. Sem uma estrategia clara, cada euro gasto em publicidade e uma aposta cega. Nao sabe o que esta a funcionar, nao sabe o que esta a desperdicar dinheiro, e nao tem forma de medir o retorno real de cada acao.</p>
-    <p>Uma consultoria especializada resolve exatamente isso. Em vez de atirar dinheiro para todos os lados, passa a ter um plano concreto, baseado em dados, adaptado ao seu mercado local e ao seu tipo de stock. Sabe onde investir, quanto investir, e o que esperar em troca.</p>
-    <p>Muitos donos de stands ja passaram por agencias generalistas que prometeram resultados e nao entregaram. A razao e simples: essas agencias nao conhecem o sector automovel. Nao percebem o ciclo de venda de um carro, nao sabem como pensa o comprador, e aplicam formulas genericas que funcionam para restaurantes ou clinicas, mas nao para quem vende viaturas.</p>
-    <p>A nossa consultoria e diferente porque e feita por quem trabalha exclusivamente com o sector automovel em Portugal. Conhecemos os desafios, as oportunidades e os erros mais comuns. E e a partir desse conhecimento que construimos cada recomendacao.</p>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="fade-in">
+          <div class="hero-badge">Consultoria para Stands</div>
+        </div>
+        <h1 class="fade-in fade-in-delay-1">Consultoria de Marketing Digital</h1>
+        <p class="hero-lead fade-in fade-in-delay-2">Consultoria especializada para stands automóveis que querem deixar de desperdiçar orçamento e começar a investir com estratégia. Analisamos o seu negócio, identificamos oportunidades e criamos um plano de ação concreto para atrair mais compradores qualificados.</p>
+        <div class="stats-bar fade-in fade-in-delay-3">
+          <div class="stat-item">
+            <div class="stat-number">Análise <span class="accent">360°</span></div>
+            <div class="stat-label">Do seu negócio digital</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Plano <span class="accent">concreto</span></div>
+            <div class="stat-label">Ações com prazos definidos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Acompanhamento <span class="accent">mensal</span></div>
+            <div class="stat-label">Otimização contínua</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>O Que Analisamos</h2>
-    <p>Antes de recomendar qualquer acao, precisamos de entender o estado real do seu negocio digital. A nossa consultoria comeca sempre com uma analise profunda de quatro pilares fundamentais:</p>
-    <ul>
-      <li><strong>Marketing atual</strong> — Avaliamos tudo o que ja esta a fazer: redes sociais, anuncios pagos, website, presenca no Google, listagens em portais automoveis. Identificamos o que esta a gerar resultados e o que esta a consumir orcamento sem retorno.</li>
-      <li><strong>Concorrencia local</strong> — Analisamos os stands da sua zona geografica. O que estao a fazer online, onde estao a investir, que tipo de conteudo publicam, como se posicionam. Isto permite-nos encontrar lacunas e oportunidades que pode explorar.</li>
-      <li><strong>Oportunidades de mercado</strong> — Estudamos a procura real no seu mercado. Que marcas e modelos sao mais pesquisados na sua regiao, que tipo de comprador existe na sua area, quais os canais com maior potencial de conversao para o seu perfil de stock.</li>
-      <li><strong>Orcamento e recursos</strong> — Avaliamos o investimento disponivel e os recursos internos do stand. Nao faz sentido recomendar uma estrategia que exige uma equipa de cinco pessoas se o stand opera com duas. A estrategia tem de ser realista e executavel.</li>
-    </ul>
-    <p>Esta analise inicial e o alicerce de tudo o que vem a seguir. Sem ela, qualquer recomendacao seria um palpite. Com ela, cada decisao e fundamentada em dados concretos do seu negocio.</p>
+    <div class="section-divider"></div>
 
-    <h2>Como Funciona</h2>
-    <div class="process">
-      <div class="process-step">
-        <h3>Auditoria Completa</h3>
-        <p>Comecamos por fazer um raio-X completo da sua presenca digital. Analisamos o website, as redes sociais, as campanhas ativas, o posicionamento no Google, e todas as fontes de contactos atuais. Identificamos pontos fortes, pontos fracos e oportunidades imediatas que pode aproveitar.</p>
+    <!-- O PROBLEMA -->
+    <section class="problem-section">
+      <div class="container-narrow">
+        <div class="section-label fade-in">O desafio</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Porque Precisa de Consultoria</h2>
+        <div class="problem-content fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="problem-text">
+            <p>A maioria dos stands automóveis em Portugal investe em marketing digital sem qualquer estratégia definida. Criam uma página no Facebook, publicam fotos de carros de vez em quando, talvez até experimentam uns anúncios no Google ou no Instagram. Os resultados? Fracos, inconsistentes e sem qualquer previsibilidade.</p>
+            <p>O problema não é a falta de investimento. É a falta de <strong>direção</strong>. Sem uma estratégia clara, cada euro gasto em publicidade é uma aposta cega. Não sabe o que está a funcionar, não sabe o que está a desperdiçar dinheiro, e não tem forma de medir o retorno real de cada ação.</p>
+            <p>Uma consultoria especializada resolve exatamente isso. Em vez de atirar dinheiro para todos os lados, passa a ter um plano concreto, baseado em dados, adaptado ao seu mercado local e ao seu tipo de stock. Sabe onde investir, quanto investir, e o que esperar em troca.</p>
+            <p>Muitos donos de stands já passaram por agências generalistas que prometeram resultados e não entregaram. A razão é simples: essas agências não conhecem o sector automóvel. Não percebem o ciclo de venda de um carro, não sabem como pensa o comprador, e aplicam fórmulas genéricas que funcionam para restaurantes ou clínicas, mas não para quem vende viaturas.</p>
+            <p>A nossa consultoria é diferente porque é feita por quem trabalha exclusivamente com o sector automóvel em Portugal. Conhecemos os desafios, as oportunidades e os erros mais comuns. E é a partir desse conhecimento que construímos cada recomendação.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Estrategia Personalizada</h3>
-        <p>Com base na auditoria, criamos um plano de marketing digital feito a medida para o seu stand. Definimos os canais prioritarios, o tipo de conteudo, o orcamento recomendado para anuncios, as metricas a acompanhar e os objetivos a curto, medio e longo prazo. Este plano e um documento concreto, com acoes especificas e prazos definidos.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- O QUE ANALISAMOS -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Análise</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Que Analisamos</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Antes de recomendar qualquer ação, precisamos de entender o estado real do seu negócio digital. A nossa consultoria começa sempre com uma análise profunda de quatro pilares fundamentais.</p>
+
+        <div class="features-grid">
+          <div class="glass-card feature-card fade-in fade-in-delay-1">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Marketing atual</h3>
+            <p>Avaliamos tudo o que já está a fazer: redes sociais, anúncios pagos, website, presença no Google, listagens em portais automóveis. Identificamos o que está a gerar resultados e o que está a consumir orçamento sem retorno.</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-2">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Concorrência local</h3>
+            <p>Analisamos os stands da sua zona geográfica. O que estão a fazer online, onde estão a investir, que tipo de conteúdo publicam, como se posicionam. Isto permite-nos encontrar lacunas e oportunidades que pode explorar.</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-3">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Oportunidades de mercado</h3>
+            <p>Estudamos a procura real no seu mercado. Que marcas e modelos são mais pesquisados na sua região, que tipo de comprador existe na sua área, quais os canais com maior potencial de conversão para o seu perfil de stock.</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-4">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Orçamento e recursos</h3>
+            <p>Avaliamos o investimento disponível e os recursos internos do stand. Não faz sentido recomendar uma estratégia que exige uma equipa de cinco pessoas se o stand opera com duas. A estratégia tem de ser realista e executável.</p>
+          </div>
+        </div>
+
+        <p class="audience-note fade-in fade-in-delay-5">Esta análise inicial é o alicerce de tudo o que vem a seguir. Sem ela, qualquer recomendação seria um palpite. Com ela, cada decisão é fundamentada em dados concretos do seu negócio.</p>
       </div>
-      <div class="process-step">
-        <h3>Plano de Implementacao</h3>
-        <p>Entregamos um roteiro detalhado de implementacao, passo a passo, para que saiba exatamente o que fazer, quando fazer e como fazer. Se preferir, podemos implementar diretamente ou trabalhar em conjunto com a sua equipa para garantir que tudo e executado corretamente.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- COMO FUNCIONA -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Processo</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Como Funciona</h2>
+
+        <div class="process-grid">
+          <div class="glass-card process-card fade-in fade-in-delay-1">
+            <div class="process-number">1</div>
+            <div class="process-card-body">
+              <h3>Auditoria Completa</h3>
+              <p>Começamos por fazer um raio-X completo da sua presença digital. Analisamos o website, as redes sociais, as campanhas ativas, o posicionamento no Google, e todas as fontes de contactos atuais. Identificamos pontos fortes, pontos fracos e oportunidades imediatas que pode aproveitar.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-2">
+            <div class="process-number">2</div>
+            <div class="process-card-body">
+              <h3>Estratégia Personalizada</h3>
+              <p>Com base na auditoria, criamos um plano de marketing digital feito à medida para o seu stand. Definimos os canais prioritários, o tipo de conteúdo, o orçamento recomendado para anúncios, as métricas a acompanhar e os objetivos a curto, médio e longo prazo. Este plano é um documento concreto, com ações específicas e prazos definidos.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-3">
+            <div class="process-number">3</div>
+            <div class="process-card-body">
+              <h3>Plano de Implementação</h3>
+              <p>Entregamos um roteiro detalhado de implementação, passo a passo, para que saiba exatamente o que fazer, quando fazer e como fazer. Se preferir, podemos implementar diretamente ou trabalhar em conjunto com a sua equipa para garantir que tudo é executado corretamente.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-4">
+            <div class="process-number">4</div>
+            <div class="process-card-body">
+              <h3>Acompanhamento Mensal</h3>
+              <p>A estratégia não termina no papel. Todos os meses, fazemos uma sessão de acompanhamento para rever os resultados, ajustar o que for necessário e garantir que o plano continua alinhado com os objetivos do negócio. Recebe um relatório com os números que interessam e as próximas ações recomendadas.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Acompanhamento Mensal</h3>
-        <p>A estrategia nao termina no papel. Todos os meses, fazemos uma sessao de acompanhamento para rever os resultados, ajustar o que for necessario e garantir que o plano continua alinhado com os objetivos do negocio. Recebe um relatorio com os numeros que interessam e as proximas acoes recomendadas.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ÁREAS DE CONSULTORIA -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Áreas</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Áreas de Consultoria</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">A nossa consultoria abrange todas as áreas do marketing digital relevantes para stands automóveis. Dependendo do estado atual do seu negócio e dos seus objetivos, podemos focar numa área específica ou criar uma estratégia integrada que combine várias.</p>
+
+        <div class="features-grid" style="grid-template-columns: 1fr; gap: 1.5rem;">
+          <div class="glass-card fade-in fade-in-delay-1" style="padding: 2.5rem 2rem;">
+            <div class="feature-icon" style="margin-bottom: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:var(--z100);margin-bottom:0.75rem;letter-spacing:-0.02em;">Tráfego Pago</h3>
+            <p style="font-size:0.95rem;color:var(--z400);line-height:1.75;">Google Ads, Meta Ads e outras plataformas de publicidade online. Analisamos se as suas campanhas estão bem configuradas, se a segmentação está correta, se o orçamento está a ser bem distribuído e se os anúncios estão a gerar contactos qualificados — não apenas cliques. Para stands que ainda não investem em tráfego pago, definimos a melhor forma de começar sem desperdiçar dinheiro.</p>
+          </div>
+          <div class="glass-card fade-in fade-in-delay-2" style="padding: 2.5rem 2rem;">
+            <div class="feature-icon" style="margin-bottom: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:var(--z100);margin-bottom:0.75rem;letter-spacing:-0.02em;">Redes Sociais</h3>
+            <p style="font-size:0.95rem;color:var(--z400);line-height:1.75;">Facebook, Instagram e outras plataformas sociais são essenciais para stands automóveis, mas só funcionam com uma estratégia de conteúdo consistente. Avaliamos a sua presença atual, definimos o tipo de publicações que geram mais envolvimento, e criamos um calendário editorial adaptado ao seu ritmo de trabalho e ao seu público.</p>
+          </div>
+          <div class="glass-card fade-in fade-in-delay-3" style="padding: 2.5rem 2rem;">
+            <div class="feature-icon" style="margin-bottom: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:var(--z100);margin-bottom:0.75rem;letter-spacing:-0.02em;">Automação de Marketing</h3>
+            <p style="font-size:0.95rem;color:var(--z400);line-height:1.75;">Quando um potencial comprador entra em contacto, o que acontece a seguir? Se a resposta é "depende de quem está disponível", está a perder vendas. Implementamos fluxos automatizados de seguimento que garantem que cada lead recebe uma resposta rápida, informação relevante e um incentivo para visitar o stand — sem depender da memória ou disponibilidade da equipa comercial.</p>
+          </div>
+          <div class="glass-card fade-in fade-in-delay-4" style="padding: 2.5rem 2rem;">
+            <div class="feature-icon" style="margin-bottom: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:var(--z100);margin-bottom:0.75rem;letter-spacing:-0.02em;">Funis de Venda</h3>
+            <p style="font-size:0.95rem;color:var(--z400);line-height:1.75;">Um funil de venda bem construído transforma visitantes em contactos e contactos em compradores. Desenhamos o percurso completo do cliente, desde o primeiro contacto com o seu stand online até ao momento da compra. Cada etapa é otimizada para reduzir desistências e aumentar a taxa de conversão.</p>
+          </div>
+          <div class="glass-card fade-in fade-in-delay-5" style="padding: 2.5rem 2rem;">
+            <div class="feature-icon" style="margin-bottom: 1rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 style="font-size:1.15rem;font-weight:700;color:var(--z100);margin-bottom:0.75rem;letter-spacing:-0.02em;">Branding e Posicionamento</h3>
+            <p style="font-size:0.95rem;color:var(--z400);line-height:1.75;">Num mercado com centenas de stands, o que faz o seu ser diferente? Trabalhamos o posicionamento da sua marca para que se destaque da concorrência. Desde a identidade visual até à forma como comunica com os clientes, garantimos que o seu stand transmite confiança, profissionalismo e credibilidade — os três fatores que mais influenciam a decisão de compra de um carro usado.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- RESULTADOS ESPERADOS -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Resultados</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Resultados Esperados</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">A consultoria é um investimento que gera retorno progressivo. Os resultados não aparecem todos de uma vez, mas evoluem de forma consistente à medida que a estratégia é implementada e otimizada.</p>
+
+        <div class="timeline-grid">
+          <div class="glass-card timeline-card fade-in fade-in-delay-1">
+            <div class="timeline-period">1 Mês</div>
+            <h3>Clareza Total</h3>
+            <p>Auditoria completa, estratégia definida e primeiras ações implementadas. Já tem clareza sobre o que está a funcionar e o que precisa de mudar. As primeiras otimizações nas campanhas existentes começam a mostrar efeito.</p>
+          </div>
+          <div class="glass-card timeline-card fade-in fade-in-delay-2">
+            <div class="timeline-period">3 Meses</div>
+            <h3>Resultados Mensuráveis</h3>
+            <p>A estratégia está em pleno funcionamento. As campanhas de tráfego pago estão otimizadas, o conteúdo nas redes sociais segue um plano consistente, e os primeiros resultados mensuráveis aparecem — mais contactos qualificados, menor custo por lead, maior taxa de resposta.</p>
+          </div>
+          <div class="glass-card timeline-card fade-in fade-in-delay-3">
+            <div class="timeline-period">6 Meses</div>
+            <h3>Sistema Maduro</h3>
+            <p>O sistema está maduro. Tem previsibilidade no fluxo de contactos, sabe exatamente quanto custa adquirir cada lead, e a equipa comercial trabalha com contactos de melhor qualidade. O retorno sobre o investimento em marketing é claro e documentado.</p>
+          </div>
+        </div>
+
+        <p class="audience-note fade-in fade-in-delay-4">Estes prazos são referências baseadas na nossa experiência com stands automóveis em Portugal. O ritmo real depende do ponto de partida, do investimento disponível e da capacidade de implementação do stand. Na primeira sessão, definimos expectativas realistas para o seu caso concreto.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- PARA QUEM -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Para quem</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Para Quem é Este Serviço</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">A consultoria de marketing digital é para stands automóveis que:</p>
+
+        <ul class="audience-list fade-in fade-in-delay-3">
+          <li>Sentem que estão a gastar dinheiro em marketing sem saber se está a funcionar</li>
+          <li>Já passaram por agências generalistas e ficaram desiludidos com os resultados</li>
+          <li>Querem uma estratégia clara e personalizada em vez de soluções genéricas</li>
+          <li>Estão a crescer e precisam de estruturar o marketing digital para escalar</li>
+          <li>Têm equipa interna mas falta-lhes direção e conhecimento especializado</li>
+          <li>Querem tomar decisões baseadas em dados, não em suposições</li>
+        </ul>
+
+        <p class="audience-note fade-in fade-in-delay-4">Se o seu stand está a funcionar bem com o passa-palavra e não tem ambição de crescer, provavelmente não precisa de consultoria. Mas se quer <strong>previsibilidade</strong>, se quer saber que todos os meses entram contactos novos e qualificados, e se quer deixar de depender da sorte — então este serviço foi feito para si.</p>
+        <p class="audience-note fade-in fade-in-delay-5">Não importa se o stand é pequeno ou grande, se vende carros de gama alta ou económicos, se está em Lisboa ou numa cidade do interior. O que importa é a vontade de fazer marketing a sério, com estratégia, com dados e com acompanhamento profissional.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container-narrow">
+        <div class="cta-block fade-in">
+          <h2>Pronto para ter uma estratégia a sério?</h2>
+          <p>Fale connosco e descubra como a consultoria pode transformar o marketing digital do seu stand.</p>
+          <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTROS SERVICOS -->
+    <div class="container-narrow outros-servicos">
+      <h3>Outros Serviços</h3>
+      <div class="outros-links">
+        <a href="/servicos/trafego-pago.html">Tráfego Pago</a>
+        <a href="/servicos/automacao-ia.html">Automação com IA</a>
+        <a href="/servicos/funis-venda.html">Funis de Venda</a>
+        <a href="/servicos/marketing-digital.html">Marketing Digital</a>
+        <a href="/servicos/anuncios.html">Anúncios Online</a>
+        <a href="/servicos/redes-sociais.html">Redes Sociais</a>
+        <a href="/servicos/estrategia-digital.html">Estratégia Digital</a>
       </div>
     </div>
 
-    <h2>Areas de Consultoria</h2>
-    <p>A nossa consultoria abrange todas as areas do marketing digital relevantes para stands automoveis. Dependendo do estado atual do seu negocio e dos seus objetivos, podemos focar numa area especifica ou criar uma estrategia integrada que combine varias.</p>
-
-    <h3>Trafego Pago</h3>
-    <p>Google Ads, Meta Ads e outras plataformas de publicidade online. Analisamos se as suas campanhas estao bem configuradas, se a segmentacao esta correta, se o orcamento esta a ser bem distribuido e se os anuncios estao a gerar contactos qualificados — nao apenas cliques. Para stands que ainda nao investem em trafego pago, definimos a melhor forma de comecar sem desperdicar dinheiro.</p>
-
-    <h3>Redes Sociais</h3>
-    <p>Facebook, Instagram e outras plataformas sociais sao essenciais para stands automoveis, mas so funcionam com uma estrategia de conteudo consistente. Avaliamos a sua presenca atual, definimos o tipo de publicacoes que geram mais envolvimento, e criamos um calendario editorial adaptado ao seu ritmo de trabalho e ao seu publico.</p>
-
-    <h3>Automacao de Marketing</h3>
-    <p>Quando um potencial comprador entra em contacto, o que acontece a seguir? Se a resposta e "depende de quem esta disponivel", esta a perder vendas. Implementamos fluxos automatizados de seguimento que garantem que cada lead recebe uma resposta rapida, informacao relevante e um incentivo para visitar o stand — sem depender da memoria ou disponibilidade da equipa comercial.</p>
-
-    <h3>Funis de Venda</h3>
-    <p>Um funil de venda bem construido transforma visitantes em contactos e contactos em compradores. Desenhamos o percurso completo do cliente, desde o primeiro contacto com o seu stand online ate ao momento da compra. Cada etapa e otimizada para reduzir desistencias e aumentar a taxa de conversao.</p>
-
-    <h3>Branding e Posicionamento</h3>
-    <p>Num mercado com centenas de stands, o que faz o seu ser diferente? Trabalhamos o posicionamento da sua marca para que se destaque da concorrencia. Desde a identidade visual ate a forma como comunica com os clientes, garantimos que o seu stand transmite confianca, profissionalismo e credibilidade — os tres fatores que mais influenciam a decisao de compra de um carro usado.</p>
-
-    <h2>Resultados Esperados</h2>
-    <p>A consultoria e um investimento que gera retorno progressivo. Os resultados nao aparecem todos de uma vez, mas evoluem de forma consistente a medida que a estrategia e implementada e otimizada.</p>
-    <div class="highlight">
-      <p><strong>Ao fim de 1 mes:</strong> Auditoria completa, estrategia definida e primeiras acoes implementadas. Ja tem clareza sobre o que esta a funcionar e o que precisa de mudar. As primeiras otimizacoes nas campanhas existentes comecam a mostrar efeito.</p>
-      <p><strong>Ao fim de 3 meses:</strong> A estrategia esta em pleno funcionamento. As campanhas de trafego pago estao otimizadas, o conteudo nas redes sociais segue um plano consistente, e os primeiros resultados mensuraveis aparecem — mais contactos qualificados, menor custo por lead, maior taxa de resposta.</p>
-      <p style="margin-bottom:0"><strong>Ao fim de 6 meses:</strong> O sistema esta maduro. Tem previsibilidade no fluxo de contactos, sabe exatamente quanto custa adquirir cada lead, e a equipa comercial trabalha com contactos de melhor qualidade. O retorno sobre o investimento em marketing e claro e documentado.</p>
-    </div>
-    <p>Estes prazos sao referencias baseadas na nossa experiencia com stands automoveis em Portugal. O ritmo real depende do ponto de partida, do investimento disponivel e da capacidade de implementacao do stand. Na primeira sessao, definimos expectativas realistas para o seu caso concreto.</p>
-
-    <h2>Para Quem e Este Servico</h2>
-    <p>A consultoria de marketing digital e para stands automoveis que:</p>
-    <ul>
-      <li>Sentem que estao a gastar dinheiro em marketing sem saber se esta a funcionar</li>
-      <li>Ja passaram por agencias generalistas e ficaram desiludidos com os resultados</li>
-      <li>Querem uma estrategia clara e personalizada em vez de solucoes genericas</li>
-      <li>Estao a crescer e precisam de estruturar o marketing digital para escalar</li>
-      <li>Tem equipa interna mas falta-lhes direcao e conhecimento especializado</li>
-      <li>Querem tomar decisoes baseadas em dados, nao em suposicoes</li>
-    </ul>
-    <p>Se o seu stand esta a funcionar bem com o passa-palavra e nao tem ambicao de crescer, provavelmente nao precisa de consultoria. Mas se quer <strong>previsibilidade</strong>, se quer saber que todos os meses entram contactos novos e qualificados, e se quer deixar de depender da sorte — entao este servico foi feito para si.</p>
-    <p>Nao importa se o stand e pequeno ou grande, se vende carros de gama alta ou economicos, se esta em Lisboa ou numa cidade do interior. O que importa e a vontade de fazer marketing a serio, com estrategia, com dados e com acompanhamento profissional.</p>
-
-    <div class="cta-section">
-      <h2>Pronto para ter uma estrategia a serio?</h2>
-      <p>Fale connosco e descubra como a consultoria pode transformar o marketing digital do seu stand.</p>
-      <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
-    </div>
   </main>
 
-  <div style="max-width:42rem;margin:0 auto;padding:0 1.5rem 2rem">
-    <h3 style="font-size:1rem;font-weight:600;color:#f4f4f5;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em">Outros Servicos</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-      <a href="/servicos/trafego-pago.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Trafego Pago</a>
-      <a href="/servicos/automacao-ia.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Automacao com IA</a>
-      <a href="/servicos/funis-venda.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Funis de Venda</a>
-      <a href="/servicos/marketing-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Marketing Digital</a>
-      <a href="/servicos/anuncios.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Anuncios Online</a>
-      <a href="/servicos/redes-sociais.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Redes Sociais</a>
-      <a href="/servicos/estrategia-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Estrategia Digital</a>
-    </div>
-  </div>
-
   <footer>
-    <p>2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio.</p>
-    <p><a href="/privacidade.html">Politica de Privacidade</a></p>
+    <p>2025 Natamy Oliveira — Marketing Digital e Automação de Negócio.</p>
+    <p><a href="/privacidade.html">Política de Privacidade</a></p>
   </footer>
 
+  <!-- Hamburger Menu -->
   <script>
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+</script>
+
+  <!-- IntersectionObserver fade-in -->
+  <script>
+(function(){var els=document.querySelectorAll('.fade-in');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){observer.observe(el);});})();
+</script>
+
+  <!-- Cursor Glow -->
+  <script>
+(function(){var glow=document.getElementById('cursorGlow');if(!glow)return;var visible=false;document.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';if(!visible){glow.style.opacity='1';visible=true;}});document.addEventListener('mouseleave',function(){glow.style.opacity='0';visible=false;});})();
 </script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Consultoria de Marketing Digital para Stands Automoveis",
-    "description": "Consultoria especializada em marketing digital para stands automoveis em Portugal. Analise do negocio, estrategia personalizada e acompanhamento de resultados.",
+    "name": "Consultoria de Marketing Digital para Stands Automóveis",
+    "description": "Consultoria especializada em marketing digital para stands automóveis em Portugal. Análise do negócio, estratégia personalizada e acompanhamento de resultados.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Natamy Oliveira",
@@ -329,8 +959,8 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://natamyoliveira.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Servicos", "item": "https://natamyoliveira.com/#servicos"},
+      {"@type": "ListItem", "position": 1, "name": "Início", "item": "https://natamyoliveira.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://natamyoliveira.com/#servicos"},
       {"@type": "ListItem", "position": 3, "name": "Consultoria", "item": "https://natamyoliveira.com/servicos/consultoria.html"}
     ]
   }

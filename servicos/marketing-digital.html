@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketing Digital para Stands Automoveis — Natamy Oliveira</title>
-  <meta name="description" content="Marketing digital especializado para stands automoveis em Portugal. Trafego pago, automacao com IA, redes sociais e funis de venda num so servico.">
+  <title>Marketing Digital para Stands Automóveis — Natamy Oliveira</title>
+  <meta name="description" content="Marketing digital especializado para stands automóveis em Portugal. Tráfego pago, automação com IA, redes sociais e funis de venda num só serviço.">
   <meta name="google-site-verification" content="lKg96X92-Oxkwzsc_AujwG86T429C98hOoA3fQXW8-E">
-  <meta property="og:title" content="Marketing Digital para Stands Automoveis — Natamy Oliveira">
-  <meta property="og:description" content="Marketing digital especializado para stands automoveis em Portugal. Trafego pago, automacao com IA, redes sociais e funis de venda num so servico.">
+  <meta property="og:title" content="Marketing Digital para Stands Automóveis — Natamy Oliveira">
+  <meta property="og:description" content="Marketing digital especializado para stands automóveis em Portugal. Tráfego pago, automação com IA, redes sociais e funis de venda num só serviço.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://natamyoliveira.com/servicos/marketing-digital.html">
   <meta property="og:site_name" content="Natamy Oliveira">
@@ -15,8 +15,8 @@
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="720">
   <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Marketing Digital para Stands Automoveis — Natamy Oliveira">
-  <meta property="twitter:description" content="Marketing digital especializado para stands automoveis em Portugal. Trafego pago, automacao com IA, redes sociais e funis de venda num so servico.">
+  <meta property="twitter:title" content="Marketing Digital para Stands Automóveis — Natamy Oliveira">
+  <meta property="twitter:description" content="Marketing digital especializado para stands automóveis em Portugal. Tráfego pago, automação com IA, redes sociais e funis de venda num só serviço.">
   <meta property="twitter:image" content="https://natamyoliveira.com/og-images/og-marketing-digital.jpg">
   <meta name="theme-color" content="#0c0c0e">
   <link rel="canonical" href="https://natamyoliveira.com/servicos/marketing-digital.html">
@@ -45,142 +45,628 @@
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    :root {
+      --z950: #0c0c0e;
+      --z900: #18181b;
+      --z800: #27272a;
+      --z700: #3f3f46;
+      --z500: #71717a;
+      --z400: #a1a1aa;
+      --z300: #d4d4d8;
+      --z100: #f4f4f5;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.07);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      background: #0c0c0e;
-      color: #d4d4d8;
+      background: var(--z950);
+      color: var(--z300);
       line-height: 1.7;
       font-weight: 400;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* ── GRAIN TEXTURE ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ── CURSOR GLOW ── */
+    .cursor-glow {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* ── FADE-IN ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
       background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(244,244,245,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
-      color: #f4f4f5; text-transform: uppercase;
+      color: var(--z100); text-transform: uppercase;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #a1a1aa; transition: color 0.2s;
+      text-transform: uppercase; color: var(--z400); transition: color 0.2s;
     }
-    .nav-links a:hover { color: #10b981; }
-
-    /* MAIN */
-    .content {
-      max-width: 42rem; margin: 0 auto;
-      padding: 8rem 1.5rem 4rem;
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
-      color: #f4f4f5; line-height: 1.15; margin-bottom: 1.5rem;
-    }
-    h2 {
-      font-size: 1.5rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 3rem; margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.15rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 2rem; margin-bottom: 0.75rem;
-    }
-    p { margin-bottom: 1.25rem; }
-    .lead {
-      font-size: 1.15rem; color: #a1a1aa; font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-    .accent { color: #10b981; }
-    strong { color: #f4f4f5; font-weight: 600; }
-    ul, ol {
-      margin-bottom: 1.25rem; padding-left: 1.5rem;
-    }
-    li { margin-bottom: 0.5rem; }
-
-    /* PROCESS STEPS */
-    .process { counter-reset: step; margin: 2rem 0; }
-    .process-step {
-      position: relative; padding-left: 3rem; margin-bottom: 1.75rem;
-      counter-increment: step;
-    }
-    .process-step::before {
-      content: counter(step);
-      position: absolute; left: 0; top: 0;
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: #10b981; color: #0c0c0e;
-      font-weight: 700; font-size: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .process-step h3 { margin-top: 0; }
-
-    /* HIGHLIGHT BOX */
-    .highlight {
-      background: rgba(16,185,129,0.08);
-      border-left: 3px solid #10b981;
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 2rem 0;
-    }
-
-    /* INLINE LINK */
-    .inline-link {
-      color: #10b981;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-    .inline-link:hover { opacity: 0.85; }
-
-    /* CTA */
-    .cta-section {
-      text-align: center; margin-top: 4rem; padding: 3rem 0;
-      border-top: 1px solid rgba(244,244,245,0.06);
-    }
-    .cta-section h2 { margin-top: 0; }
-    .cta-btn {
-      display: inline-block; margin-top: 1.25rem;
-      padding: 0.9rem 2.5rem;
-      background: #10b981; color: #0c0c0e;
-      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
-      border-radius: 9999px; transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; }
-
-    /* FOOTER */
-    footer {
-      max-width: 42rem; margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      border-top: 1px solid rgba(244,244,245,0.06);
-      text-align: center; font-size: 0.8rem; color: #71717a;
-    }
-    footer a { color: #a1a1aa; text-decoration: underline; }
-    footer a:hover { color: #10b981; }
+    .nav-links a:hover { color: var(--accent); }
 
     .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
     .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .container-narrow {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      padding: 5rem 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      max-width: 48rem;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 38rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 48rem;
+    }
+    .stat-item {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .stat-number .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--z500);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 36rem;
+    }
+
+    /* ── GLASSMORPHISM CARD ── */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .glass-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-section {
+      position: relative;
+    }
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .problem-content {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .problem-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .problem-text p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+    .problem-text p:last-child { margin-bottom: 0; }
+    .problem-text strong { color: var(--z100); font-weight: 600; }
+
+    /* ── INLINE LINK ── */
+    .inline-link {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(16,185,129,0.4);
+      transition: text-decoration-color 0.2s, opacity 0.2s;
+    }
+    .inline-link:hover {
+      text-decoration-color: var(--accent);
+      opacity: 0.9;
+    }
+
+    /* ── SERVICES GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      padding: 2.25rem 2rem;
+    }
+    .service-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+    .service-card p + p {
+      margin-top: 0.75rem;
+    }
+
+    /* ── DIFFERENTIATOR GRID ── */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .diff-card {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 2rem;
+    }
+    .diff-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .diff-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .diff-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+    .diff-card p + p {
+      margin-top: 0.75rem;
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .process-card {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .process-number {
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .process-number::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .process-card-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .process-card-body p {
+      color: var(--z400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── RESULTS HIGHLIGHT ── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .result-card {
+      text-align: center;
+      padding: 2.25rem 1.5rem;
+    }
+    .result-value {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .result-value .accent { color: var(--accent); }
+    .result-label {
+      font-size: 0.85rem;
+      color: var(--z500);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .results-note {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+      max-width: 40rem;
+    }
+    .results-note strong { color: var(--z100); }
+
+    /* ── FAQ (Glass Card Style) ── */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .faq-card {
+      padding: 1.75rem 2rem;
+    }
+    .faq-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .faq-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── FULL-WIDTH CTA ── */
+    .cta-section {
+      position: relative;
+      padding: 6rem 0;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .cta-block {
+      position: relative;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-block h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-block p {
+      font-size: 1.1rem;
+      color: var(--z400);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 0.95rem 2.75rem;
+      background: var(--accent);
+      color: var(--z950);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      transition: opacity 0.2s, transform 0.2s;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── OUTROS SERVICOS ── */
+    .outros-servicos {
+      padding: 3rem 0 2rem;
+    }
+    .outros-servicos h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .outros-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .outros-links a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--z300);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .outros-links a:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--z100);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--z500);
+    }
+    footer a { color: var(--z400); text-decoration: underline; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .content { padding: 6rem 1.25rem 3rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      .hero { padding: 7rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.25rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+
+      .problem-content { grid-template-columns: 1fr; gap: 1rem; }
+      .diff-card { grid-template-columns: 1fr; gap: 1rem; }
+
+      .process-card { grid-template-columns: 3rem 1fr; gap: 1rem; }
+      .process-number { width: 3rem; height: 3rem; font-size: 1rem; }
+
+      .cta-block { padding: 3rem 1.5rem; }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (min-width: 1025px) {
+      .hamburger { display: none; }
+      .nav-links { display: flex; }
     }
   </style>
 
@@ -189,173 +675,352 @@
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <nav>
     <a href="/" class="nav-logo">Natamy Oliveira</a>
     <div class="nav-links">
-      <a href="/servicos/marketing-digital.html">Servicos</a>
+      <a href="/servicos/marketing-digital.html">Serviços</a>
       <a href="/#sobre">Sobre</a>
       <a href="/contacto.html">Contacto</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/#servicos">Servicos</a>
+    <a href="/#servicos">Serviços</a>
     <a href="/sobre.html">Sobre</a>
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <main class="content">
-    <h1>Marketing Digital para Stands Automoveis</h1>
-    <p class="lead">A solucao completa de marketing digital construida exclusivamente para o sector automovel em Portugal. Trafego pago, automacao com inteligencia artificial, redes sociais, funis de venda e consultoria estrategica — tudo num unico servico, gerido por quem conhece o negocio dos stands por dentro.</p>
+  <main>
 
-    <h2>Porque o Seu Stand Precisa de Marketing Digital</h2>
-    <p>O mercado automovel em Portugal mudou. Nao ha muito tempo, bastava ter um bom stock, uma localizacao visivel e esperar que os clientes aparecessem. Hoje, <strong>85% dos compradores de automoveis comecam a pesquisa online</strong> antes de pisar num stand. Comparam precos no OLX e no Standvirtual, pesquisam marcas e modelos no Google, veem reviews no YouTube e pedem opinioes nas redes sociais.</p>
-    <p>Se o seu stand nao esta presente nestes canais — ou esta presente mas sem estrategia — esta a perder vendas todos os dias para concorrentes que investem em marketing digital. E nao estamos a falar de grandes grupos automoveis com orcamentos milionarios. Estamos a falar de stands da mesma dimensao que o seu, na mesma zona, que simplesmente entenderam que a forma de vender carros mudou.</p>
-    <p>A realidade e que a maioria dos stands automoveis em Portugal ainda depende do passa-palavra, de referenciados e de publicacoes organicas no Facebook. Estas fontes continuam a funcionar, mas sao imprevisiveis. Num mes chegam dez contactos, no mes seguinte chegam dois. Nao ha controlo, nao ha previsibilidade, e nao ha forma de escalar.</p>
-    <p>O marketing digital muda esta equacao. Permite-lhe colocar o seu stand a frente das pessoas certas, no momento certo, com a mensagem certa. Permite medir tudo — saber exatamente de onde vem cada contacto, quanto custou, e se se converteu em venda. E permite escalar: quando algo funciona, aumenta o investimento e os resultados crescem de forma proporcional.</p>
-    <p>Mas ha um problema. A maioria das agencias de marketing digital em Portugal nao percebe nada de stands automoveis. Tratam o seu negocio como se fosse uma loja de roupa ou um restaurante. Usam estrategias genericas, palavras-chave amplas, e criam anuncios que atraem curiosos em vez de compradores. O resultado e dinheiro gasto sem retorno, e a sensacao de que o marketing digital nao funciona para o seu sector.</p>
-    <p>Funciona. Mas precisa de ser feito por quem conhece o negocio.</p>
-
-    <h2>O Que Fazemos</h2>
-    <p>O nosso servico de marketing digital para stands automoveis cobre todas as areas que um stand precisa para gerar contactos qualificados de forma consistente. Nao vendemos pecas soltas — entregamos um sistema completo que funciona em conjunto.</p>
-
-    <h3>Trafego Pago</h3>
-    <p>Criamos e gerimos campanhas de <a href="/servicos/trafego-pago.html" class="inline-link">Google Ads e Meta Ads</a> desenhadas especificamente para o sector automovel. No Google, captamos pessoas que estao ativamente a procurar viaturas — quem pesquisa "BMW Serie 3 usado Lisboa" tem intencao de compra real. No Facebook e Instagram, alcancamos publicos novos com base em perfil demografico, interesses e comportamento, e fazemos retargeting a quem ja visitou o seu site mas ainda nao entrou em contacto.</p>
-    <p>Cada campanha e segmentada por marca, modelo, localizacao e tipo de viatura. Os anuncios direcionam para paginas de destino otimizadas que filtram curiosos e encaminham compradores reais para o seu stand. Medimos contactos, nao cliques.</p>
-
-    <h3>Automacao com Inteligencia Artificial</h3>
-    <p>A maioria dos stands perde leads porque nao responde rapido o suficiente. Um potencial comprador envia uma mensagem as 22h de sabado e so recebe resposta na segunda-feira de manha. Nessa altura, ja falou com tres concorrentes.</p>
-    <p>A nossa <a href="/servicos/automacao-ia.html" class="inline-link">automacao com IA</a> resolve este problema. Implementamos chatbots inteligentes que respondem automaticamente a questoes sobre stock, precos, financiamento e disponibilidade — 24 horas por dia, 7 dias por semana. Estes bots nao dao respostas genericas. Sao treinados com os dados do seu stand, conhecem o seu stock e qualificam cada lead antes de a passar a equipa comercial.</p>
-    <p>Alem dos chatbots, automatizamos sequencias de follow-up por email e WhatsApp. Quando um lead preenche um formulario mas nao atende o telefone, o sistema envia automaticamente mensagens personalizadas nos dias seguintes, mantendo o seu stand no topo da mente ate que a pessoa esteja pronta para avancar.</p>
-
-    <h3>Funis de Venda</h3>
-    <p>Um funil de venda e o percurso completo que um potencial comprador faz desde o primeiro contacto com o seu stand ate ao momento da compra. A maioria dos stands nao tem funil nenhum — tem um site, uma pagina de Facebook e espera que as coisas acontecam.</p>
-    <p>Nos criamos <a href="/servicos/funis-venda.html" class="inline-link">funis de venda estruturados</a> que acompanham cada lead em todas as fases do processo. Desde a primeira interacao com um anuncio, passando pela landing page, pelo formulario de qualificacao, pelo follow-up automatizado, ate a marcacao de visita ao stand. Cada etapa e medida e otimizada para reduzir a perda de leads e aumentar a taxa de conversao.</p>
-
-    <h3>Gestao de Redes Sociais</h3>
-    <p>As redes sociais sao a montra digital do seu stand. Quando um potencial comprador vê um anuncio seu e vai ao seu perfil de Instagram, o que encontra? Fotos desfocadas, publicacoes esporadicas e zero interacao? Ou encontra um perfil profissional, com conteudo regular, viaturas bem apresentadas e um stand que transmite confianca?</p>
-    <p>Gerimos o conteudo das suas redes sociais com foco no sector automovel. Publicacoes regulares de stock novo, stories com viaturas em destaque, reels com walkarounds, e conteudo educativo sobre financiamento, seguros e manutencao que posiciona o seu stand como referencia na zona.</p>
-
-    <h3>Consultoria Estrategica</h3>
-    <p>Nem todos os stands estao no mesmo ponto. Alguns precisam de comecar do zero, outros ja tem campanhas ativas mas sem resultados, e outros estao a crescer e precisam de escalar. O nosso servico inclui consultoria estrategica mensal onde analisamos os resultados, identificamos oportunidades e ajustamos o plano de acao.</p>
-    <p>Esta consultoria nao e um relatorio em PDF que ninguem le. E uma conversa real onde discutimos os numeros, os desafios do seu stand e as decisoes que precisam de ser tomadas para o mes seguinte.</p>
-
-    <h2>Como Funciona na Pratica</h2>
-    <p>Quando um novo stand comeca a trabalhar connosco, o processo segue uma estrutura clara com cinco fases. Nao ha surpresas, nao ha promessas vagas — cada passo tem um objetivo concreto e um resultado mensuravel.</p>
-
-    <div class="process">
-      <div class="process-step">
-        <h3>Diagnostico Completo</h3>
-        <p>Na primeira semana, fazemos um levantamento completo do estado atual do seu marketing digital. Analisamos o seu site, as redes sociais, as campanhas existentes (se houver), a presenca nos portais automoveis e a forma como a equipa comercial trata os contactos que chegam. Identificamos o que esta a funcionar, o que esta a desperdicar dinheiro e onde estao as maiores oportunidades.</p>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="container">
+        <div class="fade-in">
+          <div class="hero-badge">Marketing Digital para Stands</div>
+        </div>
+        <h1 class="fade-in fade-in-delay-1">Marketing Digital para Stands Automóveis</h1>
+        <p class="hero-lead fade-in fade-in-delay-2">A solução completa de marketing digital construída exclusivamente para o sector automóvel em Portugal. Tráfego pago, automação com inteligência artificial, redes sociais, funis de venda e consultoria estratégica — tudo num único serviço, gerido por quem conhece o negócio dos stands por dentro.</p>
+        <div class="stats-bar fade-in fade-in-delay-3">
+          <div class="stat-item">
+            <div class="stat-number">Tudo <span class="accent">incluído</span></div>
+            <div class="stat-label">Serviço completo</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100% <span class="accent">auto</span></div>
+            <div class="stat-label">Sector automóvel</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">Resultados <span class="accent">reais</span></div>
+            <div class="stat-label">Contactos, não cliques</div>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Plano Estrategico</h3>
-        <p>Com base no diagnostico, criamos um plano de marketing digital personalizado para o seu stand. Definimos os canais prioritarios, o orcamento recomendado para cada um, o tipo de campanhas a lancar, a estrategia de conteudo para redes sociais, e as automacoes a implementar. Este plano e apresentado e discutido consigo antes de avancarmos.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O PROBLEMA ═══ -->
+    <section class="problem-section">
+      <div class="container-narrow">
+        <div class="section-label fade-in">O desafio</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Porque o Seu Stand Precisa de Marketing Digital</h2>
+        <div class="problem-content fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="problem-text">
+            <p>O mercado automóvel em Portugal mudou. Não há muito tempo, bastava ter um bom stock, uma localização visível e esperar que os clientes aparecessem. Hoje, <strong>85% dos compradores de automóveis começam a pesquisa online</strong> antes de pisar num stand. Comparam preços no OLX e no Standvirtual, pesquisam marcas e modelos no Google, veem reviews no YouTube e pedem opiniões nas redes sociais.</p>
+            <p>Se o seu stand não está presente nestes canais — ou está presente mas sem estratégia — está a perder vendas todos os dias para concorrentes que investem em marketing digital. E não estamos a falar de grandes grupos automóveis com orçamentos milionários. Estamos a falar de stands da mesma dimensão que o seu, na mesma zona, que simplesmente entenderam que a forma de vender carros mudou.</p>
+            <p>A realidade é que a maioria dos stands automóveis em Portugal ainda depende do passa-palavra, de referenciados e de publicações orgânicas no Facebook. Estas fontes continuam a funcionar, mas são imprevisíveis. Num mês chegam dez contactos, no mês seguinte chegam dois. Não há controlo, não há previsibilidade, e não há forma de escalar.</p>
+            <p>O marketing digital muda esta equação. Permite-lhe colocar o seu stand à frente das pessoas certas, no momento certo, com a mensagem certa. Permite medir tudo — saber exatamente de onde vem cada contacto, quanto custou, e se se converteu em venda. E permite escalar: quando algo funciona, aumenta o investimento e os resultados crescem de forma proporcional.</p>
+            <p>Mas há um problema. A maioria das agências de marketing digital em Portugal não percebe nada de stands automóveis. Tratam o seu negócio como se fosse uma loja de roupa ou um restaurante. Usam estratégias genéricas, palavras-chave amplas, e criam anúncios que atraem curiosos em vez de compradores. O resultado é dinheiro gasto sem retorno, e a sensação de que o marketing digital não funciona para o seu sector.</p>
+            <p><strong>Funciona. Mas precisa de ser feito por quem conhece o negócio.</strong></p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Implementacao</h3>
-        <p>Nas duas semanas seguintes, montamos tudo. Configuramos as campanhas de <a href="/servicos/trafego-pago.html" class="inline-link">trafego pago</a>, instalamos os pixels de rastreamento, criamos as landing pages, ativamos os <a href="/servicos/automacao-ia.html" class="inline-link">chatbots de IA</a>, construimos os <a href="/servicos/funis-venda.html" class="inline-link">funis de venda</a> e preparamos o calendario de conteudo para redes sociais. Tudo e testado antes de gastar um centimo do seu orcamento.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O QUE FAZEMOS ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">O que fazemos</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Serviço Completo de Marketing Digital</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Não vendemos peças soltas — entregamos um sistema completo que funciona em conjunto. Cada área reforça as outras para gerar contactos qualificados de forma consistente.</p>
+
+        <div class="services-grid">
+          <div class="glass-card service-card fade-in fade-in-delay-1">
+            <div class="service-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Tráfego Pago</h3>
+            <p>Criamos e gerimos campanhas de <a href="/servicos/trafego-pago.html" class="inline-link">Google Ads e Meta Ads</a> desenhadas especificamente para o sector automóvel. No Google, captamos pessoas que estão ativamente à procura de viaturas — quem pesquisa "BMW Série 3 usado Lisboa" tem intenção de compra real. No Facebook e Instagram, alcançamos públicos novos e fazemos retargeting a quem já visitou o seu site.</p>
+            <p>Cada campanha é segmentada por marca, modelo, localização e tipo de viatura. Os anúncios direcionam para páginas de destino otimizadas que filtram curiosos e encaminham compradores reais para o seu stand. Medimos contactos, não cliques.</p>
+          </div>
+          <div class="glass-card service-card fade-in fade-in-delay-2">
+            <div class="service-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 0 1 12 2z"/><circle cx="12" cy="6" r="1.5"/></svg>
+            </div>
+            <h3>Automação com Inteligência Artificial</h3>
+            <p>A maioria dos stands perde leads porque não responde rápido o suficiente. Um potencial comprador envia uma mensagem às 22h de sábado e só recebe resposta na segunda-feira de manhã. Nessa altura, já falou com três concorrentes.</p>
+            <p>A nossa <a href="/servicos/automacao-ia.html" class="inline-link">automação com IA</a> resolve este problema. Implementamos chatbots inteligentes que respondem automaticamente a questões sobre stock, preços, financiamento e disponibilidade — 24 horas por dia, 7 dias por semana. Além dos chatbots, automatizamos sequências de follow-up por email e WhatsApp.</p>
+          </div>
+          <div class="glass-card service-card fade-in fade-in-delay-3">
+            <div class="service-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <h3>Funis de Venda</h3>
+            <p>Um funil de venda é o percurso completo que um potencial comprador faz desde o primeiro contacto com o seu stand até ao momento da compra. A maioria dos stands não tem funil nenhum — tem um site, uma página de Facebook e espera que as coisas aconteçam.</p>
+            <p>Nós criamos <a href="/servicos/funis-venda.html" class="inline-link">funis de venda estruturados</a> que acompanham cada lead em todas as fases do processo. Desde a primeira interação com um anúncio, passando pela landing page, pelo formulário de qualificação, pelo follow-up automatizado, até à marcação de visita ao stand.</p>
+          </div>
+          <div class="glass-card service-card fade-in fade-in-delay-4">
+            <div class="service-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Gestão de Redes Sociais</h3>
+            <p>As redes sociais são a montra digital do seu stand. Quando um potencial comprador vê um anúncio seu e vai ao seu perfil de Instagram, o que encontra? Fotos desfocadas, publicações esporádicas e zero interação? Ou encontra um perfil profissional com conteúdo regular?</p>
+            <p>Gerimos o conteúdo das suas redes sociais com foco no sector automóvel. Publicações regulares de stock novo, stories com viaturas em destaque, reels com walkarounds, e conteúdo educativo sobre financiamento, seguros e manutenção.</p>
+          </div>
+          <div class="glass-card service-card fade-in fade-in-delay-5" style="grid-column: 1 / -1;">
+            <div class="service-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Consultoria Estratégica</h3>
+            <p>Nem todos os stands estão no mesmo ponto. Alguns precisam de começar do zero, outros já têm campanhas ativas mas sem resultados, e outros estão a crescer e precisam de escalar. O nosso serviço inclui consultoria estratégica mensal onde analisamos os resultados, identificamos oportunidades e ajustamos o plano de ação.</p>
+            <p>Esta consultoria não é um relatório em PDF que ninguém lê. É uma conversa real onde discutimos os números, os desafios do seu stand e as decisões que precisam de ser tomadas para o mês seguinte.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Otimizacao Continua</h3>
-        <p>A partir do momento em que as campanhas estao ativas, comecamos a receber dados reais. Nas primeiras semanas, ajustamos tudo com base no que os numeros nos dizem: refinamos publicos, ajustamos lances, testamos novos anuncios, melhoramos landing pages e afinamos as automacoes. Este trabalho e continuo e nunca para — e a razao pela qual os resultados melhoram mes apos mes.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ COMO FUNCIONA ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Processo</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Como Funciona na Prática</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Quando um novo stand começa a trabalhar connosco, o processo segue uma estrutura clara com cinco fases. Não há surpresas, não há promessas vagas — cada passo tem um objetivo concreto e um resultado mensurável.</p>
+
+        <div class="process-grid">
+          <div class="glass-card process-card fade-in fade-in-delay-1">
+            <div class="process-number">1</div>
+            <div class="process-card-body">
+              <h3>Diagnóstico Completo</h3>
+              <p>Na primeira semana, fazemos um levantamento completo do estado atual do seu marketing digital. Analisamos o seu site, as redes sociais, as campanhas existentes (se houver), a presença nos portais automóveis e a forma como a equipa comercial trata os contactos que chegam. Identificamos o que está a funcionar, o que está a desperdiçar dinheiro e onde estão as maiores oportunidades.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-2">
+            <div class="process-number">2</div>
+            <div class="process-card-body">
+              <h3>Plano Estratégico</h3>
+              <p>Com base no diagnóstico, criamos um plano de marketing digital personalizado para o seu stand. Definimos os canais prioritários, o orçamento recomendado para cada um, o tipo de campanhas a lançar, a estratégia de conteúdo para redes sociais, e as automações a implementar. Este plano é apresentado e discutido consigo antes de avançarmos.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-3">
+            <div class="process-number">3</div>
+            <div class="process-card-body">
+              <h3>Implementação</h3>
+              <p>Nas duas semanas seguintes, montamos tudo. Configuramos as campanhas de <a href="/servicos/trafego-pago.html" class="inline-link">tráfego pago</a>, instalamos os pixels de rastreamento, criamos as landing pages, ativamos os <a href="/servicos/automacao-ia.html" class="inline-link">chatbots de IA</a>, construímos os <a href="/servicos/funis-venda.html" class="inline-link">funis de venda</a> e preparamos o calendário de conteúdo para redes sociais. Tudo é testado antes de gastar um cêntimo do seu orçamento.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-4">
+            <div class="process-number">4</div>
+            <div class="process-card-body">
+              <h3>Otimização Contínua</h3>
+              <p>A partir do momento em que as campanhas estão ativas, começamos a receber dados reais. Nas primeiras semanas, ajustamos tudo com base no que os números nos dizem: refinamos públicos, ajustamos lances, testamos novos anúncios, melhoramos landing pages e afinamos as automações. Este trabalho é contínuo e nunca para — é a razão pela qual os resultados melhoram mês após mês.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-5">
+            <div class="process-number">5</div>
+            <div class="process-card-body">
+              <h3>Relatório e Reunião Mensal</h3>
+              <p>Todos os meses recebe um relatório claro com os números que importam: quantos leads chegaram, de que canais vieram, quanto custou cada contacto, quantos se converteram em visitas ao stand, e o que vamos fazer no mês seguinte para melhorar. Além do relatório, temos uma reunião mensal onde discutimos os resultados e alinhamos a estratégia.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Relatorio e Reuniao Mensal</h3>
-        <p>Todos os meses recebe um relatorio claro com os numeros que importam: quantos leads chegaram, de que canais vieram, quanto custou cada contacto, quantos se converteram em visitas ao stand, e o que vamos fazer no mes seguinte para melhorar. Alem do relatorio, temos uma reuniao mensal onde discutimos os resultados e alinhamos a estrategia.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O QUE NOS DIFERENCIA ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Diferenciação</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Que Nos Diferencia</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Há dezenas de agências de marketing digital em Portugal. Então porque deve um stand automóvel trabalhar connosco em vez de com qualquer outra? Três razões concretas.</p>
+
+        <div class="diff-grid">
+          <div class="glass-card diff-card fade-in fade-in-delay-1">
+            <div class="diff-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3>Especialização no Sector Automóvel</h3>
+              <p>Não somos uma agência generalista que aceita qualquer cliente. Trabalhamos exclusivamente com stands automóveis. Isto significa que conhecemos o ciclo de venda de um carro, sabemos quais as palavras-chave que convertem, entendemos a sazonalidade do mercado, e sabemos a diferença entre um lead que quer comprar e um curioso que só quer saber o preço.</p>
+              <p>Cada campanha que criamos é construída com este conhecimento. Não há experimentação às cegas, não há estratégias genéricas copiadas de outros sectores. Há um método testado e refinado especificamente para o negócio automóvel em Portugal.</p>
+            </div>
+          </div>
+          <div class="glass-card diff-card fade-in fade-in-delay-2">
+            <div class="diff-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22l-.75-12.07A4.001 4.001 0 0 1 12 2z"/><circle cx="12" cy="6" r="1.5"/></svg>
+            </div>
+            <div>
+              <h3>Automação com Inteligência Artificial</h3>
+              <p>Somos os únicos em Portugal a combinar marketing digital para stands com <a href="/servicos/automacao-ia.html" class="inline-link">automação avançada por inteligência artificial</a>. Enquanto outras agências se limitam a criar anúncios e esperar que o stand faça o resto, nós automatizamos todo o processo de qualificação e follow-up de leads.</p>
+              <p>Isto significa que nenhum contacto se perde, que cada lead recebe resposta em segundos (mesmo fora do horário de expediente), e que a equipa comercial só recebe leads já qualificadas e prontas para avançar. O resultado é um aumento significativo na taxa de conversão sem aumentar a carga de trabalho da equipa.</p>
+            </div>
+          </div>
+          <div class="glass-card diff-card fade-in fade-in-delay-3">
+            <div class="diff-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3>Foco em Resultados, Não em Métricas de Vaidade</h3>
+              <p>Não medimos o nosso sucesso em impressões, alcance ou seguidores. Medimos em contactos qualificados que se convertem em vendas. É a única métrica que interessa a um dono de stand.</p>
+              <p>Cada relatório que entregamos mostra números reais: leads geradas, custo por lead, taxa de conversão, e retorno sobre o investimento. Se os números não estão onde deviam estar, ajustamos a estratégia até estarem. Sem desculpas, sem métricas irrelevantes para encher relatórios.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ RESULTADOS ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Resultados</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Resultados Reais</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Os números seguintes representam resultados típicos que obtemos com stands automóveis em Portugal após um período de otimização de 3 a 6 meses. Os resultados concretos variam conforme a zona geográfica, o stock disponível e o investimento em publicidade.</p>
+
+        <div class="results-grid">
+          <div class="glass-card result-card fade-in fade-in-delay-1">
+            <div class="result-value">40-120 <span class="accent">leads</span></div>
+            <div class="result-label">Contactos qualificados por mês</div>
+          </div>
+          <div class="glass-card result-card fade-in fade-in-delay-2">
+            <div class="result-value">+95% <span class="accent">resposta</span></div>
+            <div class="result-label">Com automação IA (vs. 40-60% sem)</div>
+          </div>
+          <div class="glass-card result-card fade-in fade-in-delay-3">
+            <div class="result-value">20-35% <span class="accent">visitas</span></div>
+            <div class="result-label">Das leads qualificadas visitam o stand</div>
+          </div>
+          <div class="glass-card result-card fade-in fade-in-delay-4">
+            <div class="result-value">2.º <span class="accent">mês</span></div>
+            <div class="result-label">Retorno do investimento típico</div>
+          </div>
+        </div>
+
+        <p class="results-note fade-in fade-in-delay-5">Estes números não são teóricos. São baseados em dados reais de campanhas geridas para stands automóveis em diferentes zonas de Portugal. O investimento ideal e os resultados esperados para o seu caso específico são <strong>definidos na primeira conversa</strong>, adaptado à realidade do seu stand.</p>
+        <p class="results-note fade-in fade-in-delay-5">O ponto crítico é este: sem marketing digital, um stand depende exclusivamente de fontes imprevisíveis. Com uma estratégia bem montada, cria-se um canal de contactos previsível e escalável. Quando sabe que o investimento gera X contactos, e que desses contactos Y se convertem em vendas, deixa de ser um jogo de sorte e passa a ser um sistema.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Perguntas comuns</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Perguntas Comuns</h2>
+
+        <div class="faq-grid">
+          <div class="glass-card faq-card fade-in fade-in-delay-1">
+            <h3>Quanto custa o marketing digital para um stand automóvel?</h3>
+            <p>O investimento divide-se em duas partes: o orçamento de anúncios (que vai diretamente para o Google e o Facebook) e a taxa de gestão dos nossos serviços. O orçamento de anúncios é adaptado à realidade do seu stand — zona, concorrência e objetivos. Na primeira conversa, apresentamos opções claras sem compromisso.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-2">
+            <h3>Já tentei fazer publicidade online e não funcionou. Porque seria diferente agora?</h3>
+            <p>Na grande maioria dos casos, campanhas que não deram resultado foram geridas por agências generalistas ou pelo próprio stand sem conhecimento técnico. Os erros mais comuns são: palavras-chave demasiado amplas, anúncios genéricos sem apelo, landing pages que não filtram curiosos, e ausência total de follow-up após o contacto inicial. Nós eliminamos todos estes problemas porque conhecemos o sector e temos um processo testado.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-3">
+            <h3>Preciso de ter um site para começar?</h3>
+            <p>É recomendado, mas não obrigatório. Se não tem site, criamos landing pages dedicadas otimizadas para conversão que servem como páginas de destino para as campanhas. Se já tem site, otimizamo-lo para receber tráfego pago e converter visitantes em contactos.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-1">
+            <h3>Em quanto tempo vou ver resultados?</h3>
+            <p>Os primeiros contactos surgem geralmente nas primeiras duas semanas após o lançamento das campanhas. Resultados consistentes e otimizados exigem no mínimo 3 meses de trabalho contínuo. A <a href="/servicos/automacao-ia.html" class="inline-link">automação com IA</a> começa a ter impacto imediato na taxa de resposta. O pico de desempenho tipicamente acontece entre o quarto e o sexto mês, quando temos dados suficientes para otimizar tudo ao máximo.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-2">
+            <h3>Trabalham com stands de qualquer dimensão?</h3>
+            <p>Trabalhamos com stands de todas as dimensões, desde pequenos stands familiares com 20 a 30 viaturas até stands maiores com centenas de unidades em stock. O plano é adaptado à realidade de cada negócio. O mais importante não é a dimensão do stand, mas o compromisso com o processo e a disponibilidade para atender os contactos que vamos gerar.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-3">
+            <h3>Tenho de me prender a um contrato longo?</h3>
+            <p>Recomendamos um compromisso mínimo de 3 meses porque é o tempo necessário para otimizar as campanhas e obter resultados representativos. Após esse período, o serviço continua numa base mensal sem fidelização. Se os resultados estiverem lá, fica. Se não estiverem, sai sem penalização. É simples.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-1">
+            <h3>O que acontece com os leads que chegam fora do horário?</h3>
+            <p>É aqui que a <a href="/servicos/automacao-ia.html" class="inline-link">automação com inteligência artificial</a> faz toda a diferença. O chatbot responde automaticamente a todas as mensagens — de dia, de noite, fins de semana e feriados. Qualifica o lead, responde às perguntas mais comuns sobre stock e financiamento, e recolhe os dados de contacto para que a equipa comercial faça o follow-up no dia útil seguinte. Zero leads perdidas.</p>
+          </div>
+          <div class="glass-card faq-card fade-in fade-in-delay-2">
+            <h3>Posso começar só com um serviço e ir adicionando outros?</h3>
+            <p>Sim. Muitos stands começam pelo <a href="/servicos/trafego-pago.html" class="inline-link">tráfego pago</a> porque é o que gera resultados mais rápidos, e depois vão adicionando automação, funis e gestão de redes sociais à medida que veem o retorno. O importante é começar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-section">
+      <div class="container-narrow">
+        <div class="cta-block fade-in">
+          <h2>O Próximo Passo</h2>
+          <p>Se chegou até aqui, já percebeu que o marketing digital é o caminho. Marque uma conversa gratuita de 30 minutos onde analisamos a sua situação atual, identificamos as maiores oportunidades e apresentamos um plano concreto — sem compromisso e sem pressão de venda.</p>
+          <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OUTROS SERVICOS ═══ -->
+    <div class="container-narrow outros-servicos">
+      <h3>Outros Serviços</h3>
+      <div class="outros-links">
+        <a href="/servicos/trafego-pago.html">Tráfego Pago</a>
+        <a href="/servicos/automacao-ia.html">Automação com IA</a>
+        <a href="/servicos/funis-venda.html">Funis de Venda</a>
+        <a href="/servicos/anuncios.html">Anúncios Online</a>
+        <a href="/servicos/redes-sociais.html">Redes Sociais</a>
+        <a href="/servicos/consultoria.html">Consultoria</a>
+        <a href="/servicos/estrategia-digital.html">Estratégia Digital</a>
       </div>
     </div>
 
-    <h2>O Que Nos Diferencia</h2>
-    <p>Ha dezenas de agencias de marketing digital em Portugal. Entao porque deve um stand automovel trabalhar connosco em vez de com qualquer outra? Tres razoes concretas.</p>
-
-    <h3>Especializacao no Sector Automovel</h3>
-    <p>Nao somos uma agencia generalista que aceita qualquer cliente. Trabalhamos exclusivamente com stands automoveis. Isto significa que conhecemos o ciclo de venda de um carro, sabemos quais as palavras-chave que convertem, entendemos a sazonalidade do mercado, e sabemos a diferenca entre um lead que quer comprar e um curioso que so quer saber o preco.</p>
-    <p>Cada campanha que criamos e construida com este conhecimento. Nao ha experimentacao as cegas, nao ha estrategias genericas copiadas de outros sectores. Ha um metodo testado e refinado especificamente para o negocio automovel em Portugal.</p>
-
-    <h3>Automacao com Inteligencia Artificial</h3>
-    <p>Somos os unicos em Portugal a combinar marketing digital para stands com <a href="/servicos/automacao-ia.html" class="inline-link">automacao avancada por inteligencia artificial</a>. Enquanto outras agencias se limitam a criar anuncios e esperar que o stand faca o resto, nos automatizamos todo o processo de qualificacao e follow-up de leads.</p>
-    <p>Isto significa que nenhum contacto se perde, que cada lead recebe resposta em segundos (mesmo fora do horario de expediente), e que a equipa comercial so recebe leads ja qualificadas e prontas para avancar. O resultado e um aumento significativo na taxa de conversao sem aumentar a carga de trabalho da equipa.</p>
-
-    <h3>Foco em Resultados, Nao em Metricas de Vaidade</h3>
-    <p>Nao medimos o nosso sucesso em impressoes, alcance ou seguidores. Medimos em contactos qualificados que se convertem em vendas. E a unica metrica que interessa a um dono de stand.</p>
-    <p>Cada relatorio que entregamos mostra numeros reais: leads geradas, custo por lead, taxa de conversao, e retorno sobre o investimento. Se os numeros nao estao onde deviam estar, ajustamos a estrategia ate estarem. Sem desculpas, sem metricas irrelevantes para encher relatorios.</p>
-
-    <h2>Resultados Reais</h2>
-    <p>Os numeros seguintes representam resultados tipicos que obtemos com stands automoveis em Portugal apos um periodo de otimizacao de 3 a 6 meses. Os resultados concretos variam conforme a zona geografica, o stock disponivel e o investimento em publicidade.</p>
-
-    <div class="highlight">
-      <p><strong>Leads por mes:</strong> 40 a 120 contactos qualificados, dependendo do orcamento de anuncios</p>
-      <p><strong>Custo por lead:</strong> 5 a 15 EUR por contacto qualificado (vs. 25 a 50 EUR sem estrategia otimizada)</p>
-      <p><strong>Taxa de resposta:</strong> acima de 95% com automacao IA (vs. 40-60% sem automacao)</p>
-      <p><strong>Taxa de conversao lead-visita:</strong> 20% a 35% das leads qualificadas visitam o stand</p>
-      <p style="margin-bottom:0"><strong>Tempo medio de retorno:</strong> a maioria dos stands recupera o investimento em marketing a partir do segundo mes</p>
-    </div>
-
-    <p>Estes numeros nao sao teoricos. Sao baseados em dados reais de campanhas geridas para stands automoveis em diferentes zonas de Portugal. O investimento ideal e os resultados esperados para o seu caso especifico sao definidos na primeira conversa, com base na sua realidade.</p>
-    <p>O ponto critico e este: sem marketing digital, um stand depende exclusivamente de fontes imprevisiveis. Com uma estrategia bem montada, cria-se um canal de contactos previsivel e escalavel. Quando sabe que por cada 100 euros investidos entram X contactos, e que desses contactos Y se convertem em vendas, deixa de ser um jogo de sorte e passa a ser um sistema.</p>
-
-    <h2>Perguntas Comuns</h2>
-
-    <h3>Quanto custa o marketing digital para um stand automovel?</h3>
-    <p>O investimento divide-se em duas partes: o orçamento de anúncios (que vai diretamente para o Google e o Facebook) e a taxa de gestão dos nossos serviços. O orçamento de anúncios é definido caso a caso, adaptado à zona, à concorrência e aos objetivos do stand. Na primeira conversa, apresentamos opções claras sem compromisso.</p>
-
-    <h3>Ja tentei fazer publicidade online e nao funcionou. Porque seria diferente agora?</h3>
-    <p>Na grande maioria dos casos, campanhas que nao deram resultado foram geridas por agencias generalistas ou pelo proprio stand sem conhecimento tecnico. Os erros mais comuns sao: palavras-chave demasiado amplas, anuncios genericos sem apelo, landing pages que nao filtram curiosos, e ausencia total de follow-up apos o contacto inicial. Nos eliminamos todos estes problemas porque conhecemos o sector e temos um processo testado.</p>
-
-    <h3>Preciso de ter um site para comecar?</h3>
-    <p>E recomendado, mas nao obrigatorio. Se nao tem site, criamos landing pages dedicadas otimizadas para conversao que servem como paginas de destino para as campanhas. Se ja tem site, otimizamo-lo para receber trafego pago e converter visitantes em contactos.</p>
-
-    <h3>Em quanto tempo vou ver resultados?</h3>
-    <p>Os primeiros contactos surgem geralmente nas primeiras duas semanas apos o lancamento das campanhas. Resultados consistentes e otimizados exigem no minimo 3 meses de trabalho continuo. A <a href="/servicos/automacao-ia.html" class="inline-link">automacao com IA</a> comeca a ter impacto imediato na taxa de resposta. O pico de desempenho tipicamente acontece entre o quarto e o sexto mes, quando temos dados suficientes para otimizar tudo ao maximo.</p>
-
-    <h3>Trabalham com stands de qualquer dimensao?</h3>
-    <p>Trabalhamos com stands de todas as dimensoes, desde pequenos stands familiares com 20 a 30 viaturas ate stands maiores com centenas de unidades em stock. O plano e adaptado a realidade de cada negocio. O mais importante nao e a dimensao do stand, mas o compromisso com o processo e a disponibilidade para atender os contactos que vamos gerar.</p>
-
-    <h3>Tenho de me prender a um contrato longo?</h3>
-    <p>Recomendamos um compromisso minimo de 3 meses porque e o tempo necessario para otimizar as campanhas e obter resultados representativos. Apos esse periodo, o servico continua numa base mensal sem fidelizacao. Se os resultados estiverem la, fica. Se nao estiverem, sai sem penalizacao. E simples.</p>
-
-    <h3>O que acontece com os leads que chegam fora do horario?</h3>
-    <p>E aqui que a <a href="/servicos/automacao-ia.html" class="inline-link">automacao com inteligencia artificial</a> faz toda a diferenca. O chatbot responde automaticamente a todas as mensagens — de dia, de noite, fins de semana e feriados. Qualifica o lead, responde as perguntas mais comuns sobre stock e financiamento, e recolhe os dados de contacto para que a equipa comercial faca o follow-up no dia util seguinte. Zero leads perdidas.</p>
-
-    <h3>Posso comecar so com um servico e ir adicionando outros?</h3>
-    <p>Sim. Muitos stands comecam pelo <a href="/servicos/trafego-pago.html" class="inline-link">trafego pago</a> porque e o que gera resultados mais rapidos, e depois vao adicionando automacao, funis e gestao de redes sociais a medida que veem o retorno. O importante e comecar.</p>
-
-    <div class="cta-section">
-      <h2>O Proximo Passo</h2>
-      <p>Se chegou ate aqui, ja percebeu que o marketing digital e o caminho. A unica questao e como aplicar isto ao seu stand. Marque uma conversa gratuita de 30 minutos onde analisamos a sua situacao atual, identificamos as maiores oportunidades e apresentamos um plano concreto — sem compromisso e sem pressao de venda.</p>
-      <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
-    </div>
   </main>
 
-  <div style="max-width:42rem;margin:0 auto;padding:0 1.5rem 2rem">
-    <h3 style="font-size:1rem;font-weight:600;color:#f4f4f5;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em">Outros Servicos</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-      <a href="/servicos/trafego-pago.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Trafego Pago</a>
-      <a href="/servicos/automacao-ia.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Automacao com IA</a>
-      <a href="/servicos/funis-venda.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Funis de Venda</a>
-      <a href="/servicos/anuncios.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Anuncios Online</a>
-      <a href="/servicos/redes-sociais.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Redes Sociais</a>
-      <a href="/servicos/consultoria.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Consultoria</a>
-      <a href="/servicos/estrategia-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Estrategia Digital</a>
-    </div>
-  </div>
-
   <footer>
-    <p>2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio.</p>
-    <p><a href="/privacidade.html">Politica de Privacidade</a></p>
+    <p>2025 Natamy Oliveira — Marketing Digital e Automação de Negócio.</p>
+    <p><a href="/privacidade.html">Política de Privacidade</a></p>
   </footer>
 
+  <!-- Hamburger Menu -->
   <script>
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+</script>
+
+  <!-- Cursor Glow -->
+  <script>
+(function(){var glow=document.getElementById('cursorGlow');if(!glow||'ontouchstart' in window)return;document.addEventListener('mousemove',function(e){glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px';glow.style.opacity='1';});document.addEventListener('mouseleave',function(){glow.style.opacity='0';});})();
+</script>
+
+  <!-- IntersectionObserver fade-in -->
+  <script>
+(function(){var els=document.querySelectorAll('.fade-in');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){observer.observe(el);});})();
 </script>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Marketing Digital para Stands Automoveis",
-    "description": "Marketing digital especializado para stands automoveis em Portugal. Trafego pago, automacao com IA, redes sociais e funis de venda num so servico.",
+    "name": "Marketing Digital para Stands Automóveis",
+    "description": "Marketing digital especializado para stands automóveis em Portugal. Tráfego pago, automação com IA, redes sociais e funis de venda num só serviço.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Natamy Oliveira",
@@ -365,7 +1030,7 @@
       "@type": "Country",
       "name": "Portugal"
     },
-    "serviceType": "Marketing Digital para Stands Automoveis"
+    "serviceType": "Marketing Digital para Stands Automóveis"
   }
   </script>
   <script type="application/ld+json">
@@ -373,8 +1038,8 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://natamyoliveira.com/"},
-      {"@type": "ListItem", "position": 2, "name": "Servicos", "item": "https://natamyoliveira.com/#servicos"},
+      {"@type": "ListItem", "position": 1, "name": "Início", "item": "https://natamyoliveira.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Serviços", "item": "https://natamyoliveira.com/#servicos"},
       {"@type": "ListItem", "position": 3, "name": "Marketing Digital", "item": "https://natamyoliveira.com/servicos/marketing-digital.html"}
     ]
   }
