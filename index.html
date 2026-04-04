@@ -98,6 +98,21 @@
 
     canvas#videoCanvas { display: block; width: 100%; height: 100%; }
 
+    /* Permanent left gradient — keeps hero text readable on bright frames */
+    .canvas-viewport::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(12, 12, 14, 0.6) 0%,
+        rgba(12, 12, 14, 0.3) 25%,
+        transparent 50%
+      );
+    }
+
     /* ── Nav ── */
     .nav {
       position: fixed;
@@ -639,7 +654,7 @@
   </div>
 
   <div class="grain"></div>
-  <div class="canvas-dim active" id="canvasDim"></div>
+  <div class="canvas-dim" id="canvasDim"></div>
 
   <!-- Nav -->
   <nav class="nav">
@@ -938,7 +953,7 @@
       function updateDim(p) {
         let cls = '';
         // Dim only during peak visibility (tight ranges = more full-light time)
-        const heroActive   = p >= 0.02 && p < 0.13;
+        const heroActive   = false;  // left gradient handles hero readability
         const b1Active     = p >= 0.24 && p < 0.32;
         const aboutActive  = p >= 0.44 && p < 0.53;
         const b3Active     = p >= 0.65 && p < 0.73;
