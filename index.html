@@ -24,21 +24,8 @@
   <meta name="google-site-verification" content="lKg96X92-Oxkwzsc_AujwG86T429C98hOoA3fQXW8-E">
   <meta name="facebook-domain-verification" content="xymxjt7r2koieh6tms9i1063ee1z8d">
   <link rel="canonical" href="https://natamyoliveira.com/">
-  <link rel="preload" as="image" href="frames/frame_0001.webp" type="image/webp">
-  <link rel="preload" as="image" href="frames/frame_0002.webp" type="image/webp">
-  <link rel="preload" as="image" href="frames/frame_0003.webp" type="image/webp">
+  <link rel="preload" as="image" href="frames/frame_0001.webp" type="image/webp" fetchpriority="high">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
-
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1529000808407104');fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1529000808407104&ev=PageView&noscript=1"/></noscript>
 
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2FEHZRBPE1"></script>
@@ -55,7 +42,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -1025,6 +1012,9 @@
       }
 
       // ── Render Loop (single rAF, no layout thrash) ──
+      let loopRunning = false;
+      let idleTimer = null;
+
       function loop() {
         // Lerp — higher on mobile for responsiveness
         const lerpSpeed = isMobile ? 0.18 : 0.14;
@@ -1049,7 +1039,17 @@
 
         updateSections(cur);
         updateDim(cur);
-        requestAnimationFrame(loop);
+
+        // Stop loop when settled (saves battery)
+        if (Math.abs(delta) > 0.0001) {
+          requestAnimationFrame(loop);
+        } else {
+          loopRunning = false;
+        }
+      }
+
+      function startLoop() {
+        if (!loopRunning) { loopRunning = true; requestAnimationFrame(loop); }
       }
 
       // ── Dim overlay — darkens when text is visible ──
@@ -1084,6 +1084,7 @@
       // ── Scroll handler ──
       function onScroll() {
         target = scrollPct();
+        startLoop();
 
         // Reset snap timer
         clearTimeout(scrollTimer);
@@ -1159,7 +1160,7 @@
         if (frames[0]) { draw(frames[0]); lastFrame = 0; }
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
-        loop();
+        startLoop();
 
         // Phase 2: Load remaining frames in background
         preloadRange(PHASE1, FRAME_COUNT);
@@ -1301,6 +1302,17 @@
 
   <!-- ElevenLabs Widget -->
   <elevenlabs-convai agent-id="agent_3901kanwqks2ep6rf1zx5b883cqt"></elevenlabs-convai>
+
+  <!-- Meta Pixel Code (moved from head for faster FCP) -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1529000808407104');fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1529000808407104&ev=PageView&noscript=1"/></noscript>
 
   <!-- PostHog -->
   <script>
