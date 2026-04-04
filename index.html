@@ -112,7 +112,7 @@
 
     .nav-logo {
       font-weight: 700;
-      font-size: 0.8125rem;
+      font-size: 1.125rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--z100);
@@ -217,7 +217,7 @@
     }
 
     .canvas-dim.active-strong {
-      background: rgba(12, 12, 14, 0.82);
+      background: rgba(12, 12, 14, 0.35);
     }
 
     /* ── Text shadow for all content ── */
@@ -425,6 +425,18 @@
        S7: CTA — right-aligned over clean office wall
        Frames 87-98% | Office: clean right wall, furniture left
        ══════════════════════════════ */
+    .s-cta::before {
+      content: '';
+      position: absolute;
+      inset: -2.5rem -3rem;
+      background: rgba(12, 12, 14, 0.6);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 1.5rem;
+      z-index: -1;
+    }
+
     .s-cta .eyebrow { justify-content: center; }
 
     /* ── Contact Form ── */
