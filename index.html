@@ -1129,8 +1129,14 @@
 
       // ── Mobile swipe-to-section (2 swipes per section — midpoints for garage tour feel) ──
       if (isMobile) {
-        // Midpoints between text sections = video-only moments
-        const MOBILE_SNAPS = [0, 0.12, 0.24, 0.34, 0.44, 0.55, 0.65, 0.76, 0.87, 0.94, 1.0];
+        // 4 swipes between each text section — slow garage walkthrough
+        const MOBILE_SNAPS = [
+          0, 0.06, 0.12, 0.18, 0.24,        // hero → section 1
+          0.29, 0.34, 0.39, 0.44,            // section 1 → section 2
+          0.49, 0.54, 0.59, 0.65,            // section 2 → section 3
+          0.71, 0.76, 0.81, 0.87,            // section 3 → contact form
+          0.91, 0.95, 1.0                     // contact form → end
+        ];
         let touchStartY = 0;
         let touchLocked = false;
         let currentSnapIndex = 0;
