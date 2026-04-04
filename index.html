@@ -1040,9 +1040,10 @@
 
       // ── Render Loop (single rAF, no layout thrash) ──
       function loop() {
-        // Lerp — 0.14 = responsive but smooth
+        // Lerp — higher on mobile for responsiveness
+        const lerpSpeed = isMobile ? 0.18 : 0.14;
         const delta = target - cur;
-        cur += delta * 0.14;
+        cur += delta * lerpSpeed;
         if (Math.abs(delta) < 0.00005) cur = target;
 
         // Frame
