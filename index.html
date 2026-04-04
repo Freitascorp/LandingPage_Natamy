@@ -690,7 +690,12 @@
   </div>
 
   <!-- Privacy link — outside parallax system so it's always clickable -->
-  <a href="/privacidade.html" id="privacyLink" style="position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); z-index:25; font-family:'Outfit',sans-serif; font-size:0.6875rem; color:#71717a; text-decoration:none; letter-spacing:0.04em; opacity:0; pointer-events:none; transition:opacity 0.5s;">Politica de Privacidade</a>
+  <!-- Footer — visible only on CTA section -->
+  <footer id="siteFooter" style="position:fixed; bottom:0; left:0; right:0; z-index:25; text-align:center; padding:1rem 1.25rem; font-family:'Outfit',sans-serif; font-size:0.6875rem; color:#3f3f46; opacity:0; pointer-events:none; transition:opacity 0.5s;">
+    <span>&copy; 2025 Natamy Oliveira — Marketing Digital e Automação de Negócio. Todos os direitos reservados.</span>
+    <br>
+    <a href="/privacidade.html" style="color:#71717a; text-decoration:none; pointer-events:auto;">Política de Privacidade</a>
+  </footer>
 
   <!-- ═══════════ CANVAS ═══════════ -->
   <div class="scroll-container">
@@ -932,11 +937,11 @@
           lastDim = cls;
         }
 
-        // Show privacy link only when CTA is visible
-        const pl = document.getElementById('privacyLink');
-        if (pl) {
-          pl.style.opacity = ctaActive ? '1' : '0';
-          pl.style.pointerEvents = ctaActive ? 'auto' : 'none';
+        // Show footer only when CTA is visible
+        const ft = document.getElementById('siteFooter');
+        if (ft) {
+          ft.style.opacity = ctaActive ? '1' : '0';
+          ft.style.pointerEvents = ctaActive ? 'auto' : 'none';
         }
       }
 
