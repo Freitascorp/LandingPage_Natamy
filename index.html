@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natamy Oliveira — Marketing Digital para Stands</title>
+  <meta name="description" content="Marketing Digital para Stands e Automacao de Negocio. Especialista em gestao de trafego pago e automacao de processos para stands automoveis em Portugal.">
+  <meta property="og:title" content="Natamy Oliveira - Marketing Digital para Stands">
+  <meta property="og:description" content="Especialista em gestao de trafego pago e automacao com IA para stands automoveis em Portugal.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://natamyoliveira.com/">
+  <meta property="og:site_name" content="Natamy Oliveira">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://natamyoliveira.com/">
+  <meta property="twitter:title" content="Natamy Oliveira - Marketing Digital para Stands">
+  <meta property="twitter:description" content="Marketing Digital para Stands e Automacao de Negocio. Especialista em gestao de trafego pago e automacao de processos para stands automoveis em Portugal.">
+  <meta name="theme-color" content="#0c0c0e">
+  <meta name="google" content="notranslate">
+  <meta name="facebook-domain-verification" content="xymxjt7r2koieh6tms9i1063ee1z8d">
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1529000808407104');fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1529000808407104&ev=PageView&noscript=1"/></noscript>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2FEHZRBPE1"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2FEHZRBPE1');</script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WB4WM82H');</script>
+
+  <!-- ElevenLabs Convai Widget -->
+  <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --z950: #0c0c0e;
+      --z900: #18181b;
+      --z800: #27272a;
+      --z700: #3f3f46;
+      --z500: #71717a;
+      --z400: #a1a1aa;
+      --z300: #d4d4d8;
+      --z100: #f4f4f5;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(12, 12, 14, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --glass-inner: rgba(255, 255, 255, 0.04);
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--z950);
+      color: var(--z100);
+      overflow-x: hidden;
+    }
+
+    .scroll-container { position: relative; height: 800vh; }
+
+    .canvas-viewport {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      background: var(--z950);
+    }
+
+    canvas#videoCanvas { display: block; width: 100%; height: 100%; }
+
+    /* ── Nav ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      mix-blend-mode: difference;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--z100);
+    }
+
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--z400);
+      text-decoration: none;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-links a:hover { color: var(--z100); }
+
+    /* ── Progress ── */
+    .progress-track {
+      position: fixed;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2px;
+      height: 22vh;
+      background: rgba(255,255,255,0.04);
+      border-radius: 1px;
+      z-index: 40;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 100%;
+      height: 0%;
+      background: var(--accent);
+      border-radius: 1px;
+      will-change: height;
+    }
+
+    /* ── Scroll Hint ── */
+    .scroll-hint {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-hint.hidden { opacity: 0; pointer-events: none; }
+
+    .scroll-hint span {
+      font-size: 0.625rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--z500);
+    }
+
+    .scroll-hint-line {
+      width: 1px;
+      height: 2.5rem;
+      background: var(--z700);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; transform: scaleY(0.5); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ═══════════════════════════════════
+       PARALLAX SECTIONS — Frame-Aware
+       ═══════════════════════════════════ */
+    .px {
+      position: fixed;
+      z-index: 20;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    .px > * { will-change: transform, opacity; }
+
+    /* ── Dim overlay — animated by JS based on active section ── */
+    .canvas-dim {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(12, 12, 14, 0);
+      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .canvas-dim.active {
+      background: rgba(12, 12, 14, 0.55);
+    }
+
+    .canvas-dim.active-strong {
+      background: rgba(12, 12, 14, 0.82);
+    }
+
+    /* ── Text shadow for all content ── */
+    .px h1, .px h2, .px blockquote, .px p, .px .sub, .px .num, .px .eyebrow, .px .credit, .px .tag {
+      text-shadow:
+        0 2px 8px rgba(0,0,0,0.6),
+        0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    /* ── Shared Type — bigger for readability ── */
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 1.5rem;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .num {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--z700);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--z300);
+    }
+
+    .tag-row .tag::before {
+      content: '/';
+      margin-right: 0.25rem;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* ════════════════════════════════════════
+       TASTE-SKILL TYPOGRAPHIC SYSTEM
+       H1: clamp(2.5rem, 5vw, 4rem) — 800
+       H2: clamp(2rem, 4vw, 3rem) — 700
+       Body: 1rem / 1.625 — 300
+       Label: 0.8125rem — 500
+       ════════════════════════════════════════ */
+
+    /* ── Centered section base (all sections except hero) ── */
+    .s-b1, .s-b2, .s-b3, .s-about, .s-cta {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(88vw, 36rem);
+      text-align: center;
+    }
+
+    /* ── H2 — uniform across all sections ── */
+    .px h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--z100);
+    }
+
+    /* ── Body — uniform across all sections ── */
+    .px p, .px blockquote {
+      margin-top: 1.25rem;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.625;
+      color: var(--z300);
+      font-style: normal;
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .px blockquote strong {
+      color: var(--z100);
+      font-weight: 600;
+    }
+
+    /* ── Hero — left-aligned, vertically centered ── */
+    .s-hero {
+      top: 50%;
+      left: 5vw;
+      transform: translateY(-50%);
+      max-width: 38rem;
+      text-align: left;
+    }
+
+    .s-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--z100);
+    }
+
+    .s-hero h1 span {
+      display: block;
+      font-weight: 300;
+      font-size: 0.55em;
+      letter-spacing: -0.01em;
+      color: var(--z400);
+      margin-top: 0.35em;
+    }
+
+    .s-hero .sub {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--z300);
+      line-height: 1.625;
+      max-width: 38ch;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    /* ── About divider ── */
+    .s-about .divider {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ── Credit line ── */
+    .px .credit {
+      margin-top: 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--z500);
+      letter-spacing: 0.04em;
+    }
+
+    .s-b3 p {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--z300);
+      max-width: 36ch;
+    }
+
+    /* ══════════════════════════════
+       S6: Marquee — kinetic text strip
+       Frames 75-82% | Car close-up, don't compete
+       ══════════════════════════════ */
+    .s-marquee {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      background: rgba(12, 12, 14, 0.5);
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 4rem;
+      white-space: nowrap;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee-track span {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--z500);
+    }
+
+    .marquee-track .dot {
+      color: var(--accent);
+      font-size: 0.5rem;
+      vertical-align: middle;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ══════════════════════════════
+       S7: CTA — right-aligned over clean office wall
+       Frames 87-98% | Office: clean right wall, furniture left
+       ══════════════════════════════ */
+    .s-cta .eyebrow { justify-content: center; }
+
+    /* ── Contact Form ── */
+    .cta-form {
+      pointer-events: auto;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      max-width: 22rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-form input,
+    .cta-form textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1rem 0;
+      color: var(--z100);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      resize: none;
+    }
+
+    .cta-form input::placeholder,
+    .cta-form textarea::placeholder {
+      color: var(--z500);
+      font-weight: 300;
+    }
+
+    .cta-form input:focus,
+    .cta-form textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .cta-form .cta-btn {
+      margin-top: 2rem;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: var(--accent);
+      color: var(--z950);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-form .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.3);
+    }
+
+    .cta-form .cta-btn:active { transform: translateY(0) scale(0.98); }
+
+    .cta-form .cta-btn svg {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-form .cta-btn:hover svg { transform: translateX(3px); }
+
+    .cta-form .cta-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .form-toast {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      min-height: 1.25rem;
+      text-align: center;
+    }
+
+    .s-cta .social-row {
+      margin-top: 1.25rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      pointer-events: auto;
+    }
+
+    .s-cta .social-row a {
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--z500);
+      text-decoration: none;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .s-cta .social-row a:hover { color: var(--z100); }
+
+    /* ── Grain (perf-safe: fixed, pointer-events-none) ── */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* ── Loader ── */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: var(--z950);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .loader.done { opacity: 0; pointer-events: none; }
+
+    .loader-bar-track {
+      width: min(260px, 55vw);
+      height: 2px;
+      background: var(--z800);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+
+    .loader-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: width 0.12s linear;
+    }
+
+    .loader-text {
+      font-size: 0.625rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--z700);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .progress-track { right: 0.75rem; height: 16vh; }
+
+      .s-hero {
+        left: 1.25rem;
+        right: 1.25rem;
+        max-width: 100%;
+        transform: translateY(-50%);
+      }
+
+      .s-hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+
+      .s-b1, .s-b2, .s-b3, .s-about, .s-cta {
+        width: calc(100vw - 2.5rem);
+      }
+
+      .px h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+      .px p, .px blockquote { font-size: 0.9375rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill" id="loaderFill"></div>
+    </div>
+    <div class="loader-text" id="loaderText">A carregar</div>
+  </div>
+
+  <div class="grain"></div>
+  <div class="canvas-dim active" id="canvasDim"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-logo">Natamy Oliveira</div>
+  </nav>
+
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span>Deslize para explorar</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PARALLAX SECTIONS — Placed in frame negative space
+       ═══════════════════════════════════════════ -->
+
+  <!-- S1: HERO | 0-16% | Showroom entrance -->
+  <div class="px s-hero" id="s1" data-in="-1" data-peak="-1" data-out="0.16" data-dir="left">
+    <h1>O Seu Stand<br>Merece Lotar<span>Nos trazemos quem compra.</span></h1>
+    <p class="sub">Trafego pago, automacao com IA e funis de venda feitos a medida para stands automoveis em Portugal. Sem curiosos. So compradores.</p>
+  </div>
+
+  <!-- S2: Benefit 01 | 22-35% | Centered over lobby -->
+  <div class="px s-b1" id="s2" data-in="0.21" data-peak="0.24" data-out="0.35" data-dir="bottom">
+
+    <h2>Chega de Curiosos<br>no WhatsApp</h2>
+    <p>Gasta horas a responder a quem so quer saber o preco? A nossa IA qualifica cada contacto antes de chegar a sua equipa. So fala com quem quer mesmo comprar.</p>
+  </div>
+
+  <!-- S3: Benefit 02 | 42-56% | Centered over reception desk -->
+  <div class="px s-about" id="s3" data-in="0.41" data-peak="0.44" data-out="0.56" data-dir="scale">
+    <div class="divider"></div>
+    <h2>A Sua Equipa Vende.<br>A IA Faz o Resto.</h2>
+    <blockquote>
+      Horarios, localizacao, stock, condicoes de financiamento — a IA responde a tudo, 24 horas por dia, 7 dias por semana. Os seus vendedores so recebem clientes prontos para assinar.
+    </blockquote>
+  </div>
+
+  <!-- S5: Benefit 03 | 63-72% | Bottom-left -->
+  <div class="px s-b3" id="s5" data-in="0.62" data-peak="0.65" data-out="0.76" data-dir="bottom">
+
+    <h2>Acabe com o<br>Mes Bom, Mes Mau</h2>
+    <p>Cada lead recebe follow-up automatico ate dar resposta. Sem depender da sorte ou da memoria dos vendedores. Fluxo constante de visitas, propostas e viaturas entregues.</p>
+  </div>
+
+  <!-- S6: CTA | 87-98% | Right-aligned over office -->
+  <div class="px s-cta" id="s7" data-in="0.84" data-peak="0.87" data-out="1.01" data-dir="bottom">
+    <div class="eyebrow">Proximo Passo</div>
+    <h2>Quantos Carros<br>Quer Vender Este Mes?</h2>
+    <form id="contactForm" class="cta-form">
+      <input type="text" name="name" placeholder="Nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="phone" placeholder="Telefone" required>
+      <textarea name="message" placeholder="Como podemos ajudar o seu stand?" rows="3" required></textarea>
+      <button type="submit" class="cta-btn">
+        Enviar Mensagem
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </button>
+    </form>
+    <div id="formToast" class="form-toast"></div>
+  </div>
+
+  <!-- ═══════════ CANVAS ═══════════ -->
+  <div class="scroll-container">
+    <div class="canvas-viewport">
+      <canvas id="videoCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const canvas       = document.getElementById('videoCanvas');
+      const ctx          = canvas.getContext('2d', { alpha: false, desynchronized: true });
+      const loader       = document.getElementById('loader');
+      const loaderFill   = document.getElementById('loaderFill');
+      const loaderText   = document.getElementById('loaderText');
+      const progressFill = document.getElementById('progressFill');
+      const scrollHint   = document.getElementById('scrollHint');
+
+      const TOTAL = 361;
+      const frames = new Array(TOTAL);
+      const sections = document.querySelectorAll('.px');
+
+      // ── Snap Points (scroll progress %) ──
+      const SNAPS = [0, 0.24, 0.44, 0.65, 0.87, 1.0];
+      const SNAP_IDLE_MS  = 800;   // wait before snapping
+      const SNAP_THRESH   = 0.06;  // how close to trigger snap
+
+      let cur = 0, target = 0, lastFrame = -1;
+      let scrollTimer = null;
+      let isSnapping = false;
+      let cw = 0, ch = 0;  // cached dimensions
+
+      function framePath(i) {
+        return 'frames/frame_' + String(i + 1).padStart(4, '0') + '.jpg';
+      }
+
+      // ── Canvas (cache dimensions, avoid layout reads in loop) ──
+      function resize() {
+        cw = innerWidth;
+        ch = innerHeight;
+        const dpr = Math.min(devicePixelRatio || 1, 2);
+        canvas.width = cw * dpr;
+        canvas.height = ch * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        canvas.style.width = cw + 'px';
+        canvas.style.height = ch + 'px';
+        if (lastFrame >= 0 && frames[lastFrame]) draw(frames[lastFrame]);
+      }
+
+      function draw(img) {
+        const s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+        const w = img.naturalWidth * s, h = img.naturalHeight * s;
+        ctx.drawImage(img, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
+      }
+
+      // ── Scroll (cache maxScroll on resize) ──
+      let maxScroll = 1;
+      function updateMaxScroll() {
+        maxScroll = document.documentElement.scrollHeight - ch;
+        if (maxScroll < 1) maxScroll = 1;
+      }
+
+      function scrollPct() {
+        return Math.max(0, Math.min(1, scrollY / maxScroll));
+      }
+
+      // ── Easing ──
+      function easeOut(t) { return 1 - (1 - t) * (1 - t) * (1 - t); }
+      function easeIn(t)  { return t * t * t; }
+
+      // ── Find nearest snap point ──
+      function nearestSnap(p) {
+        let best = SNAPS[0], bestDist = Math.abs(p - SNAPS[0]);
+        for (let i = 1; i < SNAPS.length; i++) {
+          const d = Math.abs(p - SNAPS[i]);
+          if (d < bestDist) { best = SNAPS[i]; bestDist = d; }
+        }
+        return bestDist < SNAP_THRESH ? best : null;
+      }
+
+      // ── Smooth snap (JS-driven, no scroll-behavior CSS) ──
+      function smoothSnapTo(targetPct) {
+        if (isSnapping) return;
+        const targetScroll = targetPct * maxScroll;
+        const startScroll = scrollY;
+        const dist = targetScroll - startScroll;
+        if (Math.abs(dist) < 2) return;
+
+        isSnapping = true;
+        const duration = Math.min(600, Math.max(300, Math.abs(dist) * 0.4));
+        const startTime = performance.now();
+
+        function step(now) {
+          const elapsed = now - startTime;
+          const t = Math.min(1, elapsed / duration);
+          // ease-in-out cubic
+          const ease = t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) * 0.5;
+
+          window.scrollTo(0, startScroll + dist * ease);
+
+          if (t < 1) {
+            requestAnimationFrame(step);
+          } else {
+            isSnapping = false;
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      // ── Scroll idle detection → snap ──
+      function onScrollIdle() {
+        if (isSnapping) return;
+        const p = scrollPct();
+        const snap = nearestSnap(p);
+        if (snap !== null && Math.abs(p - snap) > 0.003) {
+          smoothSnapTo(snap);
+        }
+      }
+
+      // ── Section Parallax Engine ──
+      function updateSections(p) {
+        for (let s = 0; s < sections.length; s++) {
+          const el  = sections[s];
+          const inP  = +el.dataset.in;
+          const peak = +el.dataset.peak;
+          const outP = +el.dataset.out;
+          const dir  = el.dataset.dir;
+          const EXIT = 0.035;
+
+          let opacity = 0, tx = 0, ty = 0, sc = 1;
+
+          if (p >= inP && p < peak) {
+            const t = easeOut((p - inP) / (peak - inP));
+            opacity = t;
+            if      (dir === 'left')   tx = -50 * (1 - t);
+            else if (dir === 'right')  tx = 50 * (1 - t);
+            else if (dir === 'bottom') ty = 35 * (1 - t);
+            else if (dir === 'scale')  sc = 0.92 + 0.08 * t;
+          }
+          else if (p >= peak && p < outP) {
+            opacity = 1;
+            const drift = (p - peak) / (outP - peak);
+            if (dir === 'scale') sc = 1 + 0.02 * drift;
+            else ty = -6 * drift;
+          }
+          else if (p >= outP && p < outP + EXIT) {
+            const t = easeIn((p - outP) / EXIT);
+            opacity = 1 - t;
+            if      (dir === 'left')   tx = -25 * t;
+            else if (dir === 'right')  tx = 25 * t;
+            else if (dir === 'bottom') ty = -18 * t;
+            else if (dir === 'scale')  sc = 1 - 0.06 * t;
+          }
+
+          // Build transform — detect centered vs. positioned sections
+          const isCentered = el.classList.contains('s-b1') ||
+                             el.classList.contains('s-b2') ||
+                             el.classList.contains('s-b3') ||
+                             el.classList.contains('s-cta');
+          const isAbout = el.classList.contains('s-about');
+          const isHero = el.classList.contains('s-hero');
+
+          let transform;
+          if (isAbout) {
+            transform = `translateX(-50%) scale(${sc})`;
+          } else if (isCentered) {
+            transform = `translate(-50%, calc(-50% + ${ty}px))`;
+          } else if (isHero) {
+            transform = `translateY(calc(-50% + ${ty}px)) translateX(${tx}px)`;
+          } else {
+            transform = `translate3d(${tx}px, ${ty}px, 0)`;
+          }
+
+          el.style.cssText = `opacity:${opacity};transform:${transform};`;
+
+          // Stagger children
+          const kids = el.children;
+          for (let i = 0; i < kids.length; i++) {
+            const delay = i * 0.08;
+            const cT = opacity > 0
+              ? Math.max(0, Math.min(1, (opacity - delay) / Math.max(0.01, 1 - delay)))
+              : 0;
+            kids[i].style.cssText = `opacity:${cT};transform:translate3d(0,${(1 - cT) * 10}px,0);`;
+          }
+        }
+      }
+
+      // ── Render Loop (single rAF, no layout thrash) ──
+      function loop() {
+        // Lerp — 0.14 = responsive but smooth
+        const delta = target - cur;
+        cur += delta * 0.14;
+        if (Math.abs(delta) < 0.00005) cur = target;
+
+        // Frame
+        const fi = Math.min((cur * (TOTAL - 1) + 0.5) | 0, TOTAL - 1);
+        if (fi !== lastFrame && frames[fi]) {
+          draw(frames[fi]);
+          lastFrame = fi;
+        }
+
+        // UI (batched writes, no reads)
+        progressFill.style.height = (cur * 100) + '%';
+        if (cur > 0.03) {
+          if (!scrollHint.classList.contains('hidden')) scrollHint.classList.add('hidden');
+        } else {
+          if (scrollHint.classList.contains('hidden')) scrollHint.classList.remove('hidden');
+        }
+
+        updateSections(cur);
+        updateDim(cur);
+        requestAnimationFrame(loop);
+      }
+
+      // ── Dim overlay — darkens when text is visible ──
+      const dimEl = document.getElementById('canvasDim');
+      let lastDim = '';
+
+      function updateDim(p) {
+        let cls = '';
+        // Sections where text is visible — dim the background
+        const heroActive   = p >= 0.0  && p < 0.18;
+        const b1Active     = p >= 0.21 && p < 0.37;
+        const aboutActive  = p >= 0.41 && p < 0.58;
+        const b3Active     = p >= 0.62 && p < 0.78;
+        const ctaActive    = p >= 0.84;
+
+        if (ctaActive) cls = 'active-strong';
+        else if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
+
+        if (cls !== lastDim) {
+          dimEl.classList.remove('active', 'active-strong');
+          if (cls) dimEl.classList.add(cls);
+          lastDim = cls;
+        }
+      }
+
+      // ── Scroll handler ──
+      function onScroll() {
+        target = scrollPct();
+
+        // Reset snap timer
+        clearTimeout(scrollTimer);
+        if (!isSnapping) {
+          scrollTimer = setTimeout(onScrollIdle, SNAP_IDLE_MS);
+        }
+      }
+
+      // ── Preload ──
+      function preload() {
+        return new Promise(resolve => {
+          let loaded = 0, next = 0;
+          const C = 12;
+
+          function go() {
+            if (next >= TOTAL) return;
+            const i = next++;
+            const img = new Image();
+            img.decode
+              ? (img.src = framePath(i),
+                 img.decode().then(() => {
+                   frames[i] = img;
+                   done();
+                 }).catch(done))
+              : (img.onload = () => { frames[i] = img; done(); },
+                 img.onerror = done,
+                 img.src = framePath(i));
+
+            function done() {
+              loaded++;
+              loaderFill.style.width = ((loaded / TOTAL * 100) | 0) + '%';
+              loaderText.textContent = ((loaded / TOTAL * 100) | 0) + '%';
+              loaded === TOTAL ? resolve() : go();
+            }
+          }
+
+          for (let c = 0; c < C; c++) go();
+        });
+      }
+
+      // ── Init ──
+      async function init() {
+        resize();
+        updateMaxScroll();
+        addEventListener('resize', () => { resize(); updateMaxScroll(); }, { passive: true });
+        sections.forEach(el => {
+          if (el.classList.contains('s-hero')) {
+            el.style.opacity = '1';
+            // Children also visible immediately
+            for (let i = 0; i < el.children.length; i++) {
+              el.children[i].style.opacity = '1';
+              el.children[i].style.transform = 'none';
+            }
+          } else {
+            el.style.opacity = '0';
+          }
+        });
+
+        await preload();
+        loaderFill.style.width = '100%';
+        loaderText.textContent = 'Pronto';
+        await new Promise(r => setTimeout(r, 250));
+        loader.classList.add('done');
+
+        if (frames[0]) { draw(frames[0]); lastFrame = 0; }
+        addEventListener('scroll', onScroll, { passive: true });
+        target = cur = scrollPct();
+        loop();
+      }
+
+      init();
+    })();
+
+    // ── EmailJS Contact Form ──
+    (function() {
+      const SERVICE  = 'service_natamy';
+      const TEMPLATE = 'template_natamy';
+      const KEY      = 'YOUR_EMAILJS_PUBLIC_KEY';
+
+      const form = document.getElementById('contactForm');
+      const toast = document.getElementById('formToast');
+
+      if (!form) return;
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'A enviar...';
+        toast.textContent = '';
+        toast.style.color = '';
+
+        const params = {
+          from_name: form.name.value,
+          from_email: form.email.value,
+          phone: form.phone.value,
+          message: form.message.value,
+          to_email: 'natamy.oliveira13@gmail.com',
+          reply_to: form.email.value
+        };
+
+        try {
+          await emailjs.send(SERVICE, TEMPLATE, params, KEY);
+          toast.textContent = 'Mensagem enviada com sucesso!';
+          toast.style.color = '#10b981';
+          form.reset();
+        } catch (err) {
+          toast.textContent = 'Erro ao enviar. Tente novamente.';
+          toast.style.color = '#ef4444';
+          console.error('EmailJS error:', err);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = 'Enviar Mensagem <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
+        }
+      });
+    })();
+  </script>
+  <!-- GTM noscript -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ElevenLabs Widget -->
+  <elevenlabs-convai agent-id="agent_3901kanwqks2ep6rf1zx5b883cqt"></elevenlabs-convai>
+
+  <!-- PostHog -->
+  <script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?(u=e[a]=[]):a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE',{api_host:'https://us.i.posthog.com',person_profiles:'identified_only'});
+  </script>
+</body>
+</html>
