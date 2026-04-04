@@ -1,5 +1,7 @@
 [build]
+  base = "."
   publish = "."
+  command = "echo done"
 
 [[redirects]]
   from = "/*"
