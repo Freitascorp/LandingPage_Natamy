@@ -821,7 +821,7 @@
       const scrollHint   = document.getElementById('scrollHint');
 
       const isMobile = innerWidth <= 768;
-      const STEP = isMobile ? 5 : 1;  // every 5th frame on mobile (~73 frames, ~2MB)
+      const STEP = isMobile ? 3 : 1;  // every 3rd frame on mobile (~121 frames, smooth)
       const TOTAL = 361;
       const FRAME_COUNT = isMobile ? Math.ceil(TOTAL / STEP) : TOTAL;
       const frames = new Array(FRAME_COUNT);
@@ -1083,7 +1083,7 @@
       }
 
       // ── Preload (phased) ──
-      const PHASE1 = isMobile ? 10 : 20; // Show page after first batch
+      const PHASE1 = isMobile ? 15 : 20; // Show page after first batch
       function preloadRange(start, end) {
         return new Promise(resolve => {
           let loaded = 0, next = start;
