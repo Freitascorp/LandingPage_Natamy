@@ -2,6 +2,7 @@
   base = "."
   command = "echo 'Static site'"
   publish = "."
+  functions = "functions"
 
 [[redirects]]
   from = "/*"
