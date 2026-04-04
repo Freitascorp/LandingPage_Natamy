@@ -705,7 +705,6 @@
 
   <!-- S6: CTA | 87-98% | Right-aligned over office -->
   <div class="px s-cta" id="s7" data-in="0.84" data-peak="0.87" data-out="1.01" data-dir="bottom">
-    <div class="eyebrow">Próximo Passo</div>
     <h2>Quantos Carros<br>Quer Vender Este Mês?</h2>
     <form id="contactForm" class="cta-form">
       <input type="text" name="name" placeholder="Nome" required>
@@ -779,9 +778,13 @@
       }
 
       function draw(img) {
-        const s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
-        const w = img.naturalWidth * s, h = img.naturalHeight * s;
-        ctx.drawImage(img, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
+        // Crop bottom 4% to hide KlingAI watermark
+        const crop = 0.04;
+        const srcH = img.naturalHeight * (1 - crop);
+        const s = Math.max(cw / img.naturalWidth, ch / srcH);
+        const w = img.naturalWidth * s, h = srcH * s;
+        // Draw only the cropped source region
+        ctx.drawImage(img, 0, 0, img.naturalWidth, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
       }
 
       // ── Scroll (cache maxScroll on resize) ──
