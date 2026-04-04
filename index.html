@@ -890,7 +890,7 @@
         return bestDist < SNAP_THRESH ? best : null;
       }
 
-      // ── Smooth snap (JS-driven, no scroll-behavior CSS) ──
+      // ── Smooth snap (Apple-style spring deceleration) ──
       function smoothSnapTo(targetPct) {
         if (isSnapping) return;
         const targetScroll = targetPct * maxScroll;
@@ -899,16 +899,17 @@
         if (Math.abs(dist) < 2) return;
 
         isSnapping = true;
-        const duration = Math.min(600, Math.max(300, Math.abs(dist) * 0.4));
+        // Longer duration for that Apple buttery feel
+        const duration = isMobile
+          ? Math.min(900, Math.max(500, Math.abs(dist) * 0.6))
+          : Math.min(600, Math.max(300, Math.abs(dist) * 0.4));
         const startTime = performance.now();
 
         function step(now) {
           const elapsed = now - startTime;
           const t = Math.min(1, elapsed / duration);
-          // ease-in-out cubic
-          const ease = t < 0.5
-            ? 4 * t * t * t
-            : 1 - Math.pow(-2 * t + 2, 3) * 0.5;
+          // Apple-style ease: fast start, long gentle deceleration
+          const ease = 1 - Math.pow(1 - t, 4);
 
           window.scrollTo(0, startScroll + dist * ease);
 
@@ -1006,7 +1007,7 @@
 
       function loop() {
         // Lerp — higher on mobile for responsiveness
-        const lerpSpeed = isMobile ? 0.18 : 0.14;
+        const lerpSpeed = isMobile ? 0.10 : 0.14;
         const delta = target - cur;
         cur += delta * lerpSpeed;
         if (Math.abs(delta) < 0.00005) cur = target;
