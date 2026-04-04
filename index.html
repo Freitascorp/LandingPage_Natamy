@@ -859,10 +859,7 @@
         // Crop bottom 7% to hide KlingAI watermark
         const crop = 0.07;
         const srcH = img.naturalHeight * (1 - crop);
-        // Mobile: fit width (show full scene), Desktop: cover (fill screen)
-        const s = isMobile
-          ? cw / img.naturalWidth  // fit to width — shows full showroom
-          : Math.max(cw / img.naturalWidth, ch / srcH);  // cover
+        const s = Math.max(cw / img.naturalWidth, ch / srcH);
         const w = img.naturalWidth * s, h = srcH * s;
         // Center vertically (on mobile, image won't fill height — gradient bg fills gap)
         ctx.drawImage(img, 0, 0, img.naturalWidth, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
