@@ -42,7 +42,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
@@ -60,6 +60,15 @@
       --z300: #d4d4d8;
       --z100: #f4f4f5;
       --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(12, 12, 14, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --glass-inner: rgba(255, 255, 255, 0.04);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
@@ -68,12 +77,13 @@
       color: var(--z300);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Nav */
+    /* ── Nav ── */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -82,8 +92,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem 2rem;
-      background: var(--z950);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(12, 12, 14, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-logo {
@@ -111,101 +123,297 @@
 
     .nav-links a:hover { color: var(--z100); text-decoration: none; }
 
-    /* Container */
-    .container {
-      max-width: 42rem;
+    /* ── Hamburger & Mobile Menu ── */
+    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
+    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+
+    /* ── Hero Section ── */
+    .hero {
+      position: relative;
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #f4f4f5 0%, #10b981 50%, #f4f4f5 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% center; }
+      50% { background-position: 200% center; }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--z400);
+      max-width: 32rem;
       margin: 0 auto;
-      padding: 4rem 1.5rem;
-      padding-top: 6rem;
+      letter-spacing: -0.01em;
     }
 
-    .back { display: inline-block; margin-bottom: 2rem; font-size: 0.875rem; color: var(--z500); }
-    .back:hover { color: var(--z100); text-decoration: none; }
+    /* ── Main Content ── */
+    .contact-section {
+      position: relative;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
+    /* ── Left Column ── */
+    .contact-info {
+      padding-top: 1rem;
+    }
+
+    .contact-info h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--z100);
-      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
     }
 
-    .intro {
+    .contact-info p {
       font-size: 1rem;
       font-weight: 300;
-      margin-bottom: 2.5rem;
-      max-width: 32rem;
+      color: var(--z400);
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
     }
 
-    p { margin-bottom: 1rem; font-size: 0.9375rem; font-weight: 300; }
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
 
-    /* Form */
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .info-card:hover {
+      border-color: rgba(16, 185, 129, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .info-card-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-dim);
+      border-radius: 10px;
+      color: var(--accent);
+    }
+
+    .info-card-text h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--z100);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-card-text p {
+      font-size: 0.8125rem;
+      font-weight: 300;
+      color: var(--z500);
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .info-card-text a {
+      font-size: 0.8125rem;
+      font-weight: 400;
+    }
+
+    /* ── Right Column — Glassmorphism Form Card ── */
+    .form-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+        0 24px 48px -12px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+      z-index: 1;
+    }
+
+    .form-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at top center, rgba(16, 185, 129, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .form-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-card h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Form Inputs ── */
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      width: 100%;
-      max-width: 28rem;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--z500);
+      margin-bottom: 0.5rem;
     }
 
     .contact-form input,
     .contact-form textarea {
       width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 1rem 0;
+      min-height: 48px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
       color: var(--z100);
       font-family: 'Outfit', sans-serif;
       font-size: 0.9375rem;
       font-weight: 400;
       outline: none;
-      transition: border-color 0.3s ease;
-      resize: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     }
 
     .contact-form input::placeholder,
     .contact-form textarea::placeholder {
-      color: var(--z500);
-      font-weight: 400;
+      color: var(--z700);
+      font-weight: 300;
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
-      border-bottom-color: var(--accent);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+      background: rgba(255, 255, 255, 0.07);
     }
 
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* ── Submit Button ── */
     .submit-btn {
-      margin-top: 2rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.625rem;
       width: 100%;
-      padding: 1rem 2rem;
+      min-height: 48px;
+      padding: 0.875rem 2rem;
+      margin-top: 0.5rem;
       background: var(--accent);
       color: var(--z950);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       font-weight: 600;
       letter-spacing: 0.02em;
       border: none;
-      border-radius: 9999px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     }
 
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.35);
+      background: #0fd996;
     }
 
     .submit-btn:active { transform: translateY(0) scale(0.98); }
 
-    .submit-btn svg {
-      transition: transform 0.3s ease;
-    }
-
+    .submit-btn svg { transition: transform 0.3s ease; }
     .submit-btn:hover svg { transform: translateX(3px); }
 
     .submit-btn:disabled {
@@ -215,38 +423,86 @@
       box-shadow: none;
     }
 
-    .form-toast {
-      margin-top: 1rem;
-      font-size: 0.8125rem;
-      font-weight: 400;
-      min-height: 1.25rem;
-    }
-
-    /* Direct contact */
-    .direct-contact {
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .direct-contact p {
+    /* ── Toast Notifications ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(18, 18, 22, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5);
+      font-family: 'Outfit', sans-serif;
       font-size: 0.875rem;
-      color: var(--z500);
-      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--z100);
+      white-space: nowrap;
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+      pointer-events: none;
     }
 
-    .direct-contact a {
-      font-size: 0.9375rem;
-      font-weight: 400;
+    .toast.toast-visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
     }
 
-    /* Footer */
+    .toast-success {
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+
+    .toast-success::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .toast-error {
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .toast-error::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Fade-in Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ── Footer ── */
     .footer {
       text-align: center;
       padding: 3rem 1.5rem 2rem;
       font-size: 0.6875rem;
-      color: var(--z300);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--z500);
+      border-top: 1px solid var(--glass-border);
     }
 
     .footer a {
@@ -256,26 +512,53 @@
 
     .footer a:hover { color: var(--z100); }
 
-    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
-    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.active span:nth-child(2) { opacity:0; }
-    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
-    .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 2rem 1.5rem 4rem;
+      }
 
-    /* Mobile */
+      .hero {
+        padding: 8rem 1.5rem 2rem;
+      }
+    }
+
     @media (max-width: 640px) {
       .nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 0.6875rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      h1 { font-size: 2rem; }
-      .container { padding-top: 5rem; }
-      .contact-form { max-width: 100%; }
+
+      .hero {
+        padding: 7rem 1.25rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.9375rem;
+      }
+
+      .contact-section {
+        padding: 1.5rem 1.25rem 3rem;
+        gap: 2.5rem;
+      }
+
+      .form-card {
+        padding: 1.75rem 1.25rem;
+        border-radius: 16px;
+      }
+
+      .submit-btn {
+        width: 100%;
+      }
+
+      .info-card {
+        padding: 1rem 1.25rem;
+      }
     }
   </style>
 </head>
@@ -295,29 +578,88 @@
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <div class="container">
-    <a href="/" class="back">&larr; Voltar ao site</a>
-
-    <h1>Vamos Conversar?</h1>
-    <p class="intro">Quer saber como o trafego pago e a automacao com IA podem transformar o seu stand? Preencha o formulario e respondo em 24 horas.</p>
-
-    <form id="contactForm" class="contact-form">
-      <input type="text" name="name" placeholder="Nome" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="tel" name="phone" placeholder="Telefone" required>
-      <textarea name="message" placeholder="Como posso ajudar o seu stand?" rows="4" required></textarea>
-      <button type="submit" class="submit-btn">
-        Enviar Mensagem
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </form>
-    <div id="formToast" class="form-toast"></div>
-
-    <div class="direct-contact">
-      <p>Ou contacte directamente:</p>
-      <a href="mailto:natamy.oliveira13@gmail.com">natamy.oliveira13@gmail.com</a>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="fade-in">Vamos Conversar?</h1>
+      <p class="hero-subtitle fade-in fade-in-delay-1">Quer saber como o trafego pago e a automacao com IA podem transformar o seu stand? Estou aqui para ajudar.</p>
     </div>
-  </div>
+  </section>
+
+  <!-- Contact Section: Two Columns -->
+  <section class="contact-section">
+
+    <!-- Left Column: Info -->
+    <div class="contact-info fade-in fade-in-delay-1">
+      <h2>O que esperar</h2>
+      <p>Preencha o formulario ao lado e vou entrar em contacto consigo para perceber as necessidades do seu negocio. Sem compromisso, sem pressao.</p>
+
+      <div class="info-cards">
+        <div class="info-card fade-in fade-in-delay-2">
+          <div class="info-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="info-card-text">
+            <h3>Resposta rapida</h3>
+            <p>Respondo a todas as mensagens em menos de 24 horas.</p>
+          </div>
+        </div>
+
+        <div class="info-card fade-in fade-in-delay-3">
+          <div class="info-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="info-card-text">
+            <h3>Email directo</h3>
+            <a href="mailto:natamy.oliveira13@gmail.com">natamy.oliveira13@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-card fade-in fade-in-delay-4">
+          <div class="info-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="info-card-text">
+            <h3>Consulta gratuita</h3>
+            <p>Primeira conversa sem custos para avaliar como posso ajudar o seu stand.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Form Card -->
+    <div class="form-card fade-in fade-in-delay-2">
+      <div class="form-card-inner">
+        <h2>Envie a sua mensagem</h2>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="field-name">Nome</label>
+            <input type="text" id="field-name" name="name" placeholder="O seu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="field-email">Email</label>
+            <input type="email" id="field-email" name="email" placeholder="exemplo@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="field-phone">Telefone</label>
+            <input type="tel" id="field-phone" name="phone" placeholder="+351 000 000 000" required>
+          </div>
+          <div class="form-group">
+            <label for="field-message">Mensagem</label>
+            <textarea id="field-message" name="message" placeholder="Como posso ajudar o seu stand?" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            Enviar Mensagem
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Toast -->
+  <div id="formToast" class="toast" role="alert" aria-live="polite"></div>
 
   <footer class="footer">
     <span>&copy; 2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio. Todos os direitos reservados.</span>
@@ -325,6 +667,7 @@
     <a href="/privacidade.html">Politica de Privacidade</a>
   </footer>
 
+  <!-- EmailJS Form Handler -->
   <script>
     (function() {
       const SERVICE  = 'service_h42p7j4';
@@ -336,13 +679,19 @@
 
       if (!form) return;
 
+      function showToast(message, type) {
+        toast.textContent = message;
+        toast.className = 'toast toast-' + type + ' toast-visible';
+        setTimeout(function() {
+          toast.classList.remove('toast-visible');
+        }, 4000);
+      }
+
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
         btn.disabled = true;
         btn.textContent = 'A enviar...';
-        toast.textContent = '';
-        toast.style.color = '';
 
         const params = {
           from_name: form.name.value,
@@ -355,12 +704,10 @@
 
         try {
           await emailjs.send(SERVICE, TEMPLATE, params, KEY);
-          toast.textContent = 'Mensagem enviada com sucesso!';
-          toast.style.color = '#10b981';
+          showToast('Mensagem enviada com sucesso!', 'success');
           form.reset();
         } catch (err) {
-          toast.textContent = 'Erro ao enviar. Tente novamente.';
-          toast.style.color = '#ef4444';
+          showToast('Erro ao enviar. Tente novamente.', 'error');
           console.error('EmailJS error:', err);
         } finally {
           btn.disabled = false;
@@ -370,6 +717,7 @@
     })();
   </script>
 
+  <!-- ContactPoint Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -385,6 +733,7 @@
   }
   </script>
 
+  <!-- BreadcrumbList Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -396,9 +745,30 @@
   }
   </script>
 
+  <!-- Hamburger Menu -->
   <script>
-(function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
-</script>
+  (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+  </script>
+
+  <!-- IntersectionObserver Fade-in -->
+  <script>
+  (function() {
+    var els = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { observer.observe(el); });
+  })();
+  </script>
 
   <!-- PostHog -->
   <script>

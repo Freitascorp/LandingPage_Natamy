@@ -42,7 +42,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -56,7 +56,12 @@
       --z300: #d4d4d8;
       --z100: #f4f4f5;
       --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Outfit', system-ui, sans-serif;
@@ -64,12 +69,27 @@
       color: var(--z300);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* Nav */
+    /* ---- Fade-in animations ---- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+
+    /* ---- Nav ---- */
     .nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -78,8 +98,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.25rem 2rem;
-      background: var(--z950);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(12, 12, 14, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-logo {
@@ -90,11 +112,9 @@
       color: var(--z100);
       text-decoration: none;
     }
-
     .nav-logo:hover { text-decoration: none; }
 
     .nav-links { display: flex; gap: 1.75rem; list-style: none; }
-
     .nav-links a {
       color: var(--z400);
       text-decoration: none;
@@ -104,120 +124,377 @@
       text-transform: uppercase;
       transition: color 0.3s ease;
     }
-
     .nav-links a:hover { color: var(--z100); text-decoration: none; }
 
-    /* Container */
-    .container {
-      max-width: 42rem;
+    /* ---- Hamburger & Mobile Menu ---- */
+    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
+    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
+
+    /* ---- Background glow ---- */
+    .bg-glow {
+      position: fixed;
+      top: -40%;
+      left: -20%;
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -30%;
+      right: -20%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- Section wrappers ---- */
+    .section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 4rem 1.5rem;
-      padding-top: 6rem;
+      padding: 0 2rem;
     }
 
-    .back { display: inline-block; margin-bottom: 2rem; font-size: 0.875rem; color: var(--z500); }
-    .back:hover { color: var(--z100); text-decoration: none; }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--z100);
-      margin-bottom: 0.25rem;
+    .section-narrow {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .subtitle {
-      font-size: 1.125rem;
-      font-weight: 400;
+    .section-label {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.25rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.06);
     }
 
-    h2 {
-      font-size: 1.375rem;
-      font-weight: 600;
-      color: var(--z100);
-      margin-top: 3rem;
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 6rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 1rem;
     }
 
-    h3 {
+    .hero .subtitle {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero .intro {
       font-size: 1.0625rem;
-      font-weight: 600;
-      color: var(--z100);
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-weight: 300;
+      color: var(--z400);
+      max-width: 580px;
+      line-height: 1.8;
     }
 
-    p { margin-bottom: 1rem; font-size: 0.9375rem; font-weight: 300; }
+    .scroll-indicator {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--z500);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
 
-    ul { margin: 0.5rem 0 1rem 1.5rem; }
-    li { margin-bottom: 0.5rem; font-size: 0.9375rem; font-weight: 300; }
+    .scroll-indicator .line {
+      width: 32px;
+      height: 1px;
+      background: var(--z700);
+    }
 
-    .service-block {
+    /* ---- Story section ---- */
+    .story-section {
+      padding: 6rem 0;
+    }
+
+    .story-text {
+      font-size: 1.0625rem;
+      font-weight: 300;
+      color: var(--z400);
+      line-height: 1.85;
       margin-bottom: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 0.75rem;
-      background: rgba(255, 255, 255, 0.02);
     }
 
-    .service-block h3 {
-      margin-top: 0;
+    .pull-quote {
+      position: relative;
+      margin: 3rem 0;
+      padding: 2.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .pull-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 2.5rem;
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .pull-quote p {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--z100);
+      line-height: 1.7;
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* ---- Services ---- */
+    .services-section {
+      padding: 6rem 0;
+    }
+
+    .services-section h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--z100);
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: border-color 0.4s ease, transform 0.4s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(16, 185, 129, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .service-card .icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.08);
       color: var(--accent);
     }
 
-    .service-block p {
-      margin-bottom: 0;
+    .service-card h3 {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--z400);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    /* ---- Differentiators ---- */
+    .diff-section {
+      padding: 6rem 0;
+    }
+
+    .diff-section h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--z100);
+      margin-bottom: 3rem;
     }
 
     .diff-list {
       list-style: none;
-      margin-left: 0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .diff-list li {
       position: relative;
-      padding-left: 1.5rem;
-      margin-bottom: 0.75rem;
+      padding-left: 2rem;
+      font-size: 1.0625rem;
+      font-weight: 300;
+      color: var(--z300);
+      line-height: 1.75;
     }
 
     .diff-list li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.55rem;
-      width: 6px;
-      height: 6px;
+      top: 0.65rem;
+      width: 8px;
+      height: 8px;
       background: var(--accent);
       border-radius: 50%;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
     }
 
-    .cta-block {
-      margin-top: 3rem;
-      padding: 2rem;
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      border-radius: 0.75rem;
-      background: rgba(16, 185, 129, 0.04);
+    /* ---- Stats bar ---- */
+    .stats-bar {
+      padding: 5rem 0;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 3rem 2rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       text-align: center;
     }
 
-    .cta-block p {
-      font-size: 1.125rem;
-      font-weight: 400;
+    .stat-item .stat-value {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
       color: var(--z100);
-      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: var(--z500);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .stat-item .stat-value .accent-text {
+      color: var(--accent);
+    }
+
+    /* ---- CTA block ---- */
+    .cta-section {
+      padding: 4rem 0 6rem;
+    }
+
+    .cta-block {
+      position: relative;
+      text-align: center;
+      padding: 4rem 3rem;
+      border-radius: 1.25rem;
+      background: var(--glass);
+      border: 1px solid transparent;
+      overflow: hidden;
+    }
+
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 1.25rem;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cta-block::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 120%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .cta-block h2 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
     }
 
     .cta-link {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.875rem 2rem;
+      gap: 0.625rem;
+      padding: 1rem 2.5rem;
       background: var(--accent);
       color: var(--z950);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       font-weight: 600;
       border-radius: 9999px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -225,17 +502,19 @@
 
     .cta-link:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.3);
+      box-shadow: 0 16px 40px -8px rgba(16, 185, 129, 0.35);
       text-decoration: none;
     }
 
-    /* Footer */
+    /* ---- Footer ---- */
     .footer {
       text-align: center;
       padding: 3rem 1.5rem 2rem;
       font-size: 0.6875rem;
       color: var(--z300);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid var(--glass-border);
+      position: relative;
+      z-index: 1;
     }
 
     .footer a {
@@ -245,28 +524,59 @@
 
     .footer a:hover { color: var(--z100); }
 
-    /* Hamburger */
-    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
-    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.active span:nth-child(2) { opacity:0; }
-    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
-    .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
+    /* ---- Divider ---- */
+    .section-divider {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+      position: relative;
+      z-index: 1;
+    }
 
-    /* Mobile */
+    /* ---- Responsive ---- */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+
     @media (max-width: 640px) {
       .nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      h1 { font-size: 2rem; }
-      .container { padding-top: 5rem; }
+
+      .section, .section-narrow { padding: 0 1.25rem; }
+
+      .hero { padding-top: 5rem; min-height: auto; padding-bottom: 3rem; }
+      .hero h1 { font-size: 2.75rem; }
+
+      .story-section,
+      .services-section,
+      .diff-section { padding: 4rem 0; }
+
+      .stats-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
+      }
+
+      .pull-quote { padding: 2rem 1.5rem; }
+
+      .cta-block { padding: 3rem 1.5rem; }
+
+      .service-card { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
 <body>
+  <!-- Background glows -->
+  <div class="bg-glow"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Nav -->
   <nav class="nav">
     <a href="/" class="nav-logo">Natamy Oliveira</a>
     <ul class="nav-links">
@@ -282,63 +592,145 @@
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <div class="container">
-    <a href="/" class="back">&larr; Voltar ao site</a>
+  <!-- Hero -->
+  <section class="hero section-narrow">
+    <div class="fade-in">
+      <span class="section-label">Sobre</span>
+    </div>
+    <h1 class="fade-in fade-in-delay-1">Natamy Oliveira</h1>
+    <p class="subtitle fade-in fade-in-delay-2">Especialista em Marketing Digital para Stands Automoveis</p>
+    <p class="intro fade-in fade-in-delay-3">No mercado automovel portugues, a maioria dos stands continua a depender de metodos tradicionais para atrair clientes: boca-a-boca, publicacoes organicas nas redes sociais e a esperanca de que o proximo mes seja melhor. Natamy Oliveira decidiu mudar essa realidade.</p>
+    <div class="scroll-indicator fade-in fade-in-delay-3">
+      <span class="line"></span>
+      <span>Scroll</span>
+    </div>
+  </section>
 
-    <h1>Natamy Oliveira</h1>
-    <p class="subtitle">Especialista em Marketing Digital para Stands Automoveis</p>
+  <div class="section-divider"></div>
 
-    <p>No mercado automovel portugues, a maioria dos stands continua a depender de metodos tradicionais para atrair clientes: boca-a-boca, publicacoes organicas nas redes sociais e a esperanca de que o proximo mes seja melhor. Natamy Oliveira decidiu mudar essa realidade.</p>
+  <!-- Personal Story -->
+  <section class="story-section section-narrow">
+    <p class="story-text fade-in">Com formacao em marketing digital e uma especializacao solida em trafego pago, Natamy trabalha exclusivamente com stands automoveis em Portugal. Esta dedicacao a um unico setor permite-lhe compreender as nuances do negocio — os ciclos de venda, o perfil do comprador, os desafios do financiamento e a pressao constante por resultados mensais.</p>
 
-    <p>Com formacao em marketing digital e uma especializacao solida em trafego pago, Natamy trabalha exclusivamente com stands automoveis em Portugal. Esta dedicacao a um unico setor permite-lhe compreender as nuances do negocio — os ciclos de venda, o perfil do comprador, os desafios do financiamento e a pressao constante por resultados mensais.</p>
+    <p class="story-text fade-in">Natamy integra ferramentas de inteligencia artificial no dia-a-dia dos stands com quem trabalha. Implementa chatbots que qualificam leads automaticamente, respondendo a questoes sobre stock, financiamento, horarios e localizacao — 24 horas por dia, 7 dias por semana. O resultado: a equipa comercial do stand so fala com quem realmente quer comprar.</p>
 
-    <p>Natamy integra ferramentas de inteligencia artificial no dia-a-dia dos stands com quem trabalha. Implementa chatbots que qualificam leads automaticamente, respondendo a questoes sobre stock, financiamento, horarios e localizacao — 24 horas por dia, 7 dias por semana. O resultado: a equipa comercial do stand so fala com quem realmente quer comprar.</p>
-
-    <p>O que diferencia Natamy e a combinacao de tres competencias num so servico: gestao avancada de trafego pago (Google Ads e Meta Ads), automacao com inteligencia artificial e construcao de funis de venda personalizados. Esta abordagem integrada garante que cada euro investido em publicidade trabalha de forma inteligente — desde o primeiro clique ate a entrega da viatura.</p>
-
-    <p>Natamy nao acredita em metricas de vaidade. O numero de likes, seguidores ou impressoes e irrelevante se nao se traduzir em visitas ao stand e viaturas vendidas. Cada campanha e medida pelo que realmente importa: leads qualificados, custo por aquisicao e retorno sobre o investimento. Os relatorios sao claros, directos e orientados para a accao.</p>
-
-    <h2>O Que Faco</h2>
-
-    <div class="service-block">
-      <h3>Gestao de Trafego Pago</h3>
-      <p>Campanhas estrategicas em Google Ads e Meta Ads, desenhadas especificamente para o setor automovel. Segmentacao precisa por localizacao, interesse e comportamento de compra, garantindo que o orcamento de publicidade atrai compradores reais — e nao curiosos. Otimizacao continua baseada em dados reais de conversao.</p>
+    <div class="pull-quote fade-in">
+      <p>O que diferencia Natamy e a combinacao de tres competencias num so servico: gestao avancada de trafego pago, automacao com inteligencia artificial e construcao de funis de venda personalizados.</p>
     </div>
 
-    <div class="service-block">
-      <h3>Automacao com Inteligencia Artificial</h3>
-      <p>Implementacao de chatbots e sistemas de automacao que qualificam leads, respondem a perguntas frequentes e fazem follow-up automatico. A inteligencia artificial trabalha 24 horas por dia, garantindo que nenhuma oportunidade se perde. A equipa comercial recebe apenas contactos prontos para fechar negocio.</p>
+    <p class="story-text fade-in">Esta abordagem integrada garante que cada euro investido em publicidade trabalha de forma inteligente — desde o primeiro clique ate a entrega da viatura.</p>
+
+    <p class="story-text fade-in">Natamy nao acredita em metricas de vaidade. O numero de likes, seguidores ou impressoes e irrelevante se nao se traduzir em visitas ao stand e viaturas vendidas. Cada campanha e medida pelo que realmente importa: leads qualificados, custo por aquisicao e retorno sobre o investimento. Os relatorios sao claros, directos e orientados para a accao.</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Services -->
+  <section class="services-section section">
+    <div class="fade-in">
+      <span class="section-label">Servicos</span>
+      <h2>O Que Faco</h2>
     </div>
 
-    <div class="service-block">
-      <h3>Funis de Venda Personalizados</h3>
-      <p>Construcao de percursos de conversao adaptados a realidade de cada stand. Desde o primeiro contacto ate ao agendamento da visita, cada passo e pensado para eliminar friccao e acelerar a decisao de compra. Paginas de destino otimizadas, sequencias de email e retargeting inteligente fazem parte do processo.</p>
-    </div>
+    <div class="services-grid">
+      <!-- Trafego Pago -->
+      <div class="service-card fade-in fade-in-delay-1">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h3>Gestao de Trafego Pago</h3>
+        <p>Campanhas estrategicas em Google Ads e Meta Ads, desenhadas especificamente para o setor automovel. Segmentacao precisa por localizacao, interesse e comportamento de compra, garantindo que o orcamento de publicidade atrai compradores reais — e nao curiosos. Otimizacao continua baseada em dados reais de conversao.</p>
+      </div>
 
-    <h2>Porque Trabalhar Comigo</h2>
+      <!-- IA / Chatbot -->
+      <div class="service-card fade-in fade-in-delay-2">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+            <path d="M8 14h8"/>
+            <rect x="6" y="12" width="12" height="8" rx="2"/>
+            <path d="M9 18h0"/>
+            <path d="M15 18h0"/>
+            <path d="M12 22v-2"/>
+          </svg>
+        </div>
+        <h3>Automacao com Inteligencia Artificial</h3>
+        <p>Implementacao de chatbots e sistemas de automacao que qualificam leads, respondem a perguntas frequentes e fazem follow-up automatico. A inteligencia artificial trabalha 24 horas por dia, garantindo que nenhuma oportunidade se perde. A equipa comercial recebe apenas contactos prontos para fechar negocio.</p>
+      </div>
+
+      <!-- Funis de Venda -->
+      <div class="service-card fade-in fade-in-delay-3">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4h18l-6 8v6l-6 2V12L3 4z"/>
+          </svg>
+        </div>
+        <h3>Funis de Venda Personalizados</h3>
+        <p>Construcao de percursos de conversao adaptados a realidade de cada stand. Desde o primeiro contacto ate ao agendamento da visita, cada passo e pensado para eliminar friccao e acelerar a decisao de compra. Paginas de destino otimizadas, sequencias de email e retargeting inteligente fazem parte do processo.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Differentiators -->
+  <section class="diff-section section-narrow">
+    <div class="fade-in">
+      <span class="section-label">Diferenciais</span>
+      <h2>Porque Trabalhar Comigo</h2>
+    </div>
 
     <ul class="diff-list">
-      <li>Trabalho exclusivamente com stands automoveis — conheco o setor por dentro, falo a lingua do concessionario e entendo os desafios reais do dia-a-dia.</li>
-      <li>Cada estrategia e medida por resultados concretos: leads qualificados, custo por lead e viaturas vendidas. Sem relatorios cheios de metricas vazias.</li>
-      <li>A combinacao de trafego pago, automacao com IA e funis de venda num unico servico elimina a necessidade de contratar multiplos fornecedores que nao comunicam entre si.</li>
-      <li>Acompanhamento proximo e comunicacao transparente — sabe sempre onde esta o seu investimento e o que esta a gerar.</li>
+      <li class="fade-in">Trabalho exclusivamente com stands automoveis — conheco o setor por dentro, falo a lingua do concessionario e entendo os desafios reais do dia-a-dia.</li>
+      <li class="fade-in">Cada estrategia e medida por resultados concretos: leads qualificados, custo por lead e viaturas vendidas. Sem relatorios cheios de metricas vazias.</li>
+      <li class="fade-in">A combinacao de trafego pago, automacao com IA e funis de venda num unico servico elimina a necessidade de contratar multiplos fornecedores que nao comunicam entre si.</li>
+      <li class="fade-in">Acompanhamento proximo e comunicacao transparente — sabe sempre onde esta o seu investimento e o que esta a gerar.</li>
     </ul>
+  </section>
 
-    <div class="cta-block">
-      <p>Vamos conversar sobre o seu stand?</p>
+  <div class="section-divider"></div>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar section">
+    <div class="stats-inner fade-in">
+      <div class="stat-item">
+        <span class="stat-value">Setor <span class="accent-text">Automovel</span></span>
+        <span class="stat-label">Foco exclusivo</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value"><span class="accent-text">100%</span> Resultados</span>
+        <span class="stat-label">Orientado a performance</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value"><span class="accent-text">24/7</span> IA</span>
+        <span class="stat-label">Automacao non-stop</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section section">
+    <div class="cta-block fade-in">
+      <h2>Vamos conversar sobre o seu stand?</h2>
       <a href="/contacto.html" class="cta-link">
         Entrar em Contacto
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
     </div>
-  </div>
+  </section>
 
+  <!-- Footer -->
   <footer class="footer">
     <span>&copy; 2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio. Todos os direitos reservados.</span>
     <br>
     <a href="/privacidade.html">Politica de Privacidade</a>
   </footer>
 
+  <!-- Person Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -360,10 +752,12 @@
   }
   </script>
 
+  <!-- Hamburger Menu -->
   <script>
   (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
   </script>
 
+  <!-- BreadcrumbList Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -373,6 +767,26 @@
       {"@type": "ListItem", "position": 2, "name": "Sobre", "item": "https://natamyoliveira.com/sobre.html"}
     ]
   }
+  </script>
+
+  <!-- IntersectionObserver fade-in -->
+  <script>
+  (function(){
+    var targets = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(function(el) { observer.observe(el); });
+  })();
   </script>
 
   <!-- PostHog -->

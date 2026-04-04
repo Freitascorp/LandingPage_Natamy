@@ -44,134 +44,665 @@
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    :root {
+      --z950: #0c0c0e;
+      --z900: #18181b;
+      --z800: #27272a;
+      --z700: #3f3f46;
+      --z500: #71717a;
+      --z400: #a1a1aa;
+      --z300: #d4d4d8;
+      --z100: #f4f4f5;
+      --accent: #10b981;
+      --accent-dim: rgba(16, 185, 129, 0.10);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.07);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      background: #0c0c0e;
-      color: #d4d4d8;
+      background: var(--z950);
+      color: var(--z300);
       line-height: 1.7;
       font-weight: 400;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* ── FADE-IN ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
       background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(244,244,245,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
     }
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
-      color: #f4f4f5; text-transform: uppercase;
+      color: var(--z100); text-transform: uppercase;
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #a1a1aa; transition: color 0.2s;
+      text-transform: uppercase; color: var(--z400); transition: color 0.2s;
     }
-    .nav-links a:hover { color: #10b981; }
-
-    /* MAIN */
-    .content {
-      max-width: 42rem; margin: 0 auto;
-      padding: 8rem 1.5rem 4rem;
-    }
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
-      color: #f4f4f5; line-height: 1.15; margin-bottom: 1.5rem;
-    }
-    h2 {
-      font-size: 1.5rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 3rem; margin-bottom: 1rem;
-    }
-    h3 {
-      font-size: 1.15rem; font-weight: 600; color: #f4f4f5;
-      margin-top: 2rem; margin-bottom: 0.75rem;
-    }
-    p { margin-bottom: 1.25rem; }
-    .lead {
-      font-size: 1.15rem; color: #a1a1aa; font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-    .accent { color: #10b981; }
-    strong { color: #f4f4f5; font-weight: 600; }
-    ul, ol {
-      margin-bottom: 1.25rem; padding-left: 1.5rem;
-    }
-    li { margin-bottom: 0.5rem; }
-
-    /* PROCESS STEPS */
-    .process { counter-reset: step; margin: 2rem 0; }
-    .process-step {
-      position: relative; padding-left: 3rem; margin-bottom: 1.75rem;
-      counter-increment: step;
-    }
-    .process-step::before {
-      content: counter(step);
-      position: absolute; left: 0; top: 0;
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: #10b981; color: #0c0c0e;
-      font-weight: 700; font-size: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .process-step h3 { margin-top: 0; }
-
-    /* HIGHLIGHT BOX */
-    .highlight {
-      background: rgba(16,185,129,0.08);
-      border-left: 3px solid #10b981;
-      padding: 1.25rem 1.5rem;
-      border-radius: 0 8px 8px 0;
-      margin: 2rem 0;
-    }
-
-    /* CTA */
-    .cta-section {
-      text-align: center; margin-top: 4rem; padding: 3rem 0;
-      border-top: 1px solid rgba(244,244,245,0.06);
-    }
-    .cta-section h2 { margin-top: 0; }
-    .cta-btn {
-      display: inline-block; margin-top: 1.25rem;
-      padding: 0.9rem 2.5rem;
-      background: #10b981; color: #0c0c0e;
-      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem;
-      border-radius: 9999px; transition: opacity 0.2s;
-    }
-    .cta-btn:hover { opacity: 0.88; }
-
-    /* FOOTER */
-    footer {
-      max-width: 42rem; margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      border-top: 1px solid rgba(244,244,245,0.06);
-      text-align: center; font-size: 0.8rem; color: #71717a;
-    }
-    footer a { color: #a1a1aa; text-decoration: underline; }
-    footer a:hover { color: #10b981; }
+    .nav-links a:hover { color: var(--accent); }
 
     .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:51;padding:8px;background:none;border:none; }
-    .hamburger span { display:block;width:22px;height:2px;background:#f4f4f5;border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
+    .hamburger span { display:block;width:22px;height:2px;background:var(--z100);border-radius:1px;transition:transform 0.3s,opacity 0.3s; }
     .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
     .hamburger.active span:nth-child(2) { opacity:0; }
     .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(12px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
+    .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:45;background:rgba(12,12,14,0.95);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:2rem; }
     .mobile-menu.open { display:flex; }
-    .mobile-menu a { color:#f4f4f5;text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
-    .mobile-menu a:hover { color:#10b981;text-decoration:none; }
+    .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
+    .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .container-narrow {
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      padding: 5rem 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 10rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      max-width: 48rem;
+    }
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 38rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 48rem;
+    }
+    .stat-item {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .stat-number .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--z500);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--z400);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 36rem;
+    }
+
+    /* ── GLASSMORPHISM CARD ── */
+    .glass-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .glass-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-section {
+      position: relative;
+    }
+    .problem-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .problem-content {
+      display: grid;
+      grid-template-columns: 3rem 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .problem-icon {
+      width: 3rem; height: 3rem;
+      border-radius: 12px;
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+    .problem-text p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+    .problem-text p:last-child { margin-bottom: 0; }
+    .problem-text strong { color: var(--z100); font-weight: 600; }
+
+    /* ── PROCESS STEPS ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .process-card {
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .process-number {
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .process-number::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .process-card-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .process-card-body p {
+      color: var(--z400);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      padding: 2rem;
+    }
+    .feature-icon {
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+
+    /* ── PLATFORM CARDS (Google + Meta) ── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .platform-card {
+      padding: 2.5rem 2rem;
+    }
+    .platform-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 1.25rem;
+    }
+    .platform-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .platform-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── INVESTMENT STATS ── */
+    .invest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .invest-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .invest-value {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    .invest-value .accent { color: var(--accent); }
+    .invest-label {
+      font-size: 0.85rem;
+      color: var(--z500);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .invest-note {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+      max-width: 40rem;
+    }
+
+    /* ── AUDIENCE SECTION ── */
+    .audience-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .audience-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 1rem;
+      color: var(--z300);
+      line-height: 1.6;
+    }
+    .audience-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 0.5rem;
+    }
+    .audience-note {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.7;
+    }
+    .audience-note strong { color: var(--z100); }
+
+    /* ── FAQ ACCORDION ── */
+    .faq-list {
+      margin-top: 3rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+    .faq-item {
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--z100);
+      text-align: left;
+      gap: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .faq-icon {
+      width: 1.5rem; height: 1.5rem;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: '';
+      position: absolute;
+      background: var(--z400);
+      border-radius: 1px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .faq-icon::before {
+      width: 14px; height: 2px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-icon::after {
+      width: 2px; height: 14px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .faq-item.open .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+      opacity: 0;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.75;
+    }
+
+    /* ── FULL-WIDTH CTA ── */
+    .cta-section {
+      position: relative;
+      padding: 6rem 0;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+    }
+    .cta-block {
+      position: relative;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 4rem 2rem;
+      text-align: center;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-block h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .cta-block p {
+      font-size: 1.1rem;
+      color: var(--z400);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      position: relative;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 0.95rem 2.75rem;
+      background: var(--accent);
+      color: var(--z950);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 9999px;
+      transition: opacity 0.2s, transform 0.2s;
+      position: relative;
+      letter-spacing: -0.01em;
+    }
+    .cta-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* ── OUTROS SERVICOS ── */
+    .outros-servicos {
+      padding: 3rem 0 2rem;
+    }
+    .outros-servicos h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--z100);
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .outros-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .outros-links a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      color: var(--z300);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .outros-links a:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--z100);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--z500);
+    }
+    footer a { color: var(--z400); text-decoration: underline; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE: MOBILE FIRST ── */
+    @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
-      .nav-links { gap: 1.25rem; }
-      .content { padding: 6rem 1.25rem 3rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+
+      .hero { padding: 7rem 0 3rem; }
+      section { padding: 3.5rem 0; }
+
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-item { padding: 1.25rem; }
+
+      .platform-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .invest-grid { grid-template-columns: 1fr; }
+
+      .problem-content { grid-template-columns: 1fr; gap: 1rem; }
+
+      .process-card { grid-template-columns: 3rem 1fr; gap: 1rem; }
+      .process-number { width: 3rem; height: 3rem; font-size: 1rem; }
+
+      .cta-block { padding: 3rem 1.5rem; }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .invest-grid { grid-template-columns: repeat(3, 1fr); }
+      .platform-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (min-width: 1025px) {
+      .hamburger { display: none; }
+      .nav-links { display: flex; }
     }
   </style>
 
@@ -196,119 +727,310 @@
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <main class="content">
-    <h1>Gestao de Trafego Pago</h1>
-    <p class="lead">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automoveis em Portugal. Sem curiosos, sem cliques desperdicados — so contactos de pessoas que querem comprar.</p>
+  <main>
 
-    <h2>O Problema que Conhece Bem</h2>
-    <p>Todos os meses, o cenario repete-se. Investe dinheiro em anuncios. Os cliques aparecem. O telefone toca. Mas do outro lado da linha esta alguem que so quer saber o preco, que nao tem financiamento aprovado, ou que esta a "ver umas coisas" sem qualquer intencao real de compra.</p>
-    <p>O resultado? Uma equipa comercial frustrada, um orcamento de publicidade que desaparece sem retorno, e a sensacao de que <strong>o marketing digital nao funciona para stands</strong>. Mas o problema nao e o marketing digital. O problema e como as campanhas estao montadas.</p>
-    <p>A maioria das agencias generalistas configura campanhas da mesma forma para um restaurante, uma clinica dentaria ou um stand automovel. Palavras-chave genericas, anuncios vagos, paginas de destino que nao filtram ninguem. O trafego chega, mas nao e o trafego certo.</p>
-
-    <h2>Como Funciona o Nosso Trafego Pago</h2>
-    <p>Trabalhamos exclusivamente com o sector automovel. Isto significa que cada campanha e construida com o conhecimento de quem percebe o ciclo de venda de um carro, os momentos de decisao do comprador, e as particularidades do mercado portugues.</p>
-
-    <h3>Google Ads: Captar Quem Ja Esta a Procurar</h3>
-    <p>Quando alguem escreve "BMW Serie 3 usado Porto" no Google, essa pessoa esta a tomar uma decisao. Tem intencao de compra. Sabe o que quer. E o momento perfeito para o seu stand aparecer.</p>
-    <p>Criamos campanhas de pesquisa segmentadas por marca, modelo, localizacao e tipo de viatura. Cada anuncio direciona para uma pagina de destino que filtra curiosos e encaminha compradores reais para o seu stand. Utilizamos extensoes de anuncio com localizacao, telefone e promocoes ativas para maximizar a taxa de clique qualificado.</p>
-
-    <h3>Meta Ads: Alcance e Retargeting</h3>
-    <p>Nem toda a gente que vai comprar um carro esta ativamente a pesquisar neste momento. Muitos estao a pensar, a comparar, a ver opcoes. O Facebook e o Instagram sao o sitio ideal para chegar a estas pessoas antes da concorrencia.</p>
-    <p>Criamos campanhas de alcance segmentadas por perfil demografico, interesses automoveis, comportamento de compra e localizacao. Mas o verdadeiro poder esta no <strong>retargeting</strong>: voltar a mostrar anuncios a quem ja visitou o seu site, viu uma viatura especifica, ou interagiu com a sua pagina — mas ainda nao entrou em contacto.</p>
-
-    <h2>O Que Nos Diferencia</h2>
-    <p>A nossa obsessao nao sao cliques. Sao <strong>leads qualificados</strong> — pessoas que tem orcamento, interesse real e estao prontas para avancar.</p>
-    <p>Para isso, cada campanha inclui:</p>
-    <ul>
-      <li><strong>Segmentacao por intencao de compra</strong> — nao mostramos anuncios a quem esta a pesquisar por curiosidade</li>
-      <li><strong>Landing pages otimizadas</strong> — com formularios que fazem as perguntas certas para qualificar cada lead</li>
-      <li><strong>Exclusoes inteligentes</strong> — removemos publicos que historicamente nao convertem, poupando orcamento</li>
-      <li><strong>Acompanhamento de conversoes real</strong> — medimos contactos, nao impressoes nem cliques vazios</li>
-    </ul>
-
-    <h2>O Nosso Processo</h2>
-    <div class="process">
-      <div class="process-step">
-        <h3>Auditoria</h3>
-        <p>Analisamos o estado atual do seu marketing digital. Se ja tem campanhas ativas, identificamos o que esta a desperdicar orcamento. Se nao tem, mapeamos as oportunidades com maior potencial para o seu stand.</p>
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+      <div class="container">
+        <div class="fade-in">
+          <div class="hero-badge">Trafego Pago para Stands</div>
+        </div>
+        <h1 class="fade-in fade-in-delay-1">Gestao de Trafego Pago</h1>
+        <p class="hero-lead fade-in fade-in-delay-2">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automoveis em Portugal. Sem curiosos, sem cliques desperdicados — so contactos de pessoas que querem comprar.</p>
+        <div class="stats-bar fade-in fade-in-delay-3">
+          <div class="stat-item">
+            <div class="stat-number">500-1500 <span class="accent">EUR</span></div>
+            <div class="stat-label">Investimento medio / mes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2-3 <span class="accent">semanas</span></div>
+            <div class="stat-label">Primeiros contactos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3+ <span class="accent">meses</span></div>
+            <div class="stat-label">Resultados solidos</div>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Estrategia</h3>
-        <p>Definimos o orcamento ideal, as plataformas prioritarias, a segmentacao de publico e as palavras-chave com maior intencao de compra. Criamos uma estrategia personalizada para o seu mercado local.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O PROBLEMA ═══ -->
+    <section class="problem-section">
+      <div class="container-narrow">
+        <div class="section-label fade-in">O desafio</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Problema que Conhece Bem</h2>
+        <div class="problem-content fade-in fade-in-delay-2">
+          <div class="problem-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="problem-text">
+            <p>Todos os meses, o cenario repete-se. Investe dinheiro em anuncios. Os cliques aparecem. O telefone toca. Mas do outro lado da linha esta alguem que so quer saber o preco, que nao tem financiamento aprovado, ou que esta a "ver umas coisas" sem qualquer intencao real de compra.</p>
+            <p>O resultado? Uma equipa comercial frustrada, um orcamento de publicidade que desaparece sem retorno, e a sensacao de que <strong>o marketing digital nao funciona para stands</strong>. Mas o problema nao e o marketing digital. O problema e como as campanhas estao montadas.</p>
+            <p>A maioria das agencias generalistas configura campanhas da mesma forma para um restaurante, uma clinica dentaria ou um stand automovel. Palavras-chave genericas, anuncios vagos, paginas de destino que nao filtram ninguem. O trafego chega, mas nao e o trafego certo.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Lancamento</h3>
-        <p>Configuramos as campanhas, criamos os anuncios, montamos as landing pages e ativamos todos os pixels de rastreamento. Tudo e testado antes de gastar um centimo do seu orcamento.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ COMO FUNCIONA ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Como funciona</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Nosso Trafego Pago</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Trabalhamos exclusivamente com o sector automovel. Isto significa que cada campanha e construida com o conhecimento de quem percebe o ciclo de venda de um carro, os momentos de decisao do comprador, e as particularidades do mercado portugues.</p>
+
+        <div class="platform-grid">
+          <div class="glass-card platform-card fade-in fade-in-delay-2">
+            <div class="platform-tag">Google Ads</div>
+            <h3>Captar Quem Ja Esta a Procurar</h3>
+            <p>Quando alguem escreve "BMW Serie 3 usado Porto" no Google, essa pessoa esta a tomar uma decisao. Tem intencao de compra. Sabe o que quer. E o momento perfeito para o seu stand aparecer.</p>
+            <p style="margin-top:0.75rem">Criamos campanhas de pesquisa segmentadas por marca, modelo, localizacao e tipo de viatura. Cada anuncio direciona para uma pagina de destino que filtra curiosos e encaminha compradores reais para o seu stand. Utilizamos extensoes de anuncio com localizacao, telefone e promocoes ativas para maximizar a taxa de clique qualificado.</p>
+          </div>
+          <div class="glass-card platform-card fade-in fade-in-delay-3">
+            <div class="platform-tag">Meta Ads</div>
+            <h3>Alcance e Retargeting</h3>
+            <p>Nem toda a gente que vai comprar um carro esta ativamente a pesquisar neste momento. Muitos estao a pensar, a comparar, a ver opcoes. O Facebook e o Instagram sao o sitio ideal para chegar a estas pessoas antes da concorrencia.</p>
+            <p style="margin-top:0.75rem">Criamos campanhas de alcance segmentadas por perfil demografico, interesses automoveis, comportamento de compra e localizacao. Mas o verdadeiro poder esta no <strong>retargeting</strong>: voltar a mostrar anuncios a quem ja visitou o seu site, viu uma viatura especifica, ou interagiu com a sua pagina — mas ainda nao entrou em contacto.</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Otimizacao</h3>
-        <p>Nas primeiras semanas, os dados comecam a entrar. Ajustamos lances, refinamos publicos, pausamos o que nao funciona e duplicamos o que funciona. Este processo e continuo e nunca para.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O QUE NOS DIFERENCIA ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Diferenciacao</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Que Nos Diferencia</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">A nossa obsessao nao sao cliques. Sao <strong style="color:var(--z100)">leads qualificados</strong> — pessoas que tem orcamento, interesse real e estao prontas para avancar.</p>
+
+        <div class="features-grid">
+          <div class="glass-card feature-card fade-in fade-in-delay-1">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Segmentacao por intencao de compra</h3>
+            <p>Nao mostramos anuncios a quem esta a pesquisar por curiosidade</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-2">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Landing pages otimizadas</h3>
+            <p>Com formularios que fazem as perguntas certas para qualificar cada lead</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-3">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Exclusoes inteligentes</h3>
+            <p>Removemos publicos que historicamente nao convertem, poupando orcamento</p>
+          </div>
+          <div class="glass-card feature-card fade-in fade-in-delay-4">
+            <div class="feature-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Acompanhamento de conversoes real</h3>
+            <p>Medimos contactos, nao impressoes nem cliques vazios</p>
+          </div>
+        </div>
       </div>
-      <div class="process-step">
-        <h3>Relatorio</h3>
-        <p>Todos os meses recebe um relatorio claro com os numeros que interessam: quantos leads, de onde vieram, quanto custou cada um, e o que vamos fazer a seguir para melhorar.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ O NOSSO PROCESSO ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Processo</div>
+        <h2 class="section-title fade-in fade-in-delay-1">O Nosso Processo</h2>
+
+        <div class="process-grid">
+          <div class="glass-card process-card fade-in fade-in-delay-1">
+            <div class="process-number">1</div>
+            <div class="process-card-body">
+              <h3>Auditoria</h3>
+              <p>Analisamos o estado atual do seu marketing digital. Se ja tem campanhas ativas, identificamos o que esta a desperdicar orcamento. Se nao tem, mapeamos as oportunidades com maior potencial para o seu stand.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-2">
+            <div class="process-number">2</div>
+            <div class="process-card-body">
+              <h3>Estrategia</h3>
+              <p>Definimos o orcamento ideal, as plataformas prioritarias, a segmentacao de publico e as palavras-chave com maior intencao de compra. Criamos uma estrategia personalizada para o seu mercado local.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-3">
+            <div class="process-number">3</div>
+            <div class="process-card-body">
+              <h3>Lancamento</h3>
+              <p>Configuramos as campanhas, criamos os anuncios, montamos as landing pages e ativamos todos os pixels de rastreamento. Tudo e testado antes de gastar um centimo do seu orcamento.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-4">
+            <div class="process-number">4</div>
+            <div class="process-card-body">
+              <h3>Otimizacao</h3>
+              <p>Nas primeiras semanas, os dados comecam a entrar. Ajustamos lances, refinamos publicos, pausamos o que nao funciona e duplicamos o que funciona. Este processo e continuo e nunca para.</p>
+            </div>
+          </div>
+          <div class="glass-card process-card fade-in fade-in-delay-5">
+            <div class="process-number">5</div>
+            <div class="process-card-body">
+              <h3>Relatorio</h3>
+              <p>Todos os meses recebe um relatorio claro com os numeros que interessam: quantos leads, de onde vieram, quanto custou cada um, e o que vamos fazer a seguir para melhorar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ INVESTIMENTO E RETORNO ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Investimento</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Investimento e Retorno</h2>
+
+        <div class="invest-grid">
+          <div class="glass-card invest-card fade-in fade-in-delay-1">
+            <div class="invest-value">500-1500 <span class="accent">EUR</span></div>
+            <div class="invest-label">Investimento medio em anuncios por mes</div>
+          </div>
+          <div class="glass-card invest-card fade-in fade-in-delay-2">
+            <div class="invest-value">2-3 <span class="accent">sem.</span></div>
+            <div class="invest-label">Primeiros contactos qualificados</div>
+          </div>
+          <div class="glass-card invest-card fade-in fade-in-delay-3">
+            <div class="invest-value">3+ <span class="accent">meses</span></div>
+            <div class="invest-label">Resultados solidos e consistentes</div>
+          </div>
+        </div>
+
+        <p class="invest-note fade-in fade-in-delay-4">Estes valores sao referencias baseadas nos resultados que obtemos com stands automoveis em Portugal. O investimento ideal depende da sua zona geografica, concorrencia local e objetivos de venda. Na primeira conversa, ajudamos a definir o orcamento que faz sentido para o seu caso.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ PARA QUEM ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">Para quem</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Para Quem e Este Servico</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Este servico e para stands automoveis que:</p>
+
+        <ul class="audience-list fade-in fade-in-delay-3">
+          <li>Ja investiram em publicidade online mas nao viram retorno</li>
+          <li>Dependem de referências e do passa-palavra, mas querem escalar</li>
+          <li>Tem stock disponivel e capacidade para atender mais clientes</li>
+          <li>Querem previsibilidade — saber que todos os meses entram contactos novos</li>
+        </ul>
+
+        <p class="audience-note fade-in fade-in-delay-4">Nao trabalhamos com stands que so querem "mais visibilidade" ou "mais seguidores". Trabalhamos com quem quer <strong>mais vendas</strong>.</p>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ FAQ ═══ -->
+    <section>
+      <div class="container-narrow">
+        <div class="section-label fade-in">FAQ</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Perguntas Frequentes</h2>
+
+        <div class="faq-list">
+          <div class="faq-item fade-in fade-in-delay-1">
+            <button class="faq-question" aria-expanded="false">
+              <span>Quanto custa a gestao de trafego pago para um stand automovel?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">O investimento medio em anuncios situa-se entre 500 e 1500 EUR por mes, mais a taxa de gestao. Os primeiros contactos surgem nas primeiras semanas, com resultados solidos a partir de 3 meses de trabalho consistente. Na primeira conversa, definimos o orcamento que faz sentido para a sua realidade.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-2">
+            <button class="faq-question" aria-expanded="false">
+              <span>Qual a diferenca entre Google Ads e Meta Ads para stands?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">O Google Ads capta pessoas que estao ativamente a procurar um carro — a intencao de compra e alta. O Meta Ads (Facebook e Instagram) permite alcançar publicos novos e fazer retargeting a quem ja visitou o site. A combinacao de ambos e o que gera melhores resultados, porque cobre tanto a procura ativa como a fase de consideracao.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-3">
+            <button class="faq-question" aria-expanded="false">
+              <span>Em quanto tempo vejo resultados com trafego pago?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Os primeiros contactos surgem nas primeiras semanas apos o lancamento. Resultados solidos e consistentes exigem no minimo 3 meses de trabalho continuo, com otimizacao baseada em dados reais do seu stand.</div>
+            </div>
+          </div>
+          <div class="faq-item fade-in fade-in-delay-4">
+            <button class="faq-question" aria-expanded="false">
+              <span>Preciso de ter um site para fazer trafego pago?</span>
+              <span class="faq-icon"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">E recomendado, mas nao obrigatorio. Podemos criar landing pages dedicadas para as campanhas do seu stand, otimizadas para conversao. Isto garante que cada clique tem a melhor hipotese de se transformar num contacto qualificado.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta-section">
+      <div class="container-narrow">
+        <div class="cta-block fade-in">
+          <h2>Pronto para comecar?</h2>
+          <p>Fale connosco e descubra como o trafego pago pode transformar o fluxo de contactos do seu stand.</p>
+          <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OUTROS SERVICOS ═══ -->
+    <div class="container-narrow outros-servicos">
+      <h3>Outros Servicos</h3>
+      <div class="outros-links">
+        <a href="/servicos/automacao-ia.html">Automacao com IA</a>
+        <a href="/servicos/funis-venda.html">Funis de Venda</a>
+        <a href="/servicos/marketing-digital.html">Marketing Digital</a>
+        <a href="/servicos/anuncios.html">Anuncios Online</a>
+        <a href="/servicos/redes-sociais.html">Redes Sociais</a>
+        <a href="/servicos/consultoria.html">Consultoria</a>
+        <a href="/servicos/estrategia-digital.html">Estrategia Digital</a>
       </div>
     </div>
 
-    <h2>Investimento e Retorno</h2>
-    <div class="highlight">
-      <p><strong>Investimento medio em anuncios:</strong> 500 a 1500 EUR por mes</p>
-      <p><strong>Primeiros contactos:</strong> a partir das primeiras semanas</p>
-      <p style="margin-bottom:0"><strong>Resultados solidos:</strong> a partir de 3 meses de trabalho consistente</p>
-    </div>
-    <p>Estes valores sao referencias baseadas nos resultados que obtemos com stands automoveis em Portugal. O investimento ideal depende da sua zona geografica, concorrencia local e objetivos de venda. Na primeira conversa, ajudamos a definir o orcamento que faz sentido para o seu caso.</p>
-
-    <h2>Para Quem e Este Servico</h2>
-    <p>Este servico e para stands automoveis que:</p>
-    <ul>
-      <li>Ja investiram em publicidade online mas nao viram retorno</li>
-      <li>Dependem de referências e do passa-palavra, mas querem escalar</li>
-      <li>Tem stock disponivel e capacidade para atender mais clientes</li>
-      <li>Querem previsibilidade — saber que todos os meses entram contactos novos</li>
-    </ul>
-    <p>Nao trabalhamos com stands que so querem "mais visibilidade" ou "mais seguidores". Trabalhamos com quem quer <strong>mais vendas</strong>.</p>
-
-    <h2>Perguntas Frequentes</h2>
-
-    <h3>Quanto custa a gestao de trafego pago para um stand automovel?</h3>
-    <p>O investimento medio em anuncios situa-se entre 500 e 1500 EUR por mes, mais a taxa de gestao. Os primeiros contactos surgem nas primeiras semanas, com resultados solidos a partir de 3 meses de trabalho consistente. Na primeira conversa, definimos o orcamento que faz sentido para a sua realidade.</p>
-
-    <h3>Qual a diferenca entre Google Ads e Meta Ads para stands?</h3>
-    <p>O Google Ads capta pessoas que estao ativamente a procurar um carro — a intencao de compra e alta. O Meta Ads (Facebook e Instagram) permite alcançar publicos novos e fazer retargeting a quem ja visitou o site. A combinacao de ambos e o que gera melhores resultados, porque cobre tanto a procura ativa como a fase de consideracao.</p>
-
-    <h3>Em quanto tempo vejo resultados com trafego pago?</h3>
-    <p>Os primeiros contactos surgem nas primeiras semanas apos o lancamento. Resultados solidos e consistentes exigem no minimo 3 meses de trabalho continuo, com otimizacao baseada em dados reais do seu stand.</p>
-
-    <h3>Preciso de ter um site para fazer trafego pago?</h3>
-    <p>E recomendado, mas nao obrigatorio. Podemos criar landing pages dedicadas para as campanhas do seu stand, otimizadas para conversao. Isto garante que cada clique tem a melhor hipotese de se transformar num contacto qualificado.</p>
-
-    <div class="cta-section">
-      <h2>Pronto para comecar?</h2>
-      <p>Fale connosco e descubra como o trafego pago pode transformar o fluxo de contactos do seu stand.</p>
-      <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
-    </div>
   </main>
-
-  <div style="max-width:42rem;margin:0 auto;padding:0 1.5rem 2rem">
-    <h3 style="font-size:1rem;font-weight:600;color:#f4f4f5;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.05em">Outros Servicos</h3>
-    <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-      <a href="/servicos/automacao-ia.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Automacao com IA</a>
-      <a href="/servicos/funis-venda.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Funis de Venda</a>
-      <a href="/servicos/marketing-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Marketing Digital</a>
-      <a href="/servicos/anuncios.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Anuncios Online</a>
-      <a href="/servicos/redes-sociais.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Redes Sociais</a>
-      <a href="/servicos/consultoria.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Consultoria</a>
-      <a href="/servicos/estrategia-digital.html" style="display:inline-block;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.1);border-radius:9999px;font-size:0.8125rem;color:#d4d4d8;text-decoration:none;transition:border-color 0.2s">Estrategia Digital</a>
-    </div>
-  </div>
 
   <footer>
     <p>2025 Natamy Oliveira — Marketing Digital e Automacao de Negocio.</p>
     <p><a href="/privacidade.html">Politica de Privacidade</a></p>
   </footer>
 
+  <!-- Hamburger Menu -->
   <script>
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+</script>
+
+  <!-- FAQ Accordion -->
+  <script>
+(function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-item');var answer=item.querySelector('.faq-answer');var inner=item.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(openItem){if(openItem!==item){openItem.classList.remove('open');openItem.querySelector('.faq-question').setAttribute('aria-expanded','false');openItem.querySelector('.faq-answer').style.maxHeight='0';}});if(isOpen){item.classList.remove('open');btn.setAttribute('aria-expanded','false');answer.style.maxHeight='0';}else{item.classList.add('open');btn.setAttribute('aria-expanded','true');answer.style.maxHeight=inner.scrollHeight+'px';}});});})();
+</script>
+
+  <!-- IntersectionObserver fade-in -->
+  <script>
+(function(){var els=document.querySelectorAll('.fade-in');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){observer.observe(el);});})();
 </script>
 
   <script type="application/ld+json">
