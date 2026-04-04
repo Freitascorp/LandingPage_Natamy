@@ -858,8 +858,11 @@
       const progressFill = document.getElementById('progressFill');
       const scrollHint   = document.getElementById('scrollHint');
 
+      const isMobile = innerWidth <= 768;
+      const STEP = isMobile ? 3 : 1;  // every 3rd frame on mobile
       const TOTAL = 361;
-      const frames = new Array(TOTAL);
+      const FRAME_COUNT = isMobile ? Math.ceil(TOTAL / STEP) : TOTAL;
+      const frames = new Array(FRAME_COUNT);
       const sections = document.querySelectorAll('.px');
 
       // ── Snap Points (scroll progress %) ──
@@ -873,14 +876,15 @@
       let cw = 0, ch = 0;  // cached dimensions
 
       function framePath(i) {
-        return 'frames/frame_' + String(i + 1).padStart(4, '0') + '.webp';
+        const actual = isMobile ? i * STEP + 1 : i + 1;
+        return 'frames/frame_' + String(Math.min(actual, TOTAL)).padStart(4, '0') + '.webp';
       }
 
       // ── Canvas (cache dimensions, avoid layout reads in loop) ──
       function resize() {
         cw = innerWidth;
         ch = innerHeight;
-        const dpr = Math.min(devicePixelRatio || 1, 2);
+        const dpr = isMobile ? 1 : Math.min(devicePixelRatio || 1, 2);
         canvas.width = cw * dpr;
         canvas.height = ch * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1042,7 +1046,7 @@
         if (Math.abs(delta) < 0.00005) cur = target;
 
         // Frame
-        const fi = Math.min((cur * (TOTAL - 1) + 0.5) | 0, TOTAL - 1);
+        const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
         if (fi !== lastFrame && frames[fi]) {
           draw(frames[fi]);
           lastFrame = fi;
@@ -1103,7 +1107,7 @@
       }
 
       // ── Preload (phased) ──
-      const PHASE1 = 20; // Show page after 20 frames
+      const PHASE1 = isMobile ? 15 : 20; // Show page after first batch
       function preloadRange(start, end) {
         return new Promise(resolve => {
           let loaded = 0, next = start;
@@ -1128,7 +1132,7 @@
               loaded++;
               const pct = start === 0
                 ? ((loaded / PHASE1 * 100) | 0)
-                : ((PHASE1 + loaded) / TOTAL * 100 | 0);
+                : ((PHASE1 + loaded) / FRAME_COUNT * 100 | 0);
               if (start === 0) {
                 loaderFill.style.width = Math.min(pct, 100) + '%';
                 loaderText.textContent = Math.min(pct, 100) + '%';
@@ -1172,7 +1176,7 @@
         loop();
 
         // Phase 2: Load remaining frames in background
-        preloadRange(PHASE1, TOTAL);
+        preloadRange(PHASE1, FRAME_COUNT);
       }
 
       init();
