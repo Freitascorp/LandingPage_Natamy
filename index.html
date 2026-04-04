@@ -651,7 +651,12 @@
 
   <!-- Nav -->
   <nav class="nav">
-    <div class="nav-logo">Natamy Oliveira</div>
+    <a href="/" class="nav-logo" style="text-decoration:none; color:inherit;">Natamy Oliveira</a>
+    <ul class="nav-links">
+      <li><a href="/servicos/trafego-pago.html">Servicos</a></li>
+      <li><a href="/sobre.html">Sobre</a></li>
+      <li><a href="/contacto.html">Contacto</a></li>
+    </ul>
   </nav>
 
   <div class="progress-track">
@@ -1128,6 +1133,26 @@
       <p>Email: natamy.oliveira13@gmail.com</p>
     </div>
   </noscript>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookieBanner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:60; background:#18181b; border-top:1px solid rgba(255,255,255,0.08); padding:1.25rem 1.5rem; font-family:'Outfit',sans-serif; text-align:center;">
+    <p style="font-size:0.8125rem; font-weight:300; color:#d4d4d8; margin-bottom:1rem; line-height:1.5;">Este site utiliza cookies para permitir uma melhor experiencia por parte do utilizador. Ao navegar no site estara a consentir a sua utilizacao.</p>
+    <div style="display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="background:#10b981; color:#0c0c0e; border:none; border-radius:9999px; padding:0.5rem 1.5rem; font-family:'Outfit',sans-serif; font-size:0.8125rem; font-weight:600; cursor:pointer; transition:transform 0.2s;">Ok</button>
+      <a href="/privacidade.html" style="display:inline-flex; align-items:center; border:1px solid rgba(255,255,255,0.15); border-radius:9999px; padding:0.5rem 1.5rem; font-family:'Outfit',sans-serif; font-size:0.8125rem; font-weight:400; color:#a1a1aa; text-decoration:none; transition:border-color 0.2s;">Politica de Privacidade & Cookies</a>
+    </div>
+  </div>
+  <script>
+    (function() {
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+      }
+    })();
+    function acceptCookies() {
+      localStorage.setItem('cookiesAccepted', '1');
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+  </script>
 
   <!-- GTM noscript -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
