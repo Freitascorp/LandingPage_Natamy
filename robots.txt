@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /frames/
+Disallow: /_archive/
+
+Sitemap: https://natamyoliveira.com/sitemap.xml
