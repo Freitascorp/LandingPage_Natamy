@@ -867,8 +867,8 @@
 
       // ── Snap Points (scroll progress %) ──
       const SNAPS = [0, 0.24, 0.44, 0.65, 0.87, 1.0];
-      const SNAP_IDLE_MS  = 800;   // wait before snapping
-      const SNAP_THRESH   = 0.06;  // how close to trigger snap
+      const SNAP_IDLE_MS  = 400;   // snap quickly after scroll stops
+      const SNAP_THRESH   = 0.50;  // always snap to nearest section
 
       let cur = 0, target = 0, lastFrame = -1;
       let scrollTimer = null;
@@ -937,7 +937,7 @@
         if (Math.abs(dist) < 2) return;
 
         isSnapping = true;
-        const duration = Math.min(600, Math.max(300, Math.abs(dist) * 0.4));
+        const duration = Math.min(800, Math.max(400, Math.abs(dist) * 0.5));
         const startTime = performance.now();
 
         function step(now) {
