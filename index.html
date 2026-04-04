@@ -196,6 +196,7 @@
     .mobile-menu a:hover { color: var(--accent); }
 
     /* ── Hero CTA ── */
+    .s-hero { pointer-events: auto !important; }
     .hero-cta {
       display: inline-flex;
       align-items: center;
@@ -210,6 +211,8 @@
       border-radius: 9999px;
       text-decoration: none !important;
       pointer-events: auto;
+      position: relative;
+      z-index: 30;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .hero-cta:hover {
