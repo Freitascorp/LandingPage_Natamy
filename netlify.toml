@@ -3,6 +3,9 @@
   publish = "."
   command = "echo done"
 
+[functions]
+  directory = "functions"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
