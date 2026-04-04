@@ -687,8 +687,10 @@
       </button>
     </form>
     <div id="formToast" class="form-toast"></div>
-    <a href="/privacidade.html" style="pointer-events:auto; display:inline-block; margin-top:1.5rem; font-size:0.75rem; color:var(--z500); text-decoration:none; letter-spacing:0.04em;">Politica de Privacidade</a>
   </div>
+
+  <!-- Privacy link — outside parallax system so it's always clickable -->
+  <a href="/privacidade.html" id="privacyLink" style="position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%); z-index:25; font-family:'Outfit',sans-serif; font-size:0.6875rem; color:#71717a; text-decoration:none; letter-spacing:0.04em; opacity:0; pointer-events:none; transition:opacity 0.5s;">Politica de Privacidade</a>
 
   <!-- ═══════════ CANVAS ═══════════ -->
   <div class="scroll-container">
@@ -928,6 +930,13 @@
           dimEl.classList.remove('active', 'active-strong');
           if (cls) dimEl.classList.add(cls);
           lastDim = cls;
+        }
+
+        // Show privacy link only when CTA is visible
+        const pl = document.getElementById('privacyLink');
+        if (pl) {
+          pl.style.opacity = ctaActive ? '1' : '0';
+          pl.style.pointerEvents = ctaActive ? 'auto' : 'none';
         }
       }
 
