@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Preview — Mobile Video vs Frames</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Outfit',system-ui,sans-serif; background:#0c0c0e; color:#f4f4f5; }
+
+  .comparison { display:flex; flex-direction:column; align-items:center; padding:2rem; gap:2rem; }
+
+  h1 { font-size:1.5rem; text-align:center; margin-bottom:0.5rem; }
+  .stats { text-align:center; color:#a1a1aa; font-size:0.875rem; margin-bottom:2rem; }
+  .stats strong { color:#10b981; }
+
+  .panel { width:100%; max-width:720px; }
+  .panel h2 { font-size:1rem; color:#10b981; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.1em; }
+  .panel p { font-size:0.8125rem; color:#71717a; margin-bottom:0.75rem; }
+
+  video {
+    width:100%;
+    border-radius:0.75rem;
+    border:1px solid rgba(255,255,255,0.06);
+  }
+
+  .scroll-demo {
+    width:100%;
+    height:60vh;
+    overflow-y:scroll;
+    border-radius:0.75rem;
+    border:1px solid rgba(255,255,255,0.06);
+    position:relative;
+  }
+  .scroll-demo .inner { height:400vh; position:relative; }
+  .scroll-demo canvas {
+    position:sticky;
+    top:0;
+    width:100%;
+    height:60vh;
+    display:block;
+  }
+  .scroll-demo .label {
+    position:sticky;
+    top:0.5rem;
+    left:0.5rem;
+    z-index:10;
+    background:rgba(0,0,0,0.7);
+    color:#10b981;
+    padding:0.25rem 0.75rem;
+    border-radius:9999px;
+    font-size:0.75rem;
+    font-weight:600;
+    width:fit-content;
+  }
+</style>
+</head>
+<body>
+<div class="comparison">
+  <div>
+    <h1>Mobile Performance Preview</h1>
+    <div class="stats">
+      MP4 Video: <strong>1.6 MB</strong> vs 361 WebP Frames: <strong>~12 MB</strong> — <strong>87% smaller</strong>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Option A — MP4 Video (scroll-controlled)</h2>
+    <p>1.6 MB, smooth on any device. Scroll inside the box below:</p>
+    <div class="scroll-demo" id="videoDemo">
+      <div class="label">Scroll aqui</div>
+      <div class="inner">
+        <video id="vid" muted playsinline preload="auto" src="showroom-mobile.mp4"></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:1rem">
+    <h2>Option B — Current (361 frames)</h2>
+    <p>Same experience, but loads ~12 MB of images. Laggy on mobile.</p>
+    <div class="scroll-demo" id="frameDemo">
+      <div class="label">Scroll aqui</div>
+      <div class="inner">
+        <canvas id="frameCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Video scroll control
+(function(){
+  const container = document.getElementById('videoDemo');
+  const vid = document.getElementById('vid');
+  vid.pause();
+
+  container.addEventListener('scroll', function(){
+    const scrollTop = container.scrollTop;
+    const maxScroll = container.scrollHeight - container.clientHeight;
+    const pct = scrollTop / maxScroll;
+    if(vid.duration) {
+      vid.currentTime = pct * vid.duration;
+    }
+  }, {passive:true});
+})();
+
+// Frame scroll control (loads first 30 frames for demo)
+(function(){
+  const container = document.getElementById('frameDemo');
+  const canvas = document.getElementById('frameCanvas');
+  const ctx = canvas.getContext('2d');
+  const DEMO_FRAMES = 60;
+  const frames = [];
+  let loaded = 0;
+
+  function resize(){
+    canvas.width = canvas.clientWidth * (window.devicePixelRatio||1);
+    canvas.height = canvas.clientHeight * (window.devicePixelRatio||1);
+  }
+  resize();
+
+  for(let i=1; i<=DEMO_FRAMES; i++){
+    const img = new Image();
+    const idx = Math.round((i-1)/(DEMO_FRAMES-1)*360)+1;
+    img.src = 'frames/frame_'+String(idx).padStart(4,'0')+'.webp';
+    img.onload = function(){ loaded++; if(loaded===1) draw(frames[0]); };
+    frames.push(img);
+  }
+
+  function draw(img){
+    if(!img||!img.complete) return;
+    const scale = Math.max(canvas.width/img.width, canvas.height/img.height);
+    const w = img.width*scale, h = img.height*scale;
+    ctx.drawImage(img, (canvas.width-w)/2, (canvas.height-h)/2, w, h);
+  }
+
+  container.addEventListener('scroll', function(){
+    const scrollTop = container.scrollTop;
+    const maxScroll = container.scrollHeight - container.clientHeight;
+    const pct = scrollTop / maxScroll;
+    const fi = Math.min(Math.round(pct*(DEMO_FRAMES-1)), DEMO_FRAMES-1);
+    if(frames[fi] && frames[fi].complete) draw(frames[fi]);
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
