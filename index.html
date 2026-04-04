@@ -274,7 +274,7 @@
       z-index: 2;
       pointer-events: none;
       background: rgba(12, 12, 14, 0);
-      transition: background 0.15s ease;
+      transition: background 0.4s ease;
     }
 
     .canvas-dim.active {
@@ -1051,15 +1051,14 @@
 
       function updateDim(p) {
         let cls = '';
-        // Dim only during peak visibility (tight ranges = more full-light time)
-        const heroActive   = false;  // left gradient handles hero readability
-        const b1Active     = p >= 0.24 && p < 0.32;
-        const aboutActive  = p >= 0.44 && p < 0.53;
-        const b3Active     = p >= 0.65 && p < 0.73;
-        const ctaActive    = p >= 0.87;
+        // Dim starts BEFORE text appears (5% earlier) for smooth feel
+        const heroActive   = false;
+        const b1Active     = p >= 0.16 && p < 0.35;
+        const aboutActive  = p >= 0.36 && p < 0.56;
+        const b3Active     = p >= 0.57 && p < 0.76;
+        const ctaActive    = false; // CTA stays bright
 
-        if (false) cls = 'active-strong'; // CTA section stays bright
-        else if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
+        if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
 
         if (cls !== lastDim) {
           dimEl.classList.remove('active', 'active-strong');
