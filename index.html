@@ -1058,7 +1058,7 @@
         const b3Active     = p >= 0.65 && p < 0.73;
         const ctaActive    = p >= 0.87;
 
-        if (ctaActive) cls = 'active-strong';
+        if (false) cls = 'active-strong'; // CTA section stays bright
         else if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
 
         if (cls !== lastDim) {
