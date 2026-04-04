@@ -269,23 +269,21 @@
 
     /* ── Dim overlay — animated by JS based on active section ── */
     .canvas-dim {
-      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(12, 12, 14, 0);
+      transition: background 0.4s ease;
     }
 
-    /* Backdrop behind each text section */
-    .px::before {
-      content: '';
-      position: absolute;
-      inset: -2rem;
-      z-index: -1;
-      border-radius: 1.5rem;
-      background: radial-gradient(ellipse at center, rgba(12, 12, 14, 0.7) 0%, rgba(12, 12, 14, 0.4) 60%, transparent 100%);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      pointer-events: none;
+    .canvas-dim.active {
+      background: rgba(12, 12, 14, 0.65);
     }
-    .s-hero::before { inset: -3rem -4rem; }
-    .s-cta::before { inset: -2rem -3rem; }
+
+    .canvas-dim.active-strong {
+      background: rgba(12, 12, 14, 0.5);
+    }
 
     /* ── Text shadow for all content ── */
     .px h1, .px h2, .px blockquote, .px p, .px .sub, .px .num, .px .eyebrow, .px .credit, .px .tag {
@@ -1047,8 +1045,26 @@
         requestAnimationFrame(loop);
       }
 
-      // ── Footer visibility ──
+      // ── Dim overlay — darkens when text is visible ──
+      const dimEl = document.getElementById('canvasDim');
+      let lastDim = '';
+
       function updateDim(p) {
+        let cls = '';
+        // Dim starts 5% before text, ends right at text exit — tight windows = more light
+        const heroActive   = false;
+        const b1Active     = p >= 0.18 && p < 0.30;
+        const aboutActive  = p >= 0.39 && p < 0.51;
+        const b3Active     = p >= 0.60 && p < 0.72;
+        const ctaActive    = false;
+
+        if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
+
+        if (cls !== lastDim) {
+          dimEl.classList.remove('active', 'active-strong');
+          if (cls) dimEl.classList.add(cls);
+          lastDim = cls;
+        }
 
         // Show footer only when CTA is visible
         const ft = document.getElementById('siteFooter');
