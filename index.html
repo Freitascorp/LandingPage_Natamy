@@ -196,21 +196,12 @@
     .mobile-menu a:hover { color: var(--accent); }
 
     /* ── Hero CTA ── */
-    .s-hero { pointer-events: none; }
+    .s-hero { pointer-events: auto; touch-action: pan-y; }
     .hero-cta {
-      display: none;
-    }
-
-    /* Fixed mobile CTA — outside scroll system, always tappable */
-    .fixed-cta {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 50;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      margin-top: 1.5rem;
       padding: 0.875rem 2rem;
       background: var(--accent);
       color: #0c0c0e !important;
@@ -220,16 +211,18 @@
       border-radius: 9999px;
       text-decoration: none !important;
       pointer-events: auto;
-      box-shadow: 0 8px 32px -4px rgba(16, 185, 129, 0.4);
-      transition: transform 0.3s, box-shadow 0.3s, opacity 0.4s;
+      position: relative;
+      z-index: 30;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(16, 185, 129, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .fixed-cta:hover {
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 12px 40px -6px rgba(16, 185, 129, 0.5);
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.3);
       color: #0c0c0e !important;
       text-decoration: none !important;
     }
-    .fixed-cta.hidden { opacity: 0; pointer-events: none; }
 
     /* ── Progress ── */
     .progress-track {
@@ -784,8 +777,6 @@
     <a href="/contacto.html">Contacto</a>
   </div>
 
-  <a href="/contacto.html" class="fixed-cta" id="fixedCta">Fale Connosco <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
   </div>
@@ -803,6 +794,7 @@
   <div class="px s-hero" id="s1" data-in="-1" data-peak="-1" data-out="0.16" data-dir="left">
     <h1>O Seu Stand<br>Merece Lotar<span>Nós trazemos quem compra.</span></h1>
     <p class="sub">Tráfego pago, automação com IA e funis de venda feitos à medida para stands automóveis em Portugal. Sem curiosos. Só compradores.</p>
+    <a href="/contacto.html" class="hero-cta">Fale Connosco <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
   </div>
 
   <!-- S2: Benefit 01 | 22-35% | Centered over lobby -->
@@ -1213,17 +1205,6 @@
           document.body.style.overflow = '';
         });
       });
-    })();
-
-    // ── Fixed CTA visibility ──
-    (function() {
-      var cta = document.getElementById('fixedCta');
-      if (!cta) return;
-      window.addEventListener('scroll', function() {
-        var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        if (pct > 0.15) { cta.classList.add('hidden'); }
-        else { cta.classList.remove('hidden'); }
-      }, { passive: true });
     })();
 
     // ── EmailJS Contact Form ──
