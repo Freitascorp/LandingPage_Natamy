@@ -1051,12 +1051,12 @@
 
       function updateDim(p) {
         let cls = '';
-        // Dim starts BEFORE text appears (5% earlier) for smooth feel
+        // Dim starts 5% before text, ends right at text exit — tight windows = more light
         const heroActive   = false;
-        const b1Active     = p >= 0.16 && p < 0.35;
-        const aboutActive  = p >= 0.36 && p < 0.56;
-        const b3Active     = p >= 0.57 && p < 0.76;
-        const ctaActive    = false; // CTA stays bright
+        const b1Active     = p >= 0.18 && p < 0.30;
+        const aboutActive  = p >= 0.39 && p < 0.51;
+        const b3Active     = p >= 0.60 && p < 0.72;
+        const ctaActive    = false;
 
         if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
 
