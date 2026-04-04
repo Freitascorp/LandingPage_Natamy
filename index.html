@@ -1127,8 +1127,10 @@
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
 
-      // ── Mobile swipe-to-section ──
+      // ── Mobile swipe-to-section (2 swipes per section — midpoints for garage tour feel) ──
       if (isMobile) {
+        // Midpoints between text sections = video-only moments
+        const MOBILE_SNAPS = [0, 0.12, 0.24, 0.34, 0.44, 0.55, 0.65, 0.76, 0.87, 0.94, 1.0];
         let touchStartY = 0;
         let touchLocked = false;
         let currentSnapIndex = 0;
@@ -1141,20 +1143,18 @@
         document.addEventListener('touchend', function(e) {
           if (isSnapping || touchLocked) return;
           const dy = touchStartY - e.changedTouches[0].clientY;
-          if (Math.abs(dy) < 30) return; // ignore tiny movements
+          if (Math.abs(dy) < 30) return;
 
           touchLocked = true;
 
-          if (dy > 0 && currentSnapIndex < SNAPS.length - 1) {
-            // Swipe up → next section
+          if (dy > 0 && currentSnapIndex < MOBILE_SNAPS.length - 1) {
             currentSnapIndex++;
           } else if (dy < 0 && currentSnapIndex > 0) {
-            // Swipe down → previous section
             currentSnapIndex--;
           }
 
-          smoothSnapTo(SNAPS[currentSnapIndex]);
-          setTimeout(function() { touchLocked = false; }, 800);
+          smoothSnapTo(MOBILE_SNAPS[currentSnapIndex]);
+          setTimeout(function() { touchLocked = false; }, 700);
         }, { passive: true });
       }
 
