@@ -209,15 +209,15 @@
       z-index: 2;
       pointer-events: none;
       background: rgba(12, 12, 14, 0);
-      transition: background 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: background 1.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .canvas-dim.active {
-      background: rgba(12, 12, 14, 0.55);
+      background: rgba(12, 12, 14, 0.4);
     }
 
     .canvas-dim.active-strong {
-      background: rgba(12, 12, 14, 0.35);
+      background: rgba(12, 12, 14, 0.2);
     }
 
     /* ── Text shadow for all content ── */
@@ -933,12 +933,12 @@
 
       function updateDim(p) {
         let cls = '';
-        // Sections where text is visible — dim the background
-        const heroActive   = p >= 0.0  && p < 0.18;
-        const b1Active     = p >= 0.21 && p < 0.37;
-        const aboutActive  = p >= 0.41 && p < 0.58;
-        const b3Active     = p >= 0.62 && p < 0.78;
-        const ctaActive    = p >= 0.84;
+        // Dim only during peak visibility (tight ranges = more full-light time)
+        const heroActive   = p >= 0.02 && p < 0.13;
+        const b1Active     = p >= 0.24 && p < 0.32;
+        const aboutActive  = p >= 0.44 && p < 0.53;
+        const b3Active     = p >= 0.65 && p < 0.73;
+        const ctaActive    = p >= 0.87;
 
         if (ctaActive) cls = 'active-strong';
         else if (heroActive || b1Active || aboutActive || b3Active) cls = 'active';
