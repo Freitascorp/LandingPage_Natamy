@@ -1075,10 +1075,12 @@
         target = scrollPct();
         startLoop();
 
-        // Reset snap timer
-        clearTimeout(scrollTimer);
-        if (!isSnapping) {
-          scrollTimer = setTimeout(onScrollIdle, SNAP_IDLE_MS);
+        // Snap timer (desktop only — mobile uses swipe-to-section)
+        if (!isMobile) {
+          clearTimeout(scrollTimer);
+          if (!isSnapping) {
+            scrollTimer = setTimeout(onScrollIdle, SNAP_IDLE_MS);
+          }
         }
       }
 
@@ -1119,6 +1121,41 @@
 
           for (let c = 0; c < C; c++) go();
         });
+      }
+
+      // ── Force start at top on every page load ──
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
+      // ── Mobile swipe-to-section ──
+      if (isMobile) {
+        let touchStartY = 0;
+        let touchLocked = false;
+        let currentSnapIndex = 0;
+
+        document.addEventListener('touchstart', function(e) {
+          if (isSnapping || touchLocked) return;
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+          if (isSnapping || touchLocked) return;
+          const dy = touchStartY - e.changedTouches[0].clientY;
+          if (Math.abs(dy) < 30) return; // ignore tiny movements
+
+          touchLocked = true;
+
+          if (dy > 0 && currentSnapIndex < SNAPS.length - 1) {
+            // Swipe up → next section
+            currentSnapIndex++;
+          } else if (dy < 0 && currentSnapIndex > 0) {
+            // Swipe down → previous section
+            currentSnapIndex--;
+          }
+
+          smoothSnapTo(SNAPS[currentSnapIndex]);
+          setTimeout(function() { touchLocked = false; }, 800);
+        }, { passive: true });
       }
 
       // ── Init ──
