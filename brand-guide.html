@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Natamy Oliveira — Brand Guide</title>
+  <title>Natamy Oliveira — Brand Identity System</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,41 +47,9 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* ── BACKGROUND ORBS ── */
-    .bg-orb {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(80px);
-    }
-    .bg-orb-1 {
-      width: 600px; height: 600px;
-      top: -10%; right: -10%;
-      background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
-      animation: float 20s ease-in-out infinite;
-    }
-    .bg-orb-2 {
-      width: 500px; height: 500px;
-      bottom: 20%; left: -15%;
-      background: radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%);
-      animation: float 25s ease-in-out infinite reverse;
-    }
-    .bg-orb-3 {
-      width: 400px; height: 400px;
-      top: 40%; right: -5%;
-      background: radial-gradient(circle, rgba(16,185,129,0.03) 0%, transparent 70%);
-      animation: float 22s ease-in-out infinite 5s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -20px) scale(1.05); }
-      50% { transform: translate(-20px, 30px) scale(0.95); }
-      75% { transform: translate(15px, 15px) scale(1.02); }
-    }
-
-    /* ── GRAIN OVERLAY ── */
+    /* ══════════════════════════════════════
+       GRAIN OVERLAY
+    ══════════════════════════════════════ */
     .grain {
       position: fixed;
       inset: 0;
@@ -90,7 +58,9 @@
       opacity: 0.035;
     }
 
-    /* ── CURSOR GLOW (desktop only) ── */
+    /* ══════════════════════════════════════
+       CURSOR GLOW (desktop only)
+    ══════════════════════════════════════ */
     .cursor-glow {
       position: fixed;
       width: 400px; height: 400px;
@@ -103,86 +73,149 @@
       opacity: 0;
     }
 
-    /* ── NAV ── */
+    /* ══════════════════════════════════════
+       FIXED NAV
+    ══════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.25rem 2rem;
-      background: rgba(12,12,14,0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--glass-border);
+      padding: 1.25rem 2.5rem;
+      background: rgba(12,12,14,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
     .nav-logo {
-      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
       color: var(--z100); text-transform: uppercase;
     }
     .nav-back {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--z400); transition: color 0.2s;
+      font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--z500); transition: color 0.3s;
     }
     .nav-back:hover { color: var(--accent); }
 
-    /* ── LAYOUT ── */
+    /* ══════════════════════════════════════
+       SIDE NAV DOTS
+    ══════════════════════════════════════ */
+    .side-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .side-nav a {
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--z700);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .side-nav a:hover,
+    .side-nav a.active {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+
+    /* ══════════════════════════════════════
+       LAYOUT
+    ══════════════════════════════════════ */
     .container {
       max-width: 72rem;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
       position: relative;
       z-index: 2;
     }
-    section {
-      padding: 8rem 0;
-      scroll-margin-top: 5rem;
-    }
 
-    /* ── SECTION DIVIDER ── */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.3;
+    /* ══════════════════════════════════════
+       SECTION HERO IMAGE BANDS
+    ══════════════════════════════════════ */
+    .section-hero-band {
       position: relative;
+      width: 100%;
+      height: 50vh;
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
     }
-    .section-divider::after {
+    .section-hero-band::after {
       content: '';
       position: absolute;
-      top: -2px; left: 50%; transform: translateX(-50%);
-      width: 120px; height: 5px;
-      background: var(--accent);
-      filter: blur(8px);
-      opacity: 0.4;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(12,12,14,0.3) 0%,
+        rgba(12,12,14,0.5) 40%,
+        rgba(12,12,14,0.85) 80%,
+        var(--z950) 100%
+      );
+    }
+    .section-hero-band .band-content {
+      position: absolute;
+      bottom: 4rem;
+      left: 0; right: 0;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+    .section-hero-band .band-inner {
+      max-width: 72rem;
+      margin: 0 auto;
     }
 
-    /* ── SECTION HEADER ── */
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    /* Section number — massive decorative */
+    .section-num {
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 200;
       color: var(--accent);
-      margin-bottom: 1.25rem;
-    }
-    .section-title {
-      font-size: clamp(1.85rem, 4.5vw, 3rem);
-      font-weight: 800;
-      line-height: 1.1;
+      opacity: 0.12;
+      line-height: 1;
       letter-spacing: -0.04em;
-      margin-bottom: 1.5rem;
+      margin-bottom: -1.5rem;
+      display: block;
+    }
+
+    /* Section title — gradient */
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
       background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .section-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--z400);
       font-weight: 300;
       line-height: 1.75;
       max-width: 38rem;
     }
 
-    /* ── FADE-IN ANIMATIONS ── */
+    /* Content areas below hero bands */
+    .section-content {
+      padding: 5rem 0 10rem;
+    }
+
+    /* Thin accent divider */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(16,185,129,0.25), transparent);
+    }
+
+    /* ══════════════════════════════════════
+       FADE-IN ANIMATIONS
+    ══════════════════════════════════════ */
     .fade-in {
       opacity: 0;
       transform: translateY(40px);
@@ -199,204 +232,342 @@
     .fade-in-delay-5 { transition-delay: 0.5s; }
     .fade-in-delay-6 { transition-delay: 0.6s; }
 
-    /* ── GLASSMORPHISM CARD ── */
-    .glass-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 2.25rem;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: background 0.4s, border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-    }
-    .glass-card:hover {
-      background: var(--glass-hover);
-      border-color: rgba(255,255,255,0.12);
-      transform: translateY(-3px);
-    }
-
-    /* ═══════════════════════════════
-       HERO
-    ═══════════════════════════════ */
+    /* ══════════════════════════════════════
+       HERO — FULL CINEMATIC VIEWPORT
+    ══════════════════════════════════════ */
     .hero {
-      min-height: 100dvh;
+      position: relative;
+      width: 100%;
+      height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
       overflow: hidden;
-      padding: 6rem 0;
+      background: url('frames/frame_0001.webp') center/cover no-repeat;
+      background-attachment: fixed;
     }
-    .hero::before {
+    .hero::after {
       content: '';
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 900px; height: 700px;
-      background: radial-gradient(ellipse, rgba(16,185,129,0.07) 0%, rgba(16,185,129,0.02) 40%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(12,12,14,0.25) 0%,
+        rgba(12,12,14,0.45) 40%,
+        rgba(12,12,14,0.75) 75%,
+        rgba(12,12,14,0.92) 100%
+      );
     }
     .hero-inner {
-      max-width: 54rem;
-      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      max-width: 64rem;
+      padding: 0 2rem;
     }
     .hero h1 {
-      font-size: clamp(2.75rem, 7vw, 5rem);
+      font-size: clamp(3rem, 8vw, 6rem);
       font-weight: 800;
-      line-height: 1.02;
+      line-height: 1;
       letter-spacing: -0.04em;
-      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      background: linear-gradient(180deg, #ffffff 20%, rgba(255,255,255,0.35) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.5rem;
     }
-    .hero-lead {
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-      color: var(--z400);
+    .hero-subtitle {
+      font-size: clamp(0.75rem, 1.5vw, 1rem);
       font-weight: 300;
-      line-height: 1.75;
-      max-width: 34rem;
-      margin: 0 auto;
-    }
-
-    /* ── HERO BADGE ── */
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 1.25rem;
-      border: 1px solid rgba(16,185,129,0.2);
-      border-radius: 9999px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(16,185,129,0.06);
-      backdrop-filter: blur(8px);
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    .hero-line {
+      width: 60px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 0;
+      opacity: 0.6;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .scroll-indicator span {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--z500);
+    }
+    .scroll-indicator .scroll-line {
+      width: 1px;
+      height: 40px;
       position: relative;
       overflow: hidden;
+      background: rgba(255,255,255,0.08);
     }
-    .hero-badge::before {
-      content: '';
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px rgba(16,185,129,0.6);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    .hero-badge::after {
+    .scroll-indicator .scroll-line::after {
       content: '';
       position: absolute;
-      top: -50%; left: -100%;
-      width: 200%; height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(16,185,129,0.08), transparent);
-      animation: badge-shimmer 4s ease-in-out infinite;
+      top: -100%;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background: var(--accent);
+      animation: scrollPulse 2s ease-in-out infinite;
     }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-    @keyframes badge-shimmer {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(50%); }
+    @keyframes scrollPulse {
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
     }
 
-    /* ═══════════════════════════════
+    /* ══════════════════════════════════════
        1. COLOR PALETTE
-    ═══════════════════════════════ */
-    .color-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-    .color-swatch {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--glass-border);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .color-swatch:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    }
-    .color-swatch-preview {
-      height: 100px;
+    ══════════════════════════════════════ */
+
+    /* Accent hero swatch — full width */
+    .accent-hero-swatch {
+      width: 100%;
+      height: 200px;
+      background: var(--accent);
+      border-radius: 20px;
       position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3rem;
     }
-    .color-swatch-info {
-      padding: 1rem 1.25rem;
-      background: var(--glass);
-      backdrop-filter: blur(12px);
+    .accent-hero-swatch .swatch-hex {
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 200;
+      color: rgba(12,12,14,0.2);
+      letter-spacing: 0.05em;
     }
-    .color-swatch-name {
+    .accent-hero-swatch .swatch-info {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 2rem;
+      display: flex;
+      gap: 2rem;
+      align-items: baseline;
+    }
+    .accent-hero-swatch .swatch-name {
       font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--z100);
-      margin-bottom: 0.15rem;
+      font-weight: 700;
+      color: var(--z950);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    .color-swatch-hex {
+    .accent-hero-swatch .swatch-var {
       font-size: 0.72rem;
       font-weight: 400;
-      color: var(--z500);
-      font-family: 'Outfit', monospace;
-      margin-bottom: 0.35rem;
+      color: rgba(12,12,14,0.5);
     }
-    .color-swatch-var {
-      font-size: 0.65rem;
+    .accent-hero-swatch .swatch-usage {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: rgba(12,12,14,0.4);
+    }
+
+    /* Zinc gradient strip */
+    .zinc-strip {
+      display: flex;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 80px;
+      margin-bottom: 1rem;
+    }
+    .zinc-strip-cell {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0.75rem;
+      transition: flex 0.3s;
+    }
+    .zinc-strip-cell:hover { flex: 1.5; }
+    .zinc-strip-cell span {
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      opacity: 0.6;
+    }
+
+    /* Zinc labels row */
+    .zinc-labels {
+      display: flex;
+      margin-bottom: 0.5rem;
+    }
+    .zinc-labels .zinc-label-cell {
+      flex: 1;
+      text-align: center;
+    }
+    .zinc-label-cell .label-name {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--z400);
+      display: block;
+    }
+    .zinc-label-cell .label-hex {
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--z700);
+      display: block;
+    }
+    .zinc-label-cell .label-var {
+      font-size: 0.55rem;
       font-weight: 500;
       color: var(--accent);
-      font-family: 'Outfit', monospace;
-      letter-spacing: 0.02em;
+      display: block;
+      margin-top: 0.15rem;
     }
-    .color-swatch-usage {
-      font-size: 0.65rem;
+    .zinc-label-cell .label-usage {
+      font-size: 0.5rem;
       font-weight: 300;
-      color: var(--z500);
-      margin-top: 0.3rem;
+      color: var(--z700);
+      display: block;
+      margin-top: 0.25rem;
     }
 
-    /* Accent featured swatch */
-    .color-swatch.featured {
-      grid-column: span 2;
-    }
-    .color-swatch.featured .color-swatch-preview {
-      height: 140px;
-    }
-
-    /* Glass swatches */
-    .glass-swatch-grid {
+    /* Glass variant cards */
+    .glass-variants {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
     }
-    .glass-swatch {
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
+    .glass-variant-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 2rem;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       transition: transform 0.3s;
     }
-    .glass-swatch:hover { transform: translateY(-2px); }
-    .glass-swatch-label {
-      font-size: 0.8rem;
+    .glass-variant-card:hover { transform: translateY(-2px); }
+    .glass-variant-card .gv-name {
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--z100);
       margin-bottom: 0.25rem;
     }
-    .glass-swatch-value {
+    .glass-variant-card .gv-value {
       font-size: 0.65rem;
       font-weight: 400;
       color: var(--z500);
       font-family: 'Outfit', monospace;
     }
+    .glass-variant-card .gv-var {
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--accent);
+      font-family: 'Outfit', monospace;
+      margin-top: 0.2rem;
+    }
 
-    /* ═══════════════════════════════
+    /* ══════════════════════════════════════
        2. TYPOGRAPHY
-    ═══════════════════════════════ */
+    ══════════════════════════════════════ */
+
+    .type-display-hero {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--z100);
+      margin-bottom: 3rem;
+    }
+
+    .weight-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 3rem 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    .weight-strip-item {
+      flex: 1;
+      min-width: 100px;
+      padding: 2rem 1.5rem;
+      background: var(--glass);
+      border-right: 1px solid var(--glass-border);
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .weight-strip-item:last-child { border-right: none; }
+    .weight-strip-item:hover { background: var(--glass-hover); }
+    .weight-strip-item .ws-sample {
+      font-size: 1.5rem;
+      color: var(--z100);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .weight-strip-item .ws-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--z500);
+      display: block;
+    }
+
+    .gradient-text-showcase {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      margin: 3rem 0;
+    }
+
+    .font-specimen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .font-specimen-char {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--z300);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 8px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .font-specimen-char:hover {
+      border-color: rgba(16,185,129,0.3);
+      color: var(--z100);
+    }
+
     .type-row {
       padding: 2.5rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -410,7 +581,7 @@
       align-items: baseline;
     }
     .type-label {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -418,66 +589,29 @@
       min-width: 100px;
     }
     .type-specs {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 400;
       color: var(--z500);
       font-family: 'Outfit', monospace;
     }
-    .type-sample-display-lg {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      color: var(--z100);
-    }
-    .type-sample-display-md {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--z100);
-    }
-    .type-sample-body-lg {
-      font-size: 1.0625rem;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--z300);
-    }
-    .type-sample-body-md {
-      font-size: 0.9375rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--z300);
-    }
-    .type-sample-label-md {
-      font-size: 0.75rem;
-      font-weight: 600;
+
+    /* ══════════════════════════════════════
+       3. COMPONENTS
+    ══════════════════════════════════════ */
+
+    .component-label {
+      font-size: 0.6rem;
+      font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--z400);
-    }
-    .type-sample-label-sm {
-      font-size: 0.6875rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--z400);
+      color: var(--z700);
+      margin-bottom: 1rem;
+      display: block;
     }
 
-    .gradient-text-demo {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin: 2rem 0 1rem;
+    .component-section {
+      margin-bottom: 5rem;
     }
-
-    /* ═══════════════════════════════
-       3. COMPONENTS
-    ═══════════════════════════════ */
 
     /* Buttons */
     .btn-row {
@@ -485,7 +619,6 @@
       flex-wrap: wrap;
       gap: 1.25rem;
       align-items: center;
-      margin-top: 1.5rem;
     }
     .btn-primary {
       display: inline-flex;
@@ -531,50 +664,22 @@
       transform: translateY(-2px);
     }
 
-    /* Stats bar */
-    .stats-bar-demo {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--glass-border);
+    /* Glass Cards */
+    .glass-card {
+      background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
-      overflow: hidden;
-      margin-top: 1.5rem;
-    }
-    .stat-item {
-      background: rgba(255,255,255,0.02);
+      padding: 2.25rem;
       backdrop-filter: blur(12px);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: background 0.3s;
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.4s, border-color 0.4s, transform 0.4s, box-shadow 0.4s;
     }
-    .stat-item:hover { background: rgba(255,255,255,0.04); }
-    .stat-number {
-      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-      font-weight: 700;
-      color: var(--z100);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.35rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .stat-number .accent-text { color: var(--accent); -webkit-text-fill-color: var(--accent); }
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--z500);
-      font-weight: 400;
-      letter-spacing: 0.03em;
+    .glass-card:hover {
+      background: var(--glass-hover);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
     }
 
-    /* Card demos */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-    }
-
-    /* Glass card with gradient border */
     .glass-card-gradient {
       position: relative;
       background: var(--glass);
@@ -601,11 +706,10 @@
     }
     .glass-card-gradient:hover::before { opacity: 1; }
     .glass-card-gradient:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 
-    /* Glass card with inner glow */
     .glass-card-glow {
       position: relative;
       background: var(--glass);
@@ -629,10 +733,15 @@
     }
     .glass-card-glow:hover {
       border-color: rgba(255,255,255,0.12);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
     }
     .glass-card-glow:hover::after { opacity: 1; }
 
+    .card-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
     .card-title {
       font-size: 1rem;
       font-weight: 600;
@@ -645,10 +754,45 @@
       color: var(--z400);
       line-height: 1.6;
     }
-    .card-icon {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
-      display: block;
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Stats bar */
+    .stats-bar-demo {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--glass-border);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .stat-item {
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(12px);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .stat-item:hover { background: rgba(255,255,255,0.04); }
+    .stat-number {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: var(--z100);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-number .accent-text { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--z500);
+      font-weight: 400;
+      letter-spacing: 0.03em;
     }
 
     /* Pull quote */
@@ -660,7 +804,6 @@
       padding: 2.5rem 2.5rem 2rem;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      margin-top: 1.5rem;
       overflow: hidden;
     }
     .pull-quote::before {
@@ -690,7 +833,6 @@
     /* Form elements */
     .form-demo {
       max-width: 480px;
-      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
@@ -720,13 +862,35 @@
       line-height: 1.6;
     }
 
-    /* Badge row */
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    /* Badges */
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-      margin-top: 1.5rem;
+      gap: 0.6rem;
+      padding: 0.45rem 1.25rem;
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(16,185,129,0.06);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(16,185,129,0.6);
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
     .section-label-badge {
       font-size: 0.72rem;
@@ -738,14 +902,13 @@
       border-left: 2px solid var(--accent);
     }
 
-    /* ═══════════════════════════════
+    /* ══════════════════════════════════════
        4. EFFECTS
-    ═══════════════════════════════ */
+    ══════════════════════════════════════ */
     .effects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.25rem;
-      margin-top: 1.5rem;
     }
     .effect-card {
       background: var(--glass);
@@ -767,7 +930,6 @@
       line-height: 1.6;
     }
 
-    /* Grain demo */
     .grain-demo {
       position: relative;
       height: 120px;
@@ -794,7 +956,6 @@
       text-transform: uppercase;
     }
 
-    /* Hover lift demo */
     .lift-card {
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -809,7 +970,6 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08);
     }
 
-    /* Gradient border demo */
     .gradient-border-demo {
       position: relative;
       background: var(--glass);
@@ -831,14 +991,34 @@
       pointer-events: none;
     }
 
-    /* ═══════════════════════════════
+    /* Stagger demo cards */
+    .stagger-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .stagger-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .stagger-card .stagger-num {
+      font-size: 2rem;
+      font-weight: 200;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ══════════════════════════════════════
        5. SPACING
-    ═══════════════════════════════ */
+    ══════════════════════════════════════ */
     .spacing-scale {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      margin-top: 1.5rem;
     }
     .spacing-row {
       display: flex;
@@ -868,14 +1048,14 @@
       min-width: 50px;
     }
 
-    /* ═══════════════════════════════
+    /* ══════════════════════════════════════
        6. CODE BLOCKS
-    ═══════════════════════════════ */
+    ══════════════════════════════════════ */
     .code-block {
       background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 16px;
-      padding: 1.5rem 2rem;
+      padding: 1.75rem 2rem;
       backdrop-filter: blur(12px);
       overflow-x: auto;
       margin-top: 1.25rem;
@@ -901,37 +1081,67 @@
       text-transform: uppercase;
       color: var(--z500);
       margin-bottom: 0.75rem;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
     }
     .code-label:first-child { margin-top: 0; }
 
-    /* ═══════════════════════════════
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    .brand-footer {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .brand-footer p {
+      font-size: 0.68rem;
+      font-weight: 300;
+      color: var(--z700);
+      letter-spacing: 0.08em;
+    }
+
+    /* ══════════════════════════════════════
        RESPONSIVE
-    ═══════════════════════════════ */
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .side-nav { display: none; }
+    }
+
     @media (max-width: 768px) {
-      section { padding: 5rem 0; }
-      .color-grid { grid-template-columns: repeat(2, 1fr); }
-      .color-swatch.featured { grid-column: span 2; }
-      .stats-bar-demo { grid-template-columns: 1fr; }
+      .section-hero-band {
+        background-attachment: scroll;
+        height: 40vh;
+        min-height: 280px;
+      }
+      .hero {
+        background-attachment: scroll;
+      }
+      .section-content { padding: 3rem 0 6rem; }
+      .zinc-strip { height: 60px; }
+      .zinc-labels { flex-wrap: wrap; gap: 0.5rem; }
+      .zinc-label-cell { min-width: 80px; }
+      .glass-variants { grid-template-columns: 1fr; }
+      .weight-strip { flex-wrap: wrap; }
+      .weight-strip-item { min-width: 50%; border-bottom: 1px solid var(--glass-border); }
+      .font-specimen { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); }
       .card-grid { grid-template-columns: 1fr; }
+      .stats-bar-demo { grid-template-columns: 1fr; }
       .effects-grid { grid-template-columns: 1fr; }
+      .stagger-grid { grid-template-columns: 1fr; }
       .btn-row { flex-direction: column; align-items: flex-start; }
       nav { padding: 1rem 1.25rem; }
+      .accent-hero-swatch { height: 140px; }
+      .accent-hero-swatch .swatch-info { flex-direction: column; gap: 0.25rem; }
+      .accent-hero-swatch .swatch-usage { display: none; }
+      .container { padding: 0 1.25rem; }
     }
 
     @media (max-width: 480px) {
-      .color-grid { grid-template-columns: 1fr; }
-      .color-swatch.featured { grid-column: span 1; }
-      .glass-swatch-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: clamp(2.25rem, 10vw, 3.5rem); }
+      .section-num { font-size: clamp(4rem, 15vw, 6rem); }
     }
   </style>
 </head>
 <body>
-
-  <!-- Background Orbs -->
-  <div class="bg-orb bg-orb-1"></div>
-  <div class="bg-orb bg-orb-2"></div>
-  <div class="bg-orb bg-orb-3"></div>
 
   <!-- Grain Overlay -->
   <svg class="grain" width="100%" height="100%">
@@ -947,310 +1157,448 @@
   <!-- Navigation -->
   <nav>
     <span class="nav-logo">Natamy Oliveira</span>
-    <a href="/" class="nav-back">&larr; Voltar ao site</a>
+    <a href="/" class="nav-back">&larr; Voltar ao Site</a>
   </nav>
 
-  <!-- ═══════════════════════════════
-       HERO
-  ═══════════════════════════════ -->
-  <section class="hero">
+  <!-- Side Nav Dots -->
+  <div class="side-nav" id="sideNav">
+    <a href="#hero" title="Inicio"></a>
+    <a href="#cores" title="Cores"></a>
+    <a href="#tipografia" title="Tipografia"></a>
+    <a href="#componentes" title="Componentes"></a>
+    <a href="#efeitos" title="Efeitos"></a>
+    <a href="#espacamento" title="Espacamento"></a>
+    <a href="#referencia" title="Referencia"></a>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       HERO — FULL CINEMATIC VIEWPORT
+  ════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
     <div class="hero-inner">
-      <div class="hero-badge fade-in">Brand Guide v1.0</div>
-      <h1 class="fade-in fade-in-delay-1">Natamy Oliveira</h1>
-      <p class="hero-lead fade-in fade-in-delay-2">Sistema de Design Visual</p>
+      <h1 class="fade-in">NATAMY<br>OLIVEIRA</h1>
+      <p class="hero-subtitle fade-in fade-in-delay-2">Brand Identity System</p>
+      <div class="hero-line fade-in fade-in-delay-3"></div>
+    </div>
+    <div class="scroll-indicator fade-in fade-in-delay-4">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
+
+  <!-- ════════════════════════════════════════════════════
+       01 — PALETA DE CORES
+  ════════════════════════════════════════════════════ -->
+  <div class="section-hero-band" id="cores" style="background-image: url('frames/frame_0100.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <span class="section-num fade-in">01</span>
+        <h2 class="section-title fade-in fade-in-delay-1">Paleta de Cores</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Zinc scale + accent emerald. Cada cor tem um papel definido no sistema.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
+    <div class="section-content">
 
-    <!-- ═══════════════════════════════
-         1. COLOR PALETTE
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="cores">
-      <p class="section-label fade-in">01 &mdash; Cores</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Paleta de Cores</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Zinc scale + accent emerald. Cada cor tem um papel definido no sistema.</p>
-
-      <!-- Zinc Scale -->
-      <div class="color-grid" style="margin-top: 3rem;">
-        <div class="color-swatch fade-in">
-          <div class="color-swatch-preview" style="background: #0c0c0e;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 950</div>
-            <div class="color-swatch-hex">#0c0c0e</div>
-            <div class="color-swatch-var">var(--z950)</div>
-            <div class="color-swatch-usage">Background principal</div>
-          </div>
+      <!-- Accent — hero swatch -->
+      <div class="accent-hero-swatch fade-in">
+        <span class="swatch-hex">#10b981</span>
+        <div class="swatch-info">
+          <span class="swatch-name">Emerald 500 &mdash; Accent</span>
+          <span class="swatch-var">var(--accent)</span>
         </div>
+        <span class="swatch-usage">CTAs, eyebrows, badges, icones, links hover</span>
+      </div>
 
-        <div class="color-swatch fade-in fade-in-delay-1">
-          <div class="color-swatch-preview" style="background: #18181b;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 900</div>
-            <div class="color-swatch-hex">#18181b</div>
-            <div class="color-swatch-var">var(--z900)</div>
-            <div class="color-swatch-usage">Cards, superficies elevadas</div>
-          </div>
+      <!-- Zinc Scale Strip -->
+      <span class="component-label fade-in">Zinc Scale</span>
+      <div class="zinc-strip fade-in">
+        <div class="zinc-strip-cell" style="background: #0c0c0e;">
+          <span style="color: #3f3f46;">950</span>
         </div>
-
-        <div class="color-swatch fade-in fade-in-delay-2">
-          <div class="color-swatch-preview" style="background: #27272a;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 800</div>
-            <div class="color-swatch-hex">#27272a</div>
-            <div class="color-swatch-var">var(--z800)</div>
-            <div class="color-swatch-usage">Borders, separadores</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #18181b;">
+          <span style="color: #3f3f46;">900</span>
         </div>
-
-        <div class="color-swatch fade-in fade-in-delay-3">
-          <div class="color-swatch-preview" style="background: #3f3f46;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 700</div>
-            <div class="color-swatch-hex">#3f3f46</div>
-            <div class="color-swatch-var">var(--z700)</div>
-            <div class="color-swatch-usage">Borders hover, numeracao</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #27272a;">
+          <span style="color: #71717a;">800</span>
         </div>
-
-        <div class="color-swatch fade-in">
-          <div class="color-swatch-preview" style="background: #71717a;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 500</div>
-            <div class="color-swatch-hex">#71717a</div>
-            <div class="color-swatch-var">var(--z500)</div>
-            <div class="color-swatch-usage">Labels, texto secundario</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #3f3f46;">
+          <span style="color: #a1a1aa;">700</span>
         </div>
-
-        <div class="color-swatch fade-in fade-in-delay-1">
-          <div class="color-swatch-preview" style="background: #a1a1aa;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 400</div>
-            <div class="color-swatch-hex">#a1a1aa</div>
-            <div class="color-swatch-var">var(--z400)</div>
-            <div class="color-swatch-usage">Corpo de texto, subtitulos</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #71717a;">
+          <span style="color: #d4d4d8;">500</span>
         </div>
-
-        <div class="color-swatch fade-in fade-in-delay-2">
-          <div class="color-swatch-preview" style="background: #d4d4d8;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 300</div>
-            <div class="color-swatch-hex">#d4d4d8</div>
-            <div class="color-swatch-var">var(--z300)</div>
-            <div class="color-swatch-usage">Corpo de texto, paragrafos</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #a1a1aa;">
+          <span style="color: #27272a;">400</span>
         </div>
-
-        <div class="color-swatch fade-in fade-in-delay-3">
-          <div class="color-swatch-preview" style="background: #f4f4f5;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Zinc 100</div>
-            <div class="color-swatch-hex">#f4f4f5</div>
-            <div class="color-swatch-var">var(--z100)</div>
-            <div class="color-swatch-usage">Titulos, texto destaque</div>
-          </div>
+        <div class="zinc-strip-cell" style="background: #d4d4d8;">
+          <span style="color: #3f3f46;">300</span>
+        </div>
+        <div class="zinc-strip-cell" style="background: #f4f4f5;">
+          <span style="color: #3f3f46;">100</span>
         </div>
       </div>
 
-      <!-- Accent -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 1rem;" class="fade-in">Accent</h3>
-      <div class="color-grid">
-        <div class="color-swatch featured fade-in">
-          <div class="color-swatch-preview" style="background: #10b981;"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Emerald 500 &mdash; Accent</div>
-            <div class="color-swatch-hex">#10b981</div>
-            <div class="color-swatch-var">var(--accent)</div>
-            <div class="color-swatch-usage">CTAs, eyebrows, badges, icones, links hover</div>
-          </div>
+      <!-- Zinc labels -->
+      <div class="zinc-labels fade-in">
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 950</span>
+          <span class="label-hex">#0c0c0e</span>
+          <span class="label-var">var(--z950)</span>
+          <span class="label-usage">Background principal</span>
         </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 900</span>
+          <span class="label-hex">#18181b</span>
+          <span class="label-var">var(--z900)</span>
+          <span class="label-usage">Cards, superficies elevadas</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 800</span>
+          <span class="label-hex">#27272a</span>
+          <span class="label-var">var(--z800)</span>
+          <span class="label-usage">Borders, separadores</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 700</span>
+          <span class="label-hex">#3f3f46</span>
+          <span class="label-var">var(--z700)</span>
+          <span class="label-usage">Borders hover, numeracao</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 500</span>
+          <span class="label-hex">#71717a</span>
+          <span class="label-var">var(--z500)</span>
+          <span class="label-usage">Labels, texto secundario</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 400</span>
+          <span class="label-hex">#a1a1aa</span>
+          <span class="label-var">var(--z400)</span>
+          <span class="label-usage">Corpo de texto, subtitulos</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 300</span>
+          <span class="label-hex">#d4d4d8</span>
+          <span class="label-var">var(--z300)</span>
+          <span class="label-usage">Corpo de texto, paragrafos</span>
+        </div>
+        <div class="zinc-label-cell">
+          <span class="label-name">Zinc 100</span>
+          <span class="label-hex">#f4f4f5</span>
+          <span class="label-var">var(--z100)</span>
+          <span class="label-usage">Titulos, texto destaque</span>
+        </div>
+      </div>
 
-        <div class="color-swatch fade-in fade-in-delay-1">
-          <div class="color-swatch-preview" style="background: rgba(16, 185, 129, 0.10); border: 1px dashed rgba(16,185,129,0.3);"></div>
-          <div class="color-swatch-info">
-            <div class="color-swatch-name">Accent Dim</div>
-            <div class="color-swatch-hex">rgba(16, 185, 129, 0.10)</div>
-            <div class="color-swatch-var">var(--accent-dim)</div>
-            <div class="color-swatch-usage">Background badges, highlight sutil</div>
-          </div>
+      <!-- Accent Dim -->
+      <div style="margin-top: 3rem;" class="fade-in">
+        <span class="component-label">Accent Dim</span>
+        <div style="width: 100%; height: 80px; background: rgba(16,185,129,0.10); border: 1px dashed rgba(16,185,129,0.3); border-radius: 16px; display: flex; align-items: center; padding: 0 2rem; gap: 2rem;">
+          <span style="font-size: 0.8rem; font-weight: 600; color: var(--accent);">Accent Dim</span>
+          <span style="font-size: 0.68rem; font-weight: 400; color: var(--z500); font-family: 'Outfit', monospace;">rgba(16, 185, 129, 0.10)</span>
+          <span style="font-size: 0.65rem; font-weight: 500; color: var(--accent); font-family: 'Outfit', monospace;">var(--accent-dim)</span>
+          <span style="font-size: 0.65rem; font-weight: 300; color: var(--z500); margin-left: auto;">Background badges, highlight sutil</span>
         </div>
       </div>
 
       <!-- Glass Variants -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 1rem;" class="fade-in">Glass Variants</h3>
-      <div class="glass-swatch-grid">
-        <div class="glass-swatch fade-in" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
-          <div class="glass-swatch-label">Glass</div>
-          <div class="glass-swatch-value">rgba(255, 255, 255, 0.03)</div>
-          <div class="glass-swatch-value" style="color: var(--accent); margin-top: 0.25rem;">var(--glass)</div>
+      <div class="glass-variants fade-in" style="margin-top: 3rem;">
+        <div class="glass-variant-card" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+          <span class="gv-name">Glass</span>
+          <span class="gv-value">rgba(255, 255, 255, 0.03)</span>
+          <span class="gv-var">var(--glass)</span>
         </div>
-        <div class="glass-swatch fade-in fade-in-delay-1" style="background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.07);">
-          <div class="glass-swatch-label">Glass Border</div>
-          <div class="glass-swatch-value">rgba(255, 255, 255, 0.07)</div>
-          <div class="glass-swatch-value" style="color: var(--accent); margin-top: 0.25rem;">var(--glass-border)</div>
+        <div class="glass-variant-card" style="background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.07);">
+          <span class="gv-name">Glass Border</span>
+          <span class="gv-value">rgba(255, 255, 255, 0.07)</span>
+          <span class="gv-var">var(--glass-border)</span>
         </div>
-        <div class="glass-swatch fade-in fade-in-delay-2" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.07);">
-          <div class="glass-swatch-label">Glass Hover</div>
-          <div class="glass-swatch-value">rgba(255, 255, 255, 0.06)</div>
-          <div class="glass-swatch-value" style="color: var(--accent); margin-top: 0.25rem;">var(--glass-hover)</div>
+        <div class="glass-variant-card" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.07);">
+          <span class="gv-name">Glass Hover</span>
+          <span class="gv-value">rgba(255, 255, 255, 0.06)</span>
+          <span class="gv-var">var(--glass-hover)</span>
         </div>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════
-         2. TYPOGRAPHY
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="tipografia">
-      <p class="section-label fade-in">02 &mdash; Tipografia</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Escala Tipografica</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Outfit &mdash; typeface unica. Pesos 300 a 800.</p>
+    </div>
+  </div>
 
-      <div style="margin-top: 3rem;">
-        <!-- Display-lg -->
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       02 — TIPOGRAFIA
+  ════════════════════════════════════════════════════ -->
+  <div class="section-hero-band" id="tipografia" style="background-image: url('frames/frame_0180.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <span class="section-num fade-in">02</span>
+        <h2 class="section-title fade-in fade-in-delay-1">Tipografia</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Outfit &mdash; typeface unica. Pesos 200 a 800.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-content">
+
+      <!-- Display hero sample -->
+      <div class="type-display-hero fade-in">O Seu Stand<br>Merece Lotar</div>
+
+      <!-- Weight strip -->
+      <span class="component-label fade-in">Pesos Tipograficos</span>
+      <div class="weight-strip fade-in">
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 200;">Aa</span>
+          <span class="ws-label">200 &mdash; Extra Light</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 300;">Aa</span>
+          <span class="ws-label">300 &mdash; Light</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 400;">Aa</span>
+          <span class="ws-label">400 &mdash; Regular</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 500;">Aa</span>
+          <span class="ws-label">500 &mdash; Medium</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 600;">Aa</span>
+          <span class="ws-label">600 &mdash; Semi Bold</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 700;">Aa</span>
+          <span class="ws-label">700 &mdash; Bold</span>
+        </div>
+        <div class="weight-strip-item">
+          <span class="ws-sample" style="font-weight: 800;">Aa</span>
+          <span class="ws-label">800 &mdash; Extra Bold</span>
+        </div>
+      </div>
+
+      <!-- Gradient text showcase -->
+      <div class="gradient-text-showcase fade-in">Texto com<br>Gradiente Premium</div>
+
+      <!-- Type scale -->
+      <span class="component-label fade-in">Escala Tipografica</span>
+      <div style="margin-top: 1rem;">
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Display-lg</span>
             <span class="type-specs">clamp(2.5rem, 6vw, 4.5rem) / weight 800 / -0.03em</span>
           </div>
-          <div class="type-sample-display-lg">O Seu Stand Merece Lotar</div>
+          <div style="font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--z100);">O Seu Stand Merece Lotar</div>
         </div>
 
-        <!-- Display-md -->
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Display-md</span>
             <span class="type-specs">clamp(1.75rem, 4vw, 2.75rem) / weight 700 / -0.03em</span>
           </div>
-          <div class="type-sample-display-md">Gestao de Trafego Pago</div>
+          <div style="font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--z100);">Gestao de Trafego Pago</div>
         </div>
 
-        <!-- Body-lg -->
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Body-lg</span>
             <span class="type-specs">1.0625rem / weight 300 / line-height 1.85</span>
           </div>
-          <div class="type-sample-body-lg">Transformamos a presenca digital do seu stand automovel com estrategias de marketing orientadas a resultados. Cada campanha e desenhada para gerar contactos qualificados que realmente querem comprar.</div>
+          <div style="font-size: 1.0625rem; font-weight: 300; line-height: 1.85; color: var(--z300);">Transformamos a presenca digital do seu stand automovel com estrategias de marketing orientadas a resultados. Cada campanha e desenhada para gerar contactos qualificados que realmente querem comprar.</div>
         </div>
 
-        <!-- Body-md -->
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Body-md</span>
             <span class="type-specs">0.9375rem / weight 300 / line-height 1.7</span>
           </div>
-          <div class="type-sample-body-md">Analise detalhada de metricas, otimizacao continua e relatorios transparentes. Sabemos que cada euro investido precisa de retorno mensuravel.</div>
+          <div style="font-size: 0.9375rem; font-weight: 300; line-height: 1.7; color: var(--z300);">Analise detalhada de metricas, otimizacao continua e relatorios transparentes. Sabemos que cada euro investido precisa de retorno mensuravel.</div>
         </div>
 
-        <!-- Label-md -->
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Label-md</span>
             <span class="type-specs">0.75rem / weight 600 / 0.15em spacing / uppercase</span>
           </div>
-          <div class="type-sample-label-md">SERVICOS</div>
+          <div style="font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--z400);">SERVICOS</div>
         </div>
 
-        <!-- Label-sm -->
         <div class="type-row fade-in">
           <div class="type-meta">
             <span class="type-label">Label-sm</span>
             <span class="type-specs">0.6875rem / weight 500 / 0.2em spacing / uppercase</span>
           </div>
-          <div class="type-sample-label-sm">TRAFEGO PAGO</div>
-        </div>
-
-        <!-- Gradient Text Demo -->
-        <div class="type-row fade-in">
-          <div class="type-meta">
-            <span class="type-label">Gradient Text</span>
-            <span class="type-specs">linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.4) 100%)</span>
-          </div>
-          <div class="gradient-text-demo">Texto com Gradiente Premium</div>
-          <div class="code-block" style="margin-top: 1rem;">
-<pre><span class="code-selector">.gradient-text</span> {
-  <span class="code-prop">background</span>: <span class="code-value">linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%)</span>;
-  <span class="code-prop">-webkit-background-clip</span>: <span class="code-value">text</span>;
-  <span class="code-prop">-webkit-text-fill-color</span>: <span class="code-value">transparent</span>;
-  <span class="code-prop">background-clip</span>: <span class="code-value">text</span>;
-}</pre>
-          </div>
+          <div style="font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--z400);">TRAFEGO PAGO</div>
         </div>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════
-         3. COMPONENTS
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="componentes">
-      <p class="section-label fade-in">03 &mdash; Componentes</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Biblioteca de Componentes</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Todos os building blocks do design system.</p>
+      <!-- Font Specimen -->
+      <span class="component-label fade-in" style="margin-top: 4rem; display: block;">Specimen &mdash; Weight 400</span>
+      <div class="font-specimen fade-in">
+        <div class="font-specimen-char">A</div>
+        <div class="font-specimen-char">B</div>
+        <div class="font-specimen-char">C</div>
+        <div class="font-specimen-char">D</div>
+        <div class="font-specimen-char">E</div>
+        <div class="font-specimen-char">F</div>
+        <div class="font-specimen-char">G</div>
+        <div class="font-specimen-char">H</div>
+        <div class="font-specimen-char">I</div>
+        <div class="font-specimen-char">J</div>
+        <div class="font-specimen-char">K</div>
+        <div class="font-specimen-char">L</div>
+        <div class="font-specimen-char">M</div>
+        <div class="font-specimen-char">N</div>
+        <div class="font-specimen-char">O</div>
+        <div class="font-specimen-char">P</div>
+        <div class="font-specimen-char">Q</div>
+        <div class="font-specimen-char">R</div>
+        <div class="font-specimen-char">S</div>
+        <div class="font-specimen-char">T</div>
+        <div class="font-specimen-char">U</div>
+        <div class="font-specimen-char">V</div>
+        <div class="font-specimen-char">W</div>
+        <div class="font-specimen-char">X</div>
+        <div class="font-specimen-char">Y</div>
+        <div class="font-specimen-char">Z</div>
+      </div>
+
+      <span class="component-label fade-in" style="margin-top: 2rem; display: block;">Specimen &mdash; Weight 800</span>
+      <div class="font-specimen fade-in">
+        <div class="font-specimen-char" style="font-weight: 800;">A</div>
+        <div class="font-specimen-char" style="font-weight: 800;">B</div>
+        <div class="font-specimen-char" style="font-weight: 800;">C</div>
+        <div class="font-specimen-char" style="font-weight: 800;">D</div>
+        <div class="font-specimen-char" style="font-weight: 800;">E</div>
+        <div class="font-specimen-char" style="font-weight: 800;">F</div>
+        <div class="font-specimen-char" style="font-weight: 800;">G</div>
+        <div class="font-specimen-char" style="font-weight: 800;">H</div>
+        <div class="font-specimen-char" style="font-weight: 800;">I</div>
+        <div class="font-specimen-char" style="font-weight: 800;">J</div>
+        <div class="font-specimen-char" style="font-weight: 800;">K</div>
+        <div class="font-specimen-char" style="font-weight: 800;">L</div>
+        <div class="font-specimen-char" style="font-weight: 800;">M</div>
+        <div class="font-specimen-char" style="font-weight: 800;">N</div>
+        <div class="font-specimen-char" style="font-weight: 800;">O</div>
+        <div class="font-specimen-char" style="font-weight: 800;">P</div>
+        <div class="font-specimen-char" style="font-weight: 800;">Q</div>
+        <div class="font-specimen-char" style="font-weight: 800;">R</div>
+        <div class="font-specimen-char" style="font-weight: 800;">S</div>
+        <div class="font-specimen-char" style="font-weight: 800;">T</div>
+        <div class="font-specimen-char" style="font-weight: 800;">U</div>
+        <div class="font-specimen-char" style="font-weight: 800;">V</div>
+        <div class="font-specimen-char" style="font-weight: 800;">W</div>
+        <div class="font-specimen-char" style="font-weight: 800;">X</div>
+        <div class="font-specimen-char" style="font-weight: 800;">Y</div>
+        <div class="font-specimen-char" style="font-weight: 800;">Z</div>
+      </div>
+
+      <span class="component-label fade-in" style="margin-top: 2rem; display: block;">Numerais</span>
+      <div class="font-specimen fade-in">
+        <div class="font-specimen-char" style="font-weight: 700;">0</div>
+        <div class="font-specimen-char" style="font-weight: 700;">1</div>
+        <div class="font-specimen-char" style="font-weight: 700;">2</div>
+        <div class="font-specimen-char" style="font-weight: 700;">3</div>
+        <div class="font-specimen-char" style="font-weight: 700;">4</div>
+        <div class="font-specimen-char" style="font-weight: 700;">5</div>
+        <div class="font-specimen-char" style="font-weight: 700;">6</div>
+        <div class="font-specimen-char" style="font-weight: 700;">7</div>
+        <div class="font-specimen-char" style="font-weight: 700;">8</div>
+        <div class="font-specimen-char" style="font-weight: 700;">9</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       03 — COMPONENTES
+  ════════════════════════════════════════════════════ -->
+  <div class="section-hero-band" id="componentes" style="background-image: url('frames/frame_0250.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <span class="section-num fade-in">03</span>
+        <h2 class="section-title fade-in fade-in-delay-1">Componentes</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Todos os building blocks do design system.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-content">
 
       <!-- Buttons -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Buttons</h3>
-      <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1rem;" class="fade-in">Primary CTA com hover lift + glow. Secondary ghost/outline.</p>
-      <div class="btn-row fade-in">
-        <button class="btn-primary">Pedir Proposta &rarr;</button>
-        <button class="btn-secondary">Ver Servicos</button>
+      <div class="component-section">
+        <span class="component-label fade-in">Botoes</span>
+        <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1.5rem;" class="fade-in">Primary CTA com hover lift + glow. Secondary ghost/outline.</p>
+        <div class="btn-row fade-in">
+          <button class="btn-primary">Pedir Proposta &rarr;</button>
+          <button class="btn-secondary">Ver Servicos</button>
+        </div>
       </div>
 
       <!-- Badges -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Badges &amp; Labels</h3>
-      <div class="badge-row fade-in">
-        <div class="hero-badge" style="margin-bottom: 0;">Especialista em Stands</div>
-        <div class="section-label-badge">TRAFEGO PAGO</div>
+      <div class="component-section">
+        <span class="component-label fade-in">Badges &amp; Labels</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;" class="fade-in">
+          <div class="hero-badge">Especialista em Stands</div>
+          <div class="section-label-badge">TRAFEGO PAGO</div>
+        </div>
       </div>
 
       <!-- Stats Bar -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Stats Bar</h3>
-      <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 0.5rem;" class="fade-in">Grid 3 colunas, 1px gap, glass bg.</p>
-      <div class="stats-bar-demo fade-in">
-        <div class="stat-item">
-          <div class="stat-number">+<span class="accent-text">200</span>%</div>
-          <div class="stat-label">Aumento de leads</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number"><span class="accent-text">4.8</span>x</div>
-          <div class="stat-label">ROAS medio</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number"><span class="accent-text">50</span>+</div>
-          <div class="stat-label">Stands geridos</div>
+      <div class="component-section">
+        <span class="component-label fade-in">Stats Bar</span>
+        <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1rem;" class="fade-in">Grid 3 colunas, 1px gap, glass background.</p>
+        <div class="stats-bar-demo fade-in">
+          <div class="stat-item">
+            <div class="stat-number">+<span class="accent-text">200</span>%</div>
+            <div class="stat-label">Aumento de leads</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number"><span class="accent-text">4.8</span>x</div>
+            <div class="stat-label">ROAS medio</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number"><span class="accent-text">50</span>+</div>
+            <div class="stat-label">Stands geridos</div>
+          </div>
         </div>
       </div>
 
       <!-- Glass Cards -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Glass Cards</h3>
-      <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 0.5rem;" class="fade-in">Tres variantes: standard, gradient border, inner glow.</p>
-      <div class="card-grid">
-        <!-- Standard -->
-        <div class="glass-card fade-in">
-          <span class="card-icon">&#9672;</span>
-          <div class="card-title">Standard Glass Card</div>
-          <div class="card-desc">Background var(--glass) + border var(--glass-border) + backdrop-filter blur(12px). Hover: background muda, lift -3px.</div>
-        </div>
-        <!-- Gradient border -->
-        <div class="glass-card-gradient fade-in fade-in-delay-1">
-          <span class="card-icon">&#9670;</span>
-          <div class="card-title">Gradient Border</div>
-          <div class="card-desc">Usa mask-composite para criar border gradiente. O ::before pseudo-element com -webkit-mask aparece no hover.</div>
-        </div>
-        <!-- Inner glow -->
-        <div class="glass-card-glow fade-in fade-in-delay-2">
-          <span class="card-icon">&#10022;</span>
-          <div class="card-title">Inner Glow</div>
-          <div class="card-desc">Radial gradient no ::after pseudo-element. Aparece no hover com fade suave, criando um glow interno accent.</div>
+      <div class="component-section">
+        <span class="component-label fade-in">Glass Cards</span>
+        <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1.5rem;" class="fade-in">Tres variantes: standard, gradient border, inner glow.</p>
+        <div class="card-grid">
+          <div class="glass-card fade-in">
+            <span class="card-icon">&#9672;</span>
+            <div class="card-title">Standard Glass Card</div>
+            <div class="card-desc">Background var(--glass) + border var(--glass-border) + backdrop-filter blur(12px). Hover: background muda, lift -2px.</div>
+          </div>
+          <div class="glass-card-gradient fade-in fade-in-delay-1">
+            <span class="card-icon">&#9670;</span>
+            <div class="card-title">Gradient Border</div>
+            <div class="card-desc">Usa mask-composite para criar border gradiente. O ::before pseudo-element com -webkit-mask aparece no hover.</div>
+          </div>
+          <div class="glass-card-glow fade-in fade-in-delay-2">
+            <span class="card-icon">&#10022;</span>
+            <div class="card-title">Inner Glow</div>
+            <div class="card-desc">Radial gradient no ::after pseudo-element. Aparece no hover com fade suave, criando um glow interno accent.</div>
+          </div>
         </div>
       </div>
 
-      <!-- Glassmorphism Layers -->
-      <div class="code-block fade-in" style="margin-top: 1.5rem;">
+      <!-- Glassmorphism code -->
+      <div class="code-block fade-in">
 <pre><span class="code-comment">/* Camadas do glassmorphism */</span>
 <span class="code-selector">.glass-card</span> {
   <span class="code-prop">background</span>: <span class="code-value">rgba(255, 255, 255, 0.03)</span>;       <span class="code-comment">/* 1. Background translucido */</span>
@@ -1265,33 +1613,52 @@
       </div>
 
       <!-- Pull Quote -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Pull Quote</h3>
-      <div class="pull-quote fade-in">
-        <blockquote>&ldquo;Desde que trabalhamos com a Natamy, os nossos leads triplicaram e a qualidade dos contactos melhorou drasticamente.&rdquo;</blockquote>
-        <cite>&mdash; Stand Premium, Lisboa</cite>
+      <div class="component-section" style="margin-top: 3rem;">
+        <span class="component-label fade-in">Pull Quote</span>
+        <div class="pull-quote fade-in" style="margin-top: 1rem;">
+          <blockquote>&ldquo;Desde que trabalhamos com a Natamy, os nossos leads triplicaram e a qualidade dos contactos melhorou drasticamente.&rdquo;</blockquote>
+          <cite>&mdash; Stand Premium, Lisboa</cite>
+        </div>
       </div>
 
       <!-- Form Elements -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 0.5rem;" class="fade-in">Form Elements</h3>
-      <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 0.5rem;" class="fade-in">Bottom border style. Focus state com accent color.</p>
-      <div class="form-demo fade-in">
-        <input type="text" class="form-input" placeholder="O seu nome">
-        <input type="email" class="form-input" placeholder="email@exemplo.pt">
-        <textarea class="form-textarea" placeholder="A sua mensagem..."></textarea>
-        <button class="btn-primary" style="align-self: flex-start;">Enviar Mensagem &rarr;</button>
+      <div class="component-section">
+        <span class="component-label fade-in">Elementos de Formulario</span>
+        <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1.5rem;" class="fade-in">Bottom border style. Focus state com accent color.</p>
+        <div class="glass-card fade-in" style="max-width: 540px; padding: 2.5rem;">
+          <div class="form-demo">
+            <input type="text" class="form-input" placeholder="O seu nome">
+            <input type="email" class="form-input" placeholder="email@exemplo.pt">
+            <textarea class="form-textarea" placeholder="A sua mensagem..."></textarea>
+            <button class="btn-primary" style="align-self: flex-start;">Enviar Mensagem &rarr;</button>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════
-         4. EFFECTS & INTERACTIONS
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="efeitos">
-      <p class="section-label fade-in">04 &mdash; Efeitos</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Efeitos &amp; Interacoes</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Animacoes e efeitos visuais que criam a experiencia premium.</p>
+    </div>
+  </div>
 
-      <div class="effects-grid" style="margin-top: 3rem;">
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       04 — EFEITOS E INTERACOES
+  ════════════════════════════════════════════════════ -->
+  <div class="section-hero-band" id="efeitos" style="background-image: url('frames/frame_0300.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <span class="section-num fade-in">04</span>
+        <h2 class="section-title fade-in fade-in-delay-1">Efeitos &amp; Interacoes</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Animacoes e efeitos visuais que criam a experiencia premium.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-content">
+
+      <div class="effects-grid">
+
         <!-- Grain -->
         <div class="effect-card fade-in">
           <div class="effect-title">Grain Overlay</div>
@@ -1361,40 +1728,49 @@
             <div style="position: absolute; width: 80px; height: 80px; border-radius: 50%; bottom: -10px; left: 10px; background: radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 70%); filter: blur(15px);"></div>
           </div>
         </div>
+
       </div>
 
-      <!-- Fade-in stagger demo -->
-      <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--z100); margin-top: 3rem; margin-bottom: 1rem;" class="fade-in">Fade-in Stagger Demo</h3>
-      <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1.5rem;" class="fade-in">Scroll para baixo para ver a animacao.</p>
-      <div class="card-grid">
-        <div class="glass-card fade-in" style="text-align: center; padding: 3rem 2rem;">
-          <div style="font-size: 2rem; margin-bottom: 0.75rem;">01</div>
-          <div class="card-title">Delay 0s</div>
-          <div class="card-desc">Primeira card aparece imediatamente.</div>
-        </div>
-        <div class="glass-card fade-in fade-in-delay-2" style="text-align: center; padding: 3rem 2rem;">
-          <div style="font-size: 2rem; margin-bottom: 0.75rem;">02</div>
-          <div class="card-title">Delay 0.2s</div>
-          <div class="card-desc">Segunda card com 200ms de atraso.</div>
-        </div>
-        <div class="glass-card fade-in fade-in-delay-4" style="text-align: center; padding: 3rem 2rem;">
-          <div style="font-size: 2rem; margin-bottom: 0.75rem;">03</div>
-          <div class="card-title">Delay 0.4s</div>
-          <div class="card-desc">Terceira card com 400ms de atraso.</div>
+      <!-- Fade-in Stagger Demo -->
+      <div style="margin-top: 5rem;">
+        <span class="component-label fade-in">Fade-in Stagger Demo</span>
+        <p style="font-size: 0.78rem; color: var(--z500); margin-bottom: 1.5rem;" class="fade-in">Scroll para baixo para ver a animacao.</p>
+        <div class="stagger-grid">
+          <div class="stagger-card fade-in">
+            <div class="stagger-num">01</div>
+            <div class="card-title">Delay 0s</div>
+            <div class="card-desc">Primeira card aparece imediatamente.</div>
+          </div>
+          <div class="stagger-card fade-in fade-in-delay-2">
+            <div class="stagger-num">02</div>
+            <div class="card-title">Delay 0.2s</div>
+            <div class="card-desc">Segunda card com 200ms de atraso.</div>
+          </div>
+          <div class="stagger-card fade-in fade-in-delay-4">
+            <div class="stagger-num">03</div>
+            <div class="card-title">Delay 0.4s</div>
+            <div class="card-desc">Terceira card com 400ms de atraso.</div>
+          </div>
         </div>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════
-         5. SPACING
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="espacamento">
-      <p class="section-label fade-in">05 &mdash; Espacamento</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Escala de Espacamento</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Espacamentos consistentes para ritmo visual.</p>
+    </div>
+  </div>
 
-      <div class="spacing-scale" style="margin-top: 3rem;">
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       05 — ESPACAMENTO
+  ════════════════════════════════════════════════════ -->
+  <div class="container" id="espacamento">
+    <div class="section-content" style="padding-top: 8rem;">
+
+      <span class="section-num fade-in">05</span>
+      <h2 class="section-title fade-in fade-in-delay-1">Espacamento</h2>
+      <p class="section-subtitle fade-in fade-in-delay-2" style="margin-bottom: 3rem;">Espacamentos consistentes para ritmo visual.</p>
+
+      <div class="spacing-scale">
         <div class="spacing-row fade-in">
           <span class="spacing-label">xs</span>
           <div class="spacing-bar" style="width: calc(0.5rem * 8);"></div>
@@ -1431,16 +1807,28 @@
           <span class="spacing-value">8rem (128px)</span>
         </div>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════
-         6. COPY-PASTE REFERENCE
-    ═══════════════════════════════ -->
-    <div class="section-divider"></div>
-    <section id="referencia">
-      <p class="section-label fade-in">06 &mdash; Referencia</p>
-      <h2 class="section-title fade-in fade-in-delay-1">Copy-Paste Reference</h2>
-      <p class="section-subtitle fade-in fade-in-delay-2">Snippets prontos para usar em novas paginas.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+
+  <!-- ════════════════════════════════════════════════════
+       06 — REFERENCIA DE CODIGO
+  ════════════════════════════════════════════════════ -->
+  <div class="section-hero-band" id="referencia" style="background-image: url('frames/frame_0340.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <span class="section-num fade-in">06</span>
+        <h2 class="section-title fade-in fade-in-delay-1">Referencia de Codigo</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Snippets prontos para usar em novas paginas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-content">
 
       <!-- CSS Variables -->
       <div class="code-label fade-in">CSS Variables</div>
@@ -1602,27 +1990,23 @@ document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));</span></pr
   });
 }</span></pre>
       </div>
-    </section>
 
-    <!-- Footer spacing -->
-    <div style="height: 4rem;"></div>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <div class="section-divider"></div>
-    <footer style="padding: 3rem 0; text-align: center;">
-      <p style="font-size: 0.72rem; font-weight: 400; color: var(--z700); letter-spacing: 0.05em;">
-        Natamy Oliveira &mdash; Brand Guide &mdash; Documento interno
-      </p>
-      <a href="/" style="display: inline-block; margin-top: 1rem; font-size: 0.75rem; font-weight: 500; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">&larr; Voltar ao site</a>
-    </footer>
 
-    <div style="height: 2rem;"></div>
+  <!-- ════════════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <div class="divider"></div>
+  <footer class="brand-footer">
+    <p>&copy; 2025 Natamy Oliveira &mdash; Todos os direitos reservados.</p>
+  </footer>
 
-  </div><!-- /.container -->
 
-  <!-- ═══════════════════════════════
+  <!-- ════════════════════════════════════════════════════
        JavaScript
-  ═══════════════════════════════ -->
+  ════════════════════════════════════════════════════ -->
   <script>
     // ── IntersectionObserver for fade-in ──
     const fadeObs = new IntersectionObserver(
@@ -1636,7 +2020,6 @@ document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));</span></pr
       },
       { threshold: 0.15 }
     );
-
     document.querySelectorAll('.fade-in').forEach((el) => fadeObs.observe(el));
 
     // ── Cursor Glow (desktop only) ──
@@ -1651,11 +2034,31 @@ document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));</span></pr
           cursorGlow.style.opacity = '1';
         });
       });
-
       document.addEventListener('mouseleave', () => {
         cursorGlow.style.opacity = '0';
       });
     }
+
+    // ── Side nav active state ──
+    const sections = document.querySelectorAll('[id]');
+    const navDots = document.querySelectorAll('.side-nav a');
+
+    const navObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navDots.forEach((dot) => {
+              dot.classList.toggle('active', dot.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      },
+      { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' }
+    );
+    sections.forEach((section) => {
+      if (section.id) navObs.observe(section);
+    });
   </script>
 </body>
 </html>
