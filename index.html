@@ -364,6 +364,40 @@
       font-weight: 600;
     }
 
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem auto 0;
+      max-width: 42ch;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .benefit-list li {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #ffffff;
+      padding-left: 1.5rem;
+      position: relative;
+      text-shadow:
+        0 1px 4px rgba(0,0,0,0.8),
+        0 4px 16px rgba(0,0,0,0.6);
+    }
+
+    .benefit-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+    }
+
     /* ── Hero — left-aligned, vertically centered ── */
     .s-hero {
       top: 50%;
@@ -757,23 +791,32 @@
   <div class="px s-b1" id="s2" data-in="0.21" data-peak="0.24" data-out="0.35" data-dir="bottom">
 
     <h2>Chega de Curiosos<br>no WhatsApp</h2>
-    <p>Gasta horas a responder a quem só quer saber o preço? A nossa IA qualifica cada contacto antes de chegar à sua equipa. Só fala com quem quer mesmo comprar.</p>
+    <ul class="benefit-list">
+      <li>IA filtra curiosos automaticamente</li>
+      <li>Qualifica cada contacto antes de chegar à equipa</li>
+      <li>Só fala com quem quer mesmo comprar</li>
+    </ul>
   </div>
 
   <!-- S3: Benefit 02 | 42-56% | Centered over reception desk -->
   <div class="px s-about" id="s3" data-in="0.41" data-peak="0.44" data-out="0.56" data-dir="scale">
-    <div class="divider"></div>
     <h2>A Sua Equipa Vende.<br>A IA Faz o Resto.</h2>
-    <blockquote>
-      Horários, localização, stock, condições de financiamento — a IA responde a tudo, 24 horas por dia, 7 dias por semana. Os seus vendedores só recebem clientes prontos para assinar.
-    </blockquote>
+    <ul class="benefit-list">
+      <li>Responde a horários, stock e financiamento 24/7</li>
+      <li>Agenda visitas automaticamente</li>
+      <li>Vendedores só recebem clientes prontos para assinar</li>
+    </ul>
   </div>
 
   <!-- S5: Benefit 03 | 63-72% | Bottom-left -->
   <div class="px s-b3" id="s5" data-in="0.62" data-peak="0.65" data-out="0.76" data-dir="bottom">
 
     <h2>Acabe com o<br>Mês Bom, Mês Mau</h2>
-    <p>Cada lead recebe follow-up automático até dar resposta. Sem depender da sorte ou da memória dos vendedores. Fluxo constante de visitas, propostas e viaturas entregues.</p>
+    <ul class="benefit-list">
+      <li>Follow-up automático até dar resposta</li>
+      <li>Sem depender da sorte ou da memória dos vendedores</li>
+      <li>Fluxo constante de visitas e viaturas entregues</li>
+    </ul>
   </div>
 
   <!-- S6: CTA | 87-98% | Right-aligned over office -->
