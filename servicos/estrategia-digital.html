@@ -23,7 +23,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -75,7 +75,7 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* ── CURSOR GLOW ── */
+    /* -- CURSOR GLOW -- */
     .cursor-glow {
       position: fixed;
       width: 200px;
@@ -89,7 +89,7 @@
       transition: opacity 0.3s;
     }
 
-    /* ── GRAIN TEXTURE ── */
+    /* -- GRAIN TEXTURE -- */
     body::after {
       content: '';
       position: fixed;
@@ -101,7 +101,7 @@
       background-repeat: repeat;
     }
 
-    /* ── FADE-IN ANIMATIONS ── */
+    /* -- FADE-IN ANIMATIONS -- */
     .fade-in {
       opacity: 0;
       transform: translateY(30px);
@@ -117,24 +117,33 @@
     .fade-in-delay-4 { transition-delay: 0.4s; }
     .fade-in-delay-5 { transition-delay: 0.5s; }
 
-    /* ── NAV ── */
+    /* -- NAV -- */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
       background: rgba(12,12,14,0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--glass-border);
+      border-bottom-color: rgba(255,255,255,0.07);
     }
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
       color: var(--z100); text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--z400); transition: color 0.2s;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     .nav-links a:hover { color: var(--accent); }
 
@@ -148,7 +157,7 @@
     .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
     .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* ── LAYOUT ── */
+    /* -- LAYOUT -- */
     .container {
       max-width: 72rem;
       margin: 0 auto;
@@ -163,64 +172,118 @@
       padding: 5rem 0;
     }
 
-    /* ── HERO ── */
+    /* -- CINEMATIC HERO -- */
     .hero {
-      padding: 10rem 0 4rem;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-direction: column;
+      padding-bottom: 10vh;
       position: relative;
       overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: -5%;
+      background-size: cover;
+      background-position: center 35%;
+      animation: kenburns 25s ease-in-out infinite alternate;
+      z-index: 0;
+      will-change: transform;
+    }
+    @keyframes kenburns {
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.12); }
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg,
+        rgba(12,12,14,0.15) 0%,
+        rgba(12,12,14,0.3) 30%,
+        rgba(12,12,14,0.7) 65%,
+        rgba(12,12,14,0.92) 100%
+      );
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--glass-border);
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--glass);
-      backdrop-filter: blur(8px);
-      margin-bottom: 2rem;
-    }
-    .hero-badge::before {
+    .hero::after {
       content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(12,12,14,0.4) 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 54rem;
+      margin: 0 auto;
     }
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #ffffff;
       margin-bottom: 1.5rem;
-      max-width: 48rem;
     }
     .hero-lead {
-      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-      color: var(--z400);
+      font-size: 1rem;
       font-weight: 300;
-      line-height: 1.7;
-      max-width: 38rem;
-      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 32ch;
+      margin: 0 auto;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 4px 12px rgba(0,0,0,0.7);
+    }
+    .hero-eyebrow {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-accent-line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 2rem;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+    .scroll-indicator span:last-child {
+      font-size: 0.5rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.4);
+      animation: pulse-line 2s ease-in-out infinite;
+    }
+    @keyframes pulse-line {
+      0%, 100% { opacity: 0.2; transform: scaleY(0.5); }
+      50% { opacity: 1; transform: scaleY(1); }
     }
 
-    /* ── STATS BAR ── */
+    /* -- STATS BAR -- */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -252,7 +315,7 @@
       letter-spacing: 0.03em;
     }
 
-    /* ── SECTION HEADERS ── */
+    /* -- SECTION HEADERS -- */
     .section-label {
       font-size: 0.72rem;
       font-weight: 600;
@@ -277,7 +340,7 @@
       max-width: 36rem;
     }
 
-    /* ── GLASSMORPHISM CARD ── */
+    /* -- GLASSMORPHISM CARD -- */
     .glass-card {
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -293,7 +356,7 @@
       transform: translateY(-2px);
     }
 
-    /* ── PROBLEM SECTION ── */
+    /* -- PROBLEM SECTION -- */
     .problem-section {
       position: relative;
     }
@@ -327,7 +390,7 @@
     .problem-text p:last-child { margin-bottom: 0; }
     .problem-text strong { color: var(--z100); font-weight: 600; }
 
-    /* ── PILLAR CARDS ── */
+    /* -- PILLAR CARDS -- */
     .pillar-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -362,7 +425,7 @@
       line-height: 1.75;
     }
 
-    /* ── PROCESS STEPS ── */
+    /* -- PROCESS STEPS -- */
     .process-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -409,7 +472,7 @@
       line-height: 1.7;
     }
 
-    /* ── FEATURES GRID ── */
+    /* -- FEATURES GRID -- */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -440,7 +503,7 @@
       line-height: 1.7;
     }
 
-    /* ── HIGHLIGHT / RESULTS ── */
+    /* -- HIGHLIGHT / RESULTS -- */
     .results-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -474,7 +537,67 @@
     }
     .result-note strong { color: var(--z100); }
 
-    /* ── FULL-WIDTH CTA ── */
+    /* -- SECTION HERO BAND (parallax) -- */
+    .section-hero-band {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      min-height: 360px;
+      background-size: 110%;
+      background-position: center 35%;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+    .section-hero-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(12,12,14,0.3) 0%,
+        rgba(12,12,14,0.5) 40%,
+        rgba(12,12,14,0.85) 80%,
+        var(--z950) 100%
+      );
+    }
+    .section-hero-band .band-content {
+      position: absolute;
+      bottom: 4rem;
+      left: 0; right: 0;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+    .section-hero-band .band-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .section-num {
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 200;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: -1.5rem;
+    }
+    .band-title {
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .band-subtitle {
+      font-size: 1rem;
+      color: var(--z400);
+      font-weight: 300;
+      margin-top: 0.75rem;
+      max-width: 36rem;
+    }
+
+    /* -- FULL-WIDTH CTA -- */
     .cta-section {
       position: relative;
       padding: 6rem 0;
@@ -538,7 +661,7 @@
       transform: translateY(-1px);
     }
 
-    /* ── OUTROS SERVICOS ── */
+    /* -- OUTROS SERVICOS -- */
     .outros-servicos {
       padding: 3rem 0 2rem;
       text-align: center;
@@ -571,7 +694,7 @@
       color: var(--z100);
     }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     footer {
       padding: 2rem 1.5rem 3rem;
       border-top: 1px solid var(--glass-border);
@@ -582,7 +705,7 @@
     footer a { color: var(--z400); text-decoration: underline; }
     footer a:hover { color: var(--accent); }
 
-    /* ── DIVIDER ── */
+    /* -- DIVIDER -- */
     .section-divider {
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
@@ -590,13 +713,17 @@
       margin: 0 auto;
     }
 
-    /* ── RESPONSIVE ── */
+    /* -- RESPONSIVE -- */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .hero { padding: 7rem 0 3rem; }
+      .hero { min-height: auto; padding-bottom: 8vh; }
+      .hero-bg { animation: none; }
+      .scroll-indicator { display: none; }
+      .section-hero-band { height: 40vh; min-height: 280px; background-attachment: scroll; }
+
       section { padding: 3.5rem 0; }
 
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
@@ -655,15 +782,25 @@
 
   <main>
 
-    <!-- ═══ HERO ═══ -->
+    <!-- CINEMATIC HERO -->
     <section class="hero">
+      <div class="hero-bg" style="background-image: url('/frames/frame_0040.webp');"></div>
+      <div class="hero-inner">
+        <span class="hero-eyebrow fade-in">Estratégia Digital para Stands</span>
+        <div class="hero-accent-line fade-in fade-in-delay-1"></div>
+        <h1 class="fade-in fade-in-delay-2">Estratégia Digital</h1>
+        <p class="hero-lead fade-in fade-in-delay-3">Do diagnóstico à execução, com tráfego pago, automação e funis de venda integrados.</p>
+      </div>
+      <div class="scroll-indicator fade-in fade-in-delay-4">
+        <span class="scroll-line"></span>
+        <span>SCROLL</span>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section style="padding: 3rem 0;">
       <div class="container">
-        <div class="fade-in">
-          <div class="hero-badge">Estratégia Digital para Stands</div>
-        </div>
-        <h1 class="fade-in fade-in-delay-1">Estratégia Digital para Stands</h1>
-        <p class="hero-lead fade-in fade-in-delay-2">Uma estratégia de marketing digital completa, pensada de raiz para stands automóveis em Portugal. Do diagnóstico à execução — com tráfego pago, automação, funis de venda e presença online integrada num plano que faz sentido para o seu negócio.</p>
-        <div class="stats-bar fade-in fade-in-delay-3">
+        <div class="stats-bar fade-in" style="margin: 0 auto;">
           <div class="stat-item">
             <div class="stat-number">4 <span class="accent">pilares</span></div>
             <div class="stat-label">Estratégia integrada</div>
@@ -684,9 +821,18 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- BAND 01 -->
+    <div class="section-hero-band" style="background-image: url('/frames/frame_0105.webp');">
+      <div class="band-content">
+        <div class="band-inner">
+          <div class="section-num fade-in">01</div>
+          <div class="band-title fade-in fade-in-delay-1">O Desafio</div>
+          <p class="band-subtitle fade-in fade-in-delay-2">O problema que conhece bem.</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- ═══ O PROBLEMA ═══ -->
+    <!-- O PROBLEMA -->
     <section class="problem-section">
       <div class="container-narrow">
         <div class="section-label fade-in">O desafio</div>
@@ -707,7 +853,7 @@
 
     <div class="section-divider"></div>
 
-    <!-- ═══ O QUE É UMA ESTRATÉGIA DIGITAL ═══ -->
+    <!-- O QUE É UMA ESTRATÉGIA DIGITAL -->
     <section>
       <div class="container-narrow">
         <div class="section-label fade-in">Conceito</div>
@@ -724,9 +870,18 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- BAND 02 -->
+    <div class="section-hero-band" style="background-image: url('/frames/frame_0165.webp');">
+      <div class="band-content">
+        <div class="band-inner">
+          <div class="section-num fade-in">02</div>
+          <div class="band-title fade-in fade-in-delay-1">Os 4 Pilares</div>
+          <p class="band-subtitle fade-in fade-in-delay-2">A base de toda a estratégia digital.</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- ═══ OS 4 PILARES ═══ -->
+    <!-- OS 4 PILARES -->
     <section>
       <div class="container-narrow">
         <div class="section-label fade-in">Pilares</div>
@@ -761,9 +916,18 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- BAND 03 -->
+    <div class="section-hero-band" style="background-image: url('/frames/frame_0240.webp');">
+      <div class="band-content">
+        <div class="band-inner">
+          <div class="section-num fade-in">03</div>
+          <div class="band-title fade-in fade-in-delay-1">Processo</div>
+          <p class="band-subtitle fade-in fade-in-delay-2">Como construímos a sua estratégia.</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- ═══ COMO CONSTRUÍMOS A SUA ESTRATÉGIA ═══ -->
+    <!-- COMO CONSTRUÍMOS -->
     <section>
       <div class="container-narrow">
         <div class="section-label fade-in">Processo</div>
@@ -811,7 +975,7 @@
 
     <div class="section-divider"></div>
 
-    <!-- ═══ O QUE DIFERENCIA ═══ -->
+    <!-- O QUE DIFERENCIA -->
     <section>
       <div class="container-narrow">
         <div class="section-label fade-in">Diferenciação</div>
@@ -844,9 +1008,18 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- BAND 04 -->
+    <div class="section-hero-band" style="background-image: url('/frames/frame_0305.webp');">
+      <div class="band-content">
+        <div class="band-inner">
+          <div class="section-num fade-in">04</div>
+          <div class="band-title fade-in fade-in-delay-1">Resultados</div>
+          <p class="band-subtitle fade-in fade-in-delay-2">Previsibilidade e retorno mensurável.</p>
+        </div>
+      </div>
+    </div>
 
-    <!-- ═══ RESULTADOS ESPERADOS ═══ -->
+    <!-- RESULTADOS ESPERADOS -->
     <section>
       <div class="container-narrow">
         <div class="section-label fade-in">Resultados</div>
@@ -872,7 +1045,7 @@
       </div>
     </section>
 
-    <!-- ═══ CTA ═══ -->
+    <!-- CTA -->
     <section class="cta-section">
       <div class="container-narrow">
         <div class="cta-block fade-in">
@@ -883,7 +1056,7 @@
       </div>
     </section>
 
-    <!-- ═══ OUTROS SERVICOS ═══ -->
+    <!-- OUTROS SERVICOS -->
     <div class="container-narrow outros-servicos">
       <h3>Outros Serviços</h3>
       <div class="outros-links">
@@ -907,6 +1080,11 @@
   <!-- Hamburger Menu -->
   <script>
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
+</script>
+
+  <!-- Nav scroll -->
+  <script>
+(function(){var nav=document.querySelector('nav');if(!nav)return;var last=0;function check(){var y=window.scrollY;if(y>60){nav.classList.add('scrolled');}else{nav.classList.remove('scrolled');}last=y;}window.addEventListener('scroll',check,{passive:true});check();})();
 </script>
 
   <!-- IntersectionObserver fade-in -->
