@@ -22,7 +22,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Meta Pixel Code -->
   <script>
@@ -61,24 +61,93 @@
       --glass-hover: rgba(255, 255, 255, 0.06);
     }
 
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
 
     body {
       font-family: 'Outfit', system-ui, -apple-system, sans-serif;
       background: var(--z950);
       color: var(--z300);
       line-height: 1.7;
-      font-weight: 400;
+      font-weight: 300;
       overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── BACKGROUND ORBS ── */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(80px);
+    }
+    .bg-orb-1 {
+      width: 600px;
+      height: 600px;
+      top: -10%;
+      right: -10%;
+      background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
+      animation: float 20s ease-in-out infinite;
+    }
+    .bg-orb-2 {
+      width: 500px;
+      height: 500px;
+      bottom: 20%;
+      left: -15%;
+      background: radial-gradient(circle, rgba(16,185,129,0.04) 0%, transparent 70%);
+      animation: float 25s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.05); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(15px, 15px) scale(1.02); }
+    }
+
+    /* ── PARTICLES ── */
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(16,185,129,0.2);
+      border-radius: 50%;
+      animation: particle-float linear infinite;
+    }
+    .particle:nth-child(1) { left: 10%; top: 20%; animation-duration: 18s; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 25%; top: 60%; animation-duration: 22s; animation-delay: -3s; }
+    .particle:nth-child(3) { left: 45%; top: 30%; animation-duration: 20s; animation-delay: -7s; }
+    .particle:nth-child(4) { left: 65%; top: 70%; animation-duration: 24s; animation-delay: -5s; }
+    .particle:nth-child(5) { left: 80%; top: 40%; animation-duration: 19s; animation-delay: -2s; }
+    .particle:nth-child(6) { left: 90%; top: 80%; animation-duration: 21s; animation-delay: -8s; }
+    .particle:nth-child(7) { left: 15%; top: 85%; animation-duration: 23s; animation-delay: -4s; }
+    .particle:nth-child(8) { left: 55%; top: 10%; animation-duration: 17s; animation-delay: -6s; }
+
+    @keyframes particle-float {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+    }
+
     /* ── FADE-IN ANIMATIONS ── */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in.visible {
       opacity: 1;
@@ -89,6 +158,7 @@
     .fade-in-delay-3 { transition-delay: 0.3s; }
     .fade-in-delay-4 { transition-delay: 0.4s; }
     .fade-in-delay-5 { transition-delay: 0.5s; }
+    .fade-in-delay-6 { transition-delay: 0.6s; }
 
     /* ── NAV ── */
     nav {
@@ -126,71 +196,115 @@
       max-width: 72rem;
       margin: 0 auto;
       padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
     }
     .container-narrow {
       max-width: 52rem;
       margin: 0 auto;
       padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
     }
     section {
-      padding: 5rem 0;
+      padding: 8rem 0;
+      scroll-margin-top: 5rem;
     }
 
     /* ── HERO ── */
     .hero {
-      padding: 10rem 0 4rem;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
+      padding: 6rem 0;
     }
     .hero::before {
       content: '';
       position: absolute;
-      top: -20%; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.07) 0%, rgba(16,185,129,0.02) 40%, transparent 70%);
       pointer-events: none;
     }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--z950), transparent);
+      pointer-events: none;
+    }
+    .hero-inner {
+      text-align: center;
+      max-width: 54rem;
+      margin: 0 auto;
+    }
+
+    /* ── HERO BADGE ── */
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--glass-border);
+      gap: 0.6rem;
+      padding: 0.45rem 1.25rem;
+      border: 1px solid rgba(16,185,129,0.2);
       border-radius: 9999px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      background: var(--glass);
+      background: rgba(16,185,129,0.06);
       backdrop-filter: blur(8px);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
     }
     .hero-badge::before {
       content: '';
-      width: 6px; height: 6px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--accent);
+      box-shadow: 0 0 8px rgba(16,185,129,0.6);
+      animation: pulse-dot 2s ease-in-out infinite;
     }
+    .hero-badge::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -100%;
+      width: 200%; height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(16,185,129,0.08), transparent);
+      animation: badge-shimmer 4s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    @keyframes badge-shimmer {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(50%); }
+    }
+
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
+      font-size: clamp(2.75rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 1.5rem;
-      max-width: 48rem;
+      margin-bottom: 1.75rem;
     }
     .hero-lead {
-      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
       color: var(--z400);
       font-weight: 300;
-      line-height: 1.7;
-      max-width: 38rem;
-      margin-bottom: 3rem;
+      line-height: 1.75;
+      max-width: 40rem;
+      margin: 0 auto 3.5rem;
     }
 
     /* ── STATS BAR ── */
@@ -200,22 +314,28 @@
       gap: 1px;
       background: var(--glass-border);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
-      max-width: 48rem;
+      max-width: 52rem;
+      margin: 0 auto;
     }
     .stat-item {
-      background: var(--glass);
+      background: rgba(255,255,255,0.02);
       backdrop-filter: blur(12px);
-      padding: 1.75rem 1.5rem;
+      padding: 2rem 1.5rem;
       text-align: center;
+      transition: background 0.3s;
+    }
+    .stat-item:hover {
+      background: rgba(255,255,255,0.04);
     }
     .stat-number {
       font-size: clamp(1.3rem, 2.5vw, 1.75rem);
       font-weight: 700;
       color: var(--z100);
       letter-spacing: -0.02em;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
+      font-variant-numeric: tabular-nums;
     }
     .stat-number .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
     .stat-label {
@@ -232,86 +352,182 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
     .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 700;
-      color: var(--z100);
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .section-subtitle {
       font-size: 1.1rem;
       color: var(--z400);
       font-weight: 300;
-      line-height: 1.7;
-      max-width: 36rem;
+      line-height: 1.75;
+      max-width: 38rem;
     }
 
     /* ── GLASSMORPHISM CARD ── */
     .glass-card {
       background: var(--glass);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 2.25rem;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      transition: background 0.4s, border-color 0.4s, transform 0.4s, box-shadow 0.4s;
     }
     .glass-card:hover {
       background: var(--glass-hover);
       border-color: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+    }
+
+    /* ── GLASS CARD GLOW ── */
+    .glass-card-glow {
+      position: relative;
+      border: 1px solid transparent;
+    }
+    .glass-card-glow::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.3), rgba(16,185,129,0.05), rgba(16,185,129,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .glass-card-glow:hover::before { opacity: 1; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      max-width: 72rem;
+      margin: 0 auto;
+      position: relative;
+      background: linear-gradient(90deg, transparent, var(--glass-border) 30%, var(--glass-border) 70%, transparent);
+    }
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+      filter: blur(1px);
     }
 
     /* ── PROBLEM SECTION ── */
     .problem-section {
       position: relative;
     }
-    .problem-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
-    }
     .problem-content {
       display: grid;
-      grid-template-columns: 3rem 1fr;
+      grid-template-columns: 3.5rem 1fr;
       gap: 2rem;
       align-items: start;
     }
     .problem-icon {
-      width: 3rem; height: 3rem;
-      border-radius: 12px;
-      background: rgba(239, 68, 68, 0.08);
-      border: 1px solid rgba(239, 68, 68, 0.15);
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 14px;
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.12);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.25rem;
       flex-shrink: 0;
       margin-top: 0.25rem;
     }
     .problem-text p {
-      margin-bottom: 1.25rem;
-      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      line-height: 1.85;
+      font-weight: 300;
     }
     .problem-text p:last-child { margin-bottom: 0; }
     .problem-text strong { color: var(--z100); font-weight: 600; }
+
+    /* ── PLATFORM CARDS (Google + Meta) ── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .platform-card {
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .platform-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), rgba(16,185,129,0.2), transparent);
+    }
+    .platform-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+    }
+    .platform-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--z100);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .platform-card p {
+      font-size: 0.95rem;
+      color: var(--z400);
+      line-height: 1.8;
+      font-weight: 300;
+    }
 
     /* ── PROCESS STEPS ── */
     .process-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 3rem;
+      gap: 0;
+      margin-top: 3.5rem;
+      position: relative;
     }
     .process-card {
       display: grid;
       grid-template-columns: 3.5rem 1fr;
-      gap: 1.5rem;
+      gap: 1.75rem;
       align-items: start;
+      padding: 2rem 0;
+      position: relative;
+    }
+    .process-card:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: calc(1.75rem);
+      top: calc(2rem + 3.5rem);
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, rgba(16,185,129,0.3), rgba(16,185,129,0.05));
     }
     .process-number {
       width: 3.5rem; height: 3.5rem;
@@ -322,6 +538,8 @@
       color: var(--accent);
       position: relative;
       flex-shrink: 0;
+      background: var(--z950);
+      z-index: 2;
     }
     .process-number::before {
       content: '';
@@ -333,18 +551,27 @@
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
+      animation: ring-rotate 6s linear infinite;
+    }
+    @keyframes ring-rotate {
+      0% { background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2)); }
+      25% { background: linear-gradient(225deg, var(--accent), rgba(16,185,129,0.2)); }
+      50% { background: linear-gradient(315deg, var(--accent), rgba(16,185,129,0.2)); }
+      75% { background: linear-gradient(45deg, var(--accent), rgba(16,185,129,0.2)); }
+      100% { background: linear-gradient(135deg, var(--accent), rgba(16,185,129,0.2)); }
     }
     .process-card-body h3 {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--z100);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
       letter-spacing: -0.01em;
     }
     .process-card-body p {
       color: var(--z400);
       font-size: 0.95rem;
-      line-height: 1.7;
+      line-height: 1.75;
+      font-weight: 300;
     }
 
     /* ── FEATURES GRID ── */
@@ -352,65 +579,40 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
-      margin-top: 3rem;
+      margin-top: 3.5rem;
     }
     .feature-card {
-      padding: 2rem;
+      padding: 2.25rem;
+    }
+    .feature-card:hover {
+      box-shadow: inset 0 0 30px rgba(16,185,129,0.04), 0 0 40px rgba(16,185,129,0.03);
     }
     .feature-icon {
-      width: 2.5rem; height: 2.5rem;
-      border-radius: 10px;
+      width: 2.75rem; height: 2.75rem;
+      border-radius: 12px;
       background: var(--accent-dim);
+      border: 1px solid rgba(16,185,129,0.12);
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       font-size: 1.1rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .feature-card:hover .feature-icon {
+      background: rgba(16,185,129,0.15);
+      border-color: rgba(16,185,129,0.25);
     }
     .feature-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: var(--z100);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
       letter-spacing: -0.01em;
     }
     .feature-card p {
       font-size: 0.9rem;
       color: var(--z400);
-      line-height: 1.7;
-    }
-
-    /* ── PLATFORM CARDS (Google + Meta) ── */
-    .platform-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .platform-card {
-      padding: 2.5rem 2rem;
-    }
-    .platform-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accent-dim);
-      padding: 0.3rem 0.75rem;
-      border-radius: 6px;
-      margin-bottom: 1.25rem;
-    }
-    .platform-card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--z100);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-    }
-    .platform-card p {
-      font-size: 0.95rem;
-      color: var(--z400);
       line-height: 1.75;
+      font-weight: 300;
     }
 
     /* ── INVESTMENT STATS ── */
@@ -418,18 +620,19 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.25rem;
-      margin-top: 3rem;
+      margin-top: 3.5rem;
     }
     .invest-card {
       text-align: center;
-      padding: 2.5rem 1.5rem;
+      padding: 3rem 1.5rem;
     }
     .invest-value {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 800;
       color: var(--z100);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.35rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      font-variant-numeric: tabular-nums;
     }
     .invest-value .accent { color: var(--accent); }
     .invest-label {
@@ -439,28 +642,30 @@
       line-height: 1.5;
     }
     .invest-note {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       font-size: 0.95rem;
       color: var(--z400);
-      line-height: 1.75;
+      line-height: 1.8;
       max-width: 40rem;
+      font-weight: 300;
     }
 
     /* ── AUDIENCE SECTION ── */
     .audience-list {
       list-style: none;
       padding: 0;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       display: grid;
-      gap: 0.75rem;
+      gap: 1rem;
     }
     .audience-list li {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      font-size: 1rem;
+      gap: 1rem;
+      font-size: 1.05rem;
       color: var(--z300);
-      line-height: 1.6;
+      line-height: 1.65;
+      font-weight: 300;
     }
     .audience-list li::before {
       content: '';
@@ -468,44 +673,49 @@
       width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--accent);
-      margin-top: 0.5rem;
+      margin-top: 0.55rem;
+      box-shadow: 0 0 8px rgba(16,185,129,0.3);
     }
     .audience-note {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       font-size: 0.95rem;
       color: var(--z400);
-      line-height: 1.7;
+      line-height: 1.75;
+      font-weight: 300;
     }
-    .audience-note strong { color: var(--z100); }
+    .audience-note strong { color: var(--z100); font-weight: 600; }
 
     /* ── FAQ ACCORDION ── */
     .faq-list {
-      margin-top: 3rem;
+      margin-top: 3.5rem;
       display: grid;
       gap: 0.75rem;
     }
     .faq-item {
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
+      border-radius: 16px;
       background: var(--glass);
       backdrop-filter: blur(8px);
       overflow: hidden;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
     .faq-item:hover {
       border-color: rgba(255,255,255,0.12);
+    }
+    .faq-item.open {
+      box-shadow: 0 0 30px rgba(16,185,129,0.03);
     }
     .faq-question {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.25rem 1.5rem;
+      padding: 1.5rem 1.75rem;
       background: none;
       border: none;
       cursor: pointer;
       font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--z100);
       text-align: left;
@@ -545,154 +755,186 @@
       transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .faq-answer-inner {
-      padding: 0 1.5rem 1.5rem;
+      padding: 0 1.75rem 1.75rem;
       font-size: 0.95rem;
       color: var(--z400);
-      line-height: 1.75;
+      line-height: 1.8;
+      font-weight: 300;
     }
 
     /* ── FULL-WIDTH CTA ── */
     .cta-section {
       position: relative;
-      padding: 6rem 0;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
+      padding: 8rem 0;
     }
     .cta-block {
       position: relative;
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 4rem 2rem;
+      border-radius: 24px;
+      padding: 5rem 2.5rem;
       text-align: center;
-      background: var(--glass);
+      background: rgba(255,255,255,0.02);
       backdrop-filter: blur(16px);
       overflow: hidden;
+      border: 1px solid transparent;
     }
     .cta-block::before {
       content: '';
       position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.4), rgba(16,185,129,0.05), rgba(16,185,129,0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .cta-block::after {
+      content: '';
+      position: absolute;
       top: -50%; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(16,185,129,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 60px rgba(16,185,129,0.04);
       pointer-events: none;
     }
     .cta-block h2 {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      font-weight: 700;
-      color: var(--z100);
-      letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.25rem;
       position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.5) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .cta-block p {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       color: var(--z400);
-      max-width: 28rem;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
+      max-width: 30rem;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
       position: relative;
+      z-index: 1;
+      font-weight: 300;
     }
     .cta-btn {
       display: inline-block;
-      padding: 0.95rem 2.75rem;
+      padding: 1.05rem 3rem;
       background: var(--accent);
       color: var(--z950);
       font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 1.05rem;
       border-radius: 9999px;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
       position: relative;
+      z-index: 1;
       letter-spacing: -0.01em;
     }
     .cta-btn:hover {
-      opacity: 0.88;
-      transform: translateY(-1px);
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(16,185,129,0.25);
     }
 
     /* ── OUTROS SERVICOS ── */
     .outros-servicos {
-      padding: 3rem 0 2rem;
+      padding: 4rem 0 2rem;
     }
     .outros-servicos h3 {
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--z100);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
     .outros-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
     .outros-links a {
       display: inline-block;
-      padding: 0.5rem 1rem;
+      padding: 0.55rem 1.15rem;
       border: 1px solid var(--glass-border);
       border-radius: 9999px;
       font-size: 0.8125rem;
       color: var(--z300);
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+      font-weight: 400;
     }
     .outros-links a:hover {
-      border-color: rgba(255,255,255,0.2);
+      border-color: rgba(16,185,129,0.3);
       color: var(--z100);
+      background: rgba(16,185,129,0.05);
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 2rem 1.5rem 3rem;
+      padding: 2.5rem 1.5rem 3.5rem;
       border-top: 1px solid var(--glass-border);
       text-align: center;
       font-size: 0.8rem;
       color: var(--z500);
+      position: relative;
+      z-index: 1;
     }
     footer a { color: var(--z400); text-decoration: underline; }
     footer a:hover { color: var(--accent); }
 
-    /* ── DIVIDER ── */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border) 50%, transparent);
-      max-width: 72rem;
-      margin: 0 auto;
+    /* ── GRAIN + CURSOR GLOW ── */
+    .grain { position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.035;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
+    .cursor-glow { position:fixed;width:250px;height:250px;border-radius:50%;pointer-events:none;z-index:998;
+      background:radial-gradient(circle,rgba(16,185,129,0.10) 0%,transparent 70%);
+      transform:translate(-50%,-50%);transition:opacity 0.3s;opacity:0;
+    }
+    .cursor-glow.active { opacity:1; }
 
-    /* ── RESPONSIVE: MOBILE FIRST ── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       nav { padding: 1rem 1.25rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .hero { padding: 7rem 0 3rem; }
-      section { padding: 3.5rem 0; }
+      .hero { min-height: auto; padding: 8rem 0 4rem; }
+      .hero-inner { text-align: left; }
+      section { padding: 5rem 0; }
 
-      .stats-bar { grid-template-columns: 1fr; }
-      .stat-item { padding: 1.25rem; }
+      .stats-bar { grid-template-columns: 1fr; border-radius: 16px; }
+      .stat-item { padding: 1.5rem; }
 
       .platform-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
       .invest-grid { grid-template-columns: 1fr; }
 
-      .problem-content { grid-template-columns: 1fr; gap: 1rem; }
+      .problem-content { grid-template-columns: 1fr; gap: 1.25rem; }
 
-      .process-card { grid-template-columns: 3rem 1fr; gap: 1rem; }
+      .process-card { grid-template-columns: 3rem 1fr; gap: 1.25rem; }
       .process-number { width: 3rem; height: 3rem; font-size: 1rem; }
+      .process-card:not(:last-child)::after { left: calc(1.5rem); }
 
-      .cta-block { padding: 3rem 1.5rem; }
+      .cta-block { padding: 3.5rem 1.75rem; border-radius: 20px; }
+
+      .bg-orb-1 { width: 350px; height: 350px; }
+      .bg-orb-2 { width: 300px; height: 300px; }
     }
 
     @media (min-width: 641px) and (max-width: 1024px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
       .invest-grid { grid-template-columns: repeat(3, 1fr); }
-      .platform-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 6rem 0; }
     }
 
     @media (max-width: 1024px) {
@@ -704,19 +946,24 @@
       .hamburger { display: none; }
       .nav-links { display: flex; }
     }
-    .grain { position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.035;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    .cursor-glow { position:fixed;width:200px;height:200px;border-radius:50%;pointer-events:none;z-index:998;
-      background:radial-gradient(circle,rgba(16,185,129,0.12) 0%,transparent 70%);
-      transform:translate(-50%,-50%);transition:opacity 0.3s;opacity:0;
-    }
-    .cursor-glow.active { opacity:1; }
   </style>
 </head>
 <body>
   <div class="grain"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -740,23 +987,25 @@
     <!-- ═══ HERO ═══ -->
     <section class="hero">
       <div class="container">
-        <div class="fade-in">
-          <div class="hero-badge">Tráfego Pago para Stands</div>
-        </div>
-        <h1 class="fade-in fade-in-delay-1">Gestão de Tráfego Pago</h1>
-        <p class="hero-lead fade-in fade-in-delay-2">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automóveis em Portugal. Sem curiosos, sem cliques desperdiçados — só contactos de pessoas que querem comprar.</p>
-        <div class="stats-bar fade-in fade-in-delay-3">
-          <div class="stat-item">
-            <div class="stat-number">Google <span class="accent">Ads</span></div>
-            <div class="stat-label">+ Meta Ads</div>
+        <div class="hero-inner">
+          <div class="fade-in">
+            <div class="hero-badge">Tráfego Pago para Stands</div>
           </div>
-          <div class="stat-item">
-            <div class="stat-number">2-3 <span class="accent">semanas</span></div>
-            <div class="stat-label">Primeiros contactos</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3+ <span class="accent">meses</span></div>
-            <div class="stat-label">Resultados sólidos</div>
+          <h1 class="fade-in fade-in-delay-1">Gestão de Tráfego Pago</h1>
+          <p class="hero-lead fade-in fade-in-delay-2">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automóveis em Portugal. Sem curiosos, sem cliques desperdiçados — só contactos de pessoas que querem comprar.</p>
+          <div class="stats-bar fade-in fade-in-delay-3">
+            <div class="stat-item">
+              <div class="stat-number">Google <span class="accent">Ads</span></div>
+              <div class="stat-label">+ Meta Ads</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number"><span data-count="2">0</span>-<span data-count="3">0</span> <span class="accent">semanas</span></div>
+              <div class="stat-label">Primeiros contactos</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number"><span data-count="3">0</span>+ <span class="accent">meses</span></div>
+              <div class="stat-label">Resultados sólidos</div>
+            </div>
           </div>
         </div>
       </div>
@@ -792,13 +1041,13 @@
         <p class="section-subtitle fade-in fade-in-delay-2">Trabalhamos exclusivamente com o sector automóvel. Isto significa que cada campanha é construída com o conhecimento de quem percebe o ciclo de venda de um carro, os momentos de decisão do comprador, e as particularidades do mercado português.</p>
 
         <div class="platform-grid">
-          <div class="glass-card platform-card fade-in fade-in-delay-2">
+          <div class="glass-card glass-card-glow platform-card fade-in fade-in-delay-3">
             <div class="platform-tag">Google Ads</div>
             <h3>Captar Quem Já Está a Procurar</h3>
             <p>Quando alguém escreve "BMW Série 3 usado Porto" no Google, essa pessoa está a tomar uma decisão. Tem intenção de compra. Sabe o que quer. É o momento perfeito para o seu stand aparecer.</p>
             <p style="margin-top:0.75rem">Criamos campanhas de pesquisa segmentadas por marca, modelo, localização e tipo de viatura. Cada anúncio direciona para uma página de destino que filtra curiosos e encaminha compradores reais para o seu stand. Utilizamos extensões de anúncio com localização, telefone e promoções ativas para maximizar a taxa de clique qualificado.</p>
           </div>
-          <div class="glass-card platform-card fade-in fade-in-delay-3">
+          <div class="glass-card glass-card-glow platform-card fade-in fade-in-delay-4">
             <div class="platform-tag">Meta Ads</div>
             <h3>Alcance e Retargeting</h3>
             <p>Nem toda a gente que vai comprar um carro está ativamente a pesquisar neste momento. Muitos estão a pensar, a comparar, a ver opções. O Facebook e o Instagram são o sítio ideal para chegar a estas pessoas antes da concorrência.</p>
@@ -818,28 +1067,28 @@
         <p class="section-subtitle fade-in fade-in-delay-2">A nossa obsessão não são cliques. São <strong style="color:var(--z100)">leads qualificados</strong> — pessoas que têm orçamento, interesse real e estão prontas para avançar.</p>
 
         <div class="features-grid">
-          <div class="glass-card feature-card fade-in fade-in-delay-1">
+          <div class="glass-card glass-card-glow feature-card fade-in fade-in-delay-2">
             <div class="feature-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <h3>Segmentação por intenção de compra</h3>
             <p>Não mostramos anúncios a quem está a pesquisar por curiosidade</p>
           </div>
-          <div class="glass-card feature-card fade-in fade-in-delay-2">
+          <div class="glass-card glass-card-glow feature-card fade-in fade-in-delay-3">
             <div class="feature-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
             <h3>Landing pages otimizadas</h3>
             <p>Com formulários que fazem as perguntas certas para qualificar cada lead</p>
           </div>
-          <div class="glass-card feature-card fade-in fade-in-delay-3">
+          <div class="glass-card glass-card-glow feature-card fade-in fade-in-delay-4">
             <div class="feature-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <h3>Exclusões inteligentes</h3>
             <p>Removemos públicos que historicamente não convertem, poupando orçamento</p>
           </div>
-          <div class="glass-card feature-card fade-in fade-in-delay-4">
+          <div class="glass-card glass-card-glow feature-card fade-in fade-in-delay-5">
             <div class="feature-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
@@ -859,35 +1108,35 @@
         <h2 class="section-title fade-in fade-in-delay-1">O Nosso Processo</h2>
 
         <div class="process-grid">
-          <div class="glass-card process-card fade-in fade-in-delay-1">
+          <div class="process-card fade-in fade-in-delay-1">
             <div class="process-number">1</div>
             <div class="process-card-body">
               <h3>Auditoria</h3>
               <p>Analisamos o estado atual do seu marketing digital. Se já tem campanhas ativas, identificamos o que está a desperdiçar orçamento. Se não tem, mapeamos as oportunidades com maior potencial para o seu stand.</p>
             </div>
           </div>
-          <div class="glass-card process-card fade-in fade-in-delay-2">
+          <div class="process-card fade-in fade-in-delay-2">
             <div class="process-number">2</div>
             <div class="process-card-body">
               <h3>Estratégia</h3>
               <p>Definimos o orçamento ideal, as plataformas prioritárias, a segmentação de público e as palavras-chave com maior intenção de compra. Criamos uma estratégia personalizada para o seu mercado local.</p>
             </div>
           </div>
-          <div class="glass-card process-card fade-in fade-in-delay-3">
+          <div class="process-card fade-in fade-in-delay-3">
             <div class="process-number">3</div>
             <div class="process-card-body">
               <h3>Lançamento</h3>
               <p>Configuramos as campanhas, criamos os anúncios, montamos as landing pages e ativamos todos os pixels de rastreamento. Tudo é testado antes de gastar um cêntimo do seu orçamento.</p>
             </div>
           </div>
-          <div class="glass-card process-card fade-in fade-in-delay-4">
+          <div class="process-card fade-in fade-in-delay-4">
             <div class="process-number">4</div>
             <div class="process-card-body">
               <h3>Otimização</h3>
               <p>Nas primeiras semanas, os dados começam a entrar. Ajustamos lances, refinamos públicos, pausamos o que não funciona e duplicamos o que funciona. Este processo é contínuo e nunca para.</p>
             </div>
           </div>
-          <div class="glass-card process-card fade-in fade-in-delay-5">
+          <div class="process-card fade-in fade-in-delay-5">
             <div class="process-number">5</div>
             <div class="process-card-body">
               <h3>Relatório</h3>
@@ -907,21 +1156,21 @@
         <h2 class="section-title fade-in fade-in-delay-1">Investimento e Retorno</h2>
 
         <div class="invest-grid">
-          <div class="glass-card invest-card fade-in fade-in-delay-1">
+          <div class="glass-card glass-card-glow invest-card fade-in fade-in-delay-2">
             <div class="invest-value">Adaptado <span class="accent">a si</span></div>
             <div class="invest-label">Orçamento definido na primeira conversa</div>
           </div>
-          <div class="glass-card invest-card fade-in fade-in-delay-2">
-            <div class="invest-value">2-3 <span class="accent">sem.</span></div>
+          <div class="glass-card glass-card-glow invest-card fade-in fade-in-delay-3">
+            <div class="invest-value"><span data-count="2">0</span>-<span data-count="3">0</span> <span class="accent">sem.</span></div>
             <div class="invest-label">Primeiros contactos qualificados</div>
           </div>
-          <div class="glass-card invest-card fade-in fade-in-delay-3">
-            <div class="invest-value">3+ <span class="accent">meses</span></div>
+          <div class="glass-card glass-card-glow invest-card fade-in fade-in-delay-4">
+            <div class="invest-value"><span data-count="3">0</span>+ <span class="accent">meses</span></div>
             <div class="invest-label">Resultados sólidos e consistentes</div>
           </div>
         </div>
 
-        <p class="invest-note fade-in fade-in-delay-4">Estes valores são referências baseadas nos resultados que obtemos com stands automóveis em Portugal. O investimento ideal depende da sua zona geográfica, concorrência local e objetivos de venda. Na primeira conversa, ajudamos a definir o orçamento que faz sentido para o seu caso.</p>
+        <p class="invest-note fade-in fade-in-delay-5">Estes valores são referências baseadas nos resultados que obtemos com stands automóveis em Portugal. O investimento ideal depende da sua zona geográfica, concorrência local e objetivos de venda. Na primeira conversa, ajudamos a definir o orçamento que faz sentido para o seu caso.</p>
       </div>
     </section>
 
@@ -954,7 +1203,7 @@
         <h2 class="section-title fade-in fade-in-delay-1">Perguntas Frequentes</h2>
 
         <div class="faq-list">
-          <div class="faq-item fade-in fade-in-delay-1">
+          <div class="faq-item fade-in fade-in-delay-2">
             <button class="faq-question" aria-expanded="false">
               <span>Quanto custa a gestão de tráfego pago para um stand automóvel?</span>
               <span class="faq-icon"></span>
@@ -963,7 +1212,7 @@
               <div class="faq-answer-inner">O investimento em anúncios é definido caso a caso, tendo em conta a zona geográfica, a concorrência e os objetivos do stand. Na primeira conversa, analisamos a sua realidade e recomendamos o orçamento que faz sentido. Os primeiros contactos surgem nas primeiras semanas, com resultados sólidos a partir de 3 meses de trabalho consistente.</div>
             </div>
           </div>
-          <div class="faq-item fade-in fade-in-delay-2">
+          <div class="faq-item fade-in fade-in-delay-3">
             <button class="faq-question" aria-expanded="false">
               <span>Qual a diferença entre Google Ads e Meta Ads para stands?</span>
               <span class="faq-icon"></span>
@@ -972,7 +1221,7 @@
               <div class="faq-answer-inner">O Google Ads capta pessoas que estão ativamente a procurar um carro — a intenção de compra é alta. O Meta Ads (Facebook e Instagram) permite alcançar públicos novos e fazer retargeting a quem já visitou o site. A combinação de ambos é o que gera melhores resultados, porque cobre tanto a procura ativa como a fase de consideração.</div>
             </div>
           </div>
-          <div class="faq-item fade-in fade-in-delay-3">
+          <div class="faq-item fade-in fade-in-delay-4">
             <button class="faq-question" aria-expanded="false">
               <span>Em quanto tempo vejo resultados com tráfego pago?</span>
               <span class="faq-icon"></span>
@@ -981,7 +1230,7 @@
               <div class="faq-answer-inner">Os primeiros contactos surgem nas primeiras semanas após o lançamento. Resultados sólidos e consistentes exigem no mínimo 3 meses de trabalho contínuo, com otimização baseada em dados reais do seu stand.</div>
             </div>
           </div>
-          <div class="faq-item fade-in fade-in-delay-4">
+          <div class="faq-item fade-in fade-in-delay-5">
             <button class="faq-question" aria-expanded="false">
               <span>Preciso de ter um site para fazer tráfego pago?</span>
               <span class="faq-icon"></span>
@@ -998,6 +1247,7 @@
     <section class="cta-section">
       <div class="container-narrow">
         <div class="cta-block fade-in">
+          <div class="cta-glow"></div>
           <h2>Pronto para começar?</h2>
           <p>Fale connosco e descubra como o tráfego pago pode transformar o fluxo de contactos do seu stand.</p>
           <a href="/contacto.html" class="cta-btn">Falar com a Natamy</a>
@@ -1036,9 +1286,41 @@
 (function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-item');var answer=item.querySelector('.faq-answer');var inner=item.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(openItem){if(openItem!==item){openItem.classList.remove('open');openItem.querySelector('.faq-question').setAttribute('aria-expanded','false');openItem.querySelector('.faq-answer').style.maxHeight='0';}});if(isOpen){item.classList.remove('open');btn.setAttribute('aria-expanded','false');answer.style.maxHeight='0';}else{item.classList.add('open');btn.setAttribute('aria-expanded','true');answer.style.maxHeight=inner.scrollHeight+'px';}});});})();
 </script>
 
-  <!-- IntersectionObserver fade-in -->
+  <!-- IntersectionObserver fade-in + count-up -->
   <script>
-(function(){var els=document.querySelectorAll('.fade-in');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});els.forEach(function(el){observer.observe(el);});})();
+(function(){
+  /* Fade-in observer */
+  var els=document.querySelectorAll('.fade-in');
+  if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('visible');});return;}
+  var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(el){observer.observe(el);});
+
+  /* Count-up animation for stats */
+  var countEls=document.querySelectorAll('[data-count]');
+  if(countEls.length===0)return;
+  var counted=new Set();
+  var countObserver=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting&&!counted.has(entry.target)){
+        counted.add(entry.target);
+        var target=parseInt(entry.target.getAttribute('data-count'),10);
+        var duration=800;
+        var start=performance.now();
+        var el=entry.target;
+        function tick(now){
+          var elapsed=now-start;
+          var progress=Math.min(elapsed/duration,1);
+          var eased=1-Math.pow(1-progress,3);
+          el.textContent=Math.round(eased*target);
+          if(progress<1)requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        countObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.3});
+  countEls.forEach(function(el){countObserver.observe(el);});
+})();
 </script>
 
   <script type="application/ld+json">

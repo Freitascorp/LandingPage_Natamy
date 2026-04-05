@@ -61,33 +61,60 @@
       --glass-border: rgba(255, 255, 255, 0.08);
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
 
     body {
       font-family: 'Outfit', system-ui, sans-serif;
       background: var(--z950);
       color: var(--z300);
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* ---- Keyframes ---- */
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.02); }
+      66% { transform: translate(-20px, 15px) scale(0.98); }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    }
+
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 0.5; height: 24px; }
+      50% { opacity: 1; height: 32px; }
+    }
+
+    @keyframes fade-up-in {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ---- Fade-in animations ---- */
     .fade-in {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .fade-in-delay-1 { transition-delay: 0.1s; }
-    .fade-in-delay-2 { transition-delay: 0.2s; }
-    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-1 { transition-delay: 0.12s; }
+    .fade-in-delay-2 { transition-delay: 0.24s; }
+    .fade-in-delay-3 { transition-delay: 0.36s; }
+    .fade-in-delay-4 { transition-delay: 0.48s; }
 
     /* ---- Nav ---- */
     .nav {
@@ -137,26 +164,29 @@
     .mobile-menu a { color:var(--z100);text-decoration:none;font-size:1.25rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase; }
     .mobile-menu a:hover { color:var(--accent);text-decoration:none; }
 
-    /* ---- Background glow ---- */
-    .bg-glow {
+    /* ---- Background orbs ---- */
+    .bg-orb {
       position: fixed;
-      top: -40%;
-      left: -20%;
-      width: 80vw;
-      height: 80vw;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
       pointer-events: none;
       z-index: 0;
+      filter: blur(0px);
     }
-    .bg-glow-2 {
-      position: fixed;
-      bottom: -30%;
-      right: -20%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+    .bg-orb-1 {
+      top: -30%;
+      left: -15%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 65%);
+      animation: float 20s ease-in-out infinite;
+    }
+    .bg-orb-2 {
+      bottom: -25%;
+      right: -15%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.04) 0%, transparent 65%);
+      animation: float 25s ease-in-out infinite reverse;
     }
 
     /* ---- Section wrappers ---- */
@@ -177,7 +207,9 @@
     }
 
     .section-label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.6875rem;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -190,12 +222,21 @@
       background: rgba(16, 185, 129, 0.06);
     }
 
+    .section-label .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
     /* ---- Hero ---- */
     .hero {
       min-height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: flex-start;
       padding-top: 6rem;
       padding-bottom: 4rem;
     }
@@ -225,30 +266,45 @@
       font-weight: 300;
       color: var(--z400);
       max-width: 580px;
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
     .scroll-indicator {
-      margin-top: 3rem;
+      margin-top: auto;
+      padding-top: 3rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.625rem;
       color: var(--z500);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      font-size: 0.6875rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       font-weight: 400;
+      align-self: center;
     }
 
-    .scroll-indicator .line {
-      width: 32px;
+    .scroll-indicator .scroll-line {
+      width: 1px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--z500), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+
+    /* ---- Section divider ---- */
+    .section-divider {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
       height: 1px;
-      background: var(--z700);
+      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), var(--glass-border), rgba(16, 185, 129, 0.15), transparent);
+      position: relative;
+      z-index: 1;
     }
 
     /* ---- Story section ---- */
     .story-section {
-      padding: 6rem 0;
+      padding: 8rem 0;
     }
 
     .story-text {
@@ -256,22 +312,35 @@
       font-weight: 300;
       color: var(--z400);
       line-height: 1.85;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
     }
 
-    .pull-quote {
+    .pull-quote-glow {
       position: relative;
-      margin: 3rem 0;
+      margin: 3.5rem 0;
       padding: 2.5rem;
       background: var(--glass);
-      border: 1px solid var(--glass-border);
+      border: 1px solid transparent;
       border-radius: 1rem;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
     }
 
-    .pull-quote::before {
+    .pull-quote-glow::before {
       content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .pull-quote-glow .accent-bar {
       position: absolute;
       top: 0;
       left: 2.5rem;
@@ -281,7 +350,7 @@
       border-radius: 2px;
     }
 
-    .pull-quote p {
+    .pull-quote-glow p {
       font-size: 1.25rem;
       font-weight: 400;
       color: var(--z100);
@@ -292,7 +361,7 @@
 
     /* ---- Services ---- */
     .services-section {
-      padding: 6rem 0;
+      padding: 8rem 0;
     }
 
     .services-section h2 {
@@ -300,7 +369,7 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       color: var(--z100);
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .services-grid {
@@ -313,16 +382,35 @@
       position: relative;
       padding: 2.5rem 2rem;
       background: var(--glass);
-      border: 1px solid var(--glass-border);
+      border: 1px solid transparent;
       border-radius: 1rem;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      transition: border-color 0.4s ease, transform 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: background 0.5s ease;
     }
 
     .service-card:hover {
-      border-color: rgba(16, 185, 129, 0.25);
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.4);
+    }
+
+    .service-card:hover::before {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.25));
     }
 
     .service-card .icon {
@@ -355,7 +443,7 @@
 
     /* ---- Differentiators ---- */
     .diff-section {
-      padding: 6rem 0;
+      padding: 8rem 0;
     }
 
     .diff-section h2 {
@@ -363,7 +451,7 @@
       font-weight: 700;
       letter-spacing: -0.03em;
       color: var(--z100);
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .diff-list {
@@ -372,46 +460,95 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 0;
+      position: relative;
     }
 
-    .diff-list li {
+    /* Connecting accent line */
+    .diff-list::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.08));
+    }
+
+    .diff-item {
       position: relative;
-      padding-left: 2rem;
+      padding: 1.75rem 2rem 1.75rem 3.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-left: 2px solid rgba(16, 185, 129, 0.15);
+      border-radius: 0.75rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      margin-bottom: 1rem;
+      transition: border-left-color 0.3s ease, background 0.3s ease;
+    }
+
+    .diff-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .diff-item:hover {
+      border-left-color: rgba(16, 185, 129, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .diff-item .accent-dot {
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      z-index: 2;
+    }
+
+    .diff-item p {
       font-size: 1.0625rem;
       font-weight: 300;
       color: var(--z300);
       line-height: 1.75;
-    }
-
-    .diff-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.65rem;
-      width: 8px;
-      height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+      margin: 0;
     }
 
     /* ---- Stats bar ---- */
     .stats-bar {
-      padding: 5rem 0;
+      padding: 8rem 0;
     }
 
     .stats-inner {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      padding: 3rem 2rem;
+      padding: 3.5rem 2.5rem;
       background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 1rem;
+      border: 1px solid transparent;
+      border-radius: 1.25rem;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       text-align: center;
+      overflow: hidden;
+    }
+
+    .stats-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     .stat-item .stat-value {
@@ -435,15 +572,20 @@
       color: var(--accent);
     }
 
+    /* Animated stat numbers */
+    .stat-item .stat-value .count-up {
+      display: inline-block;
+    }
+
     /* ---- CTA block ---- */
     .cta-section {
-      padding: 4rem 0 6rem;
+      padding: 4rem 0 8rem;
     }
 
     .cta-block {
       position: relative;
       text-align: center;
-      padding: 4rem 3rem;
+      padding: 5rem 3.5rem;
       border-radius: 1.25rem;
       background: var(--glass);
       border: 1px solid transparent;
@@ -470,7 +612,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 50% 120%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 120%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
       pointer-events: none;
     }
 
@@ -480,7 +622,7 @@
       font-size: clamp(1.5rem, 3vw, 2.25rem);
       font-weight: 700;
       color: var(--z100);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       letter-spacing: -0.03em;
     }
 
@@ -490,19 +632,19 @@
       display: inline-flex;
       align-items: center;
       gap: 0.625rem;
-      padding: 1rem 2.5rem;
+      padding: 1.125rem 2.75rem;
       background: var(--accent);
       color: var(--z950);
       font-family: 'Outfit', sans-serif;
       font-size: 0.9375rem;
       font-weight: 600;
       border-radius: 9999px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cta-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 40px -8px rgba(16, 185, 129, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.4);
       text-decoration: none;
     }
 
@@ -524,17 +666,6 @@
 
     .footer a:hover { color: var(--z100); }
 
-    /* ---- Divider ---- */
-    .section-divider {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
-      position: relative;
-      z-index: 1;
-    }
-
     /* ---- Responsive ---- */
     @media (max-width: 900px) {
       .services-grid {
@@ -555,7 +686,9 @@
 
       .story-section,
       .services-section,
-      .diff-section { padding: 4rem 0; }
+      .diff-section { padding: 5rem 0; }
+
+      .stats-bar { padding: 5rem 0; }
 
       .stats-inner {
         grid-template-columns: 1fr;
@@ -563,12 +696,20 @@
         padding: 2rem 1.5rem;
       }
 
-      .pull-quote { padding: 2rem 1.5rem; }
+      .pull-quote-glow { padding: 2rem 1.5rem; }
 
-      .cta-block { padding: 3rem 1.5rem; }
+      .cta-block { padding: 3.5rem 1.5rem; }
+      .cta-section { padding: 4rem 0 5rem; }
 
       .service-card { padding: 2rem 1.5rem; }
+
+      .diff-item { padding: 1.5rem 1.5rem 1.5rem 3rem; }
+
+      .diff-list::before { left: 12px; }
+
+      .scroll-indicator { display: none; }
     }
+
     /* Grain */
     .grain { position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.035;
       background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -584,9 +725,9 @@
 <body>
   <div class="grain"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
-  <!-- Background glows -->
-  <div class="bg-glow"></div>
-  <div class="bg-glow-2"></div>
+  <!-- Background orbs -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
 
   <!-- Nav -->
   <nav class="nav">
@@ -607,13 +748,13 @@
   <!-- Hero -->
   <section class="hero section-narrow">
     <div class="fade-in">
-      <span class="section-label">Sobre</span>
+      <span class="section-label"><span class="pulse-dot"></span> Sobre</span>
     </div>
     <h1 class="fade-in fade-in-delay-1">Natamy Oliveira</h1>
     <p class="subtitle fade-in fade-in-delay-2">Especialista em Marketing Digital para Stands Automóveis</p>
     <p class="intro fade-in fade-in-delay-3">No mercado automóvel português, a maioria dos stands continua a depender de métodos tradicionais para atrair clientes: boca-a-boca, publicações orgânicas nas redes sociais e a esperança de que o próximo mês seja melhor. Natamy Oliveira decidiu mudar essa realidade.</p>
-    <div class="scroll-indicator fade-in fade-in-delay-3">
-      <span class="line"></span>
+    <div class="scroll-indicator fade-in fade-in-delay-4">
+      <span class="scroll-line"></span>
       <span>Scroll</span>
     </div>
   </section>
@@ -626,7 +767,8 @@
 
     <p class="story-text fade-in">Natamy integra ferramentas de inteligência artificial no dia-a-dia dos stands com quem trabalha. Implementa chatbots que qualificam leads automaticamente, respondendo a questões sobre stock, financiamento, horários e localização — 24 horas por dia, 7 dias por semana. O resultado: a equipa comercial do stand só fala com quem realmente quer comprar.</p>
 
-    <div class="pull-quote fade-in">
+    <div class="pull-quote-glow fade-in">
+      <span class="accent-bar"></span>
       <p>O que diferencia Natamy é a combinação de três competências num só serviço: gestão avançada de tráfego pago, automação com inteligência artificial e construção de funis de venda personalizados.</p>
     </div>
 
@@ -640,7 +782,7 @@
   <!-- Services -->
   <section class="services-section section">
     <div class="fade-in">
-      <span class="section-label">Serviços</span>
+      <span class="section-label"><span class="pulse-dot"></span> Serviços</span>
       <h2>O Que Faço</h2>
     </div>
 
@@ -692,16 +834,28 @@
   <!-- Differentiators -->
   <section class="diff-section section-narrow">
     <div class="fade-in">
-      <span class="section-label">Diferenciais</span>
+      <span class="section-label"><span class="pulse-dot"></span> Diferenciais</span>
       <h2>Porque Trabalhar Comigo</h2>
     </div>
 
-    <ul class="diff-list">
-      <li class="fade-in">Trabalho exclusivamente com stands automóveis — conheço o setor por dentro, falo a língua do concessionário e entendo os desafios reais do dia-a-dia.</li>
-      <li class="fade-in">Cada estratégia é medida por resultados concretos: leads qualificados, custo por lead e viaturas vendidas. Sem relatórios cheios de métricas vazias.</li>
-      <li class="fade-in">A combinação de tráfego pago, automação com IA e funis de venda num único serviço elimina a necessidade de contratar múltiplos fornecedores que não comunicam entre si.</li>
-      <li class="fade-in">Acompanhamento próximo e comunicação transparente — sabe sempre onde está o seu investimento e o que está a gerar.</li>
-    </ul>
+    <div class="diff-list">
+      <div class="diff-item fade-in">
+        <span class="accent-dot"></span>
+        <p>Trabalho exclusivamente com stands automóveis — conheço o setor por dentro, falo a língua do concessionário e entendo os desafios reais do dia-a-dia.</p>
+      </div>
+      <div class="diff-item fade-in">
+        <span class="accent-dot"></span>
+        <p>Cada estratégia é medida por resultados concretos: leads qualificados, custo por lead e viaturas vendidas. Sem relatórios cheios de métricas vazias.</p>
+      </div>
+      <div class="diff-item fade-in">
+        <span class="accent-dot"></span>
+        <p>A combinação de tráfego pago, automação com IA e funis de venda num único serviço elimina a necessidade de contratar múltiplos fornecedores que não comunicam entre si.</p>
+      </div>
+      <div class="diff-item fade-in">
+        <span class="accent-dot"></span>
+        <p>Acompanhamento próximo e comunicação transparente — sabe sempre onde está o seu investimento e o que está a gerar.</p>
+      </div>
+    </div>
   </section>
 
   <div class="section-divider"></div>
@@ -714,11 +868,11 @@
         <span class="stat-label">Foco exclusivo</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value"><span class="accent-text">100%</span> Resultados</span>
+        <span class="stat-value"><span class="accent-text count-up" data-target="100">0</span>% Resultados</span>
         <span class="stat-label">Orientado a performance</span>
       </div>
       <div class="stat-item">
-        <span class="stat-value"><span class="accent-text">24/7</span> IA</span>
+        <span class="stat-value"><span class="accent-text count-up" data-target="24">0</span>/7 IA</span>
         <span class="stat-label">Automação non-stop</span>
       </div>
     </div>
@@ -781,9 +935,10 @@
   }
   </script>
 
-  <!-- IntersectionObserver fade-in -->
+  <!-- IntersectionObserver fade-in + count-up -->
   <script>
   (function(){
+    /* Fade-in */
     var targets = document.querySelectorAll('.fade-in');
     if (!('IntersectionObserver' in window)) {
       targets.forEach(function(el) { el.classList.add('visible'); });
@@ -798,6 +953,29 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     targets.forEach(function(el) { observer.observe(el); });
+
+    /* Count-up animation for stats */
+    var countEls = document.querySelectorAll('.count-up');
+    if (countEls.length === 0) return;
+    var countObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var duration = 1200;
+          var start = performance.now();
+          function step(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target);
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(function(el) { countObserver.observe(el); });
   })();
   </script>
 
