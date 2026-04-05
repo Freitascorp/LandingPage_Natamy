@@ -851,39 +851,19 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         canvas.style.width = cw + 'px';
         canvas.style.height = ch + 'px';
-        if (lastFrame >= 0 && screenFrames[lastFrame]) draw(screenFrames[lastFrame]);
+        if (lastFrame >= 0 && frames[lastFrame]) draw(frames[lastFrame]);
       }
 
       // Pre-rendered frames at exact screen size (zero math per scroll frame)
-      const screenFrames = new Array(FRAME_COUNT);
-
-      function prerenderFrames() {
+      function draw(img) {
+        if (!img) return;
         const crop = 0.07;
-        for (let i = 0; i < FRAME_COUNT; i++) {
-          if (!frames[i]) continue;
-          const img = frames[i];
-          const iw = img.naturalWidth || img.width;
-          const ih = img.naturalHeight || img.height;
-          const srcH = ih * (1 - crop);
-          const s = Math.max(cw / iw, ch / srcH);
-          const w = iw * s, h = srcH * s;
-
-          const c = document.createElement('canvas');
-          c.width = cw;
-          c.height = ch;
-          const cx = c.getContext('2d');
-          cx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
-          screenFrames[i] = c;
-
-          // Free the original bitmap/image to save memory
-          if (img.close) img.close();
-          frames[i] = null;
-        }
-      }
-
-      function draw(src) {
-        if (!src) return;
-        ctx.drawImage(src, 0, 0);
+        const iw = img.naturalWidth || img.width;
+        const ih = img.naturalHeight || img.height;
+        const srcH = ih * (1 - crop);
+        const s = Math.max(cw / iw, ch / srcH);
+        const w = iw * s, h = srcH * s;
+        ctx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
       }
 
       // ── Scroll (cache maxScroll on resize) ──
@@ -1040,8 +1020,8 @@
 
         // Frame draw — FAST (just copies pre-rendered canvas)
         const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
-        if (fi !== lastFrame && screenFrames[fi]) {
-          draw(screenFrames[fi]);
+        if (fi !== lastFrame && frames[fi]) {
+          draw(frames[fi]);
           lastFrame = fi;
         }
 
@@ -1183,13 +1163,11 @@
         });
 
         if (isMobile) {
-          // Mobile: load ALL frames upfront (121 frames, ~3.5MB) — zero lag scroll
+          // Mobile: load ALL 121 frames upfront for smooth scroll
           await preloadRange(0, FRAME_COUNT, true);
-          prerenderFrames();
         } else {
-          // Desktop: load first 30 fast, show page, load rest in background
+          // Desktop: load first 30 fast, show page quickly
           await preloadRange(0, 30, true);
-          prerenderFrames();
         }
 
         loaderFill.style.width = '100%';
@@ -1197,14 +1175,14 @@
         await new Promise(r => setTimeout(r, 200));
         loader.classList.add('done');
 
-        if (screenFrames[0]) { draw(screenFrames[0]); lastFrame = 0; }
+        if (frames[0]) { draw(frames[0]); lastFrame = 0; }
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
         startLoop();
 
         if (!isMobile) {
-          // Desktop: load remaining frames in background, prerender as they arrive
-          preloadRange(30, FRAME_COUNT, false).then(prerenderFrames);
+          // Desktop: load remaining 331 frames in background
+          preloadRange(30, FRAME_COUNT, false);
         }
       }
 
