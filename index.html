@@ -858,11 +858,12 @@
       function draw(img) {
         // Crop bottom 7% to hide KlingAI watermark
         const crop = 0.07;
-        const srcH = img.naturalHeight * (1 - crop);
-        const s = Math.max(cw / img.naturalWidth, ch / srcH);
-        const w = img.naturalWidth * s, h = srcH * s;
-        // Center vertically (on mobile, image won't fill height — gradient bg fills gap)
-        ctx.drawImage(img, 0, 0, img.naturalWidth, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
+        const iw = img.naturalWidth || img.width;
+        const ih = img.naturalHeight || img.height;
+        const srcH = ih * (1 - crop);
+        const s = Math.max(cw / iw, ch / srcH);
+        const w = iw * s, h = srcH * s;
+        ctx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
       }
 
       // ── Scroll (cache maxScroll on resize) ──
@@ -1085,27 +1086,36 @@
         }
       }
 
-      // ── Preload (phased) ──
-      const PHASE1 = isMobile ? 15 : 20; // Show page after first batch
+      // ── Preload (phased, using ImageBitmap for zero-decode draw) ──
+      const PHASE1 = isMobile ? 15 : 20;
+      const useBitmap = typeof createImageBitmap === 'function';
+
       function preloadRange(start, end) {
         return new Promise(resolve => {
           let loaded = 0, next = start;
           const total = end - start;
-          const C = 8;
+          const C = isMobile ? 4 : 8; // fewer concurrent on mobile to reduce memory pressure
 
           function go() {
             if (next >= end) return;
             const i = next++;
-            const img = new Image();
-            img.decode
-              ? (img.src = framePath(i),
-                 img.decode().then(() => {
-                   frames[i] = img;
-                   done();
-                 }).catch(done))
-              : (img.onload = () => { frames[i] = img; done(); },
-                 img.onerror = done,
-                 img.src = framePath(i));
+
+            if (useBitmap) {
+              // Fast path: fetch → blob → ImageBitmap (pre-decoded, instant draw)
+              fetch(framePath(i))
+                .then(r => r.blob())
+                .then(b => createImageBitmap(b))
+                .then(bmp => { frames[i] = bmp; done(); })
+                .catch(done);
+            } else {
+              // Fallback: Image + decode
+              const img = new Image();
+              img.src = framePath(i);
+              img.decode
+                ? img.decode().then(() => { frames[i] = img; done(); }).catch(done)
+                : (img.onload = () => { frames[i] = img; done(); },
+                   img.onerror = done);
+            }
 
             function done() {
               loaded++;
