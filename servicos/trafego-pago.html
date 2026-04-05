@@ -1095,10 +1095,32 @@
       .hamburger { display: none; }
       .nav-links { display: flex; }
     }
+
+    /* Lenis smooth scroll */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    /* Reduced motion fallback */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.2s !important;
+        scroll-behavior: auto !important;
+      }
+      .fade-in { opacity: 1; transform: none; }
+      .section-hero-band { background-attachment: scroll; }
+    }
   </style>
 </head>
 <body>
   <div class="grain"></div>
+  <!-- Scroll Progress -->
+  <div id="scrollProgress" style="position:fixed;top:0;right:0;width:2px;height:100vh;z-index:999;transform-origin:top;transform:scaleY(0);background:var(--accent);pointer-events:none;opacity:0.6;"></div>
   <div class="cursor-glow" id="cursorGlow"></div>
   <div class="bg-orb bg-orb-1"></div>
   <div class="bg-orb bg-orb-2"></div>
@@ -1566,5 +1588,11 @@
   <script>
   (function(){var g=document.getElementById('cursorGlow');if(!g||'ontouchstart' in window)return;document.addEventListener('mousemove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';if(!g.classList.contains('active'))g.classList.add('active');});document.addEventListener('mouseleave',function(){g.classList.remove('active');});})();
   </script>
+
+  <!-- Scroll Experience Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js" defer></script>
+  <script src="/scroll-engine.js" defer></script>
 </body>
 </html>
