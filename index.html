@@ -676,14 +676,34 @@
         transform: translateY(-50%);
       }
 
-      .s-hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+      .s-hero h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+      .s-hero h1 span { font-size: 0.5em; }
+      .s-hero .sub { font-size: 0.875rem; max-width: 30ch; }
 
       .s-b1, .s-b2, .s-b3, .s-about, .s-cta {
-        width: calc(100vw - 2.5rem);
+        width: calc(100vw - 2rem);
+        padding: 0 0.5rem;
       }
 
-      .px h2 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
-      .px p, .px blockquote { font-size: 1rem; }
+      .px h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+      .px p, .px blockquote { font-size: 0.9375rem; }
+
+      .px .bullet {
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        max-width: 32ch;
+        line-height: 1.4;
+      }
+
+      .px::before {
+        width: 160%;
+        height: 200%;
+      }
+
+      .cta-form {
+        max-width: 100%;
+        padding: 1.5rem 1.25rem 1rem;
+      }
     }
   </style>
 </head>
