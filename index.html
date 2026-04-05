@@ -954,104 +954,115 @@
         }
       }
 
-      // ── Section Parallax Engine ──
-      function updateSections(p) {
-        for (let s = 0; s < sections.length; s++) {
-          const el  = sections[s];
-          const inP  = +el.dataset.in;
-          const peak = +el.dataset.peak;
-          const outP = +el.dataset.out;
-          const dir  = el.dataset.dir;
-          const EXIT = 0.035;
+      // ── Section Parallax Engine (optimized: pre-cached, skip invisible) ──
+      const EXIT = 0.035;
+      // Pre-cache section metadata (avoid classList reads in loop)
+      const sectionData = [];
+      sections.forEach(el => {
+        sectionData.push({
+          el: el,
+          inP: +el.dataset.in,
+          peak: +el.dataset.peak,
+          outP: +el.dataset.out,
+          dir: el.dataset.dir,
+          type: el.classList.contains('s-about') ? 'about'
+              : el.classList.contains('s-hero') ? 'hero'
+              : (el.classList.contains('s-b1') || el.classList.contains('s-b2') || el.classList.contains('s-b3') || el.classList.contains('s-cta')) ? 'centered'
+              : 'default',
+          kids: el.children,
+          lastO: -1 // track last opacity to skip unchanged
+        });
+      });
 
+      function updateSections(p) {
+        for (let s = 0; s < sectionData.length; s++) {
+          const d = sectionData[s];
           let opacity = 0, tx = 0, ty = 0, sc = 1;
 
-          if (p >= inP && p < peak) {
-            const t = easeOut((p - inP) / (peak - inP));
+          if (p >= d.inP && p < d.peak) {
+            const t = easeOut((p - d.inP) / (d.peak - d.inP));
             opacity = t;
-            if      (dir === 'left')   tx = -50 * (1 - t);
-            else if (dir === 'right')  tx = 50 * (1 - t);
-            else if (dir === 'bottom') ty = 35 * (1 - t);
-            else if (dir === 'scale')  sc = 0.92 + 0.08 * t;
+            if      (d.dir === 'left')   tx = -50 * (1 - t);
+            else if (d.dir === 'right')  tx = 50 * (1 - t);
+            else if (d.dir === 'bottom') ty = 35 * (1 - t);
+            else if (d.dir === 'scale')  sc = 0.92 + 0.08 * t;
           }
-          else if (p >= peak && p < outP) {
+          else if (p >= d.peak && p < d.outP) {
             opacity = 1;
-            const drift = (p - peak) / (outP - peak);
-            if (dir === 'scale') sc = 1 + 0.02 * drift;
+            const drift = (p - d.peak) / (d.outP - d.peak);
+            if (d.dir === 'scale') sc = 1 + 0.02 * drift;
             else ty = -6 * drift;
           }
-          else if (p >= outP && p < outP + EXIT) {
-            const t = easeIn((p - outP) / EXIT);
+          else if (p >= d.outP && p < d.outP + EXIT) {
+            const t = easeIn((p - d.outP) / EXIT);
             opacity = 1 - t;
-            if      (dir === 'left')   tx = -25 * t;
-            else if (dir === 'right')  tx = 25 * t;
-            else if (dir === 'bottom') ty = -18 * t;
-            else if (dir === 'scale')  sc = 1 - 0.06 * t;
+            if      (d.dir === 'left')   tx = -25 * t;
+            else if (d.dir === 'right')  tx = 25 * t;
+            else if (d.dir === 'bottom') ty = -18 * t;
+            else if (d.dir === 'scale')  sc = 1 - 0.06 * t;
           }
 
-          // Build transform — detect centered vs. positioned sections
-          const isCentered = el.classList.contains('s-b1') ||
-                             el.classList.contains('s-b2') ||
-                             el.classList.contains('s-b3') ||
-                             el.classList.contains('s-cta');
-          const isAbout = el.classList.contains('s-about');
-          const isHero = el.classList.contains('s-hero');
+          // Skip DOM write if opacity unchanged (0 → 0)
+          const oRound = (opacity * 100) | 0;
+          if (oRound === 0 && d.lastO === 0) continue;
+          d.lastO = oRound;
 
-          let transform;
-          if (isAbout) {
-            transform = `translateX(-50%) scale(${sc})`;
-          } else if (isCentered) {
-            transform = `translate(-50%, calc(-50% + ${ty}px))`;
-          } else if (isHero) {
-            transform = `translateY(calc(-50% + ${ty}px)) translateX(${tx}px)`;
-          } else {
-            transform = `translate3d(${tx}px, ${ty}px, 0)`;
-          }
+          const transform = d.type === 'about' ? `translateX(-50%) scale(${sc})`
+            : d.type === 'centered' ? `translate(-50%, calc(-50% + ${ty}px))`
+            : d.type === 'hero' ? `translateY(calc(-50% + ${ty}px)) translateX(${tx}px)`
+            : `translate3d(${tx}px, ${ty}px, 0)`;
 
-          el.style.cssText = `opacity:${opacity};transform:${transform};`;
+          d.el.style.opacity = opacity;
+          d.el.style.transform = transform;
 
-          // Stagger children
-          const kids = el.children;
-          for (let i = 0; i < kids.length; i++) {
-            const delay = i * 0.08;
-            const cT = opacity > 0
-              ? Math.max(0, Math.min(1, (opacity - delay) / Math.max(0.01, 1 - delay)))
-              : 0;
-            kids[i].style.cssText = `opacity:${cT};transform:translate3d(0,${(1 - cT) * 10}px,0);`;
+          // Stagger children (only when visible)
+          if (opacity > 0) {
+            for (let i = 0; i < d.kids.length; i++) {
+              const delay = i * 0.08;
+              const cT = Math.max(0, Math.min(1, (opacity - delay) / Math.max(0.01, 1 - delay)));
+              d.kids[i].style.opacity = cT;
+              d.kids[i].style.transform = `translate3d(0,${(1 - cT) * 10}px,0)`;
+            }
           }
         }
       }
 
-      // ── Render Loop (single rAF, no layout thrash) ──
+      // ── Render Loop (optimized: canvas first, DOM throttled) ──
       let loopRunning = false;
-      let idleTimer = null;
+      let lastUICur = -1;
+      let uiThrottle = 0;
 
       function loop() {
-        // Lerp — higher on mobile for responsiveness
         const lerpSpeed = isMobile ? 0.10 : 0.14;
         const delta = target - cur;
         cur += delta * lerpSpeed;
         if (Math.abs(delta) < 0.00005) cur = target;
 
-        // Frame
+        // Frame draw — FAST (just copies pre-rendered canvas)
         const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
         if (fi !== lastFrame && screenFrames[fi]) {
           draw(screenFrames[fi]);
           lastFrame = fi;
         }
 
-        // UI (batched writes, no reads)
-        progressFill.style.height = (cur * 100) + '%';
-        if (cur > 0.03) {
-          if (!scrollHint.classList.contains('hidden')) scrollHint.classList.add('hidden');
-        } else {
-          if (scrollHint.classList.contains('hidden')) scrollHint.classList.remove('hidden');
+        // DOM updates — throttled to every 3rd frame on mobile
+        uiThrottle++;
+        if (!isMobile || uiThrottle >= 3) {
+          uiThrottle = 0;
+          const curRound = (cur * 1000) | 0;
+          if (curRound !== lastUICur) {
+            lastUICur = curRound;
+            progressFill.style.height = (cur * 100) + '%';
+            if (cur > 0.03) {
+              if (!scrollHint.classList.contains('hidden')) scrollHint.classList.add('hidden');
+            } else {
+              if (scrollHint.classList.contains('hidden')) scrollHint.classList.remove('hidden');
+            }
+            updateSections(cur);
+            updateDim(cur);
+          }
         }
 
-        updateSections(cur);
-        updateDim(cur);
-
-        // Stop loop when settled (saves battery)
         if (Math.abs(delta) > 0.0001) {
           requestAnimationFrame(loop);
         } else {
