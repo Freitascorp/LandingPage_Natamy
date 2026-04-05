@@ -1115,16 +1115,17 @@
         }
       }
 
-      // ── Preload ALL frames during loading bar (zero lag when scrolling) ──
+      // ── Preload frames ──
       const useBitmap = typeof createImageBitmap === 'function';
 
-      function preloadAll() {
+      function preloadRange(start, end, showProgress) {
         return new Promise(resolve => {
-          let loaded = 0, next = 0;
-          const C = isMobile ? 6 : 12; // concurrent downloads
+          let loaded = 0, next = start;
+          const total = end - start;
+          const C = isMobile ? 6 : 12;
 
           function go() {
-            if (next >= FRAME_COUNT) return;
+            if (next >= end) return;
             const i = next++;
 
             if (useBitmap) {
@@ -1144,10 +1145,12 @@
 
             function done() {
               loaded++;
-              const pct = (loaded / FRAME_COUNT * 100) | 0;
-              loaderFill.style.width = pct + '%';
-              loaderText.textContent = pct + '%';
-              loaded === FRAME_COUNT ? resolve() : go();
+              if (showProgress) {
+                const pct = (loaded / total * 100) | 0;
+                loaderFill.style.width = pct + '%';
+                loaderText.textContent = pct + '%';
+              }
+              loaded === total ? resolve() : go();
             }
           }
 
@@ -1179,13 +1182,18 @@
           }
         });
 
-        // Load ALL frames — loading bar shows progress, zero lag after
-        await preloadAll();
+        if (isMobile) {
+          // Mobile: load ALL frames upfront (121 frames, ~3.5MB) — zero lag scroll
+          await preloadRange(0, FRAME_COUNT, true);
+          prerenderFrames();
+        } else {
+          // Desktop: load first 30 fast, show page, load rest in background
+          await preloadRange(0, 30, true);
+          prerenderFrames();
+        }
+
         loaderFill.style.width = '100%';
         loaderText.textContent = 'Pronto';
-        // Pre-render all frames at screen size — makes draw() instant
-        prerenderFrames();
-
         await new Promise(r => setTimeout(r, 200));
         loader.classList.add('done');
 
@@ -1193,6 +1201,11 @@
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
         startLoop();
+
+        if (!isMobile) {
+          // Desktop: load remaining frames in background, prerender as they arrive
+          preloadRange(30, FRAME_COUNT, false).then(prerenderFrames);
+        }
       }
 
       init();
