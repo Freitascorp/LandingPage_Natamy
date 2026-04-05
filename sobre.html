@@ -416,20 +416,79 @@
       color: rgba(255, 255, 255, 0.4);
     }
 
-    /* ---- Section divider ---- */
-    .section-divider {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), var(--glass-border), rgba(16, 185, 129, 0.15), transparent);
+    /* ---- Section Hero Band (parallax image separators) ---- */
+    .section-hero-band {
       position: relative;
-      z-index: 1;
+      width: 100%;
+      height: 50vh;
+      min-height: 360px;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+    .section-hero-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(12,12,14,0.3) 0%,
+        rgba(12,12,14,0.5) 40%,
+        rgba(12,12,14,0.85) 80%,
+        var(--z950) 100%
+      );
+    }
+    .section-hero-band .band-content {
+      position: absolute;
+      bottom: 4rem;
+      left: 0; right: 0;
+      z-index: 2;
+      padding: 0 2rem;
+    }
+    .section-hero-band .band-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .section-num {
+      font-size: clamp(6rem, 12vw, 10rem);
+      font-weight: 200;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: -1.5rem;
+    }
+    .band-title {
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .band-subtitle {
+      font-size: 1rem;
+      color: var(--z400);
+      font-weight: 300;
+      margin-top: 0.75rem;
+      max-width: 36rem;
+    }
+
+    @media (max-width: 640px) {
+      .section-hero-band {
+        height: 40vh;
+        min-height: 280px;
+        background-attachment: scroll;
+      }
+      .section-hero-band .band-content { bottom: 2.5rem; }
+      .section-num { font-size: clamp(4rem, 10vw, 6rem); }
     }
 
     /* ---- Story section ---- */
     .story-section {
-      padding: 10rem 0 8rem;
+      padding: 6rem 0 8rem;
     }
 
     /* Opening intro paragraph — large and prominent */
@@ -496,12 +555,12 @@
 
     /* ---- Services ---- */
     .services-section {
-      padding: 8rem 0;
+      padding: 6rem 0 8rem;
     }
 
     .services-section h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
       letter-spacing: -0.03em;
       color: var(--z100);
       margin-bottom: 3.5rem;
@@ -578,12 +637,12 @@
 
     /* ---- Differentiators ---- */
     .diff-section {
-      padding: 8rem 0;
+      padding: 6rem 0 8rem;
     }
 
     .diff-section h2 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
       letter-spacing: -0.03em;
       color: var(--z100);
       margin-bottom: 3.5rem;
@@ -714,7 +773,7 @@
 
     /* ---- CTA block ---- */
     .cta-section {
-      padding: 4rem 0 8rem;
+      padding: 6rem 0 8rem;
     }
 
     .cta-block {
@@ -828,10 +887,10 @@
         background-attachment: scroll;
       }
 
-      .story-section { padding: 6rem 0 5rem; }
+      .story-section { padding: 4rem 0 5rem; }
 
       .services-section,
-      .diff-section { padding: 5rem 0; }
+      .diff-section { padding: 4rem 0 5rem; }
 
       .stats-bar { padding: 5rem 0; }
 
@@ -919,7 +978,16 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <!-- Band 01: A História -->
+  <div class="section-hero-band" style="background-image: url('/frames/frame_0060.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <div class="section-num">01</div>
+        <div class="band-title">A História</div>
+        <p class="band-subtitle">O percurso por trás da missão</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Personal Story -->
   <section class="story-section section-narrow">
@@ -939,12 +1007,20 @@
     <p class="story-text fade-in">Natamy não acredita em métricas de vaidade. O número de likes, seguidores ou impressões é irrelevante se não se traduzir em visitas ao stand e viaturas vendidas. Cada campanha é medida pelo que realmente importa: leads qualificados, custo por aquisição e retorno sobre o investimento. Os relatórios são claros, diretos e orientados para a ação.</p>
   </section>
 
-  <div class="section-divider"></div>
+  <!-- Band 02: O Que Faço -->
+  <div class="section-hero-band" style="background-image: url('/frames/frame_0180.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <div class="section-num">02</div>
+        <div class="band-title">O Que Faço</div>
+        <p class="band-subtitle">Três competências, um serviço integrado</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Services -->
   <section class="services-section section">
     <div class="fade-in">
-      <span class="section-label"><span class="pulse-dot"></span> Serviços</span>
       <h2>O Que Faço</h2>
     </div>
 
@@ -991,12 +1067,20 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
+  <!-- Band 03: Diferenciais -->
+  <div class="section-hero-band" style="background-image: url('/frames/frame_0250.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <div class="section-num">03</div>
+        <div class="band-title">Diferenciais</div>
+        <p class="band-subtitle">Porque stands automóveis confiam em mim</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Differentiators -->
   <section class="diff-section section-narrow">
     <div class="fade-in">
-      <span class="section-label"><span class="pulse-dot"></span> Diferenciais</span>
       <h2>Porque Trabalhar Comigo</h2>
     </div>
 
@@ -1020,8 +1104,6 @@
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
   <!-- Stats Bar -->
   <section class="stats-bar section">
     <div class="stats-inner fade-in">
@@ -1039,6 +1121,17 @@
       </div>
     </div>
   </section>
+
+  <!-- Band 04: Próximo Passo -->
+  <div class="section-hero-band" style="background-image: url('/frames/frame_0330.webp');">
+    <div class="band-content">
+      <div class="band-inner">
+        <div class="section-num">04</div>
+        <div class="band-title">Próximo Passo</div>
+        <p class="band-subtitle">Vamos conversar sobre o seu stand</p>
+      </div>
+    </div>
+  </div>
 
   <!-- CTA -->
   <section class="cta-section section">
