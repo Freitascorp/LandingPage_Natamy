@@ -1086,29 +1086,25 @@
         }
       }
 
-      // ── Preload (phased, using ImageBitmap for zero-decode draw) ──
-      const PHASE1 = isMobile ? 15 : 20;
+      // ── Preload ALL frames during loading bar (zero lag when scrolling) ──
       const useBitmap = typeof createImageBitmap === 'function';
 
-      function preloadRange(start, end) {
+      function preloadAll() {
         return new Promise(resolve => {
-          let loaded = 0, next = start;
-          const total = end - start;
-          const C = isMobile ? 4 : 8; // fewer concurrent on mobile to reduce memory pressure
+          let loaded = 0, next = 0;
+          const C = isMobile ? 6 : 12; // concurrent downloads
 
           function go() {
-            if (next >= end) return;
+            if (next >= FRAME_COUNT) return;
             const i = next++;
 
             if (useBitmap) {
-              // Fast path: fetch → blob → ImageBitmap (pre-decoded, instant draw)
               fetch(framePath(i))
                 .then(r => r.blob())
                 .then(b => createImageBitmap(b))
                 .then(bmp => { frames[i] = bmp; done(); })
                 .catch(done);
             } else {
-              // Fallback: Image + decode
               const img = new Image();
               img.src = framePath(i);
               img.decode
@@ -1119,14 +1115,10 @@
 
             function done() {
               loaded++;
-              const pct = start === 0
-                ? ((loaded / PHASE1 * 100) | 0)
-                : ((PHASE1 + loaded) / FRAME_COUNT * 100 | 0);
-              if (start === 0) {
-                loaderFill.style.width = Math.min(pct, 100) + '%';
-                loaderText.textContent = Math.min(pct, 100) + '%';
-              }
-              loaded === total ? resolve() : go();
+              const pct = (loaded / FRAME_COUNT * 100) | 0;
+              loaderFill.style.width = pct + '%';
+              loaderText.textContent = pct + '%';
+              loaded === FRAME_COUNT ? resolve() : go();
             }
           }
 
@@ -1193,8 +1185,8 @@
           }
         });
 
-        // Phase 1: Load first 20 frames — show page fast
-        await preloadRange(0, PHASE1);
+        // Load ALL frames — loading bar shows progress, zero lag after
+        await preloadAll();
         loaderFill.style.width = '100%';
         loaderText.textContent = 'Pronto';
         await new Promise(r => setTimeout(r, 200));
@@ -1204,9 +1196,6 @@
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
         startLoop();
-
-        // Phase 2: Load remaining frames in background
-        preloadRange(PHASE1, FRAME_COUNT);
       }
 
       init();
