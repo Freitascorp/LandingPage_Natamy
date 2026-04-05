@@ -364,38 +364,18 @@
       font-weight: 600;
     }
 
-    .benefit-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem auto 0;
-      max-width: 42ch;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .benefit-list li {
-      font-size: 1.125rem;
-      font-weight: 500;
+    .px .bullet {
+      margin-top: 0.6rem;
+      font-size: 1rem;
+      font-weight: 400;
       line-height: 1.5;
-      color: #ffffff;
-      padding-left: 1.5rem;
-      position: relative;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 42ch;
+      margin-left: auto;
+      margin-right: auto;
       text-shadow:
         0 1px 4px rgba(0,0,0,0.8),
         0 4px 16px rgba(0,0,0,0.6);
-    }
-
-    .benefit-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
     }
 
     /* ── Hero — left-aligned, vertically centered ── */
@@ -791,32 +771,26 @@
   <div class="px s-b1" id="s2" data-in="0.21" data-peak="0.24" data-out="0.35" data-dir="bottom">
 
     <h2>Chega de Curiosos<br>no WhatsApp</h2>
-    <ul class="benefit-list">
-      <li>IA filtra curiosos automaticamente</li>
-      <li>Qualifica cada contacto antes de chegar à equipa</li>
-      <li>Só fala com quem quer mesmo comprar</li>
-    </ul>
+    <p class="bullet">IA filtra curiosos automaticamente</p>
+    <p class="bullet">Qualifica cada contacto antes de chegar à equipa</p>
+    <p class="bullet">Só fala com quem quer mesmo comprar</p>
   </div>
 
   <!-- S3: Benefit 02 | 42-56% | Centered over reception desk -->
   <div class="px s-about" id="s3" data-in="0.41" data-peak="0.44" data-out="0.56" data-dir="scale">
     <h2>A Sua Equipa Vende.<br>A IA Faz o Resto.</h2>
-    <ul class="benefit-list">
-      <li>Responde a horários, stock e financiamento 24/7</li>
-      <li>Agenda visitas automaticamente</li>
-      <li>Vendedores só recebem clientes prontos para assinar</li>
-    </ul>
+    <p class="bullet">Responde a horários, stock e financiamento 24/7</p>
+    <p class="bullet">Agenda visitas automaticamente</p>
+    <p class="bullet">Vendedores só recebem clientes prontos para assinar</p>
   </div>
 
   <!-- S5: Benefit 03 | 63-72% | Bottom-left -->
   <div class="px s-b3" id="s5" data-in="0.62" data-peak="0.65" data-out="0.76" data-dir="bottom">
 
     <h2>Acabe com o<br>Mês Bom, Mês Mau</h2>
-    <ul class="benefit-list">
-      <li>Follow-up automático até dar resposta</li>
-      <li>Sem depender da sorte ou da memória dos vendedores</li>
-      <li>Fluxo constante de visitas e viaturas entregues</li>
-    </ul>
+    <p class="bullet">Follow-up automático até dar resposta</p>
+    <p class="bullet">Sem depender da sorte ou da memória dos vendedores</p>
+    <p class="bullet">Fluxo constante de visitas e viaturas entregues</p>
   </div>
 
   <!-- S6: CTA | 87-98% | Right-aligned over office -->
