@@ -828,8 +828,8 @@
 
       // ── Snap Points (scroll progress %) ──
       const SNAPS = [0, 0.24, 0.44, 0.65, 0.87, 1.0];
-      const SNAP_IDLE_MS  = 800;   // wait before snapping
-      const SNAP_THRESH   = 0.06;  // only snap when very close
+      const SNAP_IDLE_MS  = 800;
+      const SNAP_THRESH   = isMobile ? 0.03 : 0.06; // mobile: super close only
 
       let cur = 0, target = 0, lastFrame = -1;
       let scrollTimer = null;
@@ -1108,12 +1108,10 @@
         target = scrollPct();
         startLoop();
 
-        // Snap timer (desktop only — mobile uses swipe-to-section)
-        if (!isMobile) {
-          clearTimeout(scrollTimer);
-          if (!isSnapping) {
-            scrollTimer = setTimeout(onScrollIdle, SNAP_IDLE_MS);
-          }
+        // Snap when scroll stops and user is close to a text section
+        clearTimeout(scrollTimer);
+        if (!isSnapping) {
+          scrollTimer = setTimeout(onScrollIdle, isMobile ? 600 : SNAP_IDLE_MS);
         }
       }
 
@@ -1161,42 +1159,7 @@
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
 
-      // ── Mobile swipe-to-section (2 swipes per section — midpoints for garage tour feel) ──
-      if (isMobile) {
-        // 4 swipes between each text section — slow garage walkthrough
-        const MOBILE_SNAPS = [
-          0, 0.06, 0.12, 0.18, 0.24,        // hero → section 1
-          0.29, 0.34, 0.39, 0.44,            // section 1 → section 2
-          0.49, 0.54, 0.59, 0.65,            // section 2 → section 3
-          0.71, 0.76, 0.81, 0.87,            // section 3 → contact form
-          0.91, 0.95, 1.0                     // contact form → end
-        ];
-        let touchStartY = 0;
-        let touchLocked = false;
-        let currentSnapIndex = 0;
-
-        document.addEventListener('touchstart', function(e) {
-          if (isSnapping || touchLocked) return;
-          touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        document.addEventListener('touchend', function(e) {
-          if (isSnapping || touchLocked) return;
-          const dy = touchStartY - e.changedTouches[0].clientY;
-          if (Math.abs(dy) < 30) return;
-
-          touchLocked = true;
-
-          if (dy > 0 && currentSnapIndex < MOBILE_SNAPS.length - 1) {
-            currentSnapIndex++;
-          } else if (dy < 0 && currentSnapIndex > 0) {
-            currentSnapIndex--;
-          }
-
-          smoothSnapTo(MOBILE_SNAPS[currentSnapIndex]);
-          setTimeout(function() { touchLocked = false; }, 700);
-        }, { passive: true });
-      }
+      // ── Mobile: free scroll + gentle snap only when super close to text section ──
 
       // ── Init ──
       async function init() {
