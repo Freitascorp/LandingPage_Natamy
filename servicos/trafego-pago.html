@@ -153,18 +153,25 @@
       opacity: 1;
       transform: translateY(0);
     }
-    .fade-in-delay-1 { transition-delay: 0.1s; }
-    .fade-in-delay-2 { transition-delay: 0.2s; }
-    .fade-in-delay-3 { transition-delay: 0.3s; }
-    .fade-in-delay-4 { transition-delay: 0.4s; }
-    .fade-in-delay-5 { transition-delay: 0.5s; }
-    .fade-in-delay-6 { transition-delay: 0.6s; }
+    .fade-in-delay-1 { transition-delay: 0.15s; }
+    .fade-in-delay-2 { transition-delay: 0.3s; }
+    .fade-in-delay-3 { transition-delay: 0.45s; }
+    .fade-in-delay-4 { transition-delay: 0.6s; }
+    .fade-in-delay-5 { transition-delay: 0.75s; }
+    .fade-in-delay-6 { transition-delay: 0.9s; }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.25rem 2rem;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, backdrop-filter 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
       background: rgba(12,12,14,0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -173,11 +180,13 @@
     .nav-logo {
       font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
       color: var(--z100); text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     .nav-links { display: flex; gap: 2rem; }
     .nav-links a {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--z400); transition: color 0.2s;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
     .nav-links a:hover { color: var(--accent); }
 
@@ -215,132 +224,177 @@
     .hero {
       min-height: 100dvh;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: flex-end;
       position: relative;
       overflow: hidden;
-      padding: 6rem 0;
-      background: url('/frames/frame_0060.webp') center center / cover no-repeat;
-      background-attachment: fixed;
+      padding-bottom: 10vh;
     }
+
+    /* Ken Burns animated background */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('/frames/frame_0060.webp') center center / cover no-repeat;
+      animation: kenburns 25s ease-in-out infinite alternate;
+      z-index: 0;
+      will-change: transform;
+    }
+    @keyframes kenburns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    /* Cinematic bottom-heavy gradient overlay */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(12, 12, 14, 0.4) 0%,
-        rgba(12, 12, 14, 0.6) 40%,
-        rgba(12, 12, 14, 0.85) 75%,
-        var(--z950) 100%
+        rgba(12,12,14,0.1) 0%,
+        rgba(12,12,14,0.25) 30%,
+        rgba(12,12,14,0.65) 60%,
+        rgba(12,12,14,0.92) 100%
       );
       pointer-events: none;
+      z-index: 1;
     }
+    /* Subtle vignette edges */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(12, 12, 14, 0.7) 0%,
-        rgba(12, 12, 14, 0.3) 40%,
-        transparent 70%
+      background: radial-gradient(
+        ellipse at center,
+        transparent 50%,
+        rgba(12,12,14,0.4) 100%
       );
       pointer-events: none;
+      z-index: 1;
     }
-    .hero-inner {
-      text-align: center;
-      max-width: 54rem;
-      margin: 0 auto;
+
+    .hero-content {
       position: relative;
       z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 52rem;
+      padding: 0 1.5rem;
     }
 
-    /* ── HERO BADGE ── */
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 1.25rem;
-      border: 1px solid rgba(16,185,129,0.2);
-      border-radius: 9999px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+    /* Eyebrow */
+    .hero-eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(16,185,129,0.06);
-      backdrop-filter: blur(8px);
-      margin-bottom: 2.5rem;
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 1.5rem;
     }
-    .hero-badge::before {
-      content: '';
-      width: 7px; height: 7px;
-      border-radius: 50%;
+
+    /* Accent line */
+    .hero-accent-line {
+      width: 40px;
+      height: 1px;
       background: var(--accent);
-      box-shadow: 0 0 8px rgba(16,185,129,0.6);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    .hero-badge::after {
-      content: '';
-      position: absolute;
-      top: -50%; left: -100%;
-      width: 200%; height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(16,185,129,0.08), transparent);
-      animation: badge-shimmer 4s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-    @keyframes badge-shimmer {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(50%); }
+      margin-bottom: 2rem;
     }
 
+    /* Massive title */
     .hero h1 {
-      font-size: clamp(2.75rem, 7vw, 5rem);
-      font-weight: 800;
-      line-height: 1.02;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 0.95;
       letter-spacing: -0.04em;
-      background: linear-gradient(180deg, #ffffff 30%, rgba(255,255,255,0.4) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1.75rem;
+      color: #ffffff;
+      margin-bottom: 2rem;
     }
-    .hero-lead {
-      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-      text-shadow: 0 1px 3px rgba(0,0,0,0.9), 0 4px 12px rgba(0,0,0,0.7);
-      color: var(--z400);
+    .hero h1 .title-light {
+      display: block;
       font-weight: 300;
-      line-height: 1.75;
-      max-width: 40rem;
-      margin: 0 auto 3.5rem;
+      font-size: 0.55em;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.15em;
+    }
+    .hero h1 .title-bold {
+      display: block;
+      font-weight: 800;
     }
 
-    /* ── STATS BAR ── */
-    .stats-bar {
+    /* Subtitle */
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 32ch;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .scroll-indicator .scroll-line {
+      width: 1px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--z500), transparent);
+      animation: scroll-pulse 2s ease-in-out infinite;
+    }
+    .scroll-indicator span:last-child {
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--z500);
+    }
+    @keyframes scroll-pulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.6); }
+    }
+
+    /* ── STATS STRIP (below hero) ── */
+    .stats-strip {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .stats-strip-inner {
+      max-width: 72rem;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--glass-border);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      overflow: hidden;
-      max-width: 52rem;
-      margin: 0 auto;
     }
     .stat-item {
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(12px);
-      padding: 2rem 1.5rem;
+      padding: 2.25rem 1.5rem;
       text-align: center;
-      transition: background 0.3s;
+      position: relative;
     }
-    .stat-item:hover {
-      background: rgba(255,255,255,0.04);
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 25%;
+      height: 50%;
+      width: 1px;
+      background: var(--glass-border);
     }
     .stat-number {
       font-size: clamp(1.3rem, 2.5vw, 1.75rem);
@@ -921,12 +975,24 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .hero { min-height: auto; padding: 8rem 0 4rem; background-attachment: scroll; }
-      .hero-inner { text-align: left; }
-      section { padding: 5rem 0; }
+      .hero { padding-bottom: 8vh; }
+      .hero-bg { animation: none; }
+      .hero h1 { font-size: clamp(2.25rem, 8vw, 7rem); }
+      .hero-subtitle { max-width: 28ch; }
 
-      .stats-bar { grid-template-columns: 1fr; border-radius: 16px; }
-      .stat-item { padding: 1.5rem; }
+      .scroll-indicator { display: none; }
+
+      .stats-strip-inner { grid-template-columns: 1fr; }
+      .stat-item:not(:last-child)::after {
+        right: 15%;
+        left: 15%;
+        top: auto;
+        bottom: 0;
+        width: auto;
+        height: 1px;
+      }
+
+      section { padding: 5rem 0; }
 
       .platform-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: 1fr; }
@@ -980,7 +1046,7 @@
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WB4WM82H" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <nav>
+  <nav id="mainNav">
     <a href="/" class="nav-logo">Natamy Oliveira</a>
     <div class="nav-links">
       <a href="/servicos/trafego-pago.html">Serviços</a>
@@ -997,32 +1063,41 @@
 
   <main>
 
-    <!-- ═══ HERO ═══ -->
+    <!-- ═══ HERO — CINEMATIC ═══ -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-inner">
-          <div class="fade-in">
-            <div class="hero-badge">Tráfego Pago para Stands</div>
-          </div>
-          <h1 class="fade-in fade-in-delay-1">Gestão de Tráfego Pago</h1>
-          <p class="hero-lead fade-in fade-in-delay-2">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automóveis em Portugal. Sem curiosos, sem cliques desperdiçados — só contactos de pessoas que querem comprar.</p>
-          <div class="stats-bar fade-in fade-in-delay-3">
-            <div class="stat-item">
-              <div class="stat-number">Google <span class="accent">Ads</span></div>
-              <div class="stat-label">+ Meta Ads</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number"><span data-count="2">0</span>-<span data-count="3">0</span> <span class="accent">semanas</span></div>
-              <div class="stat-label">Primeiros contactos</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number"><span data-count="3">0</span>+ <span class="accent">meses</span></div>
-              <div class="stat-label">Resultados sólidos</div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow fade-in">TRÁFEGO PAGO</div>
+        <div class="hero-accent-line fade-in fade-in-delay-1"></div>
+        <h1 class="fade-in fade-in-delay-2">
+          <span class="title-light">Gestão de</span>
+          <span class="title-bold">Tráfego Pago</span>
+        </h1>
+        <p class="hero-subtitle fade-in fade-in-delay-3">Campanhas de Google Ads e Meta Ads criadas especificamente para stands automóveis em Portugal.</p>
+      </div>
+      <div class="scroll-indicator fade-in fade-in-delay-4">
+        <span class="scroll-line"></span>
+        <span>SCROLL</span>
       </div>
     </section>
+
+    <!-- ═══ STATS STRIP ═══ -->
+    <div class="stats-strip">
+      <div class="stats-strip-inner">
+        <div class="stat-item fade-in">
+          <div class="stat-number">Google <span class="accent">Ads</span></div>
+          <div class="stat-label">+ Meta Ads</div>
+        </div>
+        <div class="stat-item fade-in fade-in-delay-1">
+          <div class="stat-number"><span data-count="2">0</span>-<span data-count="3">0</span> <span class="accent">semanas</span></div>
+          <div class="stat-label">Primeiros contactos</div>
+        </div>
+        <div class="stat-item fade-in fade-in-delay-2">
+          <div class="stat-number"><span data-count="3">0</span>+ <span class="accent">meses</span></div>
+          <div class="stat-label">Resultados sólidos</div>
+        </div>
+      </div>
+    </div>
 
     <div class="section-divider"></div>
 
@@ -1294,6 +1369,11 @@
 (function(){var b=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(!b||!m)return;b.addEventListener('click',function(){b.classList.toggle('active');m.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('active');m.classList.remove('open');document.body.style.overflow='';});});})();
 </script>
 
+  <!-- Nav scroll effect -->
+  <script>
+(function(){var nav=document.getElementById('mainNav');if(!nav)return;var threshold=60;function check(){if(window.scrollY>threshold){nav.classList.add('scrolled');}else{nav.classList.remove('scrolled');}}window.addEventListener('scroll',check,{passive:true});check();})();
+</script>
+
   <!-- FAQ Accordion -->
   <script>
 (function(){document.querySelectorAll('.faq-question').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.closest('.faq-item');var answer=item.querySelector('.faq-answer');var inner=item.querySelector('.faq-answer-inner');var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(function(openItem){if(openItem!==item){openItem.classList.remove('open');openItem.querySelector('.faq-question').setAttribute('aria-expanded','false');openItem.querySelector('.faq-answer').style.maxHeight='0';}});if(isOpen){item.classList.remove('open');btn.setAttribute('aria-expanded','false');answer.style.maxHeight='0';}else{item.classList.add('open');btn.setAttribute('aria-expanded','true');answer.style.maxHeight=inner.scrollHeight+'px';}});});})();
@@ -1341,7 +1421,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Gestao de Trafego Pago para Stands Automoveis",
-    "description": "Campanhas de Google Ads e Meta Ads criadas especificamente para stands automoveis em Portugal. Segmentacao precisa para gerar contactos qualificados.",
+    "description": "Campanhas de Google Ads e Meta Ads criadas especificamente para stands automóveis em Portugal. Segmentação precisa para gerar contactos qualificados.",
     "provider": {
       "@type": "ProfessionalService",
       "name": "Natamy Oliveira",
