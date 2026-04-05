@@ -240,10 +240,9 @@
       position: fixed;
       z-index: 20;
       pointer-events: none;
-      will-change: transform, opacity;
     }
 
-    .px > * { will-change: transform, opacity; }
+    .px > * { }
 
     /* ── Dim overlay — animated by JS based on active section ── */
     .canvas-dim {
@@ -852,18 +851,39 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         canvas.style.width = cw + 'px';
         canvas.style.height = ch + 'px';
-        if (lastFrame >= 0 && frames[lastFrame]) draw(frames[lastFrame]);
+        if (lastFrame >= 0 && screenFrames[lastFrame]) draw(screenFrames[lastFrame]);
       }
 
-      function draw(img) {
-        // Crop bottom 7% to hide KlingAI watermark
+      // Pre-rendered frames at exact screen size (zero math per scroll frame)
+      const screenFrames = new Array(FRAME_COUNT);
+
+      function prerenderFrames() {
         const crop = 0.07;
-        const iw = img.naturalWidth || img.width;
-        const ih = img.naturalHeight || img.height;
-        const srcH = ih * (1 - crop);
-        const s = Math.max(cw / iw, ch / srcH);
-        const w = iw * s, h = srcH * s;
-        ctx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
+        for (let i = 0; i < FRAME_COUNT; i++) {
+          if (!frames[i]) continue;
+          const img = frames[i];
+          const iw = img.naturalWidth || img.width;
+          const ih = img.naturalHeight || img.height;
+          const srcH = ih * (1 - crop);
+          const s = Math.max(cw / iw, ch / srcH);
+          const w = iw * s, h = srcH * s;
+
+          const c = document.createElement('canvas');
+          c.width = cw;
+          c.height = ch;
+          const cx = c.getContext('2d');
+          cx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
+          screenFrames[i] = c;
+
+          // Free the original bitmap/image to save memory
+          if (img.close) img.close();
+          frames[i] = null;
+        }
+      }
+
+      function draw(src) {
+        if (!src) return;
+        ctx.drawImage(src, 0, 0);
       }
 
       // ── Scroll (cache maxScroll on resize) ──
@@ -1015,8 +1035,8 @@
 
         // Frame
         const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
-        if (fi !== lastFrame && frames[fi]) {
-          draw(frames[fi]);
+        if (fi !== lastFrame && screenFrames[fi]) {
+          draw(screenFrames[fi]);
           lastFrame = fi;
         }
 
@@ -1189,10 +1209,13 @@
         await preloadAll();
         loaderFill.style.width = '100%';
         loaderText.textContent = 'Pronto';
+        // Pre-render all frames at screen size — makes draw() instant
+        prerenderFrames();
+
         await new Promise(r => setTimeout(r, 200));
         loader.classList.add('done');
 
-        if (frames[0]) { draw(frames[0]); lastFrame = 0; }
+        if (screenFrames[0]) { draw(screenFrames[0]); lastFrame = 0; }
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
         startLoop();
