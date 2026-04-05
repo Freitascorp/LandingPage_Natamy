@@ -235,15 +235,15 @@
     /* Ken Burns animated background */
     .hero-bg {
       position: absolute;
-      inset: 0;
-      background: url('/frames/frame_0060.webp') center center / cover no-repeat;
+      inset: -5%;
+      background: url('/frames/frame_0060.webp') center 40% / cover no-repeat;
       animation: kenburns 25s ease-in-out infinite alternate;
       z-index: 0;
       will-change: transform;
     }
     @keyframes kenburns {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
+      0% { transform: scale(1.05); }
+      100% { transform: scale(1.12); }
     }
 
     /* Cinematic bottom-heavy gradient overlay */
@@ -446,8 +446,8 @@
       width: 100%;
       height: 50vh;
       min-height: 360px;
-      background-size: cover;
-      background-position: center;
+      background-size: 110%;
+      background-position: center 35%;
       background-attachment: fixed;
       overflow: hidden;
     }
@@ -976,6 +976,7 @@
     /* ── OUTROS SERVICOS ── */
     .outros-servicos {
       padding: 4rem 0 2rem;
+      text-align: center;
     }
     .outros-servicos h3 {
       font-size: 0.8rem;
@@ -988,6 +989,7 @@
     .outros-links {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 0.6rem;
     }
     .outros-links a {
