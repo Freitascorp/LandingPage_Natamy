@@ -1088,10 +1088,33 @@
         target = scrollPct();
         startLoop();
 
-        // Snap when scroll stops and user is close to a text section
-        clearTimeout(scrollTimer);
-        if (!isSnapping) {
-          scrollTimer = setTimeout(onScrollIdle, isMobile ? 600 : SNAP_IDLE_MS);
+        if (isMobile && !isSnapping && !mobileHeld) {
+          // Check if we just entered a text section zone — auto-snap to it
+          const p = scrollPct();
+          // Reset snapped-to when far enough away (allows re-snap on return)
+          if (mobileSnappedTo >= 0 && Math.abs(p - SNAPS[mobileSnappedTo]) > 0.08) {
+            mobileSnappedTo = -1;
+          }
+          for (let i = 0; i < SNAPS.length; i++) {
+            if (i === mobileSnappedTo) continue;
+            const dist = Math.abs(p - SNAPS[i]);
+            if (dist < 0.04) { // within 4% of a snap point
+              mobileSnappedTo = i;
+              mobileHeld = true;
+              smoothSnapTo(SNAPS[i]);
+              // Hold for 800ms — user must swipe again to break free
+              setTimeout(function() { mobileHeld = false; }, 800);
+              return;
+            }
+          }
+        }
+
+        // Desktop: gentle snap on idle
+        if (!isMobile) {
+          clearTimeout(scrollTimer);
+          if (!isSnapping) {
+            scrollTimer = setTimeout(onScrollIdle, SNAP_IDLE_MS);
+          }
         }
       }
 
@@ -1142,7 +1165,9 @@
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
 
-      // ── Mobile: free scroll + gentle snap only when super close to text section ──
+      // ── Mobile: auto-snap when entering a text section zone, hold until next swipe ──
+      let mobileSnappedTo = -1; // which snap index we're locked to (-1 = free)
+      let mobileHeld = false;   // currently held at a snap point
 
       // ── Init ──
       async function init() {
