@@ -242,6 +242,21 @@
       pointer-events: none;
     }
 
+    .px::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140%;
+      height: 160%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .s-hero::before { width: 160%; height: 180%; }
+
     .px > * { }
 
     /* ── Dim overlay — animated by JS based on active section ── */
