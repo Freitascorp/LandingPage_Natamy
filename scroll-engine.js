@@ -99,18 +99,20 @@
       if (heroImg) heroImg.style.animation = 'none';
       if (heroBg && !heroBg.querySelector('img')) heroBg.style.animation = 'none';
 
-      // Background: smooth zoom tied to scroll
+      // Background: subtle zoom tied to scroll (reduced range — was 1.05→1.25,
+      // too much motion combined with content drift made the image feel jumpy)
       if (heroImg) {
         gsap.fromTo(heroImg,
-          { scale: 1.05 },
+          { scale: 1.02 },
           {
-            scale: 1.25,
+            scale: 1.10,
             ease: 'none',
+            force3D: true,
             scrollTrigger: {
               trigger: hero,
               start: 'top top',
               end: 'bottom top',
-              scrub: 0.6,
+              scrub: 1,  // higher scrub = more damped, less jittery
               pin: false,
             },
           }
@@ -154,20 +156,21 @@
       // scroll frame and was the single biggest stutter cause. If you want parallax
       // back, put an <img> inside the band and animate its transform:translateY.
 
-      // Section number: floats upward at 1.3x (pop forward layer)
+      // Section number: gentle float — reduced range and damped scrub
       const num = band.querySelector('.section-num');
       if (num) {
         gsap.fromTo(num,
-          { y: 60, opacity: 0.04 },
+          { y: 30, opacity: 0.04 },
           {
-            y: isMobile ? -30 : -100,
+            y: isMobile ? -15 : -50,
             opacity: 0.18,
             ease: 'none',
+            force3D: true,
             scrollTrigger: {
               trigger: band,
               start: 'top bottom',
               end: 'bottom top',
-              scrub: true,
+              scrub: 1,
             },
           }
         );
@@ -217,22 +220,22 @@
     // APPLE PATTERN 3: CONTENT SECTIONS SCALE IN
     // Sections grow from 0.92 scale + fade — Apple "zooming in" feel
     // ═══════════════════════════════════════════
+    // One-shot fade-up on each section (was a scrubbed scale 0.94→1 that shifted
+    // layout while scrolling and made the whole page feel like it was bouncing).
     document.querySelectorAll('section, .story-section, .problem-section, .cta-section, .stats-strip').forEach(section => {
-      // Skip hero and bands
       if (section.classList.contains('hero') || section.classList.contains('section-hero-band')) return;
 
       gsap.fromTo(section,
-        { opacity: 0, scale: isMobile ? 1 : 0.94 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
-          scale: 1,
-          ease: 'none',
+          y: 0,
+          duration: 0.9,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: section,
-            start: isMobile ? 'top 95%' : 'top 85%',
-            end: isMobile ? 'top 75%' : 'top 55%',
-            scrub: isMobile ? false : 0.5,
-            toggleActions: isMobile ? 'play none none none' : undefined,
+            start: isMobile ? 'top 95%' : 'top 88%',
+            toggleActions: 'play none none none',
           },
         }
       );
