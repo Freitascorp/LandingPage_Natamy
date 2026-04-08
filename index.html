@@ -24,7 +24,7 @@
   <meta name="google-site-verification" content="lKg96X92-Oxkwzsc_AujwG86T429C98hOoA3fQXW8-E">
   <meta name="facebook-domain-verification" content="xymxjt7r2koieh6tms9i1063ee1z8d">
   <link rel="canonical" href="https://natamyoliveira.com/">
-  <link rel="preload" as="video" href="showroom.mp4" type="video/mp4" fetchpriority="high">
+  <link rel="preload" as="image" href="frames/frame_0001.webp" type="image/webp" fetchpriority="high">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2310b981'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='18' fill='%230c0c0e'>N</text></svg>">
 
   <!-- EmailJS SDK -->
@@ -74,15 +74,7 @@
       background: var(--z950);
     }
 
-    video#scrollVideo {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      background: var(--z950);
-      pointer-events: none;
-    }
+    canvas#videoCanvas { display: block; width: 100%; height: 100%; }
 
     /* Permanent left gradient — keeps hero text readable on bright frames */
     .canvas-viewport::before {
@@ -836,15 +828,7 @@
   <!-- ═══════════ CANVAS ═══════════ -->
   <div class="scroll-container">
     <div class="canvas-viewport">
-      <video id="scrollVideo"
-             src="showroom.mp4"
-             muted
-             playsinline
-             webkit-playsinline
-             preload="auto"
-             disablepictureinpicture
-             disableremoteplayback
-             aria-label="Visita virtual 3D a stand automóvel — percorra o showroom, receção, oficina e escritório"></video>
+      <canvas id="videoCanvas" aria-label="Visita virtual 3D a stand automóvel — percorra o showroom, receção, oficina e escritório"></canvas>
     </div>
   </div>
 
@@ -852,15 +836,8 @@
     (() => {
       'use strict';
 
-      // ═══════════════════════════════════════════
-      // VIDEO-BASED SCROLL SCRUBBING
-      // Replaces image-sequence canvas. Browser video decoder handles
-      // sub-frame interpolation in hardware — no flipbook stepping.
-      // Source MP4 is encoded all-I-frame (every frame is a keyframe)
-      // so seeking to any timestamp is instant.
-      // ═══════════════════════════════════════════
-
-      const video        = document.getElementById('scrollVideo');
+      const canvas       = document.getElementById('videoCanvas');
+      const ctx          = canvas.getContext('2d', { alpha: false, desynchronized: true });
       const loader       = document.getElementById('loader');
       const loaderFill   = document.getElementById('loaderFill');
       const loaderText   = document.getElementById('loaderText');
@@ -868,6 +845,10 @@
       const scrollHint   = document.getElementById('scrollHint');
 
       const isMobile = innerWidth <= 768;
+      const STEP = isMobile ? 3 : 1;  // every 3rd frame on mobile (~121 frames, smooth)
+      const TOTAL = 361;
+      const FRAME_COUNT = isMobile ? Math.ceil(TOTAL / STEP) : TOTAL;
+      const frames = new Array(FRAME_COUNT);
       const sections = document.querySelectorAll('.px');
 
       // ── Snap Points (scroll progress %) ──
@@ -875,65 +856,47 @@
       const SNAP_IDLE_MS  = 800;
       const SNAP_THRESH   = isMobile ? 0.03 : 0.06; // mobile: super close only
 
-      let cur = 0, target = 0;
+      let cur = 0, target = 0, lastFrame = -1;
       let scrollTimer = null;
       let isSnapping = false;
-      let videoDuration = 0;
-      let videoReady = false;
+      let cw = 0, ch = 0;  // cached dimensions
 
-      // Video seeking state — only one seek outstanding at a time.
-      // When scroll moves faster than seeks complete, queue the latest target
-      // and fire it on the 'seeked' event. Prevents stalls and skipped seeks.
-      let seeking = false;
-      let pendingTime = -1;
-
-      function setVideoTime(t) {
-        if (!videoReady) return;
-        t = Math.max(0, Math.min(videoDuration - 0.001, t));
-        if (seeking) { pendingTime = t; return; }
-        if (Math.abs(video.currentTime - t) < 0.01) return; // below ~1 frame
-        seeking = true;
-        try { video.currentTime = t; } catch (e) { seeking = false; }
+      function framePath(i) {
+        const actual = isMobile ? i * STEP + 1 : i + 1;
+        return 'frames/frame_' + String(Math.min(actual, TOTAL)).padStart(4, '0') + '.webp';
       }
 
-      video.addEventListener('seeked', () => {
-        seeking = false;
-        if (pendingTime >= 0) {
-          const t = pendingTime;
-          pendingTime = -1;
-          setVideoTime(t);
-        }
-      });
-
-      function onVideoReady() {
-        if (videoReady) return;
-        if (!isFinite(video.duration) || video.duration <= 0) return;
-        videoDuration = video.duration;
-        videoReady = true;
+      // ── Canvas (cache dimensions, avoid layout reads in loop) ──
+      function resize() {
+        cw = innerWidth;
+        ch = innerHeight;
+        const dpr = isMobile ? 1 : Math.min(devicePixelRatio || 1, 2);
+        canvas.width = cw * dpr;
+        canvas.height = ch * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        canvas.style.width = cw + 'px';
+        canvas.style.height = ch + 'px';
+        if (lastFrame >= 0 && frames[lastFrame]) draw(frames[lastFrame]);
       }
-      video.addEventListener('loadedmetadata', onVideoReady);
-      video.addEventListener('canplay', onVideoReady);
 
-      // iOS Safari requires a user gesture to unlock video — call play()+pause()
-      // on first touch/scroll so subsequent currentTime seeks work without delay.
-      let videoUnlocked = false;
-      function unlockVideo() {
-        if (videoUnlocked) return;
-        videoUnlocked = true;
-        const p = video.play();
-        if (p && p.then) p.then(() => video.pause()).catch(() => {});
-        else { try { video.pause(); } catch(e){} }
+      // Pre-rendered frames at exact screen size (zero math per scroll frame)
+      function draw(img) {
+        if (!img) return;
+        const crop = 0.07;
+        const iw = img.naturalWidth || img.width;
+        const ih = img.naturalHeight || img.height;
+        const srcH = ih * (1 - crop);
+        const s = Math.max(cw / iw, ch / srcH);
+        const w = iw * s, h = srcH * s;
+        ctx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
       }
-      addEventListener('touchstart', unlockVideo, { passive: true, once: true });
-      addEventListener('click', unlockVideo, { once: true });
 
       // ── Scroll (cache maxScroll on resize) ──
       let maxScroll = 1;
       function updateMaxScroll() {
-        maxScroll = document.documentElement.scrollHeight - innerHeight;
+        maxScroll = document.documentElement.scrollHeight - ch;
         if (maxScroll < 1) maxScroll = 1;
       }
-      function resize() { updateMaxScroll(); }
 
       function scrollPct() {
         return Math.max(0, Math.min(1, scrollY / maxScroll));
@@ -1066,33 +1029,40 @@
         }
       }
 
-      // ── Render Loop ──
-      // Lerps cur toward target, updates video.currentTime, updates text overlays.
-      // Loop self-stops when motion settles to save battery.
+      // ── Render Loop (optimized: canvas first, DOM throttled) ──
       let loopRunning = false;
       let lastUICur = -1;
+      let uiThrottle = 0;
 
       function loop() {
-        const lerpSpeed = isMobile ? 0.18 : 0.14;
+        const lerpSpeed = isMobile ? 0.22 : 0.14;
         const delta = target - cur;
         cur += delta * lerpSpeed;
         if (Math.abs(delta) < 0.00005) cur = target;
 
-        // Drive the video (hardware-decoded sub-frame accuracy)
-        setVideoTime(cur * videoDuration);
+        // Frame draw — FAST (just copies pre-rendered canvas)
+        const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
+        if (fi !== lastFrame && frames[fi]) {
+          draw(frames[fi]);
+          lastFrame = fi;
+        }
 
-        // Throttle DOM writes — only when cur moved ~0.1%
-        const curRound = (cur * 1000) | 0;
-        if (curRound !== lastUICur) {
-          lastUICur = curRound;
-          progressFill.style.height = (cur * 100) + '%';
-          if (cur > 0.03) {
-            if (!scrollHint.classList.contains('hidden')) scrollHint.classList.add('hidden');
-          } else {
-            if (scrollHint.classList.contains('hidden')) scrollHint.classList.remove('hidden');
+        // DOM updates — throttled to every 3rd frame on mobile
+        uiThrottle++;
+        if (!isMobile || uiThrottle >= 3) {
+          uiThrottle = 0;
+          const curRound = (cur * 1000) | 0;
+          if (curRound !== lastUICur) {
+            lastUICur = curRound;
+            progressFill.style.height = (cur * 100) + '%';
+            if (cur > 0.03) {
+              if (!scrollHint.classList.contains('hidden')) scrollHint.classList.add('hidden');
+            } else {
+              if (scrollHint.classList.contains('hidden')) scrollHint.classList.remove('hidden');
+            }
+            updateSections(cur);
+            updateDim(cur);
           }
-          updateSections(cur);
-          updateDim(cur);
         }
 
         if (Math.abs(delta) > 0.0001) {
@@ -1149,33 +1119,46 @@
         }
       }
 
-      // ── Wait for video to be ready for scrubbing ──
-      function waitForVideo() {
+      // ── Preload frames ──
+      const useBitmap = typeof createImageBitmap === 'function';
+
+      function preloadRange(start, end, showProgress) {
         return new Promise(resolve => {
-          if (videoReady && video.readyState >= 3) return resolve();
+          let loaded = 0, next = start;
+          const total = end - start;
+          const C = isMobile ? 6 : 12;
 
-          // Progress reporting during download
-          function onProgress() {
-            if (!video.duration || !video.buffered.length) return;
-            const pct = Math.min(100, (video.buffered.end(0) / video.duration * 100) | 0);
-            loaderFill.style.width = pct + '%';
-            loaderText.textContent = pct + '%';
-          }
-          video.addEventListener('progress', onProgress);
+          function go() {
+            if (next >= end) return;
+            const i = next++;
 
-          function ready() {
-            onVideoReady();
-            if (videoReady) {
-              video.removeEventListener('progress', onProgress);
-              video.removeEventListener('canplaythrough', ready);
-              video.removeEventListener('canplay', ready);
-              resolve();
+            if (useBitmap) {
+              fetch(framePath(i))
+                .then(r => r.blob())
+                .then(b => createImageBitmap(b))
+                .then(bmp => { frames[i] = bmp; done(); })
+                .catch(done);
+            } else {
+              const img = new Image();
+              img.src = framePath(i);
+              img.decode
+                ? img.decode().then(() => { frames[i] = img; done(); }).catch(done)
+                : (img.onload = () => { frames[i] = img; done(); },
+                   img.onerror = done);
+            }
+
+            function done() {
+              loaded++;
+              if (showProgress) {
+                const pct = (loaded / total * 100) | 0;
+                loaderFill.style.width = pct + '%';
+                loaderText.textContent = pct + '%';
+              }
+              loaded === total ? resolve() : go();
             }
           }
-          video.addEventListener('canplaythrough', ready);
-          video.addEventListener('canplay', ready);
-          // Safety timeout — proceed after 8s even if canplaythrough never fires
-          setTimeout(() => { onVideoReady(); if (videoReady) resolve(); }, 8000);
+
+          for (let c = 0; c < C; c++) go();
         });
       }
 
@@ -1183,13 +1166,17 @@
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
 
+      // ── Mobile: pure free scroll, like Apple product pages ──
+
       // ── Init ──
       async function init() {
+        resize();
         updateMaxScroll();
-        addEventListener('resize', () => { updateMaxScroll(); }, { passive: true });
+        addEventListener('resize', () => { resize(); updateMaxScroll(); }, { passive: true });
         sections.forEach(el => {
           if (el.classList.contains('s-hero')) {
             el.style.opacity = '1';
+            // Children also visible immediately
             for (let i = 0; i < el.children.length; i++) {
               el.children[i].style.opacity = '1';
               el.children[i].style.transform = 'none';
@@ -1199,19 +1186,28 @@
           }
         });
 
-        // Kick off the video load
-        video.load();
-        await waitForVideo();
+        if (isMobile) {
+          // Mobile: load ALL 121 frames upfront for smooth scroll
+          await preloadRange(0, FRAME_COUNT, true);
+        } else {
+          // Desktop: load first 30 fast, show page quickly
+          await preloadRange(0, 30, true);
+        }
 
         loaderFill.style.width = '100%';
         loaderText.textContent = 'Pronto';
         await new Promise(r => setTimeout(r, 200));
         loader.classList.add('done');
 
+        if (frames[0]) { draw(frames[0]); lastFrame = 0; }
         addEventListener('scroll', onScroll, { passive: true });
         target = cur = scrollPct();
-        setVideoTime(cur * videoDuration);
         startLoop();
+
+        if (!isMobile) {
+          // Desktop: load remaining 331 frames in background
+          preloadRange(30, FRAME_COUNT, false);
+        }
       }
 
       init();
