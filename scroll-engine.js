@@ -63,13 +63,21 @@
     const { gsap, ScrollTrigger, Lenis } = window;
     gsap.registerPlugin(ScrollTrigger);
 
+    // Perf: batch ScrollTrigger callbacks, reduce work during fast scroll
+    ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
+
+    // Low-power device detection (slow CPUs, low RAM, or mobile)
+    const isLowPower = isMobile
+      || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
+      || (navigator.deviceMemory && navigator.deviceMemory <= 4);
+
     // ─────────────────────────────────────
     // LENIS: Apple-like smooth scroll
     // ─────────────────────────────────────
     const lenis = new Lenis({
-      duration: 1.6,           // Slower = more Apple-like
+      duration: isLowPower ? 1.0 : 1.4,   // Shorter catch-up = less lag feel
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: !isTouch,   // Native on touch
+      smoothWheel: !isTouch,
       touchMultiplier: 2,
     });
 
@@ -109,13 +117,12 @@
         );
       }
 
-      // Content: fade + drift up + slight scale down (Apple iPhone page style)
+      // Content: fade + drift up + slight scale down (no blur — blur is a massive repaint cost)
       if (heroInner) {
         gsap.to(heroInner, {
           opacity: 0,
           y: -80,
           scale: 0.95,
-          filter: 'blur(4px)',
           ease: 'none',
           scrollTrigger: {
             trigger: hero,
@@ -143,22 +150,9 @@
     // Background moves at 0.3x, content at 1x = depth illusion
     // ═══════════════════════════════════════════
     document.querySelectorAll('.section-hero-band').forEach((band, idx) => {
-      if (!isMobile) {
-        // Background parallax (0.3x speed — far away)
-        gsap.fromTo(band,
-          { backgroundPositionY: '20%' },
-          {
-            backgroundPositionY: '60%',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: band,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.3,
-            },
-          }
-        );
-      }
+      // NOTE: backgroundPositionY parallax removed — it forces a full repaint every
+      // scroll frame and was the single biggest stutter cause. If you want parallax
+      // back, put an <img> inside the band and animate its transform:translateY.
 
       // Section number: floats upward at 1.3x (pop forward layer)
       const num = band.querySelector('.section-num');
@@ -384,22 +378,18 @@
     // ═══════════════════════════════════════════
     const cta = document.querySelector('.cta-block, .form-card');
     if (cta) {
+      // One-shot reveal instead of scrubbed boxShadow (shadow scrub = huge repaint cost)
       gsap.fromTo(cta,
-        {
-          opacity: 0.6,
-          y: isMobile ? 15 : 40,
-          boxShadow: '0 0 0 0 rgba(16, 185, 129, 0)',
-        },
+        { opacity: 0.6, y: isMobile ? 15 : 40 },
         {
           opacity: 1,
           y: 0,
-          boxShadow: '0 0 80px 20px rgba(16, 185, 129, 0.06)',
-          ease: 'none',
+          duration: 0.8,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: cta,
-            start: 'top 90%',
-            end: 'top 50%',
-            scrub: 0.5,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         }
       );
