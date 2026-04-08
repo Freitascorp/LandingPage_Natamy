@@ -845,12 +845,9 @@
       const scrollHint   = document.getElementById('scrollHint');
 
       const isMobile = innerWidth <= 768;
-      // Use ALL frames on mobile too — skipping to every 3rd frame made each
-      // step 3× bigger, which is exactly the "jumping" users complained about.
-      // Crossfade rendering keeps motion smooth regardless of device.
-      const STEP = 1;
+      const STEP = isMobile ? 3 : 1;  // every 3rd frame on mobile (~121 frames, smooth)
       const TOTAL = 361;
-      const FRAME_COUNT = TOTAL;
+      const FRAME_COUNT = isMobile ? Math.ceil(TOTAL / STEP) : TOTAL;
       const frames = new Array(FRAME_COUNT);
       const sections = document.querySelectorAll('.px');
 
@@ -859,7 +856,7 @@
       const SNAP_IDLE_MS  = 800;
       const SNAP_THRESH   = isMobile ? 0.03 : 0.06; // mobile: super close only
 
-      let cur = 0, target = 0, lastFrame = -1, lastDrawnCur = -1;
+      let cur = 0, target = 0, lastFrame = -1;
       let scrollTimer = null;
       let isSnapping = false;
       let cw = 0, ch = 0;  // cached dimensions
@@ -879,11 +876,11 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         canvas.style.width = cw + 'px';
         canvas.style.height = ch + 'px';
-        if (lastFrame >= 0 && frames[lastFrame]) { drawImg(frames[lastFrame]); lastDrawnCur = -1; }
+        if (lastFrame >= 0 && frames[lastFrame]) draw(frames[lastFrame]);
       }
 
-      // Draw a single frame (cover-fit with top crop)
-      function drawImg(img) {
+      // Pre-rendered frames at exact screen size (zero math per scroll frame)
+      function draw(img) {
         if (!img) return;
         const crop = 0.07;
         const iw = img.naturalWidth || img.width;
@@ -892,31 +889,6 @@
         const s = Math.max(cw / iw, ch / srcH);
         const w = iw * s, h = srcH * s;
         ctx.drawImage(img, 0, 0, iw, srcH, (cw - w) * 0.5, (ch - h) * 0.5, w, h);
-      }
-
-      // Crossfade render: interpolate between adjacent frames for smooth motion.
-      // Without this, every ~19px of scroll hard-cuts to the next integer frame,
-      // causing visible "jumping" as the camera steps discretely instead of flowing.
-      function draw(curVal) {
-        const exact = curVal * (FRAME_COUNT - 1);
-        const fi = exact | 0;
-        const t = exact - fi;
-        const a = frames[fi];
-        if (!a) return;
-        const b = (fi + 1 < FRAME_COUNT) ? frames[fi + 1] : null;
-
-        // Fast path: exactly on a frame, or next frame not loaded yet
-        if (!b || t < 0.01) {
-          drawImg(a);
-          lastFrame = fi;
-          return;
-        }
-        // Crossfade: A underneath, B composited on top at alpha t
-        drawImg(a);
-        ctx.globalAlpha = t;
-        drawImg(b);
-        ctx.globalAlpha = 1;
-        lastFrame = fi;
       }
 
       // ── Scroll (cache maxScroll on resize) ──
@@ -1063,19 +1035,16 @@
       let uiThrottle = 0;
 
       function loop() {
-        // Tighter lerp — feels more connected to scroll input
-        const lerpSpeed = isMobile ? 0.28 : 0.22;
+        const lerpSpeed = isMobile ? 0.22 : 0.14;
         const delta = target - cur;
         cur += delta * lerpSpeed;
         if (Math.abs(delta) < 0.00005) cur = target;
 
-        // Redraw whenever cur actually moved (even fractionally) so the
-        // crossfade between adjacent frames stays in sync with scroll position.
-        // Quantize to 1/2000 to avoid drawing when motion is below perception.
-        const curQ = (cur * 2000) | 0;
-        if (curQ !== lastDrawnCur) {
-          draw(cur);
-          lastDrawnCur = curQ;
+        // Frame draw — FAST (just copies pre-rendered canvas)
+        const fi = Math.min((cur * (FRAME_COUNT - 1) + 0.5) | 0, FRAME_COUNT - 1);
+        if (fi !== lastFrame && frames[fi]) {
+          draw(frames[fi]);
+          lastFrame = fi;
         }
 
         // DOM updates — throttled to every 3rd frame on mobile
